@@ -330,8 +330,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jTabbedPaneMemory.setName("jTabbedPaneMemory"); // NOI18N
 
+        jInternalFrame3.setBorder(null);
         jInternalFrame3.setTitle("Registers : ");
         jInternalFrame3.setName("jInternalFrame3"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame3.getUI()).setNorthPane(null);
 
         jScrollPane15.setName("jScrollPane15"); // NOI18N
 
@@ -673,13 +675,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addContainerGap()
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 410, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -689,56 +691,58 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 284, Short.MAX_VALUE))
                                 .addGap(12, 12, 12))))
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
                         .addComponent(jLabelErrorHang)
-                        .addContainerGap(385, Short.MAX_VALUE))
+                        .addContainerGap(374, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 406, Short.MAX_VALUE))
                         .addGap(16, 16, 16))))
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel12)
-                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel8)
                     .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabelErrorHang)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(122, Short.MAX_VALUE))
         );
 
         jTabbedPaneMemory.addTab("Registers", jInternalFrame3);
 
+        jInternalFrame2.setBorder(null);
         jInternalFrame2.setTitle("Memory Editor");
         jInternalFrame2.setName("jInternalFrame2"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame2.getUI()).setNorthPane(null);
 
         jTextFieldMemBegin.setEditable(false);
         jTextFieldMemBegin.setText("0000");
@@ -844,7 +848,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             .addComponent(jRadioButtonShowAll)
             .addComponent(jRadioButtonUsedMemoryLocation)
             .addComponent(jRadioButtonStoreMemoryLocation)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -855,7 +859,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 564, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonShowAll, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -867,8 +871,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jTabbedPaneMemory.addTab("Memory", jInternalFrame2);
 
+        jInternalFrame4.setBorder(null);
         jInternalFrame4.setTitle("Interfacing device");
         jInternalFrame4.setName("jInternalFrame4"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame4.getUI()).setNorthPane(null);
 
         jTabbedPaneInterface.setName("jTabbedPaneInterface"); // NOI18N
 
@@ -965,9 +971,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jScrollPane8.setName("jScrollPane8"); // NOI18N
 
+        jTextArea8255.setEditable(false);
         jTextArea8255.setBackground(new java.awt.Color(240, 240, 240));
         jTextArea8255.setColumns(20);
-        jTextArea8255.setEditable(false);
         jTextArea8255.setLineWrap(true);
         jTextArea8255.setRows(5);
         jTextArea8255.setName("jTextArea8255"); // NOI18N
@@ -985,13 +991,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jPanel8255.setLayout(jPanel8255Layout);
         jPanel8255Layout.setHorizontalGroup(
             jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
             .addGroup(jPanel8255Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8255Layout.createSequentialGroup()
-                .addContainerGap(202, Short.MAX_VALUE)
+                .addContainerGap(191, Short.MAX_VALUE)
                 .addComponent(jButtonAnalizeCW)
                 .addGap(81, 81, 81))
         );
@@ -1004,7 +1010,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addComponent(jButtonAnalizeCW)
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(299, Short.MAX_VALUE))
+                .addContainerGap(480, Short.MAX_VALUE))
         );
 
         jTabbedPaneInterface.addTab("8255", jPanel8255);
@@ -1013,7 +1019,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrame4.getContentPane().setLayout(jInternalFrame4Layout);
         jInternalFrame4Layout.setHorizontalGroup(
             jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 434, Short.MAX_VALUE)
         );
         jInternalFrame4Layout.setVerticalGroup(
             jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1026,8 +1032,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jTabbedPaneEditor.setName("jTabbedPaneEditor"); // NOI18N
 
+        jInternalFrame1.setBorder(null);
         jInternalFrame1.setTitle("8085 Assembly Language Editor");
         jInternalFrame1.setName("jInternalFrame1"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame1.getUI()).setNorthPane(null);
 
         jButtonAssemble.setText("Assemble");
         jButtonAssemble.setName("jButtonAssemble"); // NOI18N
@@ -1099,11 +1107,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jButtonAutocorrect)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                         .addComponent(jButtonDisassemble)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAssemble))
-                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
+                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -1114,21 +1122,21 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
-                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButtonAutocorrect))
-                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButtonAssemble)
-                        .addComponent(jButtonDisassemble)))
-                .addGap(60, 60, 60))
+                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 738, Short.MAX_VALUE))
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonAssemble)
+                    .addComponent(jButtonDisassemble)
+                    .addComponent(jButtonAutocorrect))
+                .addGap(2, 2, 2))
         );
 
         jTabbedPaneEditor.addTab("Editor", jInternalFrame1);
 
+        jInternalFrame5.setBorder(null);
+        jInternalFrame5.setResizable(true);
         jInternalFrame5.setTitle("Assembler");
         jInternalFrame5.setName("jInternalFrame5"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame5.getUI()).setNorthPane(null);
 
         jLabelComment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelComment.setForeground(new java.awt.Color(0, 153, 153));
@@ -1184,10 +1192,12 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     jLabelError.setText("Error : ");
     jLabelError.setName("jLabelError"); // NOI18N
 
+    jInternalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulate"));
     jInternalFrame6.setTitle("Simulate");
     jInternalFrame6.setName("jInternalFrame6"); // NOI18N
     jInternalFrame6.setVisible(true);
     jInternalFrame6.getContentPane().setLayout(null);
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame6.getUI()).setNorthPane(null);
 
     jButtonContinue.setMnemonic('t');
     jButtonContinue.setText("Continue");
@@ -1294,26 +1304,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             .addGap(20, 20, 20)
             .addGroup(jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
+                    .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addContainerGap())
                 .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
+                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(269, 269, 269))))
-        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
-        .addComponent(jInternalFrame6, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 468, Short.MAX_VALUE)
+        .addComponent(jInternalFrame6, javax.swing.GroupLayout.Alignment.TRAILING)
     );
     jInternalFrame5Layout.setVerticalGroup(
         jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame5Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 332, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabelComment)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabelError)
             .addGap(18, 18, 18)
             .addComponent(jInternalFrame6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addGap(161, 161, 161))
+            .addContainerGap())
     );
 
     jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
@@ -1868,7 +1878,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabel1)
@@ -1877,18 +1887,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     pack();
     }// </editor-fold>//GEN-END:initComponents
-
-   private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
-
-       jButtonStop.setVisible(true);
-       jButtonRun.setVisible(false);
-       jButtonStep.setVisible(false);
-       jLabelErrorHang.setVisible(false);
-       stop = false;
-       ExecutorService exec = Executors.newCachedThreadPool();
-       exec.execute(this);
-
-   }//GEN-LAST:event_jButtonRunActionPerformed
 
     @Override
     public void run() {
@@ -1977,70 +1975,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jProgressBar1.setVisible(false);
         set();
     }
-
-   private void jButtonStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStepActionPerformed
-
-       jButtonStep.setVisible(false);
-       jButtonRun.setVisible(false);
-       jButtonForward.setVisible(true);
-       jButtonBackward.setVisible(true);
-       jButtonStop.setVisible(true);
-       jLabelErrorHang.setVisible(false);
-       stop = false;
-       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
-
-   }//GEN-LAST:event_jButtonStepActionPerformed
-
-   private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
-       if (stop || jButtonStop.getText().equalsIgnoreCase("Stop")) {
-           matrix.select = 0;
-           jButtonForward.setVisible(false);
-           jButtonBackward.setVisible(false);
-           jButtonStop.setVisible(false);
-           jButtonRun.setVisible(true);
-           jButtonStep.setVisible(true);
-           jButtonContinue.setVisible(false);
-           jScrollPane12.setVisible(false);
-           jScrollPane12.setVisible(true);
-           jTabbedPaneAssemblerEditor.setVisible(false);
-           jTabbedPaneAssemblerEditor.setVisible(true);
-           continueFrom = 0;
-           stop = true;
-           pause = false;
-           File f = new File("cache");
-           deleteDir(f);
-       }
-       if (jButtonStop.getText().equalsIgnoreCase("Pause")) {
-           pause = true;
-           jButtonForward.setVisible(true);
-           jButtonBackward.setVisible(true);
-           jButtonStop.setVisible(true);
-           jButtonContinue.setVisible(true);
-           jButtonRun.setVisible(false);
-           jButtonStep.setVisible(false);
-           jScrollPane12.setVisible(false);
-           jScrollPane12.setVisible(true);
-           jButtonStop.setText("Stop");
-       }
-
-   }//GEN-LAST:event_jButtonStopActionPerformed
-
-   private void jButtonBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackwardActionPerformed
-       oIndex--;
-       matrix.readCopy(matrix);
-       try {
-           if (matrix.select < 1000) {
-               if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
-                   jTableAssembler.setRowSelectionAllowed(true);
-                   jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
-                   jLabelError.setText(comments[matrix.select]);
-                   jLabelComment.setText(matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())));
-               }
-           }
-       } catch (Exception e) {
-       }
-       set();
-   }//GEN-LAST:event_jButtonBackwardActionPerformed
 
    private void jRadioButtonShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonShowAllActionPerformed
        setMemory();
@@ -2262,18 +2196,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        set();
    }//GEN-LAST:event_jTablePortKeyReleased
 
-   private void jTableAssemblerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAssemblerKeyReleased
-
-       /* if(jTableAssembler.getSelectedColumn()==3)
-       {
-           Assemble();
-       }
-       else if(jTableAssembler.getSelectedColumn()==4)
-       {
-           disAssemble();
-       }*/
-   }//GEN-LAST:event_jTableAssemblerKeyReleased
-
    private void jMenuItemClearMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearMemoryActionPerformed
 
        matrix = new Matrix(this);
@@ -2284,111 +2206,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
        set();
    }//GEN-LAST:event_jMenuItemClearMemoryActionPerformed
-
-   private void jTabbedPaneAssemblerEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneAssemblerEditorMouseClicked
-       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
-           jButtonAssemble.setVisible(true);
-           jButtonDisassemble.setVisible(false);
-
-       } else if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
-           jButtonAssemble.setVisible(false);
-           jButtonDisassemble.setVisible(true);
-       }
-
-   }//GEN-LAST:event_jTabbedPaneAssemblerEditorMouseClicked
-
-   private void jButtonAssembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssembleActionPerformed
-
-       jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(1));
-       jScrollPane16.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTabbedPaneLabelEditor.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTableAssembler.setRowSelectionAllowed(false);
-       jLabelErrorHang.setVisible(false);
-       jLabelComment.setVisible(false);
-       jLabelError.setVisible(false);
-       jMenuItemClearMemoryActionPerformed(evt);
-       jButtonStop.setText("Stop");
-       jButtonStop.doClick();
-       for (int i = 0; i < 65536; i++) {
-           matrix.memory[i] = 0;
-           matrix.label[i] = "";
-       }
-       setMemory();
-       for (int i = 0; i < macro.length; i++) {
-           macro[i] = "";
-
-       }
-       for (int i = 0; i < 999; i++) {
-           for (int j = 0; j < 8; j++) {
-               jTableAssembler.setValueAt(null, i, j);
-           }
-       }
-
-       String s = jTextAreaAssemblyLanguageEditor.getText();
-       String line[] = new String[1000];
-       String parse[] = new String[4];
-       int i, n, row;
-
-       //break into lines
-       for (i = 0, n = 0; i < s.length(); i++) {
-           if (s.charAt(i) == '\n') {
-               n++;
-           }
-           if (line[n] == null) {
-               line[n] = "";
-           }
-           line[n] = line[n] + s.charAt(i);
-       }
-       int selectIndex = 0;
-       int rowCompile = 0;
-       for (i = 0, row = 0; i <= n; i++) {
-           parse = engine.parseAssemblerContent(line[i]);
-           try {
-               if (parse[0].length() == 0 && parse[1].length() == 0 && parse[3].length() == 0) {
-                   continue;
-               }
-               if (parse[3].length() != 0) {
-                   macro[rowCompile++] = parse[3].toUpperCase() + ":" + row;
-                   continue;
-               }
-               if (parse[0].length() != 0 && parse[1].length() == 0) {
-                   jTableAssembler.setValueAt(parse[0], row, 2);
-                   continue;
-               }
-               if (jTableAssembler.getValueAt(row, 2) == null) {
-                   jTableAssembler.setValueAt(parse[0], row, 2);
-               }
-               jTableAssembler.setValueAt(parse[1], row, 3);
-               comments[row] = parse[2];
-               row++;
-           } catch (Exception e) {
-           }
-       }
-       Assemble();
-       jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(0, 0, false));
-       errorCheck();
-       jTextAreaAssemblyLanguageEditor.requestFocus();
-       jTextAreaAssemblyLanguageEditor.getHighlighter().removeAllHighlights();
-       check:
-       for (i = 0; i <= n; i++) {
-
-           parse = engine.parseAssemblerContent(line[i]);
-           if (line[i] != null) {
-               selectIndex = line[i].length() + selectIndex;
-               String temp[] = engine.MnemonicToHexcode(parse[1]);
-               if (temp[0].equalsIgnoreCase("NOP")) {
-                   textEditor.highligher(i);
-                   jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
-                   //jTextAreaAssemblyLanguageEditor.select(selectIndex-line[i].length(),selectIndex);
-                   break check;
-               }
-           }
-       }
-       jRadioButtonUsedMemoryLocationActionPerformed(evt);
-
-   }//GEN-LAST:event_jButtonAssembleActionPerformed
 
     public void Assemble() {
         String[] commentTemp = new String[1000];
@@ -2543,61 +2360,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         }
     }
 
-   private void jButtonDisassembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisassembleActionPerformed
-       jScrollPane16.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTabbedPaneLabelEditor.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTableAssembler.setRowSelectionAllowed(false);
-       jLabelErrorHang.setVisible(false);
-       jLabelComment.setVisible(false);
-       jLabelError.setVisible(false);
-       jMenuItemClearMemoryActionPerformed(evt);
-       jButtonStop.setText("Stop");
-       jButtonStop.doClick();
-
-       disassembler.loadDisassembler();
-       setMemory();
-       jRadioButtonUsedMemoryLocationActionPerformed(evt);
-       textEditor.colorEditor();
-       /*
-       jTabbedPaneEditor.setSelectedIndex(1);
-       jScrollPane16.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTabbedPaneLabelEditor.setVisible(true);
-       jTabbedPaneLabelEditor.setVisible(false);
-       jTableAssembler.setRowSelectionAllowed(false);
-       jLabelErrorHang.setVisible(false);
-       jLabelComment.setVisible(false);
-       jLabelError.setVisible(false);
-       jMenuItemClearMemoryActionPerformed(evt);
-       jButtonStop.setText("Stop");
-       jButtonStop.doClick();
-
-       for(int i=0;i<65536;i++){matrix.memory[i]=0;matrix.label[i]="";}
-       setMemory();
-       for(int i=0;i<999;i++){
-           for(int j=0;j<8;j++)
-           jTableAssembler.setValueAt(null,i,j);
-       }
-       
-       String s=jTextAreaDisassembler.getText();
-       String temp="";
-       for(int i=0;i<s.length();i++)
-       {
-           if(engine.isHex(s.charAt(i)))temp=temp+s.charAt(i);
-       }s=temp;
-
-       for(int i=0;i<s.length();i+=2)
-       {
-           if((i+1)<s.length())
-           jTableAssembler.setValueAt(""+s.charAt(i)+s.charAt(i+1), i/2, 4);
-       }
-       disAssemble();
-       errorCheck();
-        */
-   }//GEN-LAST:event_jButtonDisassembleActionPerformed
-
    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
        if (jScrollPane16.isVisible()) {
            jScrollPane16.setVisible(false);
@@ -2714,50 +2476,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         return dir.delete();
     }
 
-   private void jButtonForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForwardActionPerformed
-
-       jButtonBackward.setEnabled(true);
-       if (matrix.stopAddress < matrix.PC || matrix.beginAddress > matrix.PC) {
-           jButtonStop.doClick();
-           jLabelErrorHang.setText("You have exceeded the memory range");
-           jLabelErrorHang.setVisible(true);
-       }
-       //int select=matrix.PC-matrix.beginAddress;
-       matrix.createCopy(matrix);
-
-       oIndex++;
-       try {
-           loop:
-           for (matrix.select = 0; matrix.select < 1000; matrix.select++) {
-               if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
-                   if (matrix.PC == engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 1).toString()) && matrix.select < 1000) {
-                       jTableAssembler.setRowSelectionAllowed(true);
-                       jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
-                       jLabelError.setForeground(Color.BLUE);
-                       jLabelError.setVisible(true);
-                       jLabelError.setText("<html>" + comments[matrix.select] + "</html>");
-                       jLabelComment.setVisible(true);
-                       jLabelComment.setText("<html>" + matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())) + "</html>");
-                       matrix.select = matrix.select + Integer.parseInt(jTableAssembler.getValueAt(matrix.select, 5).toString().trim());
-                       break loop;
-                   }
-               }
-           }
-       } catch (Exception e) {
-           System.out.println(e);
-       }
-       if (stop) {
-           jButtonStop.doClick();
-       }
-       matrix.functionRun(matrix.memory[matrix.PC]);
-       set();
-   }//GEN-LAST:event_jButtonForwardActionPerformed
-
-   private void jTextFieldBeginFromKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromKeyReleased
-       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
-
-   }//GEN-LAST:event_jTextFieldBeginFromKeyReleased
-
    private void jMenuItemForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemForwardActionPerformed
        if (jButtonStep.isVisible()) {
            jButtonStepActionPerformed(evt);
@@ -2837,10 +2555,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        trainerObj.setVisible(true);
    }//GEN-LAST:event_jMenuItem26ActionPerformed
 
-   private void jTextFieldBeginFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromActionPerformed
-       // TODO add your handling code here:
-   }//GEN-LAST:event_jTextFieldBeginFromActionPerformed
-
    private void jTableMemoryMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMemoryMousePressed
        jTableMemoryKeyReleased(null);
 }//GEN-LAST:event_jTableMemoryMousePressed
@@ -2867,123 +2581,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        }
 
 }//GEN-LAST:event_jTableNoConverterMousePressed
-
-   private void jButtonContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinueActionPerformed
-
-       continueFrom = matrix.PC;
-       jButtonForward.setVisible(false);
-       jButtonBackward.setVisible(false);
-       jButtonStop.setText("Pause");
-       jButtonStop.setVisible(true);
-       jButtonRun.setVisible(false);
-       jButtonStep.setVisible(false);
-       jScrollPane12.setVisible(false);
-       jScrollPane12.setVisible(true);
-       jButtonContinue.setVisible(false);
-       pause = false;
-       ExecutorService exec = Executors.newCachedThreadPool();
-       exec.execute(this);
-
-   }//GEN-LAST:event_jButtonContinueActionPerformed
-
-   private void jTableAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAssemblerMouseClicked
-       if (jTableAssembler.isColumnSelected(0) && jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0) != null) {
-           if (!jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("X")) {
-               if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("#")) {
-                   jTableAssembler.setValueAt("√", jTableAssembler.getSelectedRow(), 0);
-               } else {
-                   jTableAssembler.setValueAt("#", jTableAssembler.getSelectedRow(), 0);
-               }
-           }
-       } else if (jTableAssembler.isColumnSelected(7)) {
-           if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), jTableAssembler.getSelectedColumn()) != null) {
-               TimingDiagram t = new TimingDiagram(this, jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 1).toString());
-               t.setVisible(true);
-               t.setTitle(jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 3).toString());
-           }
-       }
-
-   }//GEN-LAST:event_jTableAssemblerMouseClicked
-
-   private void jButtonAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutocorrectActionPerformed
-       jButtonAssembleActionPerformed(evt);
-       jTabbedPaneEditor.setSelectedIndex(0);
-       String s = jTextAreaAssemblyLanguageEditor.getText() + "\n";
-       String line[] = new String[1000];
-       String parse[][] = new String[1000][4];
-       String temp = "";
-       int i, n, row, commentCounter = 0, macroCounter = 0, macroRow = 0, lineNo = 0;
-       for (i = 0, n = 0; i < s.length(); i++) {
-           if (s.charAt(i) == '\n') {
-               parse[n] = engine.parseAssemblerContent(line[n]);
-               n++;
-           }
-           if (line[n] == null) {
-               line[n] = "";
-           }
-           line[n] = line[n] + s.charAt(i);
-       }
-
-       s = "";
-
-       for (i = 0, row = 0; i <= n; i++) {
-           loop:
-           for (; commentCounter < 1000; commentCounter++) {
-               if (parse[commentCounter][2] != null) {
-                   if (!parse[commentCounter][1].isEmpty()) {
-                       commentCounter++;
-                       break loop;
-                   }
-                   if (!parse[commentCounter][2].trim().equalsIgnoreCase("")) {
-                       s = s + "// " + parse[commentCounter][2] + "\n";
-                   }
-               }
-           }
-
-           try {
-               temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
-               macroRow = Integer.parseInt(temp);
-               if (macroRow == lineNo) {
-                   while (macroRow == lineNo) {
-                       s = s + "# " + macro[macroCounter].substring(0, macro[macroCounter++].lastIndexOf(":")) + "\n";
-                       temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
-                       macroRow = Integer.parseInt(temp);
-                   }
-               }
-           } catch (Exception e) {
-           }
-
-           if (jTableAssembler.getValueAt(row, 4) != null) {
-
-               lineNo++;
-               if (!jTableAssembler.getValueAt(row, 2).toString().trim().equalsIgnoreCase("")) {
-                   s = s + "\n" + jTableAssembler.getValueAt(row, 2).toString().trim();
-                   s = s + ":";
-               }
-               s = s + "\t";
-               if (!jTableAssembler.getValueAt(row, 3).toString().trim().equalsIgnoreCase("NOP")) {
-                   s = s + jTableAssembler.getValueAt(row, 3).toString();
-               }
-               if (!comments[row].equalsIgnoreCase("")) {
-                   s = s + "\t" + "// " + comments[row];
-               }
-               //if(!macro[row].equalsIgnoreCase(""))s=s+"\n\t"+"# "+macro[row];
-               s = s + "\n";
-               row = row + Integer.parseInt(jTableAssembler.getValueAt(row, 5).toString().trim());
-           }
-
-       }
-       jTextAreaAssemblyLanguageEditor.setText(s);
-       textEditor.colorEditor();
-       jTextAreaAssemblyLanguageEditor.select(0, 0);
-       if (jLabelError.isVisible()) {
-           if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("X")) {
-               jButtonAssembleActionPerformed(evt);
-           }
-       }
-       jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
-       //jMenuItem2ActionPerformed(evt);
-   }//GEN-LAST:event_jButtonAutocorrectActionPerformed
 
    private void jMenuItemAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutocorrectActionPerformed
 
@@ -3275,6 +2872,411 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             //It looks like there's a problem
         }        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void jButtonAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutocorrectActionPerformed
+        jButtonAssembleActionPerformed(evt);
+        jTabbedPaneEditor.setSelectedIndex(0);
+        String s = jTextAreaAssemblyLanguageEditor.getText() + "\n";
+        String line[] = new String[1000];
+        String parse[][] = new String[1000][4];
+        String temp = "";
+        int i, n, row, commentCounter = 0, macroCounter = 0, macroRow = 0, lineNo = 0;
+        for (i = 0, n = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '\n') {
+                parse[n] = engine.parseAssemblerContent(line[n]);
+                n++;
+            }
+            if (line[n] == null) {
+                line[n] = "";
+            }
+            line[n] = line[n] + s.charAt(i);
+        }
+
+        s = "";
+
+        for (i = 0, row = 0; i <= n; i++) {
+            loop:
+            for (; commentCounter < 1000; commentCounter++) {
+                if (parse[commentCounter][2] != null) {
+                    if (!parse[commentCounter][1].isEmpty()) {
+                        commentCounter++;
+                        break loop;
+                    }
+                    if (!parse[commentCounter][2].trim().equalsIgnoreCase("")) {
+                        s = s + "// " + parse[commentCounter][2] + "\n";
+                    }
+                }
+            }
+
+            try {
+                temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
+                macroRow = Integer.parseInt(temp);
+                if (macroRow == lineNo) {
+                    while (macroRow == lineNo) {
+                        s = s + "# " + macro[macroCounter].substring(0, macro[macroCounter++].lastIndexOf(":")) + "\n";
+                        temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
+                        macroRow = Integer.parseInt(temp);
+                    }
+                }
+            } catch (Exception e) {
+            }
+
+            if (jTableAssembler.getValueAt(row, 4) != null) {
+
+                lineNo++;
+                if (!jTableAssembler.getValueAt(row, 2).toString().trim().equalsIgnoreCase("")) {
+                    s = s + "\n" + jTableAssembler.getValueAt(row, 2).toString().trim();
+                    s = s + ":";
+                }
+                s = s + "\t";
+                if (!jTableAssembler.getValueAt(row, 3).toString().trim().equalsIgnoreCase("NOP")) {
+                    s = s + jTableAssembler.getValueAt(row, 3).toString();
+                }
+                if (!comments[row].equalsIgnoreCase("")) {
+                    s = s + "\t" + "// " + comments[row];
+                }
+                //if(!macro[row].equalsIgnoreCase(""))s=s+"\n\t"+"# "+macro[row];
+                s = s + "\n";
+                row = row + Integer.parseInt(jTableAssembler.getValueAt(row, 5).toString().trim());
+            }
+
+        }
+        jTextAreaAssemblyLanguageEditor.setText(s);
+        textEditor.colorEditor();
+        jTextAreaAssemblyLanguageEditor.select(0, 0);
+        if (jLabelError.isVisible()) {
+            if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("X")) {
+                jButtonAssembleActionPerformed(evt);
+            }
+        }
+        jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
+        //jMenuItem2ActionPerformed(evt);
+    }//GEN-LAST:event_jButtonAutocorrectActionPerformed
+
+    private void jButtonDisassembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisassembleActionPerformed
+        jScrollPane16.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTabbedPaneLabelEditor.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTableAssembler.setRowSelectionAllowed(false);
+        jLabelErrorHang.setVisible(false);
+        jLabelComment.setVisible(false);
+        jLabelError.setVisible(false);
+        jMenuItemClearMemoryActionPerformed(evt);
+        jButtonStop.setText("Stop");
+        jButtonStop.doClick();
+
+        disassembler.loadDisassembler();
+        setMemory();
+        jRadioButtonUsedMemoryLocationActionPerformed(evt);
+        textEditor.colorEditor();
+        /*
+        jTabbedPaneEditor.setSelectedIndex(1);
+        jScrollPane16.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTabbedPaneLabelEditor.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTableAssembler.setRowSelectionAllowed(false);
+        jLabelErrorHang.setVisible(false);
+        jLabelComment.setVisible(false);
+        jLabelError.setVisible(false);
+        jMenuItemClearMemoryActionPerformed(evt);
+        jButtonStop.setText("Stop");
+        jButtonStop.doClick();
+
+        for(int i=0;i<65536;i++){matrix.memory[i]=0;matrix.label[i]="";}
+        setMemory();
+        for(int i=0;i<999;i++){
+            for(int j=0;j<8;j++)
+            jTableAssembler.setValueAt(null,i,j);
+        }
+
+        String s=jTextAreaDisassembler.getText();
+        String temp="";
+        for(int i=0;i<s.length();i++)
+        {
+            if(engine.isHex(s.charAt(i)))temp=temp+s.charAt(i);
+        }s=temp;
+
+        for(int i=0;i<s.length();i+=2)
+        {
+            if((i+1)<s.length())
+            jTableAssembler.setValueAt(""+s.charAt(i)+s.charAt(i+1), i/2, 4);
+        }
+        disAssemble();
+        errorCheck();
+        */
+    }//GEN-LAST:event_jButtonDisassembleActionPerformed
+
+    private void jTabbedPaneAssemblerEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneAssemblerEditorMouseClicked
+        if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
+            jButtonAssemble.setVisible(true);
+            jButtonDisassemble.setVisible(false);
+
+        } else if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+            jButtonAssemble.setVisible(false);
+            jButtonDisassemble.setVisible(true);
+        }
+    }//GEN-LAST:event_jTabbedPaneAssemblerEditorMouseClicked
+
+    private void jButtonAssembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssembleActionPerformed
+
+        jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(1));
+        jScrollPane16.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTabbedPaneLabelEditor.setVisible(true);
+        jTabbedPaneLabelEditor.setVisible(false);
+        jTableAssembler.setRowSelectionAllowed(false);
+        jLabelErrorHang.setVisible(false);
+        jLabelComment.setVisible(false);
+        jLabelError.setVisible(false);
+        jMenuItemClearMemoryActionPerformed(evt);
+        jButtonStop.setText("Stop");
+        jButtonStop.doClick();
+        for (int i = 0; i < 65536; i++) {
+            matrix.memory[i] = 0;
+            matrix.label[i] = "";
+        }
+        setMemory();
+        for (int i = 0; i < macro.length; i++) {
+            macro[i] = "";
+
+        }
+        for (int i = 0; i < 999; i++) {
+            for (int j = 0; j < 8; j++) {
+                jTableAssembler.setValueAt(null, i, j);
+            }
+        }
+
+        String s = jTextAreaAssemblyLanguageEditor.getText();
+        String line[] = new String[1000];
+        String parse[] = new String[4];
+        int i, n, row;
+
+        //break into lines
+        for (i = 0, n = 0; i < s.length(); i++) {
+            if (s.charAt(i) == '\n') {
+                n++;
+            }
+            if (line[n] == null) {
+                line[n] = "";
+            }
+            line[n] = line[n] + s.charAt(i);
+        }
+        int selectIndex = 0;
+        int rowCompile = 0;
+        for (i = 0, row = 0; i <= n; i++) {
+            parse = engine.parseAssemblerContent(line[i]);
+            try {
+                if (parse[0].length() == 0 && parse[1].length() == 0 && parse[3].length() == 0) {
+                    continue;
+                }
+                if (parse[3].length() != 0) {
+                    macro[rowCompile++] = parse[3].toUpperCase() + ":" + row;
+                    continue;
+                }
+                if (parse[0].length() != 0 && parse[1].length() == 0) {
+                    jTableAssembler.setValueAt(parse[0], row, 2);
+                    continue;
+                }
+                if (jTableAssembler.getValueAt(row, 2) == null) {
+                    jTableAssembler.setValueAt(parse[0], row, 2);
+                }
+                jTableAssembler.setValueAt(parse[1], row, 3);
+                comments[row] = parse[2];
+                row++;
+            } catch (Exception e) {
+            }
+        }
+        Assemble();
+        jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(0, 0, false));
+        errorCheck();
+        jTextAreaAssemblyLanguageEditor.requestFocus();
+        jTextAreaAssemblyLanguageEditor.getHighlighter().removeAllHighlights();
+        check:
+        for (i = 0; i <= n; i++) {
+
+            parse = engine.parseAssemblerContent(line[i]);
+            if (line[i] != null) {
+                selectIndex = line[i].length() + selectIndex;
+                String temp[] = engine.MnemonicToHexcode(parse[1]);
+                if (temp[0].equalsIgnoreCase("NOP")) {
+                    textEditor.highligher(i);
+                    jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
+                    //jTextAreaAssemblyLanguageEditor.select(selectIndex-line[i].length(),selectIndex);
+                    break check;
+                }
+            }
+        }
+        jRadioButtonUsedMemoryLocationActionPerformed(evt);
+    }//GEN-LAST:event_jButtonAssembleActionPerformed
+
+    private void jButtonStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStepActionPerformed
+
+        jButtonStep.setVisible(false);
+        jButtonRun.setVisible(false);
+        jButtonForward.setVisible(true);
+        jButtonBackward.setVisible(true);
+        jButtonStop.setVisible(true);
+        jLabelErrorHang.setVisible(false);
+        stop = false;
+        matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+    }//GEN-LAST:event_jButtonStepActionPerformed
+
+    private void jButtonForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForwardActionPerformed
+
+        jButtonBackward.setEnabled(true);
+        if (matrix.stopAddress < matrix.PC || matrix.beginAddress > matrix.PC) {
+            jButtonStop.doClick();
+            jLabelErrorHang.setText("You have exceeded the memory range");
+            jLabelErrorHang.setVisible(true);
+        }
+        //int select=matrix.PC-matrix.beginAddress;
+        matrix.createCopy(matrix);
+
+        oIndex++;
+        try {
+            loop:
+            for (matrix.select = 0; matrix.select < 1000; matrix.select++) {
+                if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
+                    if (matrix.PC == engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 1).toString()) && matrix.select < 1000) {
+                        jTableAssembler.setRowSelectionAllowed(true);
+                        jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
+                        jLabelError.setForeground(Color.BLUE);
+                        jLabelError.setVisible(true);
+                        jLabelError.setText("<html>" + comments[matrix.select] + "</html>");
+                        jLabelComment.setVisible(true);
+                        jLabelComment.setText("<html>" + matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())) + "</html>");
+                        matrix.select = matrix.select + Integer.parseInt(jTableAssembler.getValueAt(matrix.select, 5).toString().trim());
+                        break loop;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        if (stop) {
+            jButtonStop.doClick();
+        }
+        matrix.functionRun(matrix.memory[matrix.PC]);
+        set();
+    }//GEN-LAST:event_jButtonForwardActionPerformed
+
+    private void jButtonRunActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRunActionPerformed
+
+        jButtonStop.setVisible(true);
+        jButtonRun.setVisible(false);
+        jButtonStep.setVisible(false);
+        jLabelErrorHang.setVisible(false);
+        stop = false;
+        ExecutorService exec = Executors.newCachedThreadPool();
+        exec.execute(this);
+    }//GEN-LAST:event_jButtonRunActionPerformed
+
+    private void jButtonBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackwardActionPerformed
+        oIndex--;
+        matrix.readCopy(matrix);
+        try {
+            if (matrix.select < 1000) {
+                if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
+                    jTableAssembler.setRowSelectionAllowed(true);
+                    jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
+                    jLabelError.setText(comments[matrix.select]);
+                    jLabelComment.setText(matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())));
+                }
+            }
+        } catch (Exception e) {
+        }
+        set();
+    }//GEN-LAST:event_jButtonBackwardActionPerformed
+
+    private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
+        if (stop || jButtonStop.getText().equalsIgnoreCase("Stop")) {
+            matrix.select = 0;
+            jButtonForward.setVisible(false);
+            jButtonBackward.setVisible(false);
+            jButtonStop.setVisible(false);
+            jButtonRun.setVisible(true);
+            jButtonStep.setVisible(true);
+            jButtonContinue.setVisible(false);
+            jScrollPane12.setVisible(false);
+            jScrollPane12.setVisible(true);
+            jTabbedPaneAssemblerEditor.setVisible(false);
+            jTabbedPaneAssemblerEditor.setVisible(true);
+            continueFrom = 0;
+            stop = true;
+            pause = false;
+            File f = new File("cache");
+            deleteDir(f);
+        }
+        if (jButtonStop.getText().equalsIgnoreCase("Pause")) {
+            pause = true;
+            jButtonForward.setVisible(true);
+            jButtonBackward.setVisible(true);
+            jButtonStop.setVisible(true);
+            jButtonContinue.setVisible(true);
+            jButtonRun.setVisible(false);
+            jButtonStep.setVisible(false);
+            jScrollPane12.setVisible(false);
+            jScrollPane12.setVisible(true);
+            jButtonStop.setText("Stop");
+        }
+    }//GEN-LAST:event_jButtonStopActionPerformed
+
+    private void jTextFieldBeginFromKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromKeyReleased
+        matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+    }//GEN-LAST:event_jTextFieldBeginFromKeyReleased
+
+    private void jTextFieldBeginFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldBeginFromActionPerformed
+
+    private void jButtonContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinueActionPerformed
+
+        continueFrom = matrix.PC;
+        jButtonForward.setVisible(false);
+        jButtonBackward.setVisible(false);
+        jButtonStop.setText("Pause");
+        jButtonStop.setVisible(true);
+        jButtonRun.setVisible(false);
+        jButtonStep.setVisible(false);
+        jScrollPane12.setVisible(false);
+        jScrollPane12.setVisible(true);
+        jButtonContinue.setVisible(false);
+        pause = false;
+        ExecutorService exec = Executors.newCachedThreadPool();
+        exec.execute(this);
+    }//GEN-LAST:event_jButtonContinueActionPerformed
+
+    private void jTableAssemblerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAssemblerKeyReleased
+
+        /* if(jTableAssembler.getSelectedColumn()==3)
+        {
+            Assemble();
+        }
+        else if(jTableAssembler.getSelectedColumn()==4)
+        {
+            disAssemble();
+        }*/
+    }//GEN-LAST:event_jTableAssemblerKeyReleased
+
+    private void jTableAssemblerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAssemblerMouseClicked
+        if (jTableAssembler.isColumnSelected(0) && jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0) != null) {
+            if (!jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("X")) {
+                if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("#")) {
+                    jTableAssembler.setValueAt("√", jTableAssembler.getSelectedRow(), 0);
+                } else {
+                    jTableAssembler.setValueAt("#", jTableAssembler.getSelectedRow(), 0);
+                }
+            }
+        } else if (jTableAssembler.isColumnSelected(7)) {
+            if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), jTableAssembler.getSelectedColumn()) != null) {
+                TimingDiagram t = new TimingDiagram(this, jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 1).toString());
+                t.setVisible(true);
+                t.setTitle(jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 3).toString());
+            }
+        }
+    }//GEN-LAST:event_jTableAssemblerMouseClicked
 
     public void loadLabel() {
         int begin = engine.Hex2Dec(jTextFieldMemBegin.getText());
@@ -3637,13 +3639,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton jButtonAnalizeCW;
     private javax.swing.JButton jButtonAssemble;
     private javax.swing.JButton jButtonAutocorrect;
-    public javax.swing.JButton jButtonBackward;
-    public javax.swing.JButton jButtonContinue;
+    javax.swing.JButton jButtonBackward;
+    private javax.swing.JButton jButtonContinue;
     private javax.swing.JButton jButtonDisassemble;
-    private javax.swing.JButton jButtonForward;
-    public javax.swing.JButton jButtonRun;
-    private javax.swing.JButton jButtonStep;
-    public javax.swing.JButton jButtonStop;
+    javax.swing.JButton jButtonForward;
+    javax.swing.JButton jButtonRun;
+    javax.swing.JButton jButtonStep;
+    javax.swing.JButton jButtonStop;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem5;
@@ -3757,21 +3759,21 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTabbedPane jTabbedPaneLabelEditor;
     private javax.swing.JTabbedPane jTabbedPaneMemory;
     public javax.swing.JTable jTable8255;
-    public javax.swing.JTable jTableAssembler;
+    javax.swing.JTable jTableAssembler;
     private javax.swing.JTable jTableCounter;
     private javax.swing.JTable jTableFlagregister;
     private javax.swing.JTable jTableInterrupt;
-    private javax.swing.JTable jTableMemory;
+    javax.swing.JTable jTableMemory;
     private javax.swing.JTable jTableNoConverter;
     public javax.swing.JTable jTablePort;
     private javax.swing.JTable jTableRIM;
     private javax.swing.JTable jTableRegister;
     private javax.swing.JTable jTableSIM;
     public javax.swing.JTextArea jTextArea8255;
-    public javax.swing.JTextPane jTextAreaAssemblyLanguageEditor;
-    public javax.swing.JTextArea jTextAreaDisassembler;
+    javax.swing.JTextPane jTextAreaAssemblyLanguageEditor;
+    javax.swing.JTextArea jTextAreaDisassembler;
     private javax.swing.JTextArea jTextAreaLabel;
-    public javax.swing.JTextField jTextFieldBeginFrom;
+    javax.swing.JTextField jTextFieldBeginFrom;
     private javax.swing.JTextField jTextFieldMemBegin;
     private javax.swing.JTextField jTextFieldMemStop;
     // End of variables declaration//GEN-END:variables
