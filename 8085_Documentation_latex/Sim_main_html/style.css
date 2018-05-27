@@ -15,11 +15,11 @@ A:link    { color:#22437f; text-decoration: none;}
 A:visited { color:#22437f; text-decoration: none;}
 A:hover   { color:red; text-decoration: none;}
 #address {
-	text-align: center;
-	font-family : serif;
-	font-style : italic;
-	font-size : small;
-	}
+    text-align: center;
+    font-family : serif;
+    font-style : italic;
+    font-size : small;
+}
 #navigation { 
     background-color: #E6E6E6; 
     font-family : monospace;

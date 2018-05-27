@@ -1,8 +1,9 @@
+
 import java.util.regex.*;
 
 public class AssemblerEngine {
 
-    public  String S[] = new String[256];
+    public String S[] = new String[256];
     public int I[][] = new int[256][3];//bytes,M-cycles,T-states
     Matrix m;
 
@@ -1245,22 +1246,22 @@ public class AssemblerEngine {
         return Dec2Hex(Bin2Dec(s));
     }
 
-    public String Ascii2Hex(String s)
-    {
-        char c=s.charAt(s.length()-1);
+    public String Ascii2Hex(String s) {
+        char c = s.charAt(s.length() - 1);
         return Dec2Hex(c);
     }
 
-    public String Hex2Ascii(String s)
-    {
-       return String.valueOf((char) Hex2Dec(s));
+    public String Hex2Ascii(String s) {
+        return String.valueOf((char) Hex2Dec(s));
     }
 
     public String HexAutoCorrect4digit(String s) {
         String t = "";
         s = s.trim();
 
-        if(s.length()>=4)t=s.substring(s.length()-4, s.length());
+        if (s.length() >= 4) {
+            t = s.substring(s.length() - 4, s.length());
+        }
         /*for (int i = 0; i < 4 && i < s.length(); i++) {
             t = t + s.charAt(i);
         }*/
@@ -1284,71 +1285,105 @@ public class AssemblerEngine {
 
     public String Label2Address(String s) {
         String t = s.trim();
-        int[] value=parseOperator(s);      
-        int index=value[0],operator=value[1],num=value[2];
-        if(index>-1)t=s.substring(0, index).trim();        
+        int[] value = parseOperator(s);
+        int index = value[0], operator = value[1], num = value[2];
+        if (index > -1) {
+            t = s.substring(0, index).trim();
+        }
         for (int i = 0; i < 65536; i++) {
             if (t.equalsIgnoreCase(m.label[i])) {
-                return Dec2Hex(operate(i, num, (char)operator));
+                return Dec2Hex(operate(i, num, (char) operator));
             }
         }
         return "";
     }
-    
-    public int[] parseOperator(String s)
-    {
-        int[] value=new int[3];
-        int index=-1,operator=-1,num=0;
-        try{
-            if (s.indexOf('+')>-1){index=s.indexOf('+'); operator = '+';}
-            if (s.indexOf('-')>-1){index=s.indexOf('-'); operator = '-';}
-            if (s.indexOf('*')>-1){index=s.indexOf('*'); operator = '*';}
-            if (s.indexOf('/')>-1){index=s.indexOf('/'); operator = '/';}
-            num = Integer.parseInt(s.substring(index+1,s.length()).trim());
+
+    public int[] parseOperator(String s) {
+        int[] value = new int[3];
+        int index = -1, operator = -1, num = 0;
+        try {
+            if (s.indexOf('+') > -1) {
+                index = s.indexOf('+');
+                operator = '+';
             }
-        catch(Exception e){}
-        value[0]=index;  value[1] = operator;  value[2] = num;
+            if (s.indexOf('-') > -1) {
+                index = s.indexOf('-');
+                operator = '-';
+            }
+            if (s.indexOf('*') > -1) {
+                index = s.indexOf('*');
+                operator = '*';
+            }
+            if (s.indexOf('/') > -1) {
+                index = s.indexOf('/');
+                operator = '/';
+            }
+            num = Integer.parseInt(s.substring(index + 1, s.length()).trim());
+        } catch (Exception e) {
+        }
+        value[0] = index;
+        value[1] = operator;
+        value[2] = num;
         return value;
     }
-    
-    public int operate(int a, int b,char operator)
-    {
-        int value=0;
-        try{
-            switch(operator){
-            case '+': return value = a + b; 
-            case '-': return value = a - b; 
-            case '*': return value = a * b;
-            case '/': return value = a / b;
-            default: return a;
+
+    public int operate(int a, int b, char operator) {
+        int value = 0;
+        try {
+            switch (operator) {
+                case '+':
+                    return value = a + b;
+                case '-':
+                    return value = a - b;
+                case '*':
+                    return value = a * b;
+                case '/':
+                    return value = a / b;
+                default:
+                    return a;
             }
-        }catch(Exception e){return a;}
+        } catch (Exception e) {
+            return a;
+        }
     }
-        public String preLabel2Address(String s) {
+
+    public String preLabel2Address(String s) {
         String t = s.trim();
-        int[] value=parseOperator(s);      
-        int index=value[0],operator=value[1],num=value[2];
-        if(index>-1)t=s.substring(0, index).trim();        
+        int[] value = parseOperator(s);
+        int index = value[0], operator = value[1], num = value[2];
+        if (index > -1) {
+            t = s.substring(0, index).trim();
+        }
         for (int i = 0; i < 500; i++) {
             if (t.equalsIgnoreCase(m.preLabel[i][0])) {
-                return Dec2Hex(operate(convertToNum(m.preLabel[i][1]), num, (char)operator));
+                return Dec2Hex(operate(convertToNum(m.preLabel[i][1]), num, (char) operator));
 
             }
         }
         return "";
     }
-    
-    public int convertToNum(String s){
-        int num=0;
-        s=s.trim();s=s.toUpperCase();
-        num=Hex2Dec(s);
-            if(s.charAt(s.length()-1)=='D')try{num=Integer.parseInt(s.substring(0, s.length()-1));}catch(Exception e){}
-            else if(s.charAt(s.length()-1)=='B')num=Bin2Dec(s.substring(0, s.length()-1));
-        if(s.charAt(s.length()-1)=='H')num=Hex2Dec(s.substring(0, s.length()-1));
-        if(s.length()==2||s.length()==4)num=Hex2Dec(s.substring(0, s.length()));
+
+    public int convertToNum(String s) {
+        int num = 0;
+        s = s.trim();
+        s = s.toUpperCase();
+        num = Hex2Dec(s);
+        if (s.charAt(s.length() - 1) == 'D') {
+            try {
+                num = Integer.parseInt(s.substring(0, s.length() - 1));
+            } catch (Exception e) {
+            }
+        } else if (s.charAt(s.length() - 1) == 'B') {
+            num = Bin2Dec(s.substring(0, s.length() - 1));
+        }
+        if (s.charAt(s.length() - 1) == 'H') {
+            num = Hex2Dec(s.substring(0, s.length() - 1));
+        }
+        if (s.length() == 2 || s.length() == 4) {
+            num = Hex2Dec(s.substring(0, s.length()));
+        }
         return num;
-    }  
-        
+    }
 
     public String Address2Label(String s) {
         return m.label[Hex2Dec(s)].toUpperCase();
@@ -1372,7 +1407,6 @@ public class AssemblerEngine {
         int n0 = 0, n2 = 0, n4 = 0;
         n0 = getIndexFromMnemonic(s);
 
-
         String label = "";
         int i = 0;
 
@@ -1386,11 +1420,10 @@ public class AssemblerEngine {
         }
         if (Label2Address(label).length() != 0) {
             s = s.substring(0, s.length() - label.length()) + Label2Address(label);
-        }
-        else if (preLabel2Address(label).length() != 0) {
+        } else if (preLabel2Address(label).length() != 0) {
             s = s.substring(0, s.length() - label.length()) + preLabel2Address(label);
         }
-        
+
         if (n0 == 0) {
             if (s.length() > 2) {
                 n2 = getIndexFromMnemonic(s.substring(0, s.length() - 2) + "XX");
@@ -1505,14 +1538,13 @@ public class AssemblerEngine {
             if (s.length() > s.length() - (bytes - 1) * 2) {
                 p[0] = s.substring(0, s.length() - (bytes - 1) * 2) + label;
             }
-        }
-        else if (preLabel2Address(label).length() != 0) {
+        } else if (preLabel2Address(label).length() != 0) {
 
             if (s.length() > s.length() - (bytes - 1) * 2) {
                 p[0] = s.substring(0, s.length() - (bytes - 1) * 2) + label;
             }
         }
-        
+
         return p;
     }
 
@@ -1523,8 +1555,7 @@ public class AssemblerEngine {
             if (temp.substring(temp.length() - 4, temp.length()).equalsIgnoreCase("XXXX")) {
                 p[0] = temp.substring(0, temp.length() - 4);
                 p[0] = p[0] + p[2] + p[1];
-            }
-            else if (temp.substring(temp.length() - 3, temp.length() - 1).equalsIgnoreCase("XX")) {
+            } else if (temp.substring(temp.length() - 3, temp.length() - 1).equalsIgnoreCase("XX")) {
                 p[0] = temp.substring(0, temp.length() - 2);
                 p[0] = p[0] + p[1];
             }
@@ -1532,10 +1563,12 @@ public class AssemblerEngine {
         return p[0];
     }
 
-    public boolean isFunction(String s)
-    {
-        if(funcLabeltofuncCode(s).equalsIgnoreCase("NOP"))return false;
-        else return true;
+    public boolean isFunction(String s) {
+        if (funcLabeltofuncCode(s).equalsIgnoreCase("NOP")) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     public int getBytesFromMnemonics(String s) {
@@ -1551,10 +1584,8 @@ public class AssemblerEngine {
 
                 if ((S[i].charAt(j) == s.charAt(j) || S[i].charAt(j) == 'X') && state == 1) {
 
-
                     state = 1;
                     if (S[i].charAt(j) == 'X' && S[i].charAt(j) != s.charAt(j) && s.charAt(j) != ' ') {
-
 
                         if (!Label2Address(s.substring(j, s.length())).equalsIgnoreCase("")) {
 
@@ -1578,53 +1609,67 @@ public class AssemblerEngine {
         return I[i][0];
     }
 
-    /**label,code,comment,preprocessor
-     * 
+    /**
+     * label,code,comment,preprocessor
+     *
      * @param s
-     * @return 
+     * @return
      */
     public String[] parseAssemblerContent(String s) {
-        String[] filter = {"", "", "",""};
+        String[] filter = {"", "", "", ""};
         try {
             if (s.length() == 0) {
                 return filter;
             }
-            s=s.replaceAll("\\s+"," ");
-            
-            int index_colon=s.indexOf(":");
-            int index_slash=s.indexOf("//");
-            int index_semicolon=s.indexOf(";");
-                int index_comment= index_slash > index_semicolon ? index_slash : index_semicolon;
-                int index_comment_end= index_slash > index_semicolon ? index_slash+2 : index_semicolon+1;
-            if ( index_slash != -1  && index_semicolon != -1 ){
-                index_comment= index_slash < index_semicolon ? index_slash : index_semicolon;
-                index_comment_end= index_slash < index_semicolon ? index_slash+2 : index_semicolon+1;
+            s = s.replaceAll("\\s+", " ");
+
+            int index_colon = s.indexOf(":");
+            int index_slash = s.indexOf("//");
+            int index_semicolon = s.indexOf(";");
+            int index_comment = index_slash > index_semicolon ? index_slash : index_semicolon;
+            int index_comment_end = index_slash > index_semicolon ? index_slash + 2 : index_semicolon + 1;
+            if (index_slash != -1 && index_semicolon != -1) {
+                index_comment = index_slash < index_semicolon ? index_slash : index_semicolon;
+                index_comment_end = index_slash < index_semicolon ? index_slash + 2 : index_semicolon + 1;
             }
-                
-            int index_hash=s.indexOf("#");
-            int index_dot=s.indexOf(".");        
-                int index_preprocessor = index_hash > index_dot ? index_hash : (index_hash>-1 ? index_hash : index_dot);
-            
+
+            int index_hash = s.indexOf("#");
+            int index_dot = s.indexOf(".");
+            int index_preprocessor = index_hash > index_dot ? index_hash : (index_hash > -1 ? index_hash : index_dot);
+
             //preprocessor
-            if (index_preprocessor > -1 && (index_comment>index_preprocessor || index_comment ==-1)) 
-                if(index_comment > -1) {filter[3]=s.substring(index_preprocessor+1,index_comment).trim(); index_comment=0;}
-                else {filter[3]=s.substring(index_preprocessor+1,s.length()).trim(); return filter;}
+            if (index_preprocessor > -1 && (index_comment > index_preprocessor || index_comment == -1)) {
+                if (index_comment > -1) {
+                    filter[3] = s.substring(index_preprocessor + 1, index_comment).trim();
+                    index_comment = 0;
+                } else {
+                    filter[3] = s.substring(index_preprocessor + 1, s.length()).trim();
+                    return filter;
+                }
+            }
             //Comment
-            if(index_comment > -1) {filter[2]=s.substring(index_comment_end,s.length()).trim();}else index_comment=s.length();
-            
+            if (index_comment > -1) {
+                filter[2] = s.substring(index_comment_end, s.length()).trim();
+            } else {
+                index_comment = s.length();
+            }
+
             //label
-            if(index_colon > -1 && (index_comment>index_colon || index_comment ==-1)) 
-                filter[0]=s.substring(0, index_colon);
-            
+            if (index_colon > -1 && (index_comment > index_colon || index_comment == -1)) {
+                filter[0] = s.substring(0, index_colon);
+            }
+
             //Code
-            if(index_comment<=index_colon) index_colon = -1;
-            filter[1]=s.substring(index_colon+1,index_comment);
+            if (index_comment <= index_colon) {
+                index_colon = -1;
+            }
+            filter[1] = s.substring(index_colon + 1, index_comment);
             filter[1] = filter[1].trim();
 
             return filter;
         } catch (Exception e) {
             System.out.println(s);
-            
+
             filter[0] = "";
             filter[1] = "";
             filter[2] = "";
@@ -1633,29 +1678,28 @@ public class AssemblerEngine {
         }
     }
 
-    public String HexToMnemonic(int func,int n1,int n2)
-    {
-        String s="";
-        s=S[func];
-        int bytes=I[func][0];
-        if(bytes==3){
-            s=s.substring(0, s.length()-4);
-            s=s+Dec2Hex2digit(n2)+Dec2Hex2digit(n1);
-        }
-        else if(bytes==2){
-            s=s.substring(0, s.length()-2);
-            s=s+Dec2Hex2digit(n1);
+    public String HexToMnemonic(int func, int n1, int n2) {
+        String s = "";
+        s = S[func];
+        int bytes = I[func][0];
+        if (bytes == 3) {
+            s = s.substring(0, s.length() - 4);
+            s = s + Dec2Hex2digit(n2) + Dec2Hex2digit(n1);
+        } else if (bytes == 2) {
+            s = s.substring(0, s.length() - 2);
+            s = s + Dec2Hex2digit(n1);
         }
         return s;
     }
 
-    public String HexToMnemonicWithLabel(int func,int n1,int n2)
-    {
-        String s=HexToMnemonic(func,n1,n2);
-        if(!m.label[(n2*256+n1)&0xFFFF].equalsIgnoreCase("")&&I[func][0]==3)
-            s=s.substring(0, s.length()-4)+m.label[(n2*256+n1)&0xFFFF].toUpperCase();
+    public String HexToMnemonicWithLabel(int func, int n1, int n2) {
+        String s = HexToMnemonic(func, n1, n2);
+        if (!m.label[(n2 * 256 + n1) & 0xFFFF].equalsIgnoreCase("") && I[func][0] == 3) {
+            s = s.substring(0, s.length() - 4) + m.label[(n2 * 256 + n1) & 0xFFFF].toUpperCase();
+        }
         return s;
     }
+
     public boolean isHex(char c) {
         switch (c) {
             case '0':
@@ -1707,40 +1751,41 @@ public class AssemblerEngine {
         //System.out.println(hexcode.HexAutoCorrect4digit("78"));
         hexcode.m.label[8900] = "start";
         hexcode.m.label[5000] = "xy";
-        hexcode.m.preLabel[4][0] = "hello";hexcode.m.preLabel[4][1] = "5000D";
-        
-            String[] s = hexcode.MnemonicToHexcode("lxi h,XY");
-            System.out.println(s[0] + " value2=" + s[1] + " value1=" + s[2] + " index=" + s[3]);
- 
-            s = hexcode.MnemonicToHexcode("lxi h,hello");
-            System.out.println(s[0] + " value2=" + s[1] + " value1=" + s[2] + " index=" + s[3]);
+        hexcode.m.preLabel[4][0] = "hello";
+        hexcode.m.preLabel[4][1] = "5000D";
+
+        String[] s = hexcode.MnemonicToHexcode("lxi h,XY");
+        System.out.println(s[0] + " value2=" + s[1] + " value1=" + s[2] + " index=" + s[3]);
+
+        s = hexcode.MnemonicToHexcode("lxi h,hello");
+        System.out.println(s[0] + " value2=" + s[1] + " value1=" + s[2] + " index=" + s[3]);
         System.out.println(hexcode.getBytesFromMnemonics("lxi h,7890"));
         String[] x = hexcode.parseAssemblerContent("label:code    67 //comment");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("mvi a,23 #lxi h,xy*2 // hello");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
 
         x = hexcode.parseAssemblerContent("code    67 ;comment");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]); 
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("mvi a,77");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent(". macrolabel: macro");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("# macro.125");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("code//comment 1: .comment 2");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("#compiler");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
-        
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
+
         x = hexcode.parseAssemblerContent("//comment1:comment2#comment3;comment4");
-        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2]+" Compiler="+x[3]);
+        System.out.println("Label=" + x[0] + " Code=" + x[1] + " Comments=" + x[2] + " Compiler=" + x[3]);
         System.out.println(hexcode.preLabel2Address("HELLO+2"));
         //System.out.println(hexcode.isHexadecimal("67efdac"));
         //System.out.println(hexcode.isBinary("1011"));

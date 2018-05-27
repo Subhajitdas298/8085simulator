@@ -1,16 +1,19 @@
+
 public class Recovery extends javax.swing.JFrame {
 
     public Recovery() {
         initComponents();
     }
 
-    Assembler o;String s="";
-    public Recovery(Assembler o,String s) {
-        this.o=o;this.s=s;
+    Assembler o;
+    String s = "";
+
+    public Recovery(Assembler o, String s) {
+        this.o = o;
+        this.s = s;
         o.setEnabled(false);
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -106,8 +109,8 @@ public class Recovery extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

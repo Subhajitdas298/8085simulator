@@ -1,3 +1,4 @@
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.concurrent.ExecutorService;
@@ -8,21 +9,18 @@ import java.util.logging.Logger;
 
 public class SteperMotor extends javax.swing.JFrame {
 
-    int x=-80,y=-80;
-    int rotateLeft=0,rotateRight=0,stop=1;
-    double i=4;
+    int x = -80, y = -80;
+    int rotateLeft = 0, rotateRight = 0, stop = 1;
+    double i = 4;
     Graphics g;
-    int speed=50;
-   CanvasDraw c;
+    int speed = 50;
+    CanvasDraw c;
 
     public SteperMotor() {
         initComponents();
-        c=(CanvasDraw) canvas1;
+        c = (CanvasDraw) canvas1;
     }
 
-    
-
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,7 +111,7 @@ public class SteperMotor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jSlider1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jSlider1MouseReleased
-                speed=(100-jSlider1.getValue());
+        speed = (100 - jSlider1.getValue());
     }//GEN-LAST:event_jSlider1MouseReleased
 
     private void jButtonLeftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonLeftActionPerformed
@@ -133,7 +131,7 @@ public class SteperMotor extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
 
     private void jSlider1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jSlider1KeyReleased
-                speed=(100-jSlider1.getValue());
+        speed = (100 - jSlider1.getValue());
 
     }//GEN-LAST:event_jSlider1KeyReleased
 
@@ -155,49 +153,50 @@ public class SteperMotor extends javax.swing.JFrame {
 
 }
 
-class CanvasDraw extends Canvas implements Runnable
-{
+class CanvasDraw extends Canvas implements Runnable {
+
     Graphics g;
     ExecutorService exec = Executors.newCachedThreadPool();
     SteperMotor o;
-    boolean run=true;
+    boolean run = true;
 
-    public CanvasDraw(SteperMotor o)
-    {
-        this.o=o;
+    public CanvasDraw(SteperMotor o) {
+        this.o = o;
         exec.execute(this);
 
     }
 
-    public void rotateRight()
-    {
-        o.rotateLeft=0;o.rotateRight=1;o.stop=0;
-
-    }
-    public void rotateLeft()
-    {
-
-        o.rotateLeft=1;o.rotateRight=0;o.stop=0;
-
-    }
-    public void stop()
-    {
-        o.rotateLeft=0;o.rotateRight=0;o.stop=1;
-
+    public void rotateRight() {
+        o.rotateLeft = 0;
+        o.rotateRight = 1;
+        o.stop = 0;
 
     }
 
-    public void run()
-    {
-       while(run)  {
+    public void rotateLeft() {
+
+        o.rotateLeft = 1;
+        o.rotateRight = 0;
+        o.stop = 0;
+
+    }
+
+    public void stop() {
+        o.rotateLeft = 0;
+        o.rotateRight = 0;
+        o.stop = 1;
+
+    }
+
+    public void run() {
+        while (run) {
             repaint();
-            if(o.rotateLeft==1) {
+            if (o.rotateLeft == 1) {
                 o.i = o.i - 0.05;
-            }
-            else if(o.rotateRight==1) {
+            } else if (o.rotateRight == 1) {
                 o.i = o.i + 0.05;
             }
-            
+
             try {
                 Thread.sleep(o.speed);
 
@@ -208,44 +207,42 @@ class CanvasDraw extends Canvas implements Runnable
     }
 
     @Override
-    public void paint(Graphics g1)
-    {
+    public void paint(Graphics g1) {
 
         Graphics2D g = (Graphics2D) g1;
         g.setStroke(new BasicStroke(3));
         g.setBackground(Color.WHITE);
         g.clearRect(0, 0, 300, 300);
-        g.setColor(new java.awt.Color(0,220,0));
-        g.drawOval(o.x+96,o.y+96,108,108);
+        g.setColor(new java.awt.Color(0, 220, 0));
+        g.drawOval(o.x + 96, o.y + 96, 108, 108);
         g.setColor(Color.BLACK);
-        g.drawOval(o.x+96,o.y+96,110,110);
+        g.drawOval(o.x + 96, o.y + 96, 110, 110);
 
+        for (int j = 0; j < 12; j++) {
+            g.setColor(new java.awt.Color(0, 220, 0));
+            g.drawLine(o.x + 150, o.y + 150, (int) (o.x + 150 + 50 * Math.cos(o.i + j)), (int) (o.y + 150 + 50 * Math.sin(o.i + j)));
 
-                for(int j=0;j<12;j++){
-                g.setColor(new java.awt.Color(0,220,0));
-                g.drawLine(o.x+150,o.y+150, (int) (o.x +150+ 50 * Math.cos(o.i+j)),(int) (o.y +150+ 50 * Math.sin(o.i+j)));
-                
-                }
-        
+        }
+
     }
 
     BufferedImage bufferedimage;
-    Rectangle rect=null;
-    public void update(Graphics g){
-        if(!getBounds().equals(rect)){
-            rect=getBounds();
-            bufferedimage=new BufferedImage(rect.width, rect.height, BufferedImage.TYPE_INT_ARGB);
+    Rectangle rect = null;
+
+    public void update(Graphics g) {
+        if (!getBounds().equals(rect)) {
+            rect = getBounds();
+            bufferedimage = new BufferedImage(rect.width, rect.height, BufferedImage.TYPE_INT_ARGB);
         }
-        if(run){
+        if (run) {
 
             paint(bufferedimage.getGraphics());
             g.drawImage(bufferedimage, 0, 0, null);
         }
     }
 
-    public void terminate()
-    {
-        run=false;
+    public void terminate() {
+        run = false;
         exec.shutdown();
     }
 

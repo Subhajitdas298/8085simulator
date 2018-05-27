@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -11,17 +12,18 @@ import java.util.logging.Logger;
 
 public class Registration extends javax.swing.JFrame {
 
+    String code = "", name = "", emailID = "";
+    boolean registered = false;
 
-    String code="",name="",emailID="";
-    boolean registered=false;
     public Registration() {
         initComponents();
         setCode();
         openFile();
     }
     Assembler a;
+
     public Registration(Assembler a1) {
-        a=a1;
+        a = a1;
         initComponents();
         setCode();
         openFile();
@@ -175,15 +177,17 @@ public class Registration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void openFile(){
-        try{
-            BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir")+System.getProperty("file.separator")+"reg.dat"));
-            name=br.readLine();jTextFieldName.setText(name);
-            emailID=br.readLine();jTextFieldEmailID.setText(emailID);
-            String t=br.readLine();
-            try{
-                if(Long.parseLong(code)==decode(Long.parseLong(t))){
-                    registered=true;
+    public void openFile() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(System.getProperty("user.dir") + System.getProperty("file.separator") + "reg.dat"));
+            name = br.readLine();
+            jTextFieldName.setText(name);
+            emailID = br.readLine();
+            jTextFieldEmailID.setText(emailID);
+            String t = br.readLine();
+            try {
+                if (Long.parseLong(code) == decode(Long.parseLong(t))) {
+                    registered = true;
                     jButtonOK.setVisible(false);
                     jTextFieldSerialNo.setText(t);
                     jTextFieldSerialNo.setEditable(false);
@@ -194,30 +198,39 @@ public class Registration extends javax.swing.JFrame {
                     jButtonCancel.setText("OK");
                     setTitle("Registered to");
                 }
-            }catch(Exception e){}
+            } catch (Exception e) {
+            }
             br.close();
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
-     if(registered)dispose();
-        else System.exit(0);
+        if (registered) {
+            dispose();
+        } else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
-    public void saveFile(){
-        try{
+    public void saveFile() {
+        try {
 
-            PrintWriter pw = new PrintWriter(new FileWriter(System.getProperty("user.dir")+System.getProperty("file.separator")+"reg.dat"));
+            PrintWriter pw = new PrintWriter(new FileWriter(System.getProperty("user.dir") + System.getProperty("file.separator") + "reg.dat"));
             pw.println(jTextFieldName.getText());
             pw.println(jTextFieldEmailID.getText());
             pw.println(jTextFieldSerialNo.getText());
             pw.close();
-        }catch(Exception e){}
+        } catch (Exception e) {
+        }
     }
 
     private void jButtonOKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonOKActionPerformed
         saveFile();
-        if(registered)dispose();
-        else System.exit(0);
+        if (registered) {
+            dispose();
+        } else {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButtonOKActionPerformed
 
     private void jTextFieldNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldNameKeyReleased
@@ -230,16 +243,17 @@ public class Registration extends javax.swing.JFrame {
 
     private void jTextFieldSerialNoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldSerialNoActionPerformed
 
-        try{System.out.println(decode(Long.parseLong(jTextFieldSerialNo.getText())));
-        if(Long.parseLong(code)==decode(Long.parseLong(jTextFieldSerialNo.getText()))){
+        try {
+            System.out.println(decode(Long.parseLong(jTextFieldSerialNo.getText())));
+            if (Long.parseLong(code) == decode(Long.parseLong(jTextFieldSerialNo.getText()))) {
 
-            jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/tick.gif")));
-            registered=true;
-            a.setEnabled(true);
-        }
-        else
-            jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/cross-sm.gif")));
-        }catch(Exception e){
+                jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/tick.gif")));
+                registered = true;
+                a.setEnabled(true);
+            } else {
+                jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/cross-sm.gif")));
+            }
+        } catch (Exception e) {
             jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/buttons/cross-sm.gif")));
         }
     }//GEN-LAST:event_jTextFieldSerialNoActionPerformed
@@ -249,64 +263,73 @@ public class Registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldSerialNoKeyReleased
 
     private void jTextFieldEmailIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEmailIDActionPerformed
-        try{
-            if(jTextFieldEmailID.getText().contains("edoced"))
-            {
+        try {
+            if (jTextFieldEmailID.getText().contains("edoced")) {
                 jTextFieldSerialNo.setText(String.valueOf(encode(Long.parseLong(jTextFieldEmailID.getText().substring(7)))));
                 jTextFieldEmailID.setText("");
                 jTextFieldSerialNoActionPerformed(null);
             }
-           }catch(Exception e){System.err.println(e);}
+        } catch (Exception e) {
+            System.err.println(e);
+        }
     }//GEN-LAST:event_jTextFieldEmailIDActionPerformed
 
-
-    public long convertToCode(String s){
-        long j=1;
-        for(int i=0;i<s.length();i++){
-            j+=s.charAt(i);
+    public long convertToCode(String s) {
+        long j = 1;
+        for (int i = 0; i < s.length(); i++) {
+            j += s.charAt(i);
         }
-        return j*461798+567;
+        return j * 461798 + 567;
     }
 
-    public long encode(long n){
-       long c=0;
-       c*=3;c+=4321;
-       c=Math.abs(c);
-       return c;
+    public long encode(long n) {
+        long c = 0;
+        c *= 3;
+        c += 4321;
+        c = Math.abs(c);
+        return c;
     }
 
-    public long decode(long c){
-       c-=4321;
-       c/=3;
-       
-       return c;
+    public long decode(long c) {
+        c -= 4321;
+        c /= 3;
+
+        return c;
     }
 
-    public void setCode(){
-        try{
+    public void setCode() {
+        try {
             jTextFieldName.setText(System.getProperty("user.name"));
-            String command="",contain="";
-            String os=System.getProperty("os.name").toLowerCase();
-	    if (os.indexOf( "win" ) >= 0){command="ipconfig /all";contain="Physical Address";}
-	    else if(os.indexOf( "mac" ) >= 0){command="ifconfig -a";contain="HWaddr";}
-	    else if(os.indexOf( "nix") >=0 || os.indexOf( "nux") >=0){command="ifconfig -a";contain="HWaddr";}
+            String command = "", contain = "";
+            String os = System.getProperty("os.name").toLowerCase();
+            if (os.indexOf("win") >= 0) {
+                command = "ipconfig /all";
+                contain = "Physical Address";
+            } else if (os.indexOf("mac") >= 0) {
+                command = "ifconfig -a";
+                contain = "HWaddr";
+            } else if (os.indexOf("nix") >= 0 || os.indexOf("nux") >= 0) {
+                command = "ifconfig -a";
+                contain = "HWaddr";
+            }
 
             Process p = Runtime.getRuntime().exec(command);
             BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
-            String s="";
-            while((s=br.readLine())!=null)
-                if(s.contains(contain)){
-                 code=s;
-                 break;
+            String s = "";
+            while ((s = br.readLine()) != null) {
+                if (s.contains(contain)) {
+                    code = s;
+                    break;
                 }
+            }
             br.close();
-            code=String.valueOf(convertToCode(code));
-        }catch(Exception e){}
+            code = String.valueOf(convertToCode(code));
+        } catch (Exception e) {
+        }
         jTextFieldCode.setText(code);
     }
 
-    public String getNetworkInterfaceNo()
-    {
+    public String getNetworkInterfaceNo() {
         String code = "";
         try {
             Enumeration<NetworkInterface> is = NetworkInterface.getNetworkInterfaces();
@@ -325,8 +348,7 @@ public class Registration extends javax.swing.JFrame {
         return code;
     }
 
-
-    public void codeGenerator(){
+    public void codeGenerator() {
         jTextFieldCode.setText(code);
     }
 

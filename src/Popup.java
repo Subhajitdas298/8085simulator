@@ -1,18 +1,21 @@
+
 public class Popup extends javax.swing.JFrame {
 
-    boolean terminate=false;
+    boolean terminate = false;
     Assembler o;
+
     public Popup(Assembler o) {
         o.setEnabled(false);
         initComponents();
         jButton2.setVisible(false);
-        this.o=o;
+        this.o = o;
     }
 
     public Popup() {
         initComponents();
         jButton2.setVisible(false);
     }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -82,44 +85,42 @@ public class Popup extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
-        if(terminate)System.exit(0);
+        if (terminate) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         o.setEnabled(true);
-        o.closeStateCall=false;
+        o.closeStateCall = false;
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
         o.setEnabled(true);
-        o.closeStateCall=false;
+        o.closeStateCall = false;
         dispose();
 
     }//GEN-LAST:event_formWindowClosing
 
+    public static void show(String s) {
+        Popup popup = new Popup();
+        popup.jLabel1.setText(s);
+        popup.setVisible(true);
 
+    }
 
+    public void terminate(String s) {
 
-  public static void show(String s)
-  {
-    Popup popup = new Popup();
-    popup.jLabel1.setText( s );
-    popup.setVisible(true);
+        jLabel1.setText(s);
+        setVisible(true);
+        jButton1.setText("Yes");
+        jButton2.setText("No");
+        jButton2.setVisible(true);
 
-  }
+        terminate = true;
+    }
 
-   public void terminate(String s)
-  {
-
-    jLabel1.setText(s);
-    setVisible(true);
-    jButton1.setText("Yes");
-    jButton2.setText("No");
-    jButton2.setVisible(true);
-
-    terminate=true;
-  }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

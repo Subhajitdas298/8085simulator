@@ -1,3 +1,4 @@
+
 public class CodeWizard extends javax.swing.JFrame {
 
     public CodeWizard() {
@@ -6,8 +7,9 @@ public class CodeWizard extends javax.swing.JFrame {
     }
 
     Assembler o;
+
     public CodeWizard(Assembler o) {
-        this.o=o;
+        this.o = o;
         initComponents();
         hideNseek(0, 0, 0, 0);
     }
@@ -510,16 +512,16 @@ public class CodeWizard extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    String initial="";
+    String initial = "";
 
     private void jTreeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTreeMouseClicked
 
-        try{
-            String s=jTree.getAnchorSelectionPath().getLastPathComponent().toString();
-            initial=jTextAreaCode.getText();
+        try {
+            String s = jTree.getAnchorSelectionPath().getLastPathComponent().toString();
+            initial = jTextAreaCode.getText();
             decodeFunction(s);
+        } catch (Exception e) {
         }
-        catch(Exception e){}
     }//GEN-LAST:event_jTreeMouseClicked
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -539,12 +541,12 @@ public class CodeWizard extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxRegister1ActionPerformed
 
     private void jComboBoxRegister2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRegister2ActionPerformed
-   jTextAreaCode.setText(initial);
+        jTextAreaCode.setText(initial);
         jTreeMouseClicked(null);
     }//GEN-LAST:event_jComboBoxRegister2ActionPerformed
 
     private void jComboBoxRegPairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxRegPairActionPerformed
-   jTextAreaCode.setText(initial);
+        jTextAreaCode.setText(initial);
         jTreeMouseClicked(null);
     }//GEN-LAST:event_jComboBoxRegPairActionPerformed
 
@@ -572,7 +574,9 @@ public class CodeWizard extends javax.swing.JFrame {
     private void jButtonUndoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonUndoActionPerformed
 
         undo--;
-        if(undo>0)jTextAreaCode.setText(array[undo]);
+        if (undo > 0) {
+            jTextAreaCode.setText(array[undo]);
+        }
     }//GEN-LAST:event_jButtonUndoActionPerformed
 
     private void jButtonCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCopyActionPerformed
@@ -581,27 +585,28 @@ public class CodeWizard extends javax.swing.JFrame {
         jTextAreaCode.copy();
     }//GEN-LAST:event_jButtonCopyActionPerformed
 
-    String array[]=new String[100];
-    int undo=0;
+    String array[] = new String[100];
+    int undo = 0;
     private void jTextAreaCodeCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextAreaCodeCaretUpdate
 
     }//GEN-LAST:event_jTextAreaCodeCaretUpdate
 
     private void jButtonRedoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonRedoActionPerformed
-    undo++;
-        if(undo<array.length)jTextAreaCode.setText(array[undo]);
+        undo++;
+        if (undo < array.length) {
+            jTextAreaCode.setText(array[undo]);
+        }
 
     }//GEN-LAST:event_jButtonRedoActionPerformed
 
     /**
-     * 
+     *
      * @param a Register1
      * @param b Register2
      * @param c Register pair
      * @param d Data
      */
-    public void hideNseek(int a,int b, int c, int d)
-    {
+    public void hideNseek(int a, int b, int c, int d) {
         jComboBoxRegister1.setVisible(false);
         jComboBoxRegister2.setVisible(false);
         jComboBoxRegPair.setVisible(false);
@@ -609,402 +614,442 @@ public class CodeWizard extends javax.swing.JFrame {
         jTextFieldData.setVisible(false);
         jComboBoxDataType.setVisible(false);
 
-        if(a==1)        jComboBoxRegister1.setVisible(true);
-        if(b==1)        jComboBoxRegister2.setVisible(true);
-        if(c==1)        jComboBoxRegPair.setVisible(true);
-        if(d==1){
-        jLabelData.setVisible(true);
-        jTextFieldData.setVisible(true);
-        jComboBoxDataType.setVisible(true);
+        if (a == 1) {
+            jComboBoxRegister1.setVisible(true);
+        }
+        if (b == 1) {
+            jComboBoxRegister2.setVisible(true);
+        }
+        if (c == 1) {
+            jComboBoxRegPair.setVisible(true);
+        }
+        if (d == 1) {
+            jLabelData.setVisible(true);
+            jTextFieldData.setVisible(true);
+            jComboBoxDataType.setVisible(true);
 
         }
     }
 
-    public String reg1()
-    {
-        int n=jComboBoxRegister1.getSelectedIndex();
-        String s[]={"A","B","C","D","E","H","L","M"};
+    public String reg1() {
+        int n = jComboBoxRegister1.getSelectedIndex();
+        String s[] = {"A", "B", "C", "D", "E", "H", "L", "M"};
         return s[n];
     }
 
-    public String reg2()
-    {
-        int n=jComboBoxRegister2.getSelectedIndex();
-        String s[]={"A","B","C","D","E","H","L","M"};
+    public String reg2() {
+        int n = jComboBoxRegister2.getSelectedIndex();
+        String s[] = {"A", "B", "C", "D", "E", "H", "L", "M"};
         return s[n];
     }
 
-    public String regPair()
-    {
-        int n=jComboBoxRegPair.getSelectedIndex();
-        String s[]={"B","D","H","SP"};
+    public String regPair() {
+        int n = jComboBoxRegPair.getSelectedIndex();
+        String s[] = {"B", "D", "H", "SP"};
         return s[n];
     }
 
-    public String data4digit()
-    {
-        int n=jComboBoxDataType.getSelectedIndex(),no=0;
-        String s=jTextFieldData.getText();
-        try{no=Integer.parseInt(s);}catch(Exception e){}
-        if(n==0){s = o.engine.Bin2Hex(s);jTextFieldData.setText(o.engine.Hex2Bin(s));}
-        else if(n==1){s=o.engine.Dec2Hex(no);jTextFieldData.setText(String.valueOf(o.engine.Hex2Dec(s)));}
-        else if(n==3){s=o.engine.Ascii2Hex(s);jTextFieldData.setText(o.engine.Hex2Ascii(s));}
-        else if(n==2){jTextFieldData.setText(o.engine.HexAutoCorrect4digit(s));}
+    public String data4digit() {
+        int n = jComboBoxDataType.getSelectedIndex(), no = 0;
+        String s = jTextFieldData.getText();
+        try {
+            no = Integer.parseInt(s);
+        } catch (Exception e) {
+        }
+        if (n == 0) {
+            s = o.engine.Bin2Hex(s);
+            jTextFieldData.setText(o.engine.Hex2Bin(s));
+        } else if (n == 1) {
+            s = o.engine.Dec2Hex(no);
+            jTextFieldData.setText(String.valueOf(o.engine.Hex2Dec(s)));
+        } else if (n == 3) {
+            s = o.engine.Ascii2Hex(s);
+            jTextFieldData.setText(o.engine.Hex2Ascii(s));
+        } else if (n == 2) {
+            jTextFieldData.setText(o.engine.HexAutoCorrect4digit(s));
+        }
         return o.engine.HexAutoCorrect4digit(s);
     }
 
-    public String data2digit()
-    {
-        int n=jComboBoxDataType.getSelectedIndex(),no=0;
-        String s=jTextFieldData.getText();
-        try{no=Integer.parseInt(s);}catch(Exception e){}
-        if(n==0){s = o.engine.Bin2Hex(s);jTextFieldData.setText(o.engine.Hex2Bin(s));}
-        else if(n==1){s=o.engine.Dec2Hex(no);jTextFieldData.setText(String.valueOf(o.engine.Hex2Dec(s)));}
-        else if(n==3){s=o.engine.HexAutoCorrect2digit(o.engine.Ascii2Hex(s));jTextFieldData.setText(o.engine.Hex2Ascii(s));}
-        else if(n==2){jTextFieldData.setText(o.engine.HexAutoCorrect2digit(s));}
+    public String data2digit() {
+        int n = jComboBoxDataType.getSelectedIndex(), no = 0;
+        String s = jTextFieldData.getText();
+        try {
+            no = Integer.parseInt(s);
+        } catch (Exception e) {
+        }
+        if (n == 0) {
+            s = o.engine.Bin2Hex(s);
+            jTextFieldData.setText(o.engine.Hex2Bin(s));
+        } else if (n == 1) {
+            s = o.engine.Dec2Hex(no);
+            jTextFieldData.setText(String.valueOf(o.engine.Hex2Dec(s)));
+        } else if (n == 3) {
+            s = o.engine.HexAutoCorrect2digit(o.engine.Ascii2Hex(s));
+            jTextFieldData.setText(o.engine.Hex2Ascii(s));
+        } else if (n == 2) {
+            jTextFieldData.setText(o.engine.HexAutoCorrect2digit(s));
+        }
         return o.engine.HexAutoCorrect2digit(s);
     }
 
-    public void append(String t)
-    {
-        if(jCheckBox1.isSelected())jTextAreaCode.append("\n"+t);
-        else jTextAreaCode.setText(t);
-            if(undo<array.length)array[undo]=jTextAreaCode.getText();
-            undo++;
+    public void append(String t) {
+        if (jCheckBox1.isSelected()) {
+            jTextAreaCode.append("\n" + t);
+        } else {
+            jTextAreaCode.setText(t);
+        }
+        if (undo < array.length) {
+            array[undo] = jTextAreaCode.getText();
+        }
+        undo++;
     }
 
-    public String funcDataTransfer(String s)
-    {
-        String t="";
+    public String funcDataTransfer(String s) {
+        String t = "";
 
-        if (s.equals("Register         ←   Data")) {t="MVI "+reg1()+","+data2digit();hideNseek(1, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator  ←   Data")) {
-            t="MVI A,"+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator  ←   Data (from memory address directly)")) {
-            t="LDA "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator  ←   Data (from memory address pointed by Reg Pair H-L)")) {
-            t="MOV A,M";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Accumulator  ←   Data (from memory address pointed by Reg. Pair)")) {
-            t="LDAX "+regPair();hideNseek(0, 0, 1, 0);
+        if (s.equals("Register         ←   Data")) {
+            t = "MVI " + reg1() + "," + data2digit();
+            hideNseek(1, 0, 0, 1);
+        } else if (s.equals("Accumulator  ←   Data")) {
+            t = "MVI A," + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator  ←   Data (from memory address directly)")) {
+            t = "LDA " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator  ←   Data (from memory address pointed by Reg Pair H-L)")) {
+            t = "MOV A,M";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Accumulator  ←   Data (from memory address pointed by Reg. Pair)")) {
+            t = "LDAX " + regPair();
+            hideNseek(0, 0, 1, 0);
 
-        }
-        else if (s.equals("Register Pair ←   Data")) {
-            t="LXI "+regPair()+","+data4digit();hideNseek(0, 0, 1, 1);
-        }
-        else if (s.equals("Reg. pair H-L  ←   Data (from memory address directly)")) {
-            t="LHLD "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if(s.equals("Stack Pointer (SP)  ←  Reg. pair H-L")){
-            t="SPHL";hideNseek(0, 0, 0, 0);
-        }
-        else if(s.equals("Program Counter (PC)  ←   Reg. pair H-L")){
-            t="PCHL";hideNseek(0, 0, 0, 0);
-        }
-        else if(s.equals("Accumulator(Data)  → Memory (at address specified directly)")){
-            t="STA "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if(s.equals("Accumulator(Data)  → Memory (at address pointed by Reg Pair H-L)")){
-            t="MOV M,A";
-        }
-        else if(s.equals("Accumulator(Data)  → Memory (at address pointed by Reg. Pair)")){
-            t="STAX "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if(s.equals("Reg. pair H-L(Data) → Memory (at address specified directly)")){
-            t="SHLD "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Register ←  Register")) {
-            t="MOV "+reg1()+","+reg2();hideNseek(1, 1, 0, 0);
-        }
-        else if (s.equals("Push")) {
-            t="PUSH "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if (s.equals("Pop")) {
-            t="POP "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if (s.equals("H-L   ←→  D-E")) {
-            t="XCHG";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("H-L   ←→  Stack Top Pointer")) {
-            t="XTHL";hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Register Pair ←   Data")) {
+            t = "LXI " + regPair() + "," + data4digit();
+            hideNseek(0, 0, 1, 1);
+        } else if (s.equals("Reg. pair H-L  ←   Data (from memory address directly)")) {
+            t = "LHLD " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Stack Pointer (SP)  ←  Reg. pair H-L")) {
+            t = "SPHL";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Program Counter (PC)  ←   Reg. pair H-L")) {
+            t = "PCHL";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Accumulator(Data)  → Memory (at address specified directly)")) {
+            t = "STA " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator(Data)  → Memory (at address pointed by Reg Pair H-L)")) {
+            t = "MOV M,A";
+        } else if (s.equals("Accumulator(Data)  → Memory (at address pointed by Reg. Pair)")) {
+            t = "STAX " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("Reg. pair H-L(Data) → Memory (at address specified directly)")) {
+            t = "SHLD " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Register ←  Register")) {
+            t = "MOV " + reg1() + "," + reg2();
+            hideNseek(1, 1, 0, 0);
+        } else if (s.equals("Push")) {
+            t = "PUSH " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("Pop")) {
+            t = "POP " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("H-L   ←→  D-E")) {
+            t = "XCHG";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("H-L   ←→  Stack Top Pointer")) {
+            t = "XTHL";
+            hideNseek(0, 0, 0, 0);
         }
 
         return t;
     }
 
-    public String funcArithmetic(String s)
-    {
-        String t="";
+    public String funcArithmetic(String s) {
+        String t = "";
         if (s.equals("Accumulator = Accumulator + Data")) {
-            t="ADI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator + Carry + Data")) {
-            t="ACI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator + Register")) {
-            t="ADD "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Accumulator = Accumulator + Carry + Register")) {
-            t="ADC "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Register Pair(H-L) = Register Pair(H-L) + Register Pair")) {
-            t="DAD "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if (s.equals("Accumulator = Accumulator - Data")) {
-            t="SUI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator - Borrow/Carry - Data")) {
-            t="SBI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator - Register")) {
-            t="SUB "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Accumulator = Accumulator - Borrow/Carry - Register")) {
-            t="SBB "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Increment Register")) {
-            t="INR "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Increment Register Pair")) {
-            t="INX "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if (s.equals("Decrement Register")) {
-            t="DCR "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Decrement Register Pair")) {
-            t="DCX "+regPair();hideNseek(0, 0, 1, 0);
-        }
-        else if (s.equals("Decimal Adjust Accumulator")) {
-            t="DAA";
+            t = "ADI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator + Carry + Data")) {
+            t = "ACI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator + Register")) {
+            t = "ADD " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Accumulator = Accumulator + Carry + Register")) {
+            t = "ADC " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Register Pair(H-L) = Register Pair(H-L) + Register Pair")) {
+            t = "DAD " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("Accumulator = Accumulator - Data")) {
+            t = "SUI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator - Borrow/Carry - Data")) {
+            t = "SBI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator - Register")) {
+            t = "SUB " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Accumulator = Accumulator - Borrow/Carry - Register")) {
+            t = "SBB " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Increment Register")) {
+            t = "INR " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Increment Register Pair")) {
+            t = "INX " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("Decrement Register")) {
+            t = "DCR " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Decrement Register Pair")) {
+            t = "DCX " + regPair();
+            hideNseek(0, 0, 1, 0);
+        } else if (s.equals("Decimal Adjust Accumulator")) {
+            t = "DAA";
         }
 
         return t;
     }
 
-    public String funcLogic(String s)
-    {
-        String t="";
+    public String funcLogic(String s) {
+        String t = "";
         if (s.equals("Accumulator = Accumulator & Data")) {
-            t="ANI "+data2digit();hideNseek(0, 0, 0, 1);
+            t = "ANI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator & Register")) {
+            t = "ANA " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Accumulator = Accumulator | Data")) {
+            t = "ORI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator | Register")) {
+            t = "ORA " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Accumulator = Accumulator ^ Data")) {
+            t = "XRI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator = Accumulator ^ Register")) {
+            t = "XRA " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Rotate Accumulator Left with carry")) {
+            t = "RAR";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Rotate Accumulator Left without carry")) {
+            t = "RRC";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Rotate Accumulator Right with carry")) {
+            t = "RAL";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Rotate Accumulator Right without carry")) {
+            t = "RLC";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Rotate Accumulator Right without carry")) {
+        } else if (s.equals("Accumulator -  Data")) {
+            t = "CPI " + data2digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator -  Register")) {
+            t = "CMP " + reg1();
+            hideNseek(1, 0, 0, 0);
+        } else if (s.equals("Complement Accumulator")) {
+            t = "CMA";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Complement Carry")) {
+            t = "CMC";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Set Carry [C=1]")) {
+            t = "STC";
+            hideNseek(0, 0, 0, 0);
         }
-        else if (s.equals("Accumulator = Accumulator & Register")) {
-            t="ANA "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Accumulator = Accumulator | Data")) {
-            t="ORI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator | Register")) {
-            t="ORA "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Accumulator = Accumulator ^ Data")) {
-            t="XRI "+data2digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Accumulator = Accumulator ^ Register")) {
-            t="XRA "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Rotate Accumulator Left with carry")) {
-            t="RAR";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Rotate Accumulator Left without carry")) {
-            t="RRC";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Rotate Accumulator Right with carry")) {
-            t="RAL";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Rotate Accumulator Right without carry")) {
-            t="RLC";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Rotate Accumulator Right without carry")) {
-        }
-        else if (s.equals("Accumulator -  Data")) {
-            t="CPI "+data2digit();hideNseek(0, 0, 0, 1);                                                        
-        }
-        else if (s.equals("Accumulator -  Register")) {
-            t="CMP "+reg1();hideNseek(1, 0, 0, 0);
-        }
-        else if (s.equals("Complement Accumulator")) {
-            t="CMA";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Complement Carry")) {
-            t="CMC";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Set Carry [C=1]")) {
-            t="STC";hideNseek(0, 0, 0, 0);
-        }
-
 
         return t;
     }
 
-    public String funcBranching(String s)
-    {
-        String t="";
+    public String funcBranching(String s) {
+        String t = "";
         if (s.equals("Jump")) {
-            t="JMP "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Positive")) {
-            t="JP "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Negative")) {
-            t="JM "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Zero")) {
-            t="JZ "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on not Zero")) {
-            t="JNZ "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Parity Even")) {
-            t="JPE "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Parity Odd")) {
-            t="JPO "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on Carry")) {
-            t="JC "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Jump on no Carry")) {
-            t="JNC "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call")) {
-            t="CALL "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Positive")) {
-            t="CP "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Negative")) {
-            t="CM "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Zero")) {
-            t="CZ "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on not Zero")) {
-            t="CNZ "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Parity Even")) {
-            t="CPE "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Parity Odd")) {
-            t="CPO "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on Carry")) {
-            t="CC "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Call on no Carry")) {
-            t="CNC "+data4digit();hideNseek(0, 0, 0, 1);
-        }
-        else if (s.equals("Return")) {
-            t="RET";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Positive")) {
-            t="RP";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Negative")) {
-            t="RM";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Zero")) {
-            t="RZ";hideNseek(0, 0, 0, 0);
-       }
-        else if (s.equals("Return on not Zero")) {
-            t="RNZ";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Parity Even")) {
-            t="RPE";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Parity Odd")) {
-            t="RPO";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on Carry")) {
-            t="RC";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Return on no Carry")) {
-            t="RNC";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0000")) {
-            t="RST 0";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0008")) {
-            t="RST 1";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0010")) {
-            t="RST 2";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0018")) {
-            t="RST 3";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0020")) {
-            t="RST 4";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0028")) {
-            t="RST 5";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0030")) {
-            t="RST 6";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Restart from memory loaction 0038")) {
-            t="RST 7";hideNseek(0, 0, 0, 0);
+            t = "JMP " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Positive")) {
+            t = "JP " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Negative")) {
+            t = "JM " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Zero")) {
+            t = "JZ " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on not Zero")) {
+            t = "JNZ " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Parity Even")) {
+            t = "JPE " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Parity Odd")) {
+            t = "JPO " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on Carry")) {
+            t = "JC " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Jump on no Carry")) {
+            t = "JNC " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call")) {
+            t = "CALL " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Positive")) {
+            t = "CP " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Negative")) {
+            t = "CM " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Zero")) {
+            t = "CZ " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on not Zero")) {
+            t = "CNZ " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Parity Even")) {
+            t = "CPE " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Parity Odd")) {
+            t = "CPO " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on Carry")) {
+            t = "CC " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Call on no Carry")) {
+            t = "CNC " + data4digit();
+            hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Return")) {
+            t = "RET";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Positive")) {
+            t = "RP";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Negative")) {
+            t = "RM";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Zero")) {
+            t = "RZ";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on not Zero")) {
+            t = "RNZ";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Parity Even")) {
+            t = "RPE";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Parity Odd")) {
+            t = "RPO";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on Carry")) {
+            t = "RC";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Return on no Carry")) {
+            t = "RNC";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0000")) {
+            t = "RST 0";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0008")) {
+            t = "RST 1";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0010")) {
+            t = "RST 2";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0018")) {
+            t = "RST 3";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0020")) {
+            t = "RST 4";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0028")) {
+            t = "RST 5";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0030")) {
+            t = "RST 6";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Restart from memory loaction 0038")) {
+            t = "RST 7";
+            hideNseek(0, 0, 0, 0);
         }
         return t;
     }
 
-    public String funcIO(String s){
-        String t="";
+    public String funcIO(String s) {
+        String t = "";
         if (s.equals("Accumulator  ←  Input data")) {
-          t="IN "+data2digit();hideNseek(0, 0, 0, 1);
+            t = "IN " + data2digit();
+            hideNseek(0, 0, 0, 1);
 
-        }
-        else if (s.equals("Accumulator   → Output data")) {
-            t="OUT "+data2digit();hideNseek(0, 0, 0, 1);
+        } else if (s.equals("Accumulator   → Output data")) {
+            t = "OUT " + data2digit();
+            hideNseek(0, 0, 0, 1);
         }
 
         return t;
     }
 
-    public String funcInterrupt(String s){
-        String t="";
+    public String funcInterrupt(String s) {
+        String t = "";
         if (s.equals("Halt Operation")) {
-            t="HLT";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Enable Interrupt")) {
-            t="EI";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Disable Interrupt")) {
-            t="DI";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Read Interrupt Mask")) {
-            t="RIM";hideNseek(0, 0, 0, 0);
-        }
-        else if (s.equals("Set Interrupt Mask")) {
-            t="SIM";hideNseek(0, 0, 0, 0);
-        }
-        return t;
-    }
-
-    public String funcNOP(String s){
-        String t="";
-        if(s.equals("No Operation")){
-            t="NOP";hideNseek(0, 0, 0, 0);
+            t = "HLT";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Enable Interrupt")) {
+            t = "EI";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Disable Interrupt")) {
+            t = "DI";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Read Interrupt Mask")) {
+            t = "RIM";
+            hideNseek(0, 0, 0, 0);
+        } else if (s.equals("Set Interrupt Mask")) {
+            t = "SIM";
+            hideNseek(0, 0, 0, 0);
         }
         return t;
     }
 
-
-    public void decodeFunction(String s){
-        String t="";
-        t=funcDataTransfer(s);
-        if(t.equals(""))t=funcArithmetic(s);
-        if(t.equals(""))t=funcLogic(s);
-        if(t.equals(""))t=funcBranching(s);
-        if(t.equals(""))t=funcIO(s);
-        if(t.equals(""))t=funcInterrupt(s);
-        if(t.equals(""))t=funcNOP(s);
-        if(!t.equals(""))append(t);
+    public String funcNOP(String s) {
+        String t = "";
+        if (s.equals("No Operation")) {
+            t = "NOP";
+            hideNseek(0, 0, 0, 0);
+        }
+        return t;
     }
 
-     public static void main(String args[]) {
+    public void decodeFunction(String s) {
+        String t = "";
+        t = funcDataTransfer(s);
+        if (t.equals("")) {
+            t = funcArithmetic(s);
+        }
+        if (t.equals("")) {
+            t = funcLogic(s);
+        }
+        if (t.equals("")) {
+            t = funcBranching(s);
+        }
+        if (t.equals("")) {
+            t = funcIO(s);
+        }
+        if (t.equals("")) {
+            t = funcInterrupt(s);
+        }
+        if (t.equals("")) {
+            t = funcNOP(s);
+        }
+        if (!t.equals("")) {
+            append(t);
+        }
+    }
+
+    public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CodeWizard(new Assembler()).setVisible(true);
@@ -1038,218 +1083,221 @@ public class CodeWizard extends javax.swing.JFrame {
 /**
  * A JTree that draws a zebra-striped background.
  */
-class ZebraJTree extends javax.swing.JTree
-{
+class ZebraJTree extends javax.swing.JTree {
+
     public java.awt.Color rowColors[] = new java.awt.Color[2];
     private boolean drawStripes = false;
 
-    public ZebraJTree( )
-    {
-    }
-    public ZebraJTree( java.util.Hashtable<?,?> value )
-    {
-        super( value );
-    }
-    public ZebraJTree( Object[] value )
-    {
-        super( value );
-    }
-    public ZebraJTree( javax.swing.tree.TreeModel newModel )
-    {
-        super( newModel );
-    }
-    public ZebraJTree( javax.swing.tree.TreeNode root )
-    {
-        super( root );
-    }
-    public ZebraJTree( javax.swing.tree.TreeNode root,
-        boolean asksAllowsChildren )
-    {
-        super( root, asksAllowsChildren );
-    }
-    public ZebraJTree( java.util.Vector<?> value )
-    {
-        super( value );
+    public ZebraJTree() {
     }
 
-    /** Add zebra stripes to the background. */
-    public void paintComponent( java.awt.Graphics g )
-    {
-        if ( !(drawStripes = isOpaque( )) )
-        {
-            super.paintComponent( g );
+    public ZebraJTree(java.util.Hashtable<?, ?> value) {
+        super(value);
+    }
+
+    public ZebraJTree(Object[] value) {
+        super(value);
+    }
+
+    public ZebraJTree(javax.swing.tree.TreeModel newModel) {
+        super(newModel);
+    }
+
+    public ZebraJTree(javax.swing.tree.TreeNode root) {
+        super(root);
+    }
+
+    public ZebraJTree(javax.swing.tree.TreeNode root,
+            boolean asksAllowsChildren) {
+        super(root, asksAllowsChildren);
+    }
+
+    public ZebraJTree(java.util.Vector<?> value) {
+        super(value);
+    }
+
+    /**
+     * Add zebra stripes to the background.
+     */
+    public void paintComponent(java.awt.Graphics g) {
+        if (!(drawStripes = isOpaque())) {
+            super.paintComponent(g);
             return;
         }
 
         // Paint zebra background stripes
-        updateZebraColors( );
-        final java.awt.Insets insets = getInsets( );
-        final int w   = getWidth( )  - insets.left - insets.right;
-        final int h   = getHeight( ) - insets.top  - insets.bottom;
-        final int x   = insets.left;
-        int y         = insets.top;
-        int nRows     = 0;
-        int startRow  = 0;
-        int rowHeight = getRowHeight( );
-        if ( rowHeight > 0 )
+        updateZebraColors();
+        final java.awt.Insets insets = getInsets();
+        final int w = getWidth() - insets.left - insets.right;
+        final int h = getHeight() - insets.top - insets.bottom;
+        final int x = insets.left;
+        int y = insets.top;
+        int nRows = 0;
+        int startRow = 0;
+        int rowHeight = getRowHeight();
+        if (rowHeight > 0) {
             nRows = h / rowHeight;
-        else
-        {
+        } else {
             // Paint non-uniform height rows first
-            final int nItems = getRowCount( );
+            final int nItems = getRowCount();
             rowHeight = 17; // A default for empty trees
-            for ( int i = 0; i < nItems; i++, y+=rowHeight )
-            {
-                rowHeight = getRowBounds( i ).height;
-                g.setColor( rowColors[i&1] );
-                g.fillRect( x, y, w, rowHeight );
+            for (int i = 0; i < nItems; i++, y += rowHeight) {
+                rowHeight = getRowBounds(i).height;
+                g.setColor(rowColors[i & 1]);
+                g.fillRect(x, y, w, rowHeight);
             }
             // Use last row height for remainder of tree area
-            nRows    = nItems + (insets.top + h - y) / rowHeight;
+            nRows = nItems + (insets.top + h - y) / rowHeight;
             startRow = nItems;
         }
-        for ( int i = startRow; i < nRows; i++, y+=rowHeight )
-        {
-            g.setColor( rowColors[i&1] );
-            g.fillRect( x, y, w, rowHeight );
+        for (int i = startRow; i < nRows; i++, y += rowHeight) {
+            g.setColor(rowColors[i & 1]);
+            g.fillRect(x, y, w, rowHeight);
         }
         final int remainder = insets.top + h - y;
-        if ( remainder > 0 )
-        {
-            g.setColor( rowColors[nRows&1] );
-            g.fillRect( x, y, w, remainder );
+        if (remainder > 0) {
+            g.setColor(rowColors[nRows & 1]);
+            g.fillRect(x, y, w, remainder);
         }
 
         // Paint component
-        setOpaque( false );
-        super.paintComponent( g );
-        setOpaque( true );
+        setOpaque(false);
+        super.paintComponent(g);
+        setOpaque(true);
     }
 
-    /** Wrap cell renderer and editor to add zebra background stripes. */
+    /**
+     * Wrap cell renderer and editor to add zebra background stripes.
+     */
     private class RendererEditorWrapper
-        implements javax.swing.tree.TreeCellRenderer,
-        javax.swing.tree.TreeCellEditor
-    {
+            implements javax.swing.tree.TreeCellRenderer,
+            javax.swing.tree.TreeCellEditor {
+
         public javax.swing.tree.TreeCellRenderer ren = null;
-        public javax.swing.tree.TreeCellEditor   ed  = null;
+        public javax.swing.tree.TreeCellEditor ed = null;
 
         public java.awt.Component getTreeCellRendererComponent(
-            javax.swing.JTree tree, Object value,
-            boolean selected, boolean expanded,
-            boolean leaf, int row, boolean hasFocus )
-        {
-            final java.awt.Component c =
-                ren.getTreeCellRendererComponent(
-                tree, value, selected, expanded,
-                leaf, row, hasFocus );
-            if ( selected || !drawStripes )
+                javax.swing.JTree tree, Object value,
+                boolean selected, boolean expanded,
+                boolean leaf, int row, boolean hasFocus) {
+            final java.awt.Component c
+                    = ren.getTreeCellRendererComponent(
+                            tree, value, selected, expanded,
+                            leaf, row, hasFocus);
+            if (selected || !drawStripes) {
                 return c;
-            if ( !(c instanceof javax.swing.tree.DefaultTreeCellRenderer) )
-                c.setBackground( rowColors[row&1] );
-            else
-                ((javax.swing.tree.DefaultTreeCellRenderer)c).
-                setBackgroundNonSelectionColor( rowColors[row&1] );
+            }
+            if (!(c instanceof javax.swing.tree.DefaultTreeCellRenderer)) {
+                c.setBackground(rowColors[row & 1]);
+            } else {
+                ((javax.swing.tree.DefaultTreeCellRenderer) c).
+                        setBackgroundNonSelectionColor(rowColors[row & 1]);
+            }
             return c;
         }
 
         public java.awt.Component getTreeCellEditorComponent(
-            javax.swing.JTree tree, Object value,
-            boolean selected, boolean expanded,
-            boolean leaf, int row )
-        {
-            final java.awt.Component c =
-                ed.getTreeCellEditorComponent(
-                tree, value, selected, expanded, leaf, row );
-            if ( !selected && drawStripes )
-                c.setBackground( rowColors[row&1] );
+                javax.swing.JTree tree, Object value,
+                boolean selected, boolean expanded,
+                boolean leaf, int row) {
+            final java.awt.Component c
+                    = ed.getTreeCellEditorComponent(
+                            tree, value, selected, expanded, leaf, row);
+            if (!selected && drawStripes) {
+                c.setBackground(rowColors[row & 1]);
+            }
             return c;
         }
 
         public void addCellEditorListener(
-            javax.swing.event.CellEditorListener l )
-        {
-            ed.addCellEditorListener( l );
+                javax.swing.event.CellEditorListener l) {
+            ed.addCellEditorListener(l);
         }
-        public void cancelCellEditing( )
-        {
-            ed.cancelCellEditing( );
+
+        public void cancelCellEditing() {
+            ed.cancelCellEditing();
         }
-        public Object getCellEditorValue( )
-        {
-            return ed.getCellEditorValue( );
+
+        public Object getCellEditorValue() {
+            return ed.getCellEditorValue();
         }
+
         public boolean isCellEditable(
-            java.util.EventObject anEvent )
-        {
-            return ed.isCellEditable( anEvent );
+                java.util.EventObject anEvent) {
+            return ed.isCellEditable(anEvent);
         }
+
         public void removeCellEditorListener(
-            javax.swing.event.CellEditorListener l )
-        {
-            ed.removeCellEditorListener( l );
+                javax.swing.event.CellEditorListener l) {
+            ed.removeCellEditorListener(l);
         }
+
         public boolean shouldSelectCell(
-            java.util.EventObject anEvent )
-        {
-            return ed.shouldSelectCell( anEvent );
+                java.util.EventObject anEvent) {
+            return ed.shouldSelectCell(anEvent);
         }
-        public boolean stopCellEditing( )
-        {
-            return ed.stopCellEditing( );
+
+        public boolean stopCellEditing() {
+            return ed.stopCellEditing();
         }
     }
     private RendererEditorWrapper wrapper = null;
 
-    /** Return the wrapped cell renderer. */
-    public javax.swing.tree.TreeCellRenderer getCellRenderer( )
-    {
-        final javax.swing.tree.TreeCellRenderer ren = super.getCellRenderer( );
-        if ( ren == null )
+    /**
+     * Return the wrapped cell renderer.
+     */
+    public javax.swing.tree.TreeCellRenderer getCellRenderer() {
+        final javax.swing.tree.TreeCellRenderer ren = super.getCellRenderer();
+        if (ren == null) {
             return null;
-        if ( wrapper == null )
-            wrapper = new RendererEditorWrapper( );
+        }
+        if (wrapper == null) {
+            wrapper = new RendererEditorWrapper();
+        }
         wrapper.ren = ren;
         return wrapper;
     }
 
-    /** Return the wrapped cell editor. */
-    public javax.swing.tree.TreeCellEditor getCellEditor( )
-    {
-        final javax.swing.tree.TreeCellEditor ed = super.getCellEditor( );
-        if ( ed == null )
+    /**
+     * Return the wrapped cell editor.
+     */
+    public javax.swing.tree.TreeCellEditor getCellEditor() {
+        final javax.swing.tree.TreeCellEditor ed = super.getCellEditor();
+        if (ed == null) {
             return null;
-        if ( wrapper == null )
-            wrapper = new RendererEditorWrapper( );
+        }
+        if (wrapper == null) {
+            wrapper = new RendererEditorWrapper();
+        }
         wrapper.ed = ed;
         return wrapper;
     }
 
-    /** Compute zebra background stripe colors. */
-    private void updateZebraColors( )
-    {
-        if ( (rowColors[0] = getBackground( )) == null )
-        {
+    /**
+     * Compute zebra background stripe colors.
+     */
+    private void updateZebraColors() {
+        if ((rowColors[0] = getBackground()) == null) {
             rowColors[0] = rowColors[1] = java.awt.Color.white;
             return;
         }
         java.awt.Color sel = javax.swing.UIManager.getColor(
-            "Tree.selectionBackground" );
-        if ( sel == null )
+                "Tree.selectionBackground");
+        if (sel == null) {
             sel = java.awt.SystemColor.textHighlight;
-        if ( sel == null )
-        {
+        }
+        if (sel == null) {
             rowColors[1] = rowColors[0];
             return;
         }
         final float[] bgHSB = java.awt.Color.RGBtoHSB(
-            rowColors[0].getRed( ), rowColors[0].getGreen( ),
-            rowColors[0].getBlue( ), null );
-        final float[] selHSB  = java.awt.Color.RGBtoHSB(
-            sel.getRed( ), sel.getGreen( ), sel.getBlue( ), null );
+                rowColors[0].getRed(), rowColors[0].getGreen(),
+                rowColors[0].getBlue(), null);
+        final float[] selHSB = java.awt.Color.RGBtoHSB(
+                sel.getRed(), sel.getGreen(), sel.getBlue(), null);
         rowColors[1] = java.awt.Color.getHSBColor(
-            (selHSB[1]==0.0||selHSB[2]==0.0) ? bgHSB[0] : selHSB[0],
-            0.1f * selHSB[1] + 0.9f * bgHSB[1],
-            bgHSB[2] + ((bgHSB[2]<0.5f) ? 0.05f : -0.05f) );
+                (selHSB[1] == 0.0 || selHSB[2] == 0.0) ? bgHSB[0] : selHSB[0],
+                0.1f * selHSB[1] + 0.9f * bgHSB[1],
+                bgHSB[2] + ((bgHSB[2] < 0.5f) ? 0.05f : -0.05f));
     }
 }

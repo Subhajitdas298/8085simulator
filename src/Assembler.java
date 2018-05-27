@@ -1,5 +1,7 @@
 
 import java.awt.*;
+import java.awt.event.ComponentEvent;
+import java.awt.event.ContainerListener;
 import java.awt.print.*;
 import java.io.*;
 import java.net.URI;
@@ -14,7 +16,7 @@ import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 
-public class Assembler extends javax.swing.JFrame implements Runnable{
+public class Assembler extends javax.swing.JFrame implements Runnable {
 
     AssemblerEngine engine;
     Matrix matrix;
@@ -23,42 +25,41 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
     PPI8255 ppi8255;
     Preprocessor preprocessor;
     TextEditor textEditor;
-    int tableState=0;
-    String path="";
-    boolean closeStateCall=false;
-    float[] speed=new float[4];
+    int tableState = 0;
+    String path = "";
+    boolean closeStateCall = false;
+    float[] speed = new float[4];
     int timingDiagramX = 0;
-    
-    String recover="";
-    String[] comments=new String[1000];
-    String[] macro=new String[1000];
-    int oIndex=0;
-    boolean stop=false;
-    boolean pause=false;
-    boolean properShutdown=false;
-    int stopAtIndex=207;
-    int memShift=0;
-    int continueFrom=0;
-    String fileSeparator=System.getProperty("file.separator");
-    
+
+    String recover = "";
+    String[] comments = new String[1000];
+    String[] macro = new String[1000];
+    int oIndex = 0;
+    boolean stop = false;
+    boolean pause = false;
+    boolean properShutdown = false;
+    int stopAtIndex = 207;
+    int memShift = 0;
+    int continueFrom = 0;
+    String fileSeparator = System.getProperty("file.separator");
 
     public Assembler() {
 
         matrix = new Matrix(this);
         engine = new AssemblerEngine(matrix);
-        ppi8255=new PPI8255(this);
+        ppi8255 = new PPI8255(this);
         preprocessor = new Preprocessor();
         disassembler = new Disassembler(this);
-        textEditor=new TextEditor(this);
+        textEditor = new TextEditor(this);
         initComponents();
         jTabbedPaneAssemblerEditor.removeAll();
-        jTabbedPaneAssemblerEditor.addTab("Assembler",jScrollPane9);
-        jTabbedPaneAssemblerEditor.addTab("Disassembler",jScrollPane5);
+        jTabbedPaneAssemblerEditor.addTab("Assembler", jScrollPane9);
+        jTabbedPaneAssemblerEditor.addTab("Disassembler", jScrollPane5);
 
         setParameters();
-        matrix.PC=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
-        matrix.beginAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-        matrix.stopAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+        matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+        matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+        matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
         sampleCode();
         jScrollPane16.setVisible(true);
         jMenu12.setVisible(false);
@@ -66,67 +67,66 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         jTabbedPaneInterface.addTab("I/O Port Editor", jScrollPane4);
         //jTableAssembler.setRowSelectionAllowed(true);
         //jTableAssembler.setRowSelectionInterval(0, 1);
-        
+
     }
 
-    public void sampleCode()
-    {
+    public void sampleCode() {
         JarFile jarFile = null;
         try {
-            String filepath=Assembler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
-            for(int i=0;i<filepath.length()-2;i++)
-            {
-                if(filepath.substring(i, i+3).equalsIgnoreCase("%20"))
-                    filepath=filepath.substring(0,i)+" "+filepath.substring(i+3,filepath.length());
+            String filepath = Assembler.class.getProtectionDomain().getCodeSource().getLocation().getPath();
+            for (int i = 0; i < filepath.length() - 2; i++) {
+                if (filepath.substring(i, i + 3).equalsIgnoreCase("%20")) {
+                    filepath = filepath.substring(0, i) + " " + filepath.substring(i + 3, filepath.length());
+                }
             }
             jarFile = new JarFile(filepath);
             Enumeration enum1 = jarFile.entries();
             while (enum1.hasMoreElements()) {
-             jMenuCreator(enum1.nextElement());
-           }
+                jMenuCreator(enum1.nextElement());
+            }
         } catch (Exception ex) {
             System.err.println(ex);
         }
-     }
+    }
 
-     JMenuItem jMenuItem[]= new JMenuItem[100];
-     int menu=0;
+    JMenuItem jMenuItem[] = new JMenuItem[100];
+    int menu = 0;
+
     private void jMenuCreator(Object obj) {
-       JarEntry entry = (JarEntry)obj;
-       String name = entry.getName();
-       if(name.startsWith("8085 Program/")&&name.length()>13)
-       {
-           jMenuItem[menu] = new javax.swing.JMenuItem();
-           jMenuItem[menu].setText(name.substring(13,name.length()-4));
-           jMenu5.add(jMenuItem[menu]);
-           jMenuItem[menu].addActionListener(new java.awt.event.ActionListener() {
-               public void actionPerformed(java.awt.event.ActionEvent evt) {
-                   jMenuItemArrayActionPerformed(evt);
-               }
-           });
+        JarEntry entry = (JarEntry) obj;
+        String name = entry.getName();
+        if (name.startsWith("8085 Program/") && name.length() > 13) {
+            jMenuItem[menu] = new javax.swing.JMenuItem();
+            jMenuItem[menu].setText(name.substring(13, name.length() - 4));
+            jMenu5.add(jMenuItem[menu]);
+            jMenuItem[menu].addActionListener(new java.awt.event.ActionListener() {
+                public void actionPerformed(java.awt.event.ActionEvent evt) {
+                    jMenuItemArrayActionPerformed(evt);
+                }
+            });
 
-       }
-     }
+        }
+    }
 
     private void jMenuItemArrayActionPerformed(java.awt.event.ActionEvent evt) {
         String line, s = "";
         try {
-        InputStreamReader jar=new InputStreamReader(Assembler.class.getResourceAsStream("/8085 Program/"+evt.getActionCommand()+".asm"));
-        BufferedReader in = new BufferedReader(jar);
-        while ((line = in.readLine()) != null) {
-        s = s + line + "\n";
-              jTabbedPaneAssemblerEditor.setSelectedIndex(0);
-              jButtonDisassemble.setVisible(false);
-              jButtonAssemble.setVisible(true);
+            InputStreamReader jar = new InputStreamReader(Assembler.class.getResourceAsStream("/8085 Program/" + evt.getActionCommand() + ".asm"));
+            BufferedReader in = new BufferedReader(jar);
+            while ((line = in.readLine()) != null) {
+                s = s + line + "\n";
+                jTabbedPaneAssemblerEditor.setSelectedIndex(0);
+                jButtonDisassemble.setVisible(false);
+                jButtonAssemble.setVisible(true);
+            }
+        } catch (Exception e) {
         }
-        } catch(Exception e){}
         jTextAreaAssemblyLanguageEditor.setText(s);
         textEditor.colorEditor();
-        
+
     }
 
-    public void setParameters()
-    {
+    public void setParameters() {
         jButtonStop.setVisible(false);
         jButtonBackward.setVisible(false);
         jButtonForward.setVisible(false);
@@ -142,17 +142,23 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         jButtonContinue.setVisible(false);
         jTabbedPaneInterface.removeAll();
 
-       jRadioButtonMenuItemUltimate.setSelected(true);
-       jRadioButtonMenuItemStepByStep.setSelected(false);
-       jRadioButtonMenuItemNormal.setSelected(false);
-       speed[0]=0;speed[1]=0;speed[2]=0;speed[3]=1;
-        for (int i = 0; i < 3; i++) jTableNoConverter.setValueAt(0, 0, i);
+        jRadioButtonMenuItemUltimate.setSelected(true);
+        jRadioButtonMenuItemStepByStep.setSelected(false);
+        jRadioButtonMenuItemNormal.setSelected(false);
+        speed[0] = 0;
+        speed[1] = 0;
+        speed[2] = 0;
+        speed[3] = 1;
+        for (int i = 0; i < 3; i++) {
+            jTableNoConverter.setValueAt(0, 0, i);
+        }
         loadSettings();
-        if(path.length()>0)path=path.substring(0,path.length());
+        if (path.length() > 0) {
+            path = path.substring(0, path.length());
+        }
         set();
     }
 
-   
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
@@ -310,6 +316,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         setTitle("8085 Simulator");
         setBounds(new java.awt.Rectangle(20, 0, 200, 0));
         setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
+        setMaximumSize(new java.awt.Dimension(18, 18));
+        setPreferredSize(new java.awt.Dimension(943, 900));
+        setSize(new java.awt.Dimension(0, 0));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -664,13 +673,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                 .addContainerGap()
                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -680,20 +689,20 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
+                                .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
                                 .addContainerGap())
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                                 .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE)
-                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 291, Short.MAX_VALUE))
+                                    .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE)
+                                    .addComponent(jScrollPane15, javax.swing.GroupLayout.DEFAULT_SIZE, 295, Short.MAX_VALUE))
                                 .addGap(12, 12, 12))))
                     .addGroup(jInternalFrame3Layout.createSequentialGroup()
                         .addComponent(jLabelErrorHang)
-                        .addContainerGap(369, Short.MAX_VALUE))
+                        .addContainerGap(385, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
                         .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
-                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
+                            .addComponent(jScrollPane13, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
+                            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
                         .addGap(16, 16, 16))))
         );
         jInternalFrame3Layout.setVerticalGroup(
@@ -835,7 +844,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
             .addComponent(jRadioButtonShowAll)
             .addComponent(jRadioButtonUsedMemoryLocation)
             .addComponent(jRadioButtonStoreMemoryLocation)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
         );
         jInternalFrame2Layout.setVerticalGroup(
             jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -846,7 +855,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                     .addComponent(jLabel5)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jRadioButtonShowAll, javax.swing.GroupLayout.PREFERRED_SIZE, 13, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -976,13 +985,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         jPanel8255.setLayout(jPanel8255Layout);
         jPanel8255Layout.setHorizontalGroup(
             jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
             .addGroup(jPanel8255Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 416, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8255Layout.createSequentialGroup()
-                .addContainerGap(196, Short.MAX_VALUE)
+                .addContainerGap(202, Short.MAX_VALUE)
                 .addComponent(jButtonAnalizeCW)
                 .addGap(81, 81, 81))
         );
@@ -995,7 +1004,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                 .addComponent(jButtonAnalizeCW)
                 .addGap(14, 14, 14)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addContainerGap(299, Short.MAX_VALUE))
         );
 
         jTabbedPaneInterface.addTab("8255", jPanel8255);
@@ -1004,13 +1013,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         jInternalFrame4.getContentPane().setLayout(jInternalFrame4Layout);
         jInternalFrame4Layout.setHorizontalGroup(
             jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 419, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
         );
         jInternalFrame4Layout.setVerticalGroup(
             jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.DEFAULT_SIZE, 565, Short.MAX_VALUE))
+                .addComponent(jTabbedPaneInterface))
         );
 
         jTabbedPaneMemory.addTab("Devices", jInternalFrame4);
@@ -1090,11 +1099,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jButtonAutocorrect)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 138, Short.MAX_VALUE)
                         .addComponent(jButtonDisassemble)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButtonAssemble))
-                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE))
+                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 439, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -1105,7 +1114,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(14, 14, 14))
-                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 453, Short.MAX_VALUE))
+                    .addComponent(jTabbedPaneAssemblerEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE))
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1285,13 +1294,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
             .addGap(20, 20, 20)
             .addGroup(jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                    .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, 446, Short.MAX_VALUE)
                     .addContainerGap())
                 .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, 162, Short.MAX_VALUE)
+                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE)
                     .addGap(269, 269, 269))))
-        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
-        .addComponent(jInternalFrame6, javax.swing.GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)
+        .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+        .addComponent(jInternalFrame6, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
     );
     jInternalFrame5Layout.setVerticalGroup(
         jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1309,7 +1318,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
 
     jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
 
-    jLabel1.setText("Created by : Jubin Mitra");
+    jLabel1.setText("Created by : Jubin Mitra; Extended by : Subhajit Das");
     jLabel1.setName("jLabel1"); // NOI18N
 
     jMenuBar1.setName("jMenuBar1"); // NOI18N
@@ -1849,21 +1858,21 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPaneEditor)
                 .addComponent(jLabel1))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPaneMemory)
+            .addGap(12, 12, 12))
     );
     layout.setVerticalGroup(
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 663, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel1))
-        .addGroup(layout.createSequentialGroup()
-            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.DEFAULT_SIZE, 633, Short.MAX_VALUE)
-            .addContainerGap())
+            .addComponent(jLabel1)
+            .addGap(10, 10, 10))
     );
 
     pack();
@@ -1875,97 +1884,99 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jButtonRun.setVisible(false);
        jButtonStep.setVisible(false);
        jLabelErrorHang.setVisible(false);
-       stop=false;
+       stop = false;
        ExecutorService exec = Executors.newCachedThreadPool();
        exec.execute(this);
-
 
    }//GEN-LAST:event_jButtonRunActionPerformed
 
     @Override
-   public void run()
-   {
-       matrix.PC=(continueFrom==0)?engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText())):continueFrom;
-       if(speed[1]!=1){
-       jProgressBar1.setVisible(true);       
-       while((!stop)&&matrix.PC<matrix.stopAddress&&(!pause))
-       {
-               try{
-                   matrix.functionRun(matrix.memory[matrix.PC]);
-                   jProgressBar1.setIndeterminate(true);
-                   
-               for(int row=0;row<jTableAssembler.getRowCount();row++){
-                  if(jTableAssembler.getValueAt(row, 0)!=null)
-                   if(engine.convertToNum(jTableAssembler.getValueAt(row, 1).toString())==matrix.PC)
-                   if(jTableAssembler.getValueAt(row, 0).toString().equalsIgnoreCase("#")) {
-                              set();
-                              jButtonStep.setVisible(false);
-                              jButtonRun.setVisible(false);
-                              jButtonForward.setVisible(true);
-                              jButtonBackward.setVisible(true);
-                              jButtonStop.setText("Stop");
-                              jButtonStop.setVisible(true);
-                              jLabelErrorHang.setVisible(false);
-                              jButtonContinue.setVisible(true);
-                              continueFrom=matrix.PC;
-                              pause = true;
-                              jTableAssembler.setRowSelectionAllowed(true);
-                              jTableAssembler.changeSelection(row,0, false, false);
-                              }
-               }
-                       if(speed[2]==1){
-                           setResister();
-                            if(matrix.clockCycleCounter%10000==0){set();}
+    public void run() {
+        matrix.PC = (continueFrom == 0) ? engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText())) : continueFrom;
+        if (speed[1] != 1) {
+            jProgressBar1.setVisible(true);
+            while ((!stop) && matrix.PC < matrix.stopAddress && (!pause)) {
+                try {
+                    matrix.functionRun(matrix.memory[matrix.PC]);
+                    jProgressBar1.setIndeterminate(true);
 
-                       }
-               }
-               catch(StringIndexOutOfBoundsException e)
-                {
-                   jButtonStop.doClick();
-                   jLabelErrorHang.setText("You have exceeded the memory range");
-                   jLabelErrorHang.setVisible(true);
-               }
-
-       }}
-       else{
-                    if(continueFrom==0)jButtonStop.setText("Pause");
-                  //jButtonContinue.setVisible(true);
-                  while((!stop)&&matrix.PC<matrix.stopAddress&&(!pause))
-                  {
-                      try {
-               for(int row=0;row<jTableAssembler.getRowCount();row++){
-                  if(jTableAssembler.getValueAt(row, 0)!=null)
-                   if(engine.convertToNum(jTableAssembler.getValueAt(row, 1).toString())==matrix.PC)
-                   if(jTableAssembler.getValueAt(row, 0).toString().equalsIgnoreCase("#")) {
-                              jButtonStep.setVisible(false);
-                              jButtonRun.setVisible(false);
-                              jButtonForward.setVisible(true);
-                              jButtonBackward.setVisible(true);
-                              jButtonStop.setVisible(true);
-                              jButtonStop.setText("Stop");
-                              jLabelErrorHang.setVisible(false);
-                              jButtonContinue.setVisible(true);
-                              continueFrom=matrix.PC;
-                              jTableAssembler.setRowSelectionAllowed(true);
-                              jTableAssembler.changeSelection(row,0, false, false);
-                              pause = true;
-                              }
-                            jButtonForwardActionPerformed(null);
-                            Thread.sleep((long) (speed[0] * 1000));
+                    for (int row = 0; row < jTableAssembler.getRowCount(); row++) {
+                        if (jTableAssembler.getValueAt(row, 0) != null) {
+                            if (engine.convertToNum(jTableAssembler.getValueAt(row, 1).toString()) == matrix.PC) {
+                                if (jTableAssembler.getValueAt(row, 0).toString().equalsIgnoreCase("#")) {
+                                    set();
+                                    jButtonStep.setVisible(false);
+                                    jButtonRun.setVisible(false);
+                                    jButtonForward.setVisible(true);
+                                    jButtonBackward.setVisible(true);
+                                    jButtonStop.setText("Stop");
+                                    jButtonStop.setVisible(true);
+                                    jLabelErrorHang.setVisible(false);
+                                    jButtonContinue.setVisible(true);
+                                    continueFrom = matrix.PC;
+                                    pause = true;
+                                    jTableAssembler.setRowSelectionAllowed(true);
+                                    jTableAssembler.changeSelection(row, 0, false, false);
+                                }
+                            }
                         }
-                      } catch (Exception e) {
-                      }
-                  }
+                    }
+                    if (speed[2] == 1) {
+                        setResister();
+                        if (matrix.clockCycleCounter % 10000 == 0) {
+                            set();
+                        }
 
-       }
-       if(!pause){
-           jButtonStop.setText("Stop");
-           jButtonStop.doClick();
-       }
-       jProgressBar1.setIndeterminate(false);
-       jProgressBar1.setVisible(false);
-       set();
-   }
+                    }
+                } catch (StringIndexOutOfBoundsException e) {
+                    jButtonStop.doClick();
+                    jLabelErrorHang.setText("You have exceeded the memory range");
+                    jLabelErrorHang.setVisible(true);
+                }
+
+            }
+        } else {
+            if (continueFrom == 0) {
+                jButtonStop.setText("Pause");
+            }
+            //jButtonContinue.setVisible(true);
+            while ((!stop) && matrix.PC < matrix.stopAddress && (!pause)) {
+                try {
+                    for (int row = 0; row < jTableAssembler.getRowCount(); row++) {
+                        if (jTableAssembler.getValueAt(row, 0) != null) {
+                            if (engine.convertToNum(jTableAssembler.getValueAt(row, 1).toString()) == matrix.PC) {
+                                if (jTableAssembler.getValueAt(row, 0).toString().equalsIgnoreCase("#")) {
+                                    jButtonStep.setVisible(false);
+                                    jButtonRun.setVisible(false);
+                                    jButtonForward.setVisible(true);
+                                    jButtonBackward.setVisible(true);
+                                    jButtonStop.setVisible(true);
+                                    jButtonStop.setText("Stop");
+                                    jLabelErrorHang.setVisible(false);
+                                    jButtonContinue.setVisible(true);
+                                    continueFrom = matrix.PC;
+                                    jTableAssembler.setRowSelectionAllowed(true);
+                                    jTableAssembler.changeSelection(row, 0, false, false);
+                                    pause = true;
+                                }
+                            }
+                        }
+                        jButtonForwardActionPerformed(null);
+                        Thread.sleep((long) (speed[0] * 1000));
+                    }
+                } catch (Exception e) {
+                }
+            }
+
+        }
+        if (!pause) {
+            jButtonStop.setText("Stop");
+            jButtonStop.doClick();
+        }
+        jProgressBar1.setIndeterminate(false);
+        jProgressBar1.setVisible(false);
+        set();
+    }
 
    private void jButtonStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStepActionPerformed
 
@@ -1975,64 +1986,64 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jButtonBackward.setVisible(true);
        jButtonStop.setVisible(true);
        jLabelErrorHang.setVisible(false);
-       stop=false;
-       matrix.PC=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+       stop = false;
+       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
 
    }//GEN-LAST:event_jButtonStepActionPerformed
 
    private void jButtonStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonStopActionPerformed
-     if(stop|| jButtonStop.getText().equalsIgnoreCase("Stop"))
-     {
-       matrix.select = 0;
-       jButtonForward.setVisible(false);
-       jButtonBackward.setVisible(false);
-       jButtonStop.setVisible(false);
-       jButtonRun.setVisible(true);
-       jButtonStep.setVisible(true);
-       jButtonContinue.setVisible(false);
-       jScrollPane12.setVisible(false);
-       jScrollPane12.setVisible(true);
-       jTabbedPaneAssemblerEditor.setVisible(false);
-       jTabbedPaneAssemblerEditor.setVisible(true);
-       continueFrom=0;
-       stop=true;
-       pause=false;
-       File f=new File("cache");
-       deleteDir(f);
-     }
-     if(jButtonStop.getText().equalsIgnoreCase("Pause"))
-     {
-         pause = true;
-         jButtonForward.setVisible(true);
-         jButtonBackward.setVisible(true);
-         jButtonStop.setVisible(true);
-         jButtonContinue.setVisible(true);
-         jButtonRun.setVisible(false);
-         jButtonStep.setVisible(false);
-         jScrollPane12.setVisible(false);
-         jScrollPane12.setVisible(true);
-         jButtonStop.setText("Stop");
-     }
+       if (stop || jButtonStop.getText().equalsIgnoreCase("Stop")) {
+           matrix.select = 0;
+           jButtonForward.setVisible(false);
+           jButtonBackward.setVisible(false);
+           jButtonStop.setVisible(false);
+           jButtonRun.setVisible(true);
+           jButtonStep.setVisible(true);
+           jButtonContinue.setVisible(false);
+           jScrollPane12.setVisible(false);
+           jScrollPane12.setVisible(true);
+           jTabbedPaneAssemblerEditor.setVisible(false);
+           jTabbedPaneAssemblerEditor.setVisible(true);
+           continueFrom = 0;
+           stop = true;
+           pause = false;
+           File f = new File("cache");
+           deleteDir(f);
+       }
+       if (jButtonStop.getText().equalsIgnoreCase("Pause")) {
+           pause = true;
+           jButtonForward.setVisible(true);
+           jButtonBackward.setVisible(true);
+           jButtonStop.setVisible(true);
+           jButtonContinue.setVisible(true);
+           jButtonRun.setVisible(false);
+           jButtonStep.setVisible(false);
+           jScrollPane12.setVisible(false);
+           jScrollPane12.setVisible(true);
+           jButtonStop.setText("Stop");
+       }
 
    }//GEN-LAST:event_jButtonStopActionPerformed
 
    private void jButtonBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBackwardActionPerformed
-      oIndex--;
-      matrix.readCopy(matrix);       
-       try{
-       if( matrix.select<1000)
-          if(jTableAssembler.getValueAt(matrix.select, 3)!=null)
-          {  jTableAssembler.setRowSelectionAllowed(true);
-             jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
-             jLabelError.setText(comments[matrix.select]);
-             jLabelComment.setText(matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())));
-          }
-       }catch(Exception e){}
-        set();
+       oIndex--;
+       matrix.readCopy(matrix);
+       try {
+           if (matrix.select < 1000) {
+               if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
+                   jTableAssembler.setRowSelectionAllowed(true);
+                   jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
+                   jLabelError.setText(comments[matrix.select]);
+                   jLabelComment.setText(matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())));
+               }
+           }
+       } catch (Exception e) {
+       }
+       set();
    }//GEN-LAST:event_jButtonBackwardActionPerformed
 
    private void jRadioButtonShowAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonShowAllActionPerformed
-        setMemory();
+       setMemory();
 }//GEN-LAST:event_jRadioButtonShowAllActionPerformed
 
    private void jRadioButtonUsedMemoryLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUsedMemoryLocationActionPerformed
@@ -2040,16 +2051,16 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
        int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
        jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-               new Object[upper - lower+1][2],
+               new Object[upper - lower + 1][2],
                new String[]{
-           "Memory Address", "Value"
-       }) {
+                   "Memory Address", "Value"
+               }) {
 
            Class[] types = new Class[]{
                java.lang.String.class, java.lang.String.class
            };
            boolean[] canEdit = new boolean[]{
-               true,true
+               true, true
            };
 
            public Class getColumnClass(int columnIndex) {
@@ -2060,19 +2071,17 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                return canEdit[columnIndex];
            }
        });
-       for(int i=0,row=0;i<=(upper-lower);i++)
-       {
-           if(matrix.memory[i+lower]!=0)
-           {
-           jTableMemory.setValueAt("                    "+engine.Dec2Hex(i+lower), row, 0);
-           jTableMemory.setValueAt("                          "+engine.Dec2Hex2digit(matrix.memory[i+lower]), row, 1);
-           row++;
+       for (int i = 0, row = 0; i <= (upper - lower); i++) {
+           if (matrix.memory[i + lower] != 0) {
+               jTableMemory.setValueAt("                    " + engine.Dec2Hex(i + lower), row, 0);
+               jTableMemory.setValueAt("                          " + engine.Dec2Hex2digit(matrix.memory[i + lower]), row, 1);
+               row++;
            }
        }
        jRadioButtonShowAll.setSelected(false);
        jRadioButtonStoreMemoryLocation.setSelected(false);
        jRadioButtonUsedMemoryLocation.setSelected(true);
-       tableState=1;
+       tableState = 1;
 
 }//GEN-LAST:event_jRadioButtonUsedMemoryLocationActionPerformed
 
@@ -2090,7 +2099,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        try {
            int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
            int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
-           if(lower>upper)Popup.show("Upper range cannot be lower than the lower range.");
+           if (lower > upper) {
+               Popup.show("Upper range cannot be lower than the lower range.");
+           }
            int n = (upper - lower + 1) / 16;
            if (n % 16 != 0) {
                n = n - (n % 16) + 16;
@@ -2117,12 +2128,15 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                }
            });
            jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
-             matrix.beginAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-             matrix.stopAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
-               setMemory();
+           matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+           matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+           setMemory();
 
-       }catch(Exception e){Popup.show("Memory address should be in the format XXX0");jTextFieldMemBegin.setText("C000");setMemory();}
-
+       } catch (Exception e) {
+           Popup.show("Memory address should be in the format XXX0");
+           jTextFieldMemBegin.setText("C000");
+           setMemory();
+       }
 
 }//GEN-LAST:event_jTextFieldMemBeginActionPerformed
 
@@ -2138,113 +2152,119 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
    private void jTextFieldMemStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMemStopActionPerformed
-            
-            jTextFieldMemBegin.setEditable(false);
-            jTextFieldMemStop.setEditable(false);
-            jTextFieldMemBegin.setText(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-            jTextFieldMemStop.setText(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
-            jTextFieldBeginFrom.setText(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-           try{
-               int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
-               int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
-               if(lower>upper)Popup.show("Upper range cannot be  lower than the lower range.");
-               int n = (upper - lower + 1) / 16;
-               if (n % 16 != 0) {
-                   n = n - (n % 16) + 16;
+
+       jTextFieldMemBegin.setEditable(false);
+       jTextFieldMemStop.setEditable(false);
+       jTextFieldMemBegin.setText(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+       jTextFieldMemStop.setText(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+       jTextFieldBeginFrom.setText(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+       try {
+           int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
+           int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
+           if (lower > upper) {
+               Popup.show("Upper range cannot be  lower than the lower range.");
+           }
+           int n = (upper - lower + 1) / 16;
+           if (n % 16 != 0) {
+               n = n - (n % 16) + 16;
+           }
+           jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
+                   new Object[n][17],
+                   new String[]{
+                       "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                   }) {
+
+               Class[] types = new Class[]{
+                   java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+               };
+               boolean[] canEdit = new boolean[]{
+                   false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+               };
+
+               public Class getColumnClass(int columnIndex) {
+                   return types[columnIndex];
                }
-               jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-                       new Object[n][17],
-                       new String[]{
-                           "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-                       }) {
 
-                   Class[] types = new Class[]{
-                       java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-                   };
-                   boolean[] canEdit = new boolean[]{
-                       false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-                   };
-
-                   public Class getColumnClass(int columnIndex) {
-                       return types[columnIndex];
-                   }
-
-                   public boolean isCellEditable(int rowIndex, int columnIndex) {
-                       return canEdit[columnIndex];
-                   }
-               });
-               jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
-               matrix.beginAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-               matrix.stopAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
-               setMemory();
-           }catch(Exception e){Popup.show("Memory address should be in the format XXXF");jTextFieldMemStop.setText("CFFF");setMemory();}
+               public boolean isCellEditable(int rowIndex, int columnIndex) {
+                   return canEdit[columnIndex];
+               }
+           });
+           jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
+           matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+           matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+           setMemory();
+       } catch (Exception e) {
+           Popup.show("Memory address should be in the format XXXF");
+           jTextFieldMemStop.setText("CFFF");
+           setMemory();
+       }
 
    }//GEN-LAST:event_jTextFieldMemStopActionPerformed
 
    private void jTableNoConverterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNoConverterKeyReleased
- int select=jTableNoConverter.getSelectedColumn();
- String hex=jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
- int dec=Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
- String binary=jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
- 
-       if(select==0){
-                   jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
-                   jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
+       int select = jTableNoConverter.getSelectedColumn();
+       String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
+       int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
+       String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
 
-       }
+       if (select == 0) {
+           jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
+           jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
 
-       else if(select==1){
-           
+       } else if (select == 1) {
+
            jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
            jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
-           
-       }
-       else
-       {
-                  jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
-                  jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
 
-       }             
+       } else {
+           jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
+           jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
+
+       }
    }//GEN-LAST:event_jTableNoConverterKeyReleased
 
    private void jTableMemoryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMemoryKeyReleased
 
-       int lower=engine.Hex2Dec(jTextFieldMemBegin.getText());
-       int upper=engine.Hex2Dec(jTextFieldMemStop.getText());
-       if(tableState==0){
-       for(int i=lower,row=0,col=1;i<=upper;i++,col++)
-       {
-            matrix.memory[i]=engine.Hex2Dec(engine.HexAutoCorrect2digit(jTableMemory.getValueAt(row,col).toString()));
-            if(col==16){col=0;row++;}
+       int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
+       int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
+       if (tableState == 0) {
+           for (int i = lower, row = 0, col = 1; i <= upper; i++, col++) {
+               matrix.memory[i] = engine.Hex2Dec(engine.HexAutoCorrect2digit(jTableMemory.getValueAt(row, col).toString()));
+               if (col == 16) {
+                   col = 0;
+                   row++;
+               }
 
-       }
-       set();}
-       else{
-            for(int i=0;jTableMemory.getValueAt(i, 0)!=null&&jTableMemory.getValueAt(i, 1)!=null&&i<(upper-lower);i++)
-           {
-               if(engine.Hex2Dec(jTableMemory.getValueAt(i,0).toString())<65536)matrix.memory[engine.Hex2Dec(jTableMemory.getValueAt(i,0).toString())]=engine.Hex2Dec(jTableMemory.getValueAt(i,1).toString());
-               jTableMemory.setValueAt("                    "+engine.HexAutoCorrect4digit(jTableMemory.getValueAt(i,0).toString()), i,0);
-               jTableMemory.setValueAt("                          "+engine.HexAutoCorrect2digit(jTableMemory.getValueAt(i,1).toString()), i,1);
+           }
+           set();
+       } else {
+           for (int i = 0; jTableMemory.getValueAt(i, 0) != null && jTableMemory.getValueAt(i, 1) != null && i < (upper - lower); i++) {
+               if (engine.Hex2Dec(jTableMemory.getValueAt(i, 0).toString()) < 65536) {
+                   matrix.memory[engine.Hex2Dec(jTableMemory.getValueAt(i, 0).toString())] = engine.Hex2Dec(jTableMemory.getValueAt(i, 1).toString());
+               }
+               jTableMemory.setValueAt("                    " + engine.HexAutoCorrect4digit(jTableMemory.getValueAt(i, 0).toString()), i, 0);
+               jTableMemory.setValueAt("                          " + engine.HexAutoCorrect2digit(jTableMemory.getValueAt(i, 1).toString()), i, 1);
 
            }
        }
-
 
    }//GEN-LAST:event_jTableMemoryKeyReleased
 
    private void jTablePortKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTablePortKeyReleased
 
-       for (int i = 0,row=0,col=1; i < 256; i++, col++) {
-            matrix.port[i]=engine.Hex2Dec(engine.HexAutoCorrect2digit(jTablePort.getValueAt(row, col).toString()));
-            if(col==16){col=0;row++;}
-        }
+       for (int i = 0, row = 0, col = 1; i < 256; i++, col++) {
+           matrix.port[i] = engine.Hex2Dec(engine.HexAutoCorrect2digit(jTablePort.getValueAt(row, col).toString()));
+           if (col == 16) {
+               col = 0;
+               row++;
+           }
+       }
        set();
    }//GEN-LAST:event_jTablePortKeyReleased
 
    private void jTableAssemblerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableAssemblerKeyReleased
 
-       
-      /* if(jTableAssembler.getSelectedColumn()==3)
+       /* if(jTableAssembler.getSelectedColumn()==3)
        {
            Assemble();
        }
@@ -2252,35 +2272,30 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        {
            disAssemble();
        }*/
-
    }//GEN-LAST:event_jTableAssemblerKeyReleased
 
    private void jMenuItemClearMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearMemoryActionPerformed
 
-       
-       matrix=new Matrix(this);
-       engine.m=matrix;
-       matrix.PC=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
-       matrix.beginAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-       matrix.stopAddress=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+       matrix = new Matrix(this);
+       engine.m = matrix;
+       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+       matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+       matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
 
        set();
    }//GEN-LAST:event_jMenuItemClearMemoryActionPerformed
 
    private void jTabbedPaneAssemblerEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneAssemblerEditorMouseClicked
-            if(jTabbedPaneAssemblerEditor.getSelectedIndex()==0) {
-                jButtonAssemble.setVisible(true);
-                jButtonDisassemble.setVisible(false);
+       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
+           jButtonAssemble.setVisible(true);
+           jButtonDisassemble.setVisible(false);
 
-        }
-            else if(jTabbedPaneAssemblerEditor.getSelectedIndex()==1) {
-            jButtonAssemble.setVisible(false);
-            jButtonDisassemble.setVisible(true);
-        }
-
+       } else if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+           jButtonAssemble.setVisible(false);
+           jButtonDisassemble.setVisible(true);
+       }
 
    }//GEN-LAST:event_jTabbedPaneAssemblerEditorMouseClicked
-
 
    private void jButtonAssembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAssembleActionPerformed
 
@@ -2296,150 +2311,165 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jMenuItemClearMemoryActionPerformed(evt);
        jButtonStop.setText("Stop");
        jButtonStop.doClick();
-       for(int i=0;i<65536;i++){matrix.memory[i]=0;
-       matrix.label[i]="";}
+       for (int i = 0; i < 65536; i++) {
+           matrix.memory[i] = 0;
+           matrix.label[i] = "";
+       }
        setMemory();
        for (int i = 0; i < macro.length; i++) {
-           macro[i]="";
-           
+           macro[i] = "";
+
        }
-       for(int i=0;i<999;i++){
-           for(int j=0;j<8;j++)
-           jTableAssembler.setValueAt(null,i,j);
+       for (int i = 0; i < 999; i++) {
+           for (int j = 0; j < 8; j++) {
+               jTableAssembler.setValueAt(null, i, j);
+           }
        }
 
-      String s=jTextAreaAssemblyLanguageEditor.getText();
-      String line[]=new String[1000];
-      String parse[]=new String[4];
-      int i,n,row;
+       String s = jTextAreaAssemblyLanguageEditor.getText();
+       String line[] = new String[1000];
+       String parse[] = new String[4];
+       int i, n, row;
 
-      //break into lines
-      for(i=0,n=0;i<s.length();i++)
-      {
-          if(s.charAt(i)=='\n')n++;
-          if(line[n]==null)line[n]="";
-          line[n]=line[n]+s.charAt(i);
-      }
-      int selectIndex=0;
-      int rowCompile = 0;
-      for(i=0,row=0;i<=n;i++)
-      {
-          parse=engine.parseAssemblerContent(line[i]);
-         try{ 
-             if(parse[0].length()==0&&parse[1].length()==0&&parse[3].length()==0)continue;
-             if(parse[3].length()!=0){
-                 macro[rowCompile++]=parse[3].toUpperCase()+":"+row; 
-                 continue;
-             }
-             if(parse[0].length()!=0&&parse[1].length()==0){
-                 jTableAssembler.setValueAt(parse[0],row,2);
-                 continue;
-             }
-             if(jTableAssembler.getValueAt(row, 2)==null)jTableAssembler.setValueAt(parse[0],row,2);
-             jTableAssembler.setValueAt(parse[1],row,3);
-             comments[row]=parse[2];
-             row++;
-         }catch(Exception e){
-         }
-      }
-      Assemble();
-      jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(0, 0, false));
-      errorCheck();
-      jTextAreaAssemblyLanguageEditor.requestFocus();
-      jTextAreaAssemblyLanguageEditor.getHighlighter().removeAllHighlights();
-      check:
-      for(i=0;i<=n;i++)
-      {
-        
-          parse=engine.parseAssemblerContent(line[i]);
-          if(line[i]!=null){
-          selectIndex=line[i].length()+selectIndex;
-              String temp[]=engine.MnemonicToHexcode(parse[1]);
-             if(temp[0].equalsIgnoreCase("NOP")) {
-                        textEditor.highligher(i);
-             jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
-                //jTextAreaAssemblyLanguageEditor.select(selectIndex-line[i].length(),selectIndex);
-                break check;
-                }
-          }
-      }
-      jRadioButtonUsedMemoryLocationActionPerformed(evt);
-       
+       //break into lines
+       for (i = 0, n = 0; i < s.length(); i++) {
+           if (s.charAt(i) == '\n') {
+               n++;
+           }
+           if (line[n] == null) {
+               line[n] = "";
+           }
+           line[n] = line[n] + s.charAt(i);
+       }
+       int selectIndex = 0;
+       int rowCompile = 0;
+       for (i = 0, row = 0; i <= n; i++) {
+           parse = engine.parseAssemblerContent(line[i]);
+           try {
+               if (parse[0].length() == 0 && parse[1].length() == 0 && parse[3].length() == 0) {
+                   continue;
+               }
+               if (parse[3].length() != 0) {
+                   macro[rowCompile++] = parse[3].toUpperCase() + ":" + row;
+                   continue;
+               }
+               if (parse[0].length() != 0 && parse[1].length() == 0) {
+                   jTableAssembler.setValueAt(parse[0], row, 2);
+                   continue;
+               }
+               if (jTableAssembler.getValueAt(row, 2) == null) {
+                   jTableAssembler.setValueAt(parse[0], row, 2);
+               }
+               jTableAssembler.setValueAt(parse[1], row, 3);
+               comments[row] = parse[2];
+               row++;
+           } catch (Exception e) {
+           }
+       }
+       Assemble();
+       jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(0, 0, false));
+       errorCheck();
+       jTextAreaAssemblyLanguageEditor.requestFocus();
+       jTextAreaAssemblyLanguageEditor.getHighlighter().removeAllHighlights();
+       check:
+       for (i = 0; i <= n; i++) {
+
+           parse = engine.parseAssemblerContent(line[i]);
+           if (line[i] != null) {
+               selectIndex = line[i].length() + selectIndex;
+               String temp[] = engine.MnemonicToHexcode(parse[1]);
+               if (temp[0].equalsIgnoreCase("NOP")) {
+                   textEditor.highligher(i);
+                   jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
+                   //jTextAreaAssemblyLanguageEditor.select(selectIndex-line[i].length(),selectIndex);
+                   break check;
+               }
+           }
+       }
+       jRadioButtonUsedMemoryLocationActionPerformed(evt);
+
    }//GEN-LAST:event_jButtonAssembleActionPerformed
 
-   public void Assemble()
-   {
-      String[] commentTemp=new String[1000];
-      String[] macroTemp=new String[1000];
-      String[] label=new String[1000];
-      String[] mnemonic=new String[1000];
-      int begin=engine.Hex2Dec(jTextFieldMemBegin.getText());
-      int macroCounterAddress=begin,macroCount=0;
-       
-      
-      for(int i=0;jTableAssembler.getValueAt(i, 3)!=null;i++)
-      {
-          if(jTableAssembler.getValueAt(i, 2)!=null)label[i]=jTableAssembler.getValueAt(i, 2).toString().toUpperCase().trim();
-          else label[i]="";
-          mnemonic[i]=jTableAssembler.getValueAt(i, 3).toString();
-          int j=mnemonic[i].indexOf(',');
-          if(j!=-1){
-              mnemonic[i]=engine.deleteSpace(mnemonic[i].substring(0,j))+','+engine.deleteSpace(mnemonic[i].substring(j+1,mnemonic[i].length()));
-              j=mnemonic[i].indexOf(',');
-              mnemonic[i]=(mnemonic[i].substring(0,3))+" "+mnemonic[i].substring(3,j)+','+mnemonic[i].substring(j+1,mnemonic[i].length());
+    public void Assemble() {
+        String[] commentTemp = new String[1000];
+        String[] macroTemp = new String[1000];
+        String[] label = new String[1000];
+        String[] mnemonic = new String[1000];
+        int begin = engine.Hex2Dec(jTextFieldMemBegin.getText());
+        int macroCounterAddress = begin, macroCount = 0;
 
-          }
-          
-      }
-       for (int i = 0; i < 1000; i++) {
-          macroTemp[i]=macro[i];                
-          commentTemp[i]=comments[i];
-       }
-      
-      setMemory();      
-       
-        for(int i=0,temp=begin,x=0,row=0;mnemonic[i]!=null;i++)
-        {
-               
-          try{
-              while(Integer.parseInt(macroTemp[macroCount].substring(macroTemp[macroCount].lastIndexOf(":")+1, macroTemp[macroCount].length()))==i)
-              {
-                    preprocessor.process(this, macroTemp[macroCount++], macroCounterAddress);
-                    if(memShift != 0)macroCounterAddress=memShift;
-              }        
-              
-            }catch(Exception e){}      
-          if(memShift != 0) temp = begin + memShift;
-          matrix.label[temp]=label[i];
-          x=engine.getBytesFromMnemonics(mnemonic[i]);
-          jTableAssembler.setValueAt(memShift,row,1);          
-          if(memShift == 0)macroCounterAddress+=x;
-          memShift=0;
-          jTableAssembler.setValueAt("  "+label[i],row,2);
-          jTableAssembler.setValueAt(mnemonic[i],row,3);
-          comments[row]=commentTemp[i];
-          temp=temp+x;
-          row=row+x;
-          for(int j=row-x+1;j<row;j++) {
-                jTableAssembler.setValueAt("",j, 2);
-                comments[j]=""; 
-          }
+        for (int i = 0; jTableAssembler.getValueAt(i, 3) != null; i++) {
+            if (jTableAssembler.getValueAt(i, 2) != null) {
+                label[i] = jTableAssembler.getValueAt(i, 2).toString().toUpperCase().trim();
+            } else {
+                label[i] = "";
+            }
+            mnemonic[i] = jTableAssembler.getValueAt(i, 3).toString();
+            int j = mnemonic[i].indexOf(',');
+            if (j != -1) {
+                mnemonic[i] = engine.deleteSpace(mnemonic[i].substring(0, j)) + ',' + engine.deleteSpace(mnemonic[i].substring(j + 1, mnemonic[i].length()));
+                j = mnemonic[i].indexOf(',');
+                mnemonic[i] = (mnemonic[i].substring(0, 3)) + " " + mnemonic[i].substring(3, j) + ',' + mnemonic[i].substring(j + 1, mnemonic[i].length());
+
+            }
 
         }
-        
-        try {
-           if(macro[macroCount]!=null){ //to take care of last macros
-                  while(!macroTemp[macroCount].equalsIgnoreCase(""))
-                    {
-                            preprocessor.process(this, macroTemp[macroCount++], macroCounterAddress);                                  
-                            if(memShift != 0)macroCounterAddress=memShift;
+        for (int i = 0; i < 1000; i++) {
+            macroTemp[i] = macro[i];
+            commentTemp[i] = comments[i];
+        }
+
+        setMemory();
+
+        for (int i = 0, temp = begin, x = 0, row = 0; mnemonic[i] != null; i++) {
+
+            try {
+                while (Integer.parseInt(macroTemp[macroCount].substring(macroTemp[macroCount].lastIndexOf(":") + 1, macroTemp[macroCount].length())) == i) {
+                    preprocessor.process(this, macroTemp[macroCount++], macroCounterAddress);
+                    if (memShift != 0) {
+                        macroCounterAddress = memShift;
                     }
-              }
-       } catch (Exception e) {}
-       memShift =0;
-        
-      loadMnemonics();
-      /*for(int i=0,memShiftTemp=0;jTableAssembler.getValueAt(i, 4)!=null;i++)
+                }
+
+            } catch (Exception e) {
+            }
+            if (memShift != 0) {
+                temp = begin + memShift;
+            }
+            matrix.label[temp] = label[i];
+            x = engine.getBytesFromMnemonics(mnemonic[i]);
+            jTableAssembler.setValueAt(memShift, row, 1);
+            if (memShift == 0) {
+                macroCounterAddress += x;
+            }
+            memShift = 0;
+            jTableAssembler.setValueAt("  " + label[i], row, 2);
+            jTableAssembler.setValueAt(mnemonic[i], row, 3);
+            comments[row] = commentTemp[i];
+            temp = temp + x;
+            row = row + x;
+            for (int j = row - x + 1; j < row; j++) {
+                jTableAssembler.setValueAt("", j, 2);
+                comments[j] = "";
+            }
+
+        }
+
+        try {
+            if (macro[macroCount] != null) { //to take care of last macros
+                while (!macroTemp[macroCount].equalsIgnoreCase("")) {
+                    preprocessor.process(this, macroTemp[macroCount++], macroCounterAddress);
+                    if (memShift != 0) {
+                        macroCounterAddress = memShift;
+                    }
+                }
+            }
+        } catch (Exception e) {
+        }
+        memShift = 0;
+
+        loadMnemonics();
+        /*for(int i=0,memShiftTemp=0;jTableAssembler.getValueAt(i, 4)!=null;i++)
       {
           try{
               if(Integer.parseInt(jTableAssembler.getValueAt(i,1).toString())>0)
@@ -2447,74 +2477,71 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
               }catch(Exception e){}
           matrix.memory[memShiftTemp]=engine.Hex2Dec(jTableAssembler.getValueAt(i, 4).toString());
       }*/
-      jTabbedPaneAssemblerEditor.setSelectedIndex(0);
-      jButtonAssemble.setVisible(true);
-      jButtonDisassemble.setVisible(false);
-   }
+        jTabbedPaneAssemblerEditor.setSelectedIndex(0);
+        jButtonAssemble.setVisible(true);
+        jButtonDisassemble.setVisible(false);
+    }
 
-   public void loadMnemonics()
-   {
+    public void loadMnemonics() {
 
-       String s[]=new String[4];
-       int funcNo=0,memShiftTemp=0;
-       for(int i=0;jTableAssembler.getValueAt(i, 3)!=null;i++)
-          {
-                    s=engine.MnemonicToHexcode(jTableAssembler.getValueAt(i, 3).toString());
-                    funcNo=Integer.parseInt(s[3].trim());
-                    if(s[0].equalsIgnoreCase("NOP")){jTableAssembler.setValueAt("X",i,0);}
-                    else jTableAssembler.setValueAt("√",i,0);
-
-                    try{
-                        if(Integer.parseInt(jTableAssembler.getValueAt(i,1).toString())>0)
-                            memShiftTemp=Integer.parseInt(jTableAssembler.getValueAt(i,1).toString())-i;
-                    }catch(Exception e){}
-                    
-                    jTableAssembler.setValueAt(engine.Dec2Hex((engine.Hex2Dec(jTextFieldMemBegin.getText())+i+memShiftTemp)&0xFFFF),i,1);
-                    jTableAssembler.setValueAt("   "+s[0], i, 3);
-                    jTableAssembler.setValueAt("       "+engine.Dec2Hex2digit(funcNo), i, 4);
-                    jTableAssembler.setValueAt("       "+engine.I[funcNo][0],i,5);
-                    jTableAssembler.setValueAt("       "+engine.I[funcNo][1],i,6);
-                    jTableAssembler.setValueAt("      "+engine.I[funcNo][2],i,7);
-                    matrix.memory[(engine.Hex2Dec(jTextFieldMemBegin.getText())+i+memShiftTemp)&0xFFFF]=funcNo;
-
-                    for(int j=1;j<engine.I[funcNo][0];j++)
-                    {
-                        i++;
-                        jTableAssembler.setValueAt(engine.Dec2Hex((engine.Hex2Dec(jTextFieldMemBegin.getText())+i+memShiftTemp)&0xFFFF),i,1);
-                        jTableAssembler.setValueAt("       "+s[j], i, 4);
-                        jTableAssembler.setValueAt("", i, 3);
-                        matrix.memory[(engine.Hex2Dec(jTextFieldMemBegin.getText())+i+memShiftTemp)&0xFFFF]=engine.Hex2Dec(s[j]);
-
-                    }
-
-          }
-
-   }
-
-   private void errorCheck()
-    {
-        loop:
-        for(int i=0,row=0;jTableAssembler.getValueAt(i, 4)!=null&&i<999;i++)
-        {
-            if(jTableAssembler.getValueAt(i, 0)!=null){
-                row++;
-                 if(jTableAssembler.getValueAt(i, 0).toString().equalsIgnoreCase("X"))
-                 {
-                 jTableAssembler.setRowSelectionAllowed(true);
-                 jTableAssembler.setRowSelectionInterval(i, i);
-                 jLabelError.setForeground(Color.red);
-                 jLabelError.setVisible(true);
-                 jLabelError.setText("Error : At Line no "+row);
-                 jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(i, 0, false));
-                 break loop;
-                  }
-            else {
-                 jLabelError.setVisible(false);
+        String s[] = new String[4];
+        int funcNo = 0, memShiftTemp = 0;
+        for (int i = 0; jTableAssembler.getValueAt(i, 3) != null; i++) {
+            s = engine.MnemonicToHexcode(jTableAssembler.getValueAt(i, 3).toString());
+            funcNo = Integer.parseInt(s[3].trim());
+            if (s[0].equalsIgnoreCase("NOP")) {
+                jTableAssembler.setValueAt("X", i, 0);
+            } else {
+                jTableAssembler.setValueAt("√", i, 0);
             }
+
+            try {
+                if (Integer.parseInt(jTableAssembler.getValueAt(i, 1).toString()) > 0) {
+                    memShiftTemp = Integer.parseInt(jTableAssembler.getValueAt(i, 1).toString()) - i;
+                }
+            } catch (Exception e) {
+            }
+
+            jTableAssembler.setValueAt(engine.Dec2Hex((engine.Hex2Dec(jTextFieldMemBegin.getText()) + i + memShiftTemp) & 0xFFFF), i, 1);
+            jTableAssembler.setValueAt("   " + s[0], i, 3);
+            jTableAssembler.setValueAt("       " + engine.Dec2Hex2digit(funcNo), i, 4);
+            jTableAssembler.setValueAt("       " + engine.I[funcNo][0], i, 5);
+            jTableAssembler.setValueAt("       " + engine.I[funcNo][1], i, 6);
+            jTableAssembler.setValueAt("      " + engine.I[funcNo][2], i, 7);
+            matrix.memory[(engine.Hex2Dec(jTextFieldMemBegin.getText()) + i + memShiftTemp) & 0xFFFF] = funcNo;
+
+            for (int j = 1; j < engine.I[funcNo][0]; j++) {
+                i++;
+                jTableAssembler.setValueAt(engine.Dec2Hex((engine.Hex2Dec(jTextFieldMemBegin.getText()) + i + memShiftTemp) & 0xFFFF), i, 1);
+                jTableAssembler.setValueAt("       " + s[j], i, 4);
+                jTableAssembler.setValueAt("", i, 3);
+                matrix.memory[(engine.Hex2Dec(jTextFieldMemBegin.getText()) + i + memShiftTemp) & 0xFFFF] = engine.Hex2Dec(s[j]);
+
+            }
+
+        }
+
+    }
+
+    private void errorCheck() {
+        loop:
+        for (int i = 0, row = 0; jTableAssembler.getValueAt(i, 4) != null && i < 999; i++) {
+            if (jTableAssembler.getValueAt(i, 0) != null) {
+                row++;
+                if (jTableAssembler.getValueAt(i, 0).toString().equalsIgnoreCase("X")) {
+                    jTableAssembler.setRowSelectionAllowed(true);
+                    jTableAssembler.setRowSelectionInterval(i, i);
+                    jLabelError.setForeground(Color.red);
+                    jLabelError.setVisible(true);
+                    jLabelError.setText("Error : At Line no " + row);
+                    jTableAssembler.scrollRectToVisible(jTableAssembler.getCellRect(i, 0, false));
+                    break loop;
+                } else {
+                    jLabelError.setVisible(false);
+                }
             }
         }
     }
-
 
    private void jButtonDisassembleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisassembleActionPerformed
        jScrollPane16.setVisible(true);
@@ -2528,7 +2555,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jMenuItemClearMemoryActionPerformed(evt);
        jButtonStop.setText("Stop");
        jButtonStop.doClick();
-       
+
        disassembler.loadDisassembler();
        setMemory();
        jRadioButtonUsedMemoryLocationActionPerformed(evt);
@@ -2568,190 +2595,201 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        }
        disAssemble();
        errorCheck();
-*/
+        */
    }//GEN-LAST:event_jButtonDisassembleActionPerformed
 
    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        if(jScrollPane16.isVisible()) {
-            jScrollPane16.setVisible(false);
-        }
-        else {
-            jScrollPane16.setVisible(true);
-            
-        }
-        if(jTabbedPaneLabelEditor.isVisible()){
-                jTabbedPaneLabelEditor.setVisible(false);
-                jTabbedPaneLabelEditor.setVisible(true);
-            }
-            else{
-                jTabbedPaneLabelEditor.setVisible(true);
-                jTabbedPaneLabelEditor.setVisible(false);
-            }
+       if (jScrollPane16.isVisible()) {
+           jScrollPane16.setVisible(false);
+       } else {
+           jScrollPane16.setVisible(true);
+
+       }
+       if (jTabbedPaneLabelEditor.isVisible()) {
+           jTabbedPaneLabelEditor.setVisible(false);
+           jTabbedPaneLabelEditor.setVisible(true);
+       } else {
+           jTabbedPaneLabelEditor.setVisible(true);
+           jTabbedPaneLabelEditor.setVisible(false);
+       }
 
    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-   public void viewWorkSpace()
-   {
-       if(!jScrollPane16.isVisible())
-       jMenuItem2ActionPerformed(null);
-   }
+    public void viewWorkSpace() {
+        if (!jScrollPane16.isVisible()) {
+            jMenuItem2ActionPerformed(null);
+        }
+    }
 
    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        if(jTabbedPaneAssemblerEditor.isVisible()){
-            jTabbedPaneAssemblerEditor.setVisible(false);
-            jTabbedPaneLabelEditor.setVisible(false);
-            jButtonAssemble.setVisible(false);
-            jButtonDisassemble.setVisible(false);
-        }
-        else{
-            jTabbedPaneAssemblerEditor.setVisible(true);
-            if(jTabbedPaneAssemblerEditor.getSelectedIndex()==0){jTabbedPaneLabelEditor.setVisible(false);
-            jButtonAssemble.setVisible(true);
-            jButtonDisassemble.setVisible(false);}
-            else{
-                jTabbedPaneLabelEditor.setVisible(false);
-                jButtonAssemble.setVisible(false);
-                jButtonDisassemble.setVisible(true);
+       if (jTabbedPaneAssemblerEditor.isVisible()) {
+           jTabbedPaneAssemblerEditor.setVisible(false);
+           jTabbedPaneLabelEditor.setVisible(false);
+           jButtonAssemble.setVisible(false);
+           jButtonDisassemble.setVisible(false);
+       } else {
+           jTabbedPaneAssemblerEditor.setVisible(true);
+           if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
+               jTabbedPaneLabelEditor.setVisible(false);
+               jButtonAssemble.setVisible(true);
+               jButtonDisassemble.setVisible(false);
+           } else {
+               jTabbedPaneLabelEditor.setVisible(false);
+               jButtonAssemble.setVisible(false);
+               jButtonDisassemble.setVisible(true);
 
-            }
-        }
+           }
+       }
    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-    jButtonAssembleActionPerformed(evt);
+       jButtonAssembleActionPerformed(evt);
    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-   jButtonDisassembleActionPerformed(evt);
+       jButtonDisassembleActionPerformed(evt);
    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
    private void jMenuItemLoad_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
-       if(fileChooser.objectNo==0)
-       fileChooser=new FileChooser("Load Mnemonics",this);
+       if (fileChooser.objectNo == 0) {
+           fileChooser = new FileChooser("Load Mnemonics", this);
+       }
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
 
    private void jMenuItemLoad_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_HexcodeActionPerformed
-        if(fileChooser.objectNo==0)
-       fileChooser=new FileChooser("Load Hexcode",this);
+       if (fileChooser.objectNo == 0) {
+           fileChooser = new FileChooser("Load Hexcode", this);
+       }
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemLoad_HexcodeActionPerformed
 
    private void jMenuItemSave_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
-            if(jTabbedPaneAssemblerEditor.getSelectedIndex()==1)jButtonDisassembleActionPerformed(evt);
-            else jButtonAssembleActionPerformed(evt);
-            
-            if(fileChooser.objectNo==0)
-            fileChooser=new FileChooser("Save Mnemonics", this);
-            fileChooser.setVisible(true);
+       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+           jButtonDisassembleActionPerformed(evt);
+       } else {
+           jButtonAssembleActionPerformed(evt);
+       }
+
+       if (fileChooser.objectNo == 0) {
+           fileChooser = new FileChooser("Save Mnemonics", this);
+       }
+       fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
 
    private void jMenuItemSave_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_HexcodeActionPerformed
-            if(jTabbedPaneAssemblerEditor.getSelectedIndex()==1)jButtonDisassembleActionPerformed(evt);
-            else jButtonAssembleActionPerformed(evt);
-            
-            if(fileChooser.objectNo==0)
-            fileChooser=new FileChooser("Save Hexcode", this);
-            fileChooser.setVisible(true);
+       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+           jButtonDisassembleActionPerformed(evt);
+       } else {
+           jButtonAssembleActionPerformed(evt);
+       }
+
+       if (fileChooser.objectNo == 0) {
+           fileChooser = new FileChooser("Save Hexcode", this);
+       }
+       fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemSave_HexcodeActionPerformed
 
    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        jButtonStop.setText("Stop");
-        jButtonStop.doClick();
-        setEnabled(false);
-        saveSettings();
-        closeButtonFileSave();
-        properShutdown=true;
-        textEditor.jTextPane1FocusLost(null);
+       jButtonStop.setText("Stop");
+       jButtonStop.doClick();
+       setEnabled(false);
+       saveSettings();
+       closeButtonFileSave();
+       properShutdown = true;
+       textEditor.jTextPane1FocusLost(null);
    }//GEN-LAST:event_formWindowClosing
 
-   public  boolean deleteDir(File dir) {
-       if (dir.isDirectory()) {
-           String[] children = dir.list();
-           for (int i = 0; i < children.length; i++) {
-               boolean success = deleteDir(new File(dir, children[i]));
-               if (!success) {
-                   return false;
-               }
-           }
-       }
+    public boolean deleteDir(File dir) {
+        if (dir.isDirectory()) {
+            String[] children = dir.list();
+            for (int i = 0; i < children.length; i++) {
+                boolean success = deleteDir(new File(dir, children[i]));
+                if (!success) {
+                    return false;
+                }
+            }
+        }
 // The directory is now empty so delete it
-       return dir.delete();
-}
-   
+        return dir.delete();
+    }
+
    private void jButtonForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonForwardActionPerformed
 
        jButtonBackward.setEnabled(true);
-       if(matrix.stopAddress<matrix.PC||matrix.beginAddress>matrix.PC){
-                        jButtonStop.doClick();
-                        jLabelErrorHang.setText("You have exceeded the memory range");
-                        jLabelErrorHang.setVisible(true);
-      }
-      //int select=matrix.PC-matrix.beginAddress;
-      matrix.createCopy(matrix);
+       if (matrix.stopAddress < matrix.PC || matrix.beginAddress > matrix.PC) {
+           jButtonStop.doClick();
+           jLabelErrorHang.setText("You have exceeded the memory range");
+           jLabelErrorHang.setVisible(true);
+       }
+       //int select=matrix.PC-matrix.beginAddress;
+       matrix.createCopy(matrix);
 
-     oIndex++;
-     try{
-         loop:
-           for(matrix.select = 0; matrix.select < 1000 ; matrix.select++)
-           { 
-            if(jTableAssembler.getValueAt(matrix.select, 3)!=null)
-              if(matrix.PC==engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 1).toString()) && matrix.select<1000)  
-              {    jTableAssembler.setRowSelectionAllowed(true);
-                   jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
-                   jLabelError.setForeground(Color.BLUE);
-                   jLabelError.setVisible(true);
-                   jLabelError.setText("<html>"+comments[matrix.select]+"</html>");
-                   jLabelComment.setVisible(true);
-                   jLabelComment.setText("<html>"+matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString()))+"</html>");
-                   matrix.select=matrix.select+Integer.parseInt(jTableAssembler.getValueAt(matrix.select, 5).toString().trim());
-                   break loop;
-              }
+       oIndex++;
+       try {
+           loop:
+           for (matrix.select = 0; matrix.select < 1000; matrix.select++) {
+               if (jTableAssembler.getValueAt(matrix.select, 3) != null) {
+                   if (matrix.PC == engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 1).toString()) && matrix.select < 1000) {
+                       jTableAssembler.setRowSelectionAllowed(true);
+                       jTableAssembler.changeSelection(matrix.select, matrix.select, false, false);
+                       jLabelError.setForeground(Color.BLUE);
+                       jLabelError.setVisible(true);
+                       jLabelError.setText("<html>" + comments[matrix.select] + "</html>");
+                       jLabelComment.setVisible(true);
+                       jLabelComment.setText("<html>" + matrix.comment(engine.Hex2Dec(jTableAssembler.getValueAt(matrix.select, 4).toString())) + "</html>");
+                       matrix.select = matrix.select + Integer.parseInt(jTableAssembler.getValueAt(matrix.select, 5).toString().trim());
+                       break loop;
+                   }
+               }
            }
-       }catch(Exception e){
+       } catch (Exception e) {
            System.out.println(e);
        }
-     if(stop)
-     {
-         jButtonStop.doClick();
-     }
-     matrix.functionRun(matrix.memory[matrix.PC]);
-     set();      
+       if (stop) {
+           jButtonStop.doClick();
+       }
+       matrix.functionRun(matrix.memory[matrix.PC]);
+       set();
    }//GEN-LAST:event_jButtonForwardActionPerformed
 
    private void jTextFieldBeginFromKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromKeyReleased
-      matrix.PC=engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
 
    }//GEN-LAST:event_jTextFieldBeginFromKeyReleased
 
    private void jMenuItemForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemForwardActionPerformed
-       if(jButtonStep.isVisible())jButtonStepActionPerformed(evt);
+       if (jButtonStep.isVisible()) {
+           jButtonStepActionPerformed(evt);
+       }
        jButtonForward.doClick();
    }//GEN-LAST:event_jMenuItemForwardActionPerformed
 
    private void jMenuItemBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBackwardActionPerformed
-              if(jButtonStep.isVisible())jButtonStepActionPerformed(evt);
-              jButtonBackward.doClick();
+       if (jButtonStep.isVisible()) {
+           jButtonStepActionPerformed(evt);
+       }
+       jButtonBackward.doClick();
    }//GEN-LAST:event_jMenuItemBackwardActionPerformed
 
    private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
-            Help help = new Help();
-            help.setVisible(true);
+       Help help = new Help();
+       help.setVisible(true);
    }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
    private void jMenuItemStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopActionPerformed
-        jButtonStopActionPerformed(evt);
+       jButtonStopActionPerformed(evt);
    }//GEN-LAST:event_jMenuItemStopActionPerformed
 
    private void jMenuItemRunAllAtATimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRunAllAtATimeActionPerformed
-    jButtonRunActionPerformed(evt);
+       jButtonRunActionPerformed(evt);
    }//GEN-LAST:event_jMenuItemRunAllAtATimeActionPerformed
 
    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        setStopMnemonic s=new setStopMnemonic(this);
-        s.setVisible(true);
-        s.jButton1.setText("Set");
-        s.s="Set";
+       setStopMnemonic s = new setStopMnemonic(this);
+       s.setVisible(true);
+       s.jButton1.setText("Set");
+       s.s = "Set";
    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
    private void jRadioButtonMenuItemNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemNormalActionPerformed
@@ -2759,35 +2797,44 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jRadioButtonMenuItemNormal.setSelected(true);
        jRadioButtonMenuItemStepByStep.setSelected(false);
        jRadioButtonMenuItemUltimate.setSelected(false);
-       speed[0]=0;speed[1]=0;speed[2]=1;speed[3]=0;
+       speed[0] = 0;
+       speed[1] = 0;
+       speed[2] = 1;
+       speed[3] = 0;
    }//GEN-LAST:event_jRadioButtonMenuItemNormalActionPerformed
 
    private void jRadioButtonMenuItemUltimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemUltimateActionPerformed
        jRadioButtonMenuItemNormal.setSelected(false);
        jRadioButtonMenuItemStepByStep.setSelected(false);
        jRadioButtonMenuItemUltimate.setSelected(true);
-       speed[0]=0;speed[1]=0;speed[2]=0;speed[3]=1;
+       speed[0] = 0;
+       speed[1] = 0;
+       speed[2] = 0;
+       speed[3] = 1;
    }//GEN-LAST:event_jRadioButtonMenuItemUltimateActionPerformed
 
    private void jRadioButtonMenuItemStepByStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemStepByStepActionPerformed
        jRadioButtonMenuItemNormal.setSelected(false);
        jRadioButtonMenuItemStepByStep.setSelected(true);
        jRadioButtonMenuItemUltimate.setSelected(false);
-       speed[1]=1;speed[2]=0;speed[3]=0;
+       speed[1] = 1;
+       speed[2] = 0;
+       speed[3] = 0;
        setStopMnemonic stopMnemonic = new setStopMnemonic(this);
        stopMnemonic.setTitle("Delay by");
        stopMnemonic.jButton1.setText("Seconds");
-       stopMnemonic.setVisible(true);       
+       stopMnemonic.setVisible(true);
        stopMnemonic.jTextField1.setText(String.valueOf(speed[0]));
-       stopMnemonic.s="Seconds";
+       stopMnemonic.s = "Seconds";
    }//GEN-LAST:event_jRadioButtonMenuItemStepByStepActionPerformed
     trainer trainerObj;
    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
 
-            jTableAssembler.setVisible(true);
-            if(trainerObj==null){
-            trainerObj = new trainer(this);}
-            trainerObj.setVisible(true);
+       jTableAssembler.setVisible(true);
+       if (trainerObj == null) {
+           trainerObj = new trainer(this);
+       }
+       trainerObj.setVisible(true);
    }//GEN-LAST:event_jMenuItem26ActionPerformed
 
    private void jTextFieldBeginFromActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldBeginFromActionPerformed
@@ -2799,35 +2846,31 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
 }//GEN-LAST:event_jTableMemoryMousePressed
 
    private void jTableNoConverterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNoConverterMousePressed
- int select=jTableNoConverter.getSelectedColumn();
- String hex=jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
- int dec=Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
- String binary=jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
- 
-       if(select==0){
-                   jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
-                   jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
+       int select = jTableNoConverter.getSelectedColumn();
+       String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
+       int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
+       String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
 
-       }
+       if (select == 0) {
+           jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
+           jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
 
-       else if(select==1){
-           
+       } else if (select == 1) {
+
            jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
            jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
-           
-       }
-       else
-       {
-                  jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
-                  jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
+
+       } else {
+           jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
+           jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
 
        }
-       
+
 }//GEN-LAST:event_jTableNoConverterMousePressed
 
    private void jButtonContinueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonContinueActionPerformed
 
-       continueFrom=matrix.PC;
+       continueFrom = matrix.PC;
        jButtonForward.setVisible(false);
        jButtonBackward.setVisible(false);
        jButtonStop.setText("Pause");
@@ -2837,10 +2880,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
        jScrollPane12.setVisible(false);
        jScrollPane12.setVisible(true);
        jButtonContinue.setVisible(false);
-       pause=false;
+       pause = false;
        ExecutorService exec = Executors.newCachedThreadPool();
        exec.execute(this);
-
 
    }//GEN-LAST:event_jButtonContinueActionPerformed
 
@@ -2854,97 +2896,95 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
                }
            }
        } else if (jTableAssembler.isColumnSelected(7)) {
-          if(jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), jTableAssembler.getSelectedColumn())!=null)
-          {
-              TimingDiagram t=new TimingDiagram(this,jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(),1).toString());
-              t.setVisible(true);
-              t.setTitle(jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(),3).toString());
-          }
+           if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), jTableAssembler.getSelectedColumn()) != null) {
+               TimingDiagram t = new TimingDiagram(this, jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 1).toString());
+               t.setVisible(true);
+               t.setTitle(jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 3).toString());
+           }
        }
-       
 
    }//GEN-LAST:event_jTableAssemblerMouseClicked
 
    private void jButtonAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAutocorrectActionPerformed
-      jButtonAssembleActionPerformed(evt);
-      jTabbedPaneEditor.setSelectedIndex(0);
-      String s=jTextAreaAssemblyLanguageEditor.getText()+"\n";
-      String line[]=new String[1000];
-      String parse[][]=new String[1000][4];
-      String temp="";
-      int i,n,row,commentCounter=0,macroCounter=0,macroRow=0,lineNo=0;
-      for(i=0,n=0;i<s.length();i++)
-      {
-          if(s.charAt(i)=='\n'){
-              parse[n]=engine.parseAssemblerContent(line[n]);
-              n++;
-          }
-          if(line[n]==null)line[n]="";
-          line[n]=line[n]+s.charAt(i);
-      }
-            
-      s="";       
-      
-      for(i=0,row=0;i<=n;i++)
-      {
-          loop:
-          for(;commentCounter<1000;commentCounter++)
-          {
-              if(parse[commentCounter][2]!=null) {
-                    if(!parse[commentCounter][1].isEmpty()) {
-                        commentCounter++;
-                        break loop;
-                    }
-              if(!parse[commentCounter][2].trim().equalsIgnoreCase(""))s=s+"// "+parse[commentCounter][2]+"\n";
-                }
-          }
-          
-          try{
-              temp=macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":")+1, macro[macroCounter].length());
-              macroRow=Integer.parseInt(temp);
-              if(macroRow==lineNo){
-                 while(macroRow==lineNo)
-                 {  
-                    s=s+"# "+macro[macroCounter].substring(0,macro[macroCounter++].lastIndexOf(":"))+"\n";
-                    temp=macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":")+1, macro[macroCounter].length());
-                     macroRow=Integer.parseInt(temp);
-                 }
-              }
-          }catch(Exception e){
-          }
+       jButtonAssembleActionPerformed(evt);
+       jTabbedPaneEditor.setSelectedIndex(0);
+       String s = jTextAreaAssemblyLanguageEditor.getText() + "\n";
+       String line[] = new String[1000];
+       String parse[][] = new String[1000][4];
+       String temp = "";
+       int i, n, row, commentCounter = 0, macroCounter = 0, macroRow = 0, lineNo = 0;
+       for (i = 0, n = 0; i < s.length(); i++) {
+           if (s.charAt(i) == '\n') {
+               parse[n] = engine.parseAssemblerContent(line[n]);
+               n++;
+           }
+           if (line[n] == null) {
+               line[n] = "";
+           }
+           line[n] = line[n] + s.charAt(i);
+       }
 
-          if(jTableAssembler.getValueAt(row,4)!=null)
-          {
+       s = "";
 
-              lineNo++;
-                if(!jTableAssembler.getValueAt(row, 2).toString().trim().equalsIgnoreCase("")){
-                    s=s+"\n"+jTableAssembler.getValueAt(row, 2).toString().trim();
-                    s=s+":";
-                }
-                s=s+"\t";
-                if(!jTableAssembler.getValueAt(row, 3).toString().trim().equalsIgnoreCase("NOP"))
-                    s=s+jTableAssembler.getValueAt(row, 3).toString();
-                if(!comments[row].equalsIgnoreCase(""))s=s+"\t"+"// "+comments[row];
-                //if(!macro[row].equalsIgnoreCase(""))s=s+"\n\t"+"# "+macro[row];
-                s=s+"\n";
-                row=row+Integer.parseInt(jTableAssembler.getValueAt(row, 5).toString().trim());
-          }
+       for (i = 0, row = 0; i <= n; i++) {
+           loop:
+           for (; commentCounter < 1000; commentCounter++) {
+               if (parse[commentCounter][2] != null) {
+                   if (!parse[commentCounter][1].isEmpty()) {
+                       commentCounter++;
+                       break loop;
+                   }
+                   if (!parse[commentCounter][2].trim().equalsIgnoreCase("")) {
+                       s = s + "// " + parse[commentCounter][2] + "\n";
+                   }
+               }
+           }
 
-      }
-      jTextAreaAssemblyLanguageEditor.setText(s);
-      textEditor.colorEditor();
-      jTextAreaAssemblyLanguageEditor.select(0, 0);
-      if (jLabelError.isVisible()) {
+           try {
+               temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
+               macroRow = Integer.parseInt(temp);
+               if (macroRow == lineNo) {
+                   while (macroRow == lineNo) {
+                       s = s + "# " + macro[macroCounter].substring(0, macro[macroCounter++].lastIndexOf(":")) + "\n";
+                       temp = macro[macroCounter].substring(macro[macroCounter].lastIndexOf(":") + 1, macro[macroCounter].length());
+                       macroRow = Integer.parseInt(temp);
+                   }
+               }
+           } catch (Exception e) {
+           }
+
+           if (jTableAssembler.getValueAt(row, 4) != null) {
+
+               lineNo++;
+               if (!jTableAssembler.getValueAt(row, 2).toString().trim().equalsIgnoreCase("")) {
+                   s = s + "\n" + jTableAssembler.getValueAt(row, 2).toString().trim();
+                   s = s + ":";
+               }
+               s = s + "\t";
+               if (!jTableAssembler.getValueAt(row, 3).toString().trim().equalsIgnoreCase("NOP")) {
+                   s = s + jTableAssembler.getValueAt(row, 3).toString();
+               }
+               if (!comments[row].equalsIgnoreCase("")) {
+                   s = s + "\t" + "// " + comments[row];
+               }
+               //if(!macro[row].equalsIgnoreCase(""))s=s+"\n\t"+"# "+macro[row];
+               s = s + "\n";
+               row = row + Integer.parseInt(jTableAssembler.getValueAt(row, 5).toString().trim());
+           }
+
+       }
+       jTextAreaAssemblyLanguageEditor.setText(s);
+       textEditor.colorEditor();
+       jTextAreaAssemblyLanguageEditor.select(0, 0);
+       if (jLabelError.isVisible()) {
            if (jTableAssembler.getValueAt(jTableAssembler.getSelectedRow(), 0).toString().equalsIgnoreCase("X")) {
                jButtonAssembleActionPerformed(evt);
            }
        }
-      jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
-      //jMenuItem2ActionPerformed(evt);
+       jTabbedPaneEditor.setSelectedComponent(jTabbedPaneEditor.getComponentAt(0));
+       //jMenuItem2ActionPerformed(evt);
    }//GEN-LAST:event_jButtonAutocorrectActionPerformed
 
-   
-   
    private void jMenuItemAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutocorrectActionPerformed
 
        jButtonAutocorrectActionPerformed(evt);
@@ -2952,66 +2992,70 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
 
    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-       lcd lcd=new lcd();
+       lcd lcd = new lcd();
        lcd.setVisible(true);
 
    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 
-       SteperMotor motor=new SteperMotor();
+       SteperMotor motor = new SteperMotor();
        motor.setVisible(true);
    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 
-            if(jTabbedPaneInterface.isVisible())jTabbedPaneInterface.setVisible(false);
-            else jTabbedPaneInterface.setVisible(true);
+       if (jTabbedPaneInterface.isVisible()) {
+           jTabbedPaneInterface.setVisible(false);
+       } else {
+           jTabbedPaneInterface.setVisible(true);
+       }
 
    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
    private void jCheckBoxMenuItemIOPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemIOPortActionPerformed
 
        jTabbedPaneInterface.remove(jScrollPane4);
-       if(jCheckBoxMenuItemIOPort.isSelected()){
+       if (jCheckBoxMenuItemIOPort.isSelected()) {
            jTabbedPaneInterface.setVisible(true);
            jTabbedPaneInterface.addTab("I/O Port Editor", jScrollPane4);
        } else {
-           if(jTabbedPaneInterface.getTabCount()==0)jTabbedPaneInterface.setVisible(false);
+           if (jTabbedPaneInterface.getTabCount() == 0) {
+               jTabbedPaneInterface.setVisible(false);
+           }
        }
-       
+
 }//GEN-LAST:event_jCheckBoxMenuItemIOPortActionPerformed
 
    private void jCheckBoxMenuItemPeriphralInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
        jTabbedPaneInterface.remove(jPanel8255);
-       if(jCheckBoxMenuItemPeriphralInterface.isSelected()){
+       if (jCheckBoxMenuItemPeriphralInterface.isSelected()) {
            jTabbedPaneInterface.setVisible(true);
            jTabbedPaneInterface.addTab("8255", jPanel8255);
-                   //jScrollPane8.setVisible(false);
+           //jScrollPane8.setVisible(false);
 
        } else {
-           if(jTabbedPaneInterface.getTabCount()==0)jTabbedPaneInterface.setVisible(false);
+           if (jTabbedPaneInterface.getTabCount() == 0) {
+               jTabbedPaneInterface.setVisible(false);
+           }
        }
-       
+
    }//GEN-LAST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
 
    private void jButtonAnalizeCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalizeCWActionPerformed
 
-
        jScrollPane8.setVisible(true);
-       String s="";
-        s="Control Word Analysis : \n";
-        if ((ppi8255.CRin & 128) == 128) {
+       String s = "";
+       s = "Control Word Analysis : \n";
+       if ((ppi8255.CRin & 128) == 128) {
            s = s + "Bit No. 7:  It is set to 1, therefore Port A, B & C are defined as I/O Port.";
 
        } else {
            s = s + "Bit No. 7:  It is set to 0, therefore Port C are to be set or reset.";
 
-
        }
 
-
-        jTextArea8255.setText(s);
+       jTextArea8255.setText(s);
    }//GEN-LAST:event_jButtonAnalizeCWActionPerformed
 
    private void jTable8255KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable8255KeyReleased
@@ -3036,26 +3080,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable{
 
    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
-   String undo[]=new String[100];
-   int undoIndex=0;
+    String undo[] = new String[100];
+    int undoIndex = 0;
 
    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
 
-      textEditor.undo();
-      textEditor.colorEditor();
+       textEditor.undo();
+       textEditor.colorEditor();
    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
 
-      textEditor.redo();
-      textEditor.colorEditor();
+       textEditor.redo();
+       textEditor.colorEditor();
 
    }//GEN-LAST:event_jMenuItem15ActionPerformed
-public int find=0;
+    public int find = 0;
    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
 
-       find=0;
-       Find find=new Find(this);
+       find = 0;
+       Find find = new Find(this);
        find.find();
        find.setVisible(true);
 
@@ -3063,19 +3107,18 @@ public int find=0;
 
    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
 
-       find=0;
-       Find find=new Find(this);
+       find = 0;
+       Find find = new Find(this);
        find.replace();
        find.setVisible(true);
 
-      
    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
 
        PrinterJob printJob = PrinterJob.getPrinterJob();
-       MessageFormat header=new MessageFormat("");
-       MessageFormat footer=new MessageFormat("By Jubin`s 8085 simulator");
+       MessageFormat header = new MessageFormat("");
+       MessageFormat footer = new MessageFormat("By Jubin`s 8085 simulator");
        printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
        if (printJob.printDialog()) {
            try {
@@ -3092,20 +3135,18 @@ public int find=0;
        PrinterJob printJob = PrinterJob.getPrinterJob();
        MessageFormat header = new MessageFormat("");
        MessageFormat footer = new MessageFormat("By Jubin's 8085 simulator");
-       String temp=jTextAreaAssemblyLanguageEditor.getText();
-       String s="";
-       s=s+jTableAssembler.getColumnName(1)+"\t  "+jTableAssembler.getColumnName(2)+"\t"+jTableAssembler.getColumnName(3)+"\t"+jTableAssembler.getColumnName(4)+"\t"+jTableAssembler.getColumnName(5)+"\t"+jTableAssembler.getColumnName(6)+"\t"+jTableAssembler.getColumnName(7)+"\n\n";
+       String temp = jTextAreaAssemblyLanguageEditor.getText();
+       String s = "";
+       s = s + jTableAssembler.getColumnName(1) + "\t  " + jTableAssembler.getColumnName(2) + "\t" + jTableAssembler.getColumnName(3) + "\t" + jTableAssembler.getColumnName(4) + "\t" + jTableAssembler.getColumnName(5) + "\t" + jTableAssembler.getColumnName(6) + "\t" + jTableAssembler.getColumnName(7) + "\n\n";
 
-      
-       for(int i=0;jTableAssembler.getValueAt(i, 1)!=null&&i<1000;i++)
-       {
-           s=s+(jTableAssembler.getValueAt(i, 1)==null?" ":jTableAssembler.getValueAt(i, 1))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 2)==null?" ":jTableAssembler.getValueAt(i, 2))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 3)==null?" ":jTableAssembler.getValueAt(i, 3))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 4)==null?" ":jTableAssembler.getValueAt(i, 4))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 5)==null?" ":jTableAssembler.getValueAt(i, 5))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 6)==null?" ":jTableAssembler.getValueAt(i, 6))+"\t";
-           s=s+(jTableAssembler.getValueAt(i, 7)==null?" ":jTableAssembler.getValueAt(i, 7))+"\n";
+       for (int i = 0; jTableAssembler.getValueAt(i, 1) != null && i < 1000; i++) {
+           s = s + (jTableAssembler.getValueAt(i, 1) == null ? " " : jTableAssembler.getValueAt(i, 1)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 2) == null ? " " : jTableAssembler.getValueAt(i, 2)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 3) == null ? " " : jTableAssembler.getValueAt(i, 3)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 4) == null ? " " : jTableAssembler.getValueAt(i, 4)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 5) == null ? " " : jTableAssembler.getValueAt(i, 5)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 6) == null ? " " : jTableAssembler.getValueAt(i, 6)) + "\t";
+           s = s + (jTableAssembler.getValueAt(i, 7) == null ? " " : jTableAssembler.getValueAt(i, 7)) + "\n";
        }
        jTextAreaAssemblyLanguageEditor.setText(s);
        printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
@@ -3125,8 +3166,8 @@ public int find=0;
        jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                new Object[100][2],
                new String[]{
-           "Memory Address", "Value"
-       }) {
+                   "Memory Address", "Value"
+               }) {
 
            Class[] types = new Class[]{
                java.lang.String.class, java.lang.String.class
@@ -3146,38 +3187,42 @@ public int find=0;
        jRadioButtonShowAll.setSelected(false);
        jRadioButtonUsedMemoryLocation.setSelected(false);
        jRadioButtonStoreMemoryLocation.setSelected(true);
-       tableState=1;
+       tableState = 1;
 }//GEN-LAST:event_jRadioButtonStoreMemoryLocationActionPerformed
 
    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
        try {
-                    
-                    String filepath=System.getProperty("user.dir")+fileSeparator+"backup.dat";
-                    String line="",s="";
-                    BufferedReader in = new BufferedReader(new FileReader(filepath));
-                    properShutdown=Boolean.valueOf(in.readLine());
-                    while ((line = in.readLine()) != null) {
-                           s = s + line + "\n";
-                    }
-                    in.close();
-                    recover=s;
-                    if(!properShutdown)new Recovery(this,s).setVisible(true);
-                } catch (Exception e) {
-                }
-                properShutdown=false;
+
+           String filepath = System.getProperty("user.dir") + fileSeparator + "backup.dat";
+           String line = "", s = "";
+           BufferedReader in = new BufferedReader(new FileReader(filepath));
+           properShutdown = Boolean.valueOf(in.readLine());
+           while ((line = in.readLine()) != null) {
+               s = s + line + "\n";
+           }
+           in.close();
+           recover = s;
+           if (!properShutdown) {
+               new Recovery(this, s).setVisible(true);
+           }
+       } catch (Exception e) {
+       }
+       properShutdown = false;
    }//GEN-LAST:event_formWindowOpened
 
-
    private void jMenuItemRecoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRecoverActionPerformed
-       properShutdown=false;
+       properShutdown = false;
        try {
 
-                    undoIndex++;
-                    if(undoIndex<undo.length)undo[undoIndex]=jTextAreaAssemblyLanguageEditor.getText();
-                    jTextAreaAssemblyLanguageEditor.setText(recover);
-                    textEditor.colorEditor();
-            } catch (Exception e) {}
+           undoIndex++;
+           if (undoIndex < undo.length) {
+               undo[undoIndex] = jTextAreaAssemblyLanguageEditor.getText();
+           }
+           jTextAreaAssemblyLanguageEditor.setText(recover);
+           textEditor.colorEditor();
+       } catch (Exception e) {
+       }
    }//GEN-LAST:event_jMenuItemRecoverActionPerformed
 
    private void jMenuItemInterruptServiceSubroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInterruptServiceSubroutineActionPerformed
@@ -3197,171 +3242,184 @@ public int find=0;
 }//GEN-LAST:event_jMenuItem20ActionPerformed
 
    private void jTableInterruptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInterruptMouseClicked
-       int sel=jTableInterrupt.getSelectedColumn();
-       switch(sel){
-           case 1: matrix.SID = (matrix.SID&0x01)^1; break;
-           case 2: matrix.INTR = (matrix.INTR&0x01)^1; break;
-           case 3: matrix.TRAP = (matrix.TRAP&0x01)^1;  break;
-           case 4: matrix.R75 = (matrix.R75&0x01)^1; break;
-           case 5: matrix.R65 = (matrix.R65&0x01)^1;break;
-           case 6: matrix.R55 = (matrix.R55&0x01)^1;break;
-          default: break;
+       int sel = jTableInterrupt.getSelectedColumn();
+       switch (sel) {
+           case 1:
+               matrix.SID = (matrix.SID & 0x01) ^ 1;
+               break;
+           case 2:
+               matrix.INTR = (matrix.INTR & 0x01) ^ 1;
+               break;
+           case 3:
+               matrix.TRAP = (matrix.TRAP & 0x01) ^ 1;
+               break;
+           case 4:
+               matrix.R75 = (matrix.R75 & 0x01) ^ 1;
+               break;
+           case 5:
+               matrix.R65 = (matrix.R65 & 0x01) ^ 1;
+               break;
+           case 6:
+               matrix.R55 = (matrix.R55 & 0x01) ^ 1;
+               break;
+           default:
+               break;
        }
        setResister();
    }//GEN-LAST:event_jTableInterruptMouseClicked
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/8085simulator/8085simulator/raw/master/8085_Documentation_latex/8085_Documentation.pdf"));
-                } catch (Exception ex) {
-                    //It looks like there's a problem
-                }        // TODO add your handling code here:
+            Desktop.getDesktop().browse(new URI("https://github.com/8085simulator/8085simulator/raw/master/8085_Documentation_latex/8085_Documentation.pdf"));
+        } catch (Exception ex) {
+            //It looks like there's a problem
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem10ActionPerformed
-   
 
-   public void loadLabel()
-   {
-            int begin=engine.Hex2Dec(jTextFieldMemBegin.getText());
-            int x=0;
-             for(int i=0,n=begin;jTableAssembler.getValueAt(i, 3)!=null;i++)
-             {
-                 if(jTableAssembler.getValueAt(i, 2)!=null)
-                 {
-                        matrix.label[n]=jTableAssembler.getValueAt(i, 2).toString().toUpperCase().trim();
-                        jTableAssembler.setValueAt("  "+matrix.label[n],n-begin,2);
-                 }
-                 else  jTableAssembler.setValueAt("",n-begin,2);
-                 x=engine.getBytesFromMnemonics(jTableAssembler.getValueAt(i, 3).toString());
-                 n=n+x;
-                 for(int j=1;j<x;j++) {i++;
-                jTableAssembler.setValueAt("",i, 2);
-                }
-             }
-   }
-
-   
-
-   public void disAssemble()
-   {
-      int begin=engine.Hex2Dec(jTextFieldMemBegin.getText());
-      int index=0,n=begin;
-      String temp="",value="";
-      jump:
-      for(int i=0,x=0;jTableAssembler.getValueAt(i, 4)!=null;begin++,i++)
-      {
-            jTableAssembler.setValueAt("  "+engine.Dec2Hex(begin),i,1);
-            index=engine.Hex2Dec(jTableAssembler.getValueAt(i, 4).toString());
-            if(index<255)temp=engine.S[index];
-            else break jump;
-            x=engine.getBytesFromMnemonics(temp);
-            value="";
-            if(engine.S[index].equalsIgnoreCase("NOP")){jTableAssembler.setValueAt("X",i,0);}
-            else jTableAssembler.setValueAt("√",i,0);
-
-            jTableAssembler.setValueAt("       "+engine.I[index][0],i,5);
-            jTableAssembler.setValueAt("        "+engine.I[index][1],i,6);
-            jTableAssembler.setValueAt("        "+engine.I[index][2],i,7);
-            jTableAssembler.setValueAt("      "+engine.HexAutoCorrect2digit(jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim()),i,4);
-
-            for(int j=1;j<x;j++)
-            {
-                            begin++;
-                            i++;
-                            jTableAssembler.setValueAt("  "+engine.Dec2Hex(begin),i,1);
-                            try{
-                            value=jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim()+value;
-                            }catch(Exception e)
-                            {
-                                value="00"+value;
-                                jTableAssembler.setValueAt("00",i,4);
-
-                            }
-                            temp=temp.substring(0, temp.length()-2*j)+value;
-                            jTableAssembler.setValueAt("      "+engine.HexAutoCorrect2digit(jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim()),i,4);
+    public void loadLabel() {
+        int begin = engine.Hex2Dec(jTextFieldMemBegin.getText());
+        int x = 0;
+        for (int i = 0, n = begin; jTableAssembler.getValueAt(i, 3) != null; i++) {
+            if (jTableAssembler.getValueAt(i, 2) != null) {
+                matrix.label[n] = jTableAssembler.getValueAt(i, 2).toString().toUpperCase().trim();
+                jTableAssembler.setValueAt("  " + matrix.label[n], n - begin, 2);
+            } else {
+                jTableAssembler.setValueAt("", n - begin, 2);
             }
-            jTableAssembler.setValueAt("  "+temp,i-x+1,3);
-      }
-      for(int i=0;jTableAssembler.getValueAt(i, 4)!=null;i++)
-      {
-          matrix.memory[i+n]=engine.Hex2Dec(jTableAssembler.getValueAt(i, 4).toString());
-      }
-      setMemory();
-      jTabbedPaneAssemblerEditor.setSelectedIndex(1);
-      jButtonAssemble.setVisible(false);
-      jButtonDisassemble.setVisible(true);
-
-   }
-
-   public void setMemory()
-   {
-       if(jRadioButtonStoreMemoryLocation.isSelected()||jRadioButtonUsedMemoryLocation.isSelected())
-       {try {
-           int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
-           int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
-           int n = (upper - lower + 1) / 16;
-           if (n % 16 != 0) {
-               n = n - (n % 16) + 16;
-           }
-           jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-                   new Object[n][17],
-                   new String[]{
-                       "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-                   }) {
-
-               Class[] types = new Class[]{
-                   java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-               };
-               boolean[] canEdit = new boolean[]{
-                   false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-               };
-
-               public Class getColumnClass(int columnIndex) {
-                   return types[columnIndex];
-               }
-
-               public boolean isCellEditable(int rowIndex, int columnIndex) {
-                   return canEdit[columnIndex];
-               }
-           });
-           jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
-       }catch(Exception e){}
-       }
-       int lower=engine.Hex2Dec(jTextFieldMemBegin.getText());
-       int upper=engine.Hex2Dec(jTextFieldMemStop.getText());
-       int n = (upper - lower+1)/16;
-       String s = "";
-       int l=lower;
-       for (int i = 0; i < n; i++, l+=16) {
-           s = engine.Dec2Hex(l);
-           jTableMemory.setValueAt(s, i, 0);
-           
-       }
-      
-       for(int i=lower,row=0,col=1;i<=upper;i++,col++)
-       {
-
-           jTableMemory.setValueAt(engine.Dec2Hex2digit(matrix.memory[i]),row,col);
-           if(col==16){col=0;row++;}
-           
-       }
-
-       
-       jRadioButtonStoreMemoryLocation.setSelected(false);
-       jRadioButtonUsedMemoryLocation.setSelected(false);
-       jRadioButtonShowAll.setSelected(true);
-       tableState = 0;
-   }
-
-    public void setIOPort() {
-        for (int i = 0,row=0,col=1; i < 256; i++, col++) {
-            jTablePort.setValueAt( engine.Dec2Hex2digit(matrix.port[i]), row, col);
-            if(col==16){col=0;row++;}
-        }
-        for (int i = 0; i < 16; i++) {
-            jTablePort.setValueAt("   "+engine.Dec2Hex2digit(i*16),i,0);
+            x = engine.getBytesFromMnemonics(jTableAssembler.getValueAt(i, 3).toString());
+            n = n + x;
+            for (int j = 1; j < x; j++) {
+                i++;
+                jTableAssembler.setValueAt("", i, 2);
+            }
         }
     }
 
+    public void disAssemble() {
+        int begin = engine.Hex2Dec(jTextFieldMemBegin.getText());
+        int index = 0, n = begin;
+        String temp = "", value = "";
+        jump:
+        for (int i = 0, x = 0; jTableAssembler.getValueAt(i, 4) != null; begin++, i++) {
+            jTableAssembler.setValueAt("  " + engine.Dec2Hex(begin), i, 1);
+            index = engine.Hex2Dec(jTableAssembler.getValueAt(i, 4).toString());
+            if (index < 255) {
+                temp = engine.S[index];
+            } else {
+                break jump;
+            }
+            x = engine.getBytesFromMnemonics(temp);
+            value = "";
+            if (engine.S[index].equalsIgnoreCase("NOP")) {
+                jTableAssembler.setValueAt("X", i, 0);
+            } else {
+                jTableAssembler.setValueAt("√", i, 0);
+            }
+
+            jTableAssembler.setValueAt("       " + engine.I[index][0], i, 5);
+            jTableAssembler.setValueAt("        " + engine.I[index][1], i, 6);
+            jTableAssembler.setValueAt("        " + engine.I[index][2], i, 7);
+            jTableAssembler.setValueAt("      " + engine.HexAutoCorrect2digit(jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim()), i, 4);
+
+            for (int j = 1; j < x; j++) {
+                begin++;
+                i++;
+                jTableAssembler.setValueAt("  " + engine.Dec2Hex(begin), i, 1);
+                try {
+                    value = jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim() + value;
+                } catch (Exception e) {
+                    value = "00" + value;
+                    jTableAssembler.setValueAt("00", i, 4);
+
+                }
+                temp = temp.substring(0, temp.length() - 2 * j) + value;
+                jTableAssembler.setValueAt("      " + engine.HexAutoCorrect2digit(jTableAssembler.getValueAt(i, 4).toString().toUpperCase().trim()), i, 4);
+            }
+            jTableAssembler.setValueAt("  " + temp, i - x + 1, 3);
+        }
+        for (int i = 0; jTableAssembler.getValueAt(i, 4) != null; i++) {
+            matrix.memory[i + n] = engine.Hex2Dec(jTableAssembler.getValueAt(i, 4).toString());
+        }
+        setMemory();
+        jTabbedPaneAssemblerEditor.setSelectedIndex(1);
+        jButtonAssemble.setVisible(false);
+        jButtonDisassemble.setVisible(true);
+
+    }
+
+    public void setMemory() {
+        if (jRadioButtonStoreMemoryLocation.isSelected() || jRadioButtonUsedMemoryLocation.isSelected()) {
+            try {
+                int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
+                int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
+                int n = (upper - lower + 1) / 16;
+                if (n % 16 != 0) {
+                    n = n - (n % 16) + 16;
+                }
+                jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object[n][17],
+                        new String[]{
+                            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                        }) {
+
+                    Class[] types = new Class[]{
+                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                    };
+                    boolean[] canEdit = new boolean[]{
+                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+                    };
+
+                    public Class getColumnClass(int columnIndex) {
+                        return types[columnIndex];
+                    }
+
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                });
+                jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
+            } catch (Exception e) {
+            }
+        }
+        int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
+        int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
+        int n = (upper - lower + 1) / 16;
+        String s = "";
+        int l = lower;
+        for (int i = 0; i < n; i++, l += 16) {
+            s = engine.Dec2Hex(l);
+            jTableMemory.setValueAt(s, i, 0);
+
+        }
+
+        for (int i = lower, row = 0, col = 1; i <= upper; i++, col++) {
+
+            jTableMemory.setValueAt(engine.Dec2Hex2digit(matrix.memory[i]), row, col);
+            if (col == 16) {
+                col = 0;
+                row++;
+            }
+
+        }
+
+        jRadioButtonStoreMemoryLocation.setSelected(false);
+        jRadioButtonUsedMemoryLocation.setSelected(false);
+        jRadioButtonShowAll.setSelected(true);
+        tableState = 0;
+    }
+
+    public void setIOPort() {
+        for (int i = 0, row = 0, col = 1; i < 256; i++, col++) {
+            jTablePort.setValueAt(engine.Dec2Hex2digit(matrix.port[i]), row, col);
+            if (col == 16) {
+                col = 0;
+                row++;
+            }
+        }
+        for (int i = 0; i < 16; i++) {
+            jTablePort.setValueAt("   " + engine.Dec2Hex2digit(i * 16), i, 0);
+        }
+    }
 
     private void setResister() {
         String s;
@@ -3406,18 +3464,18 @@ public int find=0;
         for (int i = 0; i < 8; i++) {
             jTableRegister.setValueAt(s.charAt(i) + "  ", 6, i + 2);
         }
-        if((256*matrix.H+matrix.L)<65536  ){
-        jTableRegister.setValueAt("       " + engine.Dec2Hex2digit(matrix.memory[256*matrix.H+matrix.L]), 7, 1);
-        s = engine.Dec2Bin(matrix.memory[256*matrix.H+matrix.L]);
-        for (int i = 0; i < 8; i++) {
-            jTableRegister.setValueAt(s.charAt(i) + "  ", 7, i + 2);
-        }}
-        else{
+        if ((256 * matrix.H + matrix.L) < 65536) {
+            jTableRegister.setValueAt("       " + engine.Dec2Hex2digit(matrix.memory[256 * matrix.H + matrix.L]), 7, 1);
+            s = engine.Dec2Bin(matrix.memory[256 * matrix.H + matrix.L]);
+            for (int i = 0; i < 8; i++) {
+                jTableRegister.setValueAt(s.charAt(i) + "  ", 7, i + 2);
+            }
+        } else {
             jTableRegister.setValueAt("       " + engine.Dec2Hex2digit(0), 7, 1);
-        s = engine.Dec2Bin(0);
-        for (int i = 0; i < 8; i++) {
-            jTableRegister.setValueAt(s.charAt(i) + "  ", 7, i + 2);
-        }
+            s = engine.Dec2Bin(0);
+            for (int i = 0; i < 8; i++) {
+                jTableRegister.setValueAt(s.charAt(i) + "  ", 7, i + 2);
+            }
 
         }
 
@@ -3435,40 +3493,36 @@ public int find=0;
         jTableCounter.setValueAt("                  " + matrix.instructionCounter, 5, 1);
 
         int SOD;
-        SOD=(matrix.SOD&matrix.SDE);
-        jTableInterrupt.setValueAt("       "+SOD,0,0);
-        jTableInterrupt.setValueAt("       "+matrix.SID,0,1);
-        jTableInterrupt.setValueAt("       "+matrix.INTR,0,2);
-        jTableInterrupt.setValueAt("       "+matrix.TRAP,0,3);
-        jTableInterrupt.setValueAt("       "+matrix.R75,0,4);
-        jTableInterrupt.setValueAt("       "+matrix.R65,0,5);
-        jTableInterrupt.setValueAt("       "+matrix.R55,0,6);
+        SOD = (matrix.SOD & matrix.SDE);
+        jTableInterrupt.setValueAt("       " + SOD, 0, 0);
+        jTableInterrupt.setValueAt("       " + matrix.SID, 0, 1);
+        jTableInterrupt.setValueAt("       " + matrix.INTR, 0, 2);
+        jTableInterrupt.setValueAt("       " + matrix.TRAP, 0, 3);
+        jTableInterrupt.setValueAt("       " + matrix.R75, 0, 4);
+        jTableInterrupt.setValueAt("       " + matrix.R65, 0, 5);
+        jTableInterrupt.setValueAt("       " + matrix.R55, 0, 6);
 
-        jTableSIM.setValueAt("    "+matrix.SOD, 0, 0);
-        jTableSIM.setValueAt("    "+matrix.SDE, 0, 1);
-        jTableSIM.setValueAt("    "+matrix.D1, 0, 2);
-        jTableSIM.setValueAt("    "+matrix.RR75, 0, 3);
-        jTableSIM.setValueAt("    "+matrix.MSE, 0, 4);
-        jTableSIM.setValueAt("    "+matrix.M75, 0, 5);
-        jTableSIM.setValueAt("    "+matrix.M65, 0, 6);
-        jTableSIM.setValueAt("    "+matrix.M55, 0, 7);
+        jTableSIM.setValueAt("    " + matrix.SOD, 0, 0);
+        jTableSIM.setValueAt("    " + matrix.SDE, 0, 1);
+        jTableSIM.setValueAt("    " + matrix.D1, 0, 2);
+        jTableSIM.setValueAt("    " + matrix.RR75, 0, 3);
+        jTableSIM.setValueAt("    " + matrix.MSE, 0, 4);
+        jTableSIM.setValueAt("    " + matrix.M75, 0, 5);
+        jTableSIM.setValueAt("    " + matrix.M65, 0, 6);
+        jTableSIM.setValueAt("    " + matrix.M55, 0, 7);
 
-        jTableRIM.setValueAt("    "+matrix.SID, 0, 0);
-        jTableRIM.setValueAt("    "+matrix.R75, 0, 1);
-        jTableRIM.setValueAt("    "+matrix.R65, 0, 2);
-        jTableRIM.setValueAt("    "+matrix.R55, 0, 3);
-        jTableRIM.setValueAt("    "+matrix.IE, 0, 4);
-        jTableRIM.setValueAt("    "+matrix.M75, 0, 5);
-        jTableRIM.setValueAt("    "+matrix.M65, 0, 6);
-        jTableRIM.setValueAt("    "+matrix.M55, 0, 7);
-
-
-
+        jTableRIM.setValueAt("    " + matrix.SID, 0, 0);
+        jTableRIM.setValueAt("    " + matrix.R75, 0, 1);
+        jTableRIM.setValueAt("    " + matrix.R65, 0, 2);
+        jTableRIM.setValueAt("    " + matrix.R55, 0, 3);
+        jTableRIM.setValueAt("    " + matrix.IE, 0, 4);
+        jTableRIM.setValueAt("    " + matrix.M75, 0, 5);
+        jTableRIM.setValueAt("    " + matrix.M65, 0, 6);
+        jTableRIM.setValueAt("    " + matrix.M55, 0, 7);
 
     }
 
-    public void set()
-    {
+    public void set() {
         setIOPort();
         setMemory();
         setResister();
@@ -3477,11 +3531,8 @@ public int find=0;
 
     }
 
-    
-
-    public void closeButtonFileSave()
-    {
-        closeStateCall=true;
+    public void closeButtonFileSave() {
+        closeStateCall = true;
         String s = "", line = "";
         try {
             BufferedReader in = new BufferedReader(new FileReader(path));
@@ -3492,73 +3543,87 @@ public int find=0;
                 if (!jTextAreaAssemblyLanguageEditor.getText().equalsIgnoreCase(s)) {
 
                     jMenuItemSave_Assembly_Language_codeActionPerformed(null);
+                } else {
+                    System.exit(0);
                 }
-               else System.exit(0);
+
+            } else if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+
+                while ((line = in.readLine()) != null) {
+                    s = s + line + "\n";
+                }
+                if (!jTextAreaDisassembler.getText().equalsIgnoreCase(s)) {
+
+                    jMenuItemSave_HexcodeActionPerformed(null);
+                } else {
+                    System.exit(0);
+                }
 
             }
-                else if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
 
-                    while ((line = in.readLine()) != null) {
-                        s = s + line + "\n";
-                    }
-                    if (!jTextAreaDisassembler.getText().equalsIgnoreCase(s)) {
-
-                        jMenuItemSave_HexcodeActionPerformed(null);
-                    }
-                     else System.exit(0);
-
-                }
-            
             in.close();
         } catch (Exception e) {
-            if(jTabbedPaneAssemblerEditor.getSelectedIndex() == 0)jMenuItemSave_Assembly_Language_codeActionPerformed(null);
-            else jMenuItemSave_HexcodeActionPerformed(null);
-            
+            if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
+                jMenuItemSave_Assembly_Language_codeActionPerformed(null);
+            } else {
+                jMenuItemSave_HexcodeActionPerformed(null);
+            }
+
         }
-        
+
     }
-    public void saveSettings()
-    {
-        String filepath=System.getProperty("user.dir")+fileSeparator+"settings.dat";
+
+    public void saveSettings() {
+        String filepath = System.getProperty("user.dir") + fileSeparator + "settings.dat";
         try {
-                 PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filepath)));
-                 out.println(jTextFieldMemBegin.getText());
-                 out.println(jTextFieldMemStop.getText());
-                 out.println(jTextFieldBeginFrom.getText());
-                 out.println(path);
-                 out.println(stopAtIndex);
-                 out.close();
+            PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(filepath)));
+            out.println(jTextFieldMemBegin.getText());
+            out.println(jTextFieldMemStop.getText());
+            out.println(jTextFieldBeginFrom.getText());
+            out.println(path);
+            out.println(stopAtIndex);
+            out.close();
 
         } catch (Exception e) {
         }
 
     }
 
-    public void loadSettings()
-    {
-        String filepath=System.getProperty("user.dir")+fileSeparator+"settings.dat";
-        String line="";
+    public void loadSettings() {
+        String filepath = System.getProperty("user.dir") + fileSeparator + "settings.dat";
+        String line = "";
         try {
             BufferedReader in = new BufferedReader(new FileReader(filepath));
-            if((line=in.readLine())!=null)jTextFieldMemBegin.setText(line);
-            if((line=in.readLine())!=null)jTextFieldMemStop.setText(line);
-            if((line=in.readLine())!=null)jTextFieldBeginFrom.setText(line);
-            if((line=in.readLine())!=null)path=line;
-            if((line=in.readLine())!=null)stopAtIndex=Integer.parseInt(line);
+            if ((line = in.readLine()) != null) {
+                jTextFieldMemBegin.setText(line);
+            }
+            if ((line = in.readLine()) != null) {
+                jTextFieldMemStop.setText(line);
+            }
+            if ((line = in.readLine()) != null) {
+                jTextFieldBeginFrom.setText(line);
+            }
+            if ((line = in.readLine()) != null) {
+                path = line;
+            }
+            if ((line = in.readLine()) != null) {
+                stopAtIndex = Integer.parseInt(line);
+            }
             in.close();
+        } catch (Exception e) {
         }
-        catch(Exception e){}
-            jTextFieldMemBeginActionPerformed(null);
+        jTextFieldMemBeginActionPerformed(null);
 
     }
 
     public static void main(String args[]) {
-                                                                                                                                                            try {
-        //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
-    } catch (Exception evt) {}
+        try {
+            //UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+        } catch (Exception evt) {
+        }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                Assembler a=new Assembler();
+                Assembler a = new Assembler();
                 a.setVisible(true);
                 //Registration r = new Registration(a);
                 //r.setVisible(!r.registered);
@@ -3710,5 +3775,6 @@ public int find=0;
     private javax.swing.JTextField jTextFieldMemBegin;
     private javax.swing.JTextField jTextFieldMemStop;
     // End of variables declaration//GEN-END:variables
+
 
 }

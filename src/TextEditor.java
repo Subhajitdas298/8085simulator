@@ -24,7 +24,9 @@ public class TextEditor {
     Assembler asm;
     String[] code;
 
-    /** Creates new form text */
+    /**
+     * Creates new form text
+     */
     public TextEditor(Assembler obj) {
         //initComponents();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,23 +93,23 @@ public class TextEditor {
     int undoIndex = -1;
 
     public void undo() {
-        try{
+        try {
             if (undoIndex > 0) {
-            jTextPane1.setText(undo[--undoIndex]);
-            jTextPane1.setCaretPosition(caretPos[undoIndex]);
-        }
-        }catch(Exception e){
+                jTextPane1.setText(undo[--undoIndex]);
+                jTextPane1.setCaretPosition(caretPos[undoIndex]);
+            }
+        } catch (Exception e) {
             System.err.println(e);
         }
     }
 
     public void redo() {
-        try{
+        try {
             if (undoIndex < undo.length) {
-            jTextPane1.setText(undo[++undoIndex]);
-        }
-        jTextPane1.setCaretPosition(caretPos[undoIndex]);
-        }catch(Exception e){
+                jTextPane1.setText(undo[++undoIndex]);
+            }
+            jTextPane1.setCaretPosition(caretPos[undoIndex]);
+        } catch (Exception e) {
             System.err.println(e);
         }
     }
@@ -127,11 +129,9 @@ public class TextEditor {
             ok = false;
         } else if (evt.getKeyCode() == 17) { //ctrl character
             ok = false;
-        }
-        else if (evt.isActionKey()) { //ctrl character
+        } else if (evt.isActionKey()) { //ctrl character
             ok = false;
-        }
-        else {
+        } else {
             undo[undoIndex = (++undoIndex) & undo.length] = jTextPane1.getText();
             caretPos[undoIndex] = jTextPane1.getCaretPosition();
             ok = true;
@@ -225,7 +225,6 @@ public class TextEditor {
             if (s.charAt(i) != 0x205 && s.charAt(i) != 0x206 && s.charAt(i) != 0x207 && s.charAt(i) != 0x200 && s.charAt(i) != 0x201) {
                 setColor(c, Character.toString(s.charAt(i)));
             }
-
 
             if (s.charAt(i) == ':') {
                 c = lastColor;

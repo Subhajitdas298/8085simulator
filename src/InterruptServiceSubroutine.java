@@ -8,30 +8,29 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
         initComponents();
     }
 
-    String Rst0,Rst1,Rst2,Rst3,Rst4,Rst5,Rst55,Rst6,Rst65,Rst7,Rst75,Trap;
+    String Rst0, Rst1, Rst2, Rst3, Rst4, Rst5, Rst55, Rst6, Rst65, Rst7, Rst75, Trap;
     Assembler o;
 
     public InterruptServiceSubroutine(Assembler o) {
-        this.o=o;
+        this.o = o;
         initComponents();
         initialize();
         setJtextField();
     }
 
-    public void initialize()
-    {
-        jLabelTrap.setText(o.engine.Dec2Hex(o.matrix.beginAddress+36)+" H");
-        jLabelRst75.setText(o.engine.Dec2Hex(o.matrix.beginAddress+60)+" H");
-        jLabelRst65.setText(o.engine.Dec2Hex(o.matrix.beginAddress+52)+" H");
-        jLabelRst55.setText(o.engine.Dec2Hex(o.matrix.beginAddress+44)+" H");
-        jLabelRst0.setText(o.engine.Dec2Hex(o.matrix.beginAddress)+" H");
-        jLabelRst1.setText(o.engine.Dec2Hex(o.matrix.beginAddress+8)+" H");
-        jLabelRst2.setText(o.engine.Dec2Hex(o.matrix.beginAddress+16)+" H");
-        jLabelRst3.setText(o.engine.Dec2Hex(o.matrix.beginAddress+24)+" H");
-        jLabelRst4.setText(o.engine.Dec2Hex(o.matrix.beginAddress+32)+" H");
-        jLabelRst5.setText(o.engine.Dec2Hex(o.matrix.beginAddress+40)+" H");
-        jLabelRst6.setText(o.engine.Dec2Hex(o.matrix.beginAddress+48)+" H");
-        jLabelRst7.setText(o.engine.Dec2Hex(o.matrix.beginAddress+56)+" H");
+    public void initialize() {
+        jLabelTrap.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 36) + " H");
+        jLabelRst75.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 60) + " H");
+        jLabelRst65.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 52) + " H");
+        jLabelRst55.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 44) + " H");
+        jLabelRst0.setText(o.engine.Dec2Hex(o.matrix.beginAddress) + " H");
+        jLabelRst1.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 8) + " H");
+        jLabelRst2.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 16) + " H");
+        jLabelRst3.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 24) + " H");
+        jLabelRst4.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 32) + " H");
+        jLabelRst5.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 40) + " H");
+        jLabelRst6.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 48) + " H");
+        jLabelRst7.setText(o.engine.Dec2Hex(o.matrix.beginAddress + 56) + " H");
 
         vanishTickMark();
 
@@ -48,12 +47,10 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
         jTextFieldRst75.setText(Rst75);
         jTextFieldTrap.setText(Trap);
 
-       
     }
 
-    public void vanishTickMark()
-    {
-         jLabelCrossRst0.setVisible(false);
+    public void vanishTickMark() {
+        jLabelCrossRst0.setVisible(false);
         jLabelCrossRst1.setVisible(false);
         jLabelCrossRst2.setVisible(false);
         jLabelCrossRst3.setVisible(false);
@@ -80,40 +77,39 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
         jLabelTickTrap.setVisible(false);
     }
 
-    public void setJtextField()
-    {
-        int n=0;
+    public void setJtextField() {
+        int n = 0;
 
-        n=36+o.engine.m.beginAddress;
-        jTextFieldTrap.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=60+o.engine.m.beginAddress;
-        jTextFieldRst75.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=52+o.engine.m.beginAddress;
-        jTextFieldRst65.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=44+o.engine.m.beginAddress;
-        jTextFieldRst55.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=0+o.engine.m.beginAddress;
-        jTextFieldRst0.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=8+o.engine.m.beginAddress;
-        jTextFieldRst1.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=16+o.engine.m.beginAddress;
-        jTextFieldRst2.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=24+o.engine.m.beginAddress;
-        jTextFieldRst3.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=32+o.engine.m.beginAddress;
-        jTextFieldRst4.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=40+o.engine.m.beginAddress;
-        jTextFieldRst5.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=48+o.engine.m.beginAddress;
-        jTextFieldRst6.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
-        n=56+o.engine.m.beginAddress;
-        jTextFieldRst7.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n+1], o.matrix.memory[n+2]));
+        n = 36 + o.engine.m.beginAddress;
+        jTextFieldTrap.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 60 + o.engine.m.beginAddress;
+        jTextFieldRst75.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 52 + o.engine.m.beginAddress;
+        jTextFieldRst65.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 44 + o.engine.m.beginAddress;
+        jTextFieldRst55.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 0 + o.engine.m.beginAddress;
+        jTextFieldRst0.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 8 + o.engine.m.beginAddress;
+        jTextFieldRst1.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 16 + o.engine.m.beginAddress;
+        jTextFieldRst2.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 24 + o.engine.m.beginAddress;
+        jTextFieldRst3.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 32 + o.engine.m.beginAddress;
+        jTextFieldRst4.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 40 + o.engine.m.beginAddress;
+        jTextFieldRst5.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 48 + o.engine.m.beginAddress;
+        jTextFieldRst6.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
+        n = 56 + o.engine.m.beginAddress;
+        jTextFieldRst7.setText(o.engine.HexToMnemonic(o.matrix.memory[n], o.matrix.memory[n + 1], o.matrix.memory[n + 2]));
     }
 
-    /** This method is called from within the constructor to
-     * initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is
-     * always regenerated by the Form Editor.
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -777,261 +773,331 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     /**
- *
- * @param s Rst7 or Rst65
- * @param set true to set tick & false to set cross
- */
-    public void tickCross(String s,boolean set)
-    {
+     *
+     * @param s Rst7 or Rst65
+     * @param set true to set tick & false to set cross
+     */
+    public void tickCross(String s, boolean set) {
 
         vanishTickMark();
-        if(s.equalsIgnoreCase("Rst0")){
-            if(set)jLabelTickRst0.setVisible(true);
-            else jLabelCrossRst0.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst1")){
-            if(set)jLabelTickRst1.setVisible(true);
-            else jLabelCrossRst1.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst2")){
-            if(set)jLabelTickRst2.setVisible(true);
-            else jLabelCrossRst2.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst3")){
-            if(set)jLabelTickRst3.setVisible(true);
-            else jLabelCrossRst3.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst4")){
-            if(set)jLabelTickRst4.setVisible(true);
-            else jLabelCrossRst4.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst5")){
-            if(set)jLabelTickRst5.setVisible(true);
-            else jLabelCrossRst5.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst6")){
-            if(set)jLabelTickRst6.setVisible(true);
-            else jLabelCrossRst6.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst7")){
-            if(set)jLabelTickRst7.setVisible(true);
-            else jLabelCrossRst7.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst55")){
-            if(set)jLabelTickRst55.setVisible(true);
-            else jLabelCrossRst55.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst65")){
-            if(set)jLabelTickRst65.setVisible(true);
-            else jLabelCrossRst65.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Rst75")){
-            if(set)jLabelTickRst75.setVisible(true);
-            else jLabelCrossRst75.setVisible(true);
-        }
-        else if(s.equalsIgnoreCase("Trap")){
-            if(set)jLabelTickTrap.setVisible(true);
-            else jLabelCrossTrap.setVisible(true);
+        if (s.equalsIgnoreCase("Rst0")) {
+            if (set) {
+                jLabelTickRst0.setVisible(true);
+            } else {
+                jLabelCrossRst0.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst1")) {
+            if (set) {
+                jLabelTickRst1.setVisible(true);
+            } else {
+                jLabelCrossRst1.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst2")) {
+            if (set) {
+                jLabelTickRst2.setVisible(true);
+            } else {
+                jLabelCrossRst2.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst3")) {
+            if (set) {
+                jLabelTickRst3.setVisible(true);
+            } else {
+                jLabelCrossRst3.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst4")) {
+            if (set) {
+                jLabelTickRst4.setVisible(true);
+            } else {
+                jLabelCrossRst4.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst5")) {
+            if (set) {
+                jLabelTickRst5.setVisible(true);
+            } else {
+                jLabelCrossRst5.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst6")) {
+            if (set) {
+                jLabelTickRst6.setVisible(true);
+            } else {
+                jLabelCrossRst6.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst7")) {
+            if (set) {
+                jLabelTickRst7.setVisible(true);
+            } else {
+                jLabelCrossRst7.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst55")) {
+            if (set) {
+                jLabelTickRst55.setVisible(true);
+            } else {
+                jLabelCrossRst55.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst65")) {
+            if (set) {
+                jLabelTickRst65.setVisible(true);
+            } else {
+                jLabelCrossRst65.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Rst75")) {
+            if (set) {
+                jLabelTickRst75.setVisible(true);
+            } else {
+                jLabelCrossRst75.setVisible(true);
+            }
+        } else if (s.equalsIgnoreCase("Trap")) {
+            if (set) {
+                jLabelTickTrap.setVisible(true);
+            } else {
+                jLabelCrossTrap.setVisible(true);
+            }
         }
     }
 
     private void jTextFieldRst75ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst75ActionPerformed
 
-         boolean tick=o.engine.isFunction(jTextFieldRst75.getText());
-         tickCross("Rst75",tick);
-         if(tick){jTextFieldRst75.setText(o.engine.funcLabeltofuncCode(jTextFieldRst75.getText()));}
-       
+        boolean tick = o.engine.isFunction(jTextFieldRst75.getText());
+        tickCross("Rst75", tick);
+        if (tick) {
+            jTextFieldRst75.setText(o.engine.funcLabeltofuncCode(jTextFieldRst75.getText()));
+        }
+
     }//GEN-LAST:event_jTextFieldRst75ActionPerformed
 
     private void jTextFieldRst75KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst75KeyReleased
 
-
-        boolean tick=o.engine.isFunction(jTextFieldRst75.getText());
-        tickCross("Rst75",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst75.getText());
+        tickCross("Rst75", tick);
 
     }//GEN-LAST:event_jTextFieldRst75KeyReleased
 
     private void jTextFieldTrapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTrapActionPerformed
-         boolean tick=o.engine.isFunction(jTextFieldTrap.getText());
-         tickCross("Trap",tick);
-         if(tick){jTextFieldTrap.setText(o.engine.funcLabeltofuncCode(jTextFieldTrap.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldTrap.getText());
+        tickCross("Trap", tick);
+        if (tick) {
+            jTextFieldTrap.setText(o.engine.funcLabeltofuncCode(jTextFieldTrap.getText()));
+        }
     }//GEN-LAST:event_jTextFieldTrapActionPerformed
 
     private void jTextFieldRst65ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst65ActionPerformed
-         boolean tick=o.engine.isFunction(jTextFieldRst65.getText());
-         tickCross("Rst65",tick);
-         if(tick){jTextFieldRst65.setText(o.engine.funcLabeltofuncCode(jTextFieldRst65.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst65.getText());
+        tickCross("Rst65", tick);
+        if (tick) {
+            jTextFieldRst65.setText(o.engine.funcLabeltofuncCode(jTextFieldRst65.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst65ActionPerformed
 
     private void jTextFieldRst65KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst65KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst65.getText());
-        tickCross("Rst65",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst65.getText());
+        tickCross("Rst65", tick);
 
     }//GEN-LAST:event_jTextFieldRst65KeyReleased
 
     private void jTextFieldTrapKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldTrapKeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldTrap.getText());
-        tickCross("Trap",tick);
+        boolean tick = o.engine.isFunction(jTextFieldTrap.getText());
+        tickCross("Trap", tick);
 }//GEN-LAST:event_jTextFieldTrapKeyReleased
 
     private void jTextFieldRst55ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst55ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst55.getText());
-        tickCross("Rst55",tick);
-        if(tick){jTextFieldRst55.setText(o.engine.funcLabeltofuncCode(jTextFieldRst55.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst55.getText());
+        tickCross("Rst55", tick);
+        if (tick) {
+            jTextFieldRst55.setText(o.engine.funcLabeltofuncCode(jTextFieldRst55.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst55ActionPerformed
 
     private void jTextFieldRst55KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst55KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst55.getText());
-        tickCross("Rst55",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst55.getText());
+        tickCross("Rst55", tick);
     }//GEN-LAST:event_jTextFieldRst55KeyReleased
 
     private void jTextFieldRst0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst0ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst0.getText());
-        tickCross("Rst0",tick);
-        if(tick){jTextFieldRst0.setText(o.engine.funcLabeltofuncCode(jTextFieldRst0.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst0.getText());
+        tickCross("Rst0", tick);
+        if (tick) {
+            jTextFieldRst0.setText(o.engine.funcLabeltofuncCode(jTextFieldRst0.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst0ActionPerformed
 
     private void jTextFieldRst0KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst0KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst0.getText());
-        tickCross("Rst0",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst0.getText());
+        tickCross("Rst0", tick);
 }//GEN-LAST:event_jTextFieldRst0KeyReleased
 
     private void jTextFieldRst1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst1ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst1.getText());
-        tickCross("Rst1",tick);
-        if(tick){jTextFieldRst1.setText(o.engine.funcLabeltofuncCode(jTextFieldRst1.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst1.getText());
+        tickCross("Rst1", tick);
+        if (tick) {
+            jTextFieldRst1.setText(o.engine.funcLabeltofuncCode(jTextFieldRst1.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst1ActionPerformed
 
     private void jTextFieldRst1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst1KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst1.getText());
-        tickCross("Rst1",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst1.getText());
+        tickCross("Rst1", tick);
     }//GEN-LAST:event_jTextFieldRst1KeyReleased
 
     private void jTextFieldRst2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst2ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst2.getText());
-        tickCross("Rst2",tick);
-        if(tick){jTextFieldRst2.setText(o.engine.funcLabeltofuncCode(jTextFieldRst2.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst2.getText());
+        tickCross("Rst2", tick);
+        if (tick) {
+            jTextFieldRst2.setText(o.engine.funcLabeltofuncCode(jTextFieldRst2.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst2ActionPerformed
 
     private void jTextFieldRst2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst2KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst2.getText());
-        tickCross("Rst2",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst2.getText());
+        tickCross("Rst2", tick);
     }//GEN-LAST:event_jTextFieldRst2KeyReleased
 
     private void jTextFieldRst3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst3ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst3.getText());
-        tickCross("Rst3",tick);
-        if(tick){jTextFieldRst3.setText(o.engine.funcLabeltofuncCode(jTextFieldRst3.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst3.getText());
+        tickCross("Rst3", tick);
+        if (tick) {
+            jTextFieldRst3.setText(o.engine.funcLabeltofuncCode(jTextFieldRst3.getText()));
+        }
 }//GEN-LAST:event_jTextFieldRst3ActionPerformed
 
     private void jTextFieldRst3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst3KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst3.getText());
-        tickCross("Rst3",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst3.getText());
+        tickCross("Rst3", tick);
 }//GEN-LAST:event_jTextFieldRst3KeyReleased
 
     private void jTextFieldRst4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst4ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst4.getText());
-        tickCross("Rst4",tick);
-        if(tick){jTextFieldRst4.setText(o.engine.funcLabeltofuncCode(jTextFieldRst4.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst4.getText());
+        tickCross("Rst4", tick);
+        if (tick) {
+            jTextFieldRst4.setText(o.engine.funcLabeltofuncCode(jTextFieldRst4.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst4ActionPerformed
 
     private void jTextFieldRst4KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst4KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst4.getText());
-        tickCross("Rst4",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst4.getText());
+        tickCross("Rst4", tick);
     }//GEN-LAST:event_jTextFieldRst4KeyReleased
 
     private void jTextFieldRst5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst5ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst5.getText());
-        tickCross("Rst5",tick);
-        if(tick){jTextFieldRst5.setText(o.engine.funcLabeltofuncCode(jTextFieldRst5.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst5.getText());
+        tickCross("Rst5", tick);
+        if (tick) {
+            jTextFieldRst5.setText(o.engine.funcLabeltofuncCode(jTextFieldRst5.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst5ActionPerformed
 
     private void jTextFieldRst5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst5KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst5.getText());
-        tickCross("Rst5",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst5.getText());
+        tickCross("Rst5", tick);
     }//GEN-LAST:event_jTextFieldRst5KeyReleased
 
     private void jTextFieldRst6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst6ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst6.getText());
-        tickCross("Rst6",tick);
-        if(tick){jTextFieldRst6.setText(o.engine.funcLabeltofuncCode(jTextFieldRst6.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst6.getText());
+        tickCross("Rst6", tick);
+        if (tick) {
+            jTextFieldRst6.setText(o.engine.funcLabeltofuncCode(jTextFieldRst6.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst6ActionPerformed
 
     private void jTextFieldRst6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst6KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst6.getText());
-        tickCross("Rst6",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst6.getText());
+        tickCross("Rst6", tick);
     }//GEN-LAST:event_jTextFieldRst6KeyReleased
 
     private void jTextFieldRst7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldRst7ActionPerformed
-        boolean tick=o.engine.isFunction(jTextFieldRst7.getText());
-        tickCross("Rst7",tick);
-        if(tick){jTextFieldRst7.setText(o.engine.funcLabeltofuncCode(jTextFieldRst7.getText()));}
+        boolean tick = o.engine.isFunction(jTextFieldRst7.getText());
+        tickCross("Rst7", tick);
+        if (tick) {
+            jTextFieldRst7.setText(o.engine.funcLabeltofuncCode(jTextFieldRst7.getText()));
+        }
     }//GEN-LAST:event_jTextFieldRst7ActionPerformed
 
     private void jTextFieldRst7KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextFieldRst7KeyReleased
-        boolean tick=o.engine.isFunction(jTextFieldRst7.getText());
-        tickCross("Rst7",tick);
+        boolean tick = o.engine.isFunction(jTextFieldRst7.getText());
+        tickCross("Rst7", tick);
     }//GEN-LAST:event_jTextFieldRst7KeyReleased
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
 
-        String s[]=new String[4];
-        int n=0;
+        String s[] = new String[4];
+        int n = 0;
 
-        s=o.engine.MnemonicToHexcode(jTextFieldTrap.getText());
-        n=o.matrix.beginAddress+36;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldTrap.getText());
+        n = o.matrix.beginAddress + 36;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst75.getText());
-        n=o.matrix.beginAddress+60;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst75.getText());
+        n = o.matrix.beginAddress + 60;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst65.getText());
-        n=o.matrix.beginAddress+52;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst65.getText());
+        n = o.matrix.beginAddress + 52;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst55.getText());
-        n=o.matrix.beginAddress+44;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst55.getText());
+        n = o.matrix.beginAddress + 44;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst0.getText());
-        n=o.matrix.beginAddress+0;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst0.getText());
+        n = o.matrix.beginAddress + 0;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst1.getText());
-        n=o.matrix.beginAddress+8;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst1.getText());
+        n = o.matrix.beginAddress + 8;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst2.getText());
-        n=o.matrix.beginAddress+16;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst2.getText());
+        n = o.matrix.beginAddress + 16;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst3.getText());
-        n=o.matrix.beginAddress+24;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst3.getText());
+        n = o.matrix.beginAddress + 24;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst4.getText());
-        n=o.matrix.beginAddress+32;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst4.getText());
+        n = o.matrix.beginAddress + 32;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst5.getText());
-        n=o.matrix.beginAddress+40;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst5.getText());
+        n = o.matrix.beginAddress + 40;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst6.getText());
-        n=o.matrix.beginAddress+48;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
+        s = o.engine.MnemonicToHexcode(jTextFieldRst6.getText());
+        n = o.matrix.beginAddress + 48;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
-        s=o.engine.MnemonicToHexcode(jTextFieldRst7.getText());
-        n=o.matrix.beginAddress+56;
-        o.matrix.memory[n]=Integer.parseInt(s[3]);o.matrix.memory[n+1]=o.engine.Hex2Dec(s[1]);o.matrix.memory[n+2]=o.engine.Hex2Dec(s[2]);
-
+        s = o.engine.MnemonicToHexcode(jTextFieldRst7.getText());
+        n = o.matrix.beginAddress + 56;
+        o.matrix.memory[n] = Integer.parseInt(s[3]);
+        o.matrix.memory[n + 1] = o.engine.Hex2Dec(s[1]);
+        o.matrix.memory[n + 2] = o.engine.Hex2Dec(s[2]);
 
         o.setMemory();
     }//GEN-LAST:event_formWindowClosing
     /**
-    * @param args the command line arguments
-    */
+     * @param args the command line arguments
+     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {

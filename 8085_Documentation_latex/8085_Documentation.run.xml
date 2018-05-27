@@ -41,57 +41,57 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="0">
-    <generic>latex</generic>
-    <provides type="dynamic">
-      <file>8085_Documentation.aux</file>
-      <file>8085_Documentation-blx.bib</file>
-    </provides>
-    <requires type="dynamic">
-      <file>8085_Documentation.bbl</file>
-    </requires>
-    <requires type="static">
-      <file>blx-dm.def</file>
-      <file>blx-compat.def</file>
-      <file>blx-bibtex.def</file>
-      <file>biblatex.def</file>
-      <file>blx-natbib.def</file>
-      <file>ieee.bbx</file>
-      <file>numeric-comp.bbx</file>
-      <file>numeric.bbx</file>
-      <file>standard.bbx</file>
-      <file>ieee.cbx</file>
-      <file>numeric-comp.cbx</file>
-      <file>biblatex.cfg</file>
-      <file>english.lbx</file>
-    </requires>
-  </internal>
-  <external package="biblatex" priority="5" active="0">
-    <generic>bibtex</generic>
-    <cmdline>
-      <binary>bibtex8</binary>
-      <option>--wolfgang</option>
-      <option>--min_crossrefs 2</option>
-      <infile>8085_Documentation</infile>
-    </cmdline>
-    <input>
-      <file>8085_Documentation.aux</file>
-    </input>
-    <output>
-      <file>8085_Documentation.bbl</file>
-    </output>
-    <provides type="dynamic">
-      <file>8085_Documentation.bbl</file>
-    </provides>
-    <requires type="dynamic">
-      <file>8085_Documentation.aux</file>
-      <file>8085_Documentation-blx.bib</file>
-    </requires>
-    <requires type="editable">
-      <file>reference.bib</file>
-    </requires>
-    <requires type="static">
-      <file>biblatex.bst</file>
-    </requires>
-  </external>
+    <internal package="biblatex" priority="9" active="0">
+        <generic>latex</generic>
+        <provides type="dynamic">
+            <file>8085_Documentation.aux</file>
+            <file>8085_Documentation-blx.bib</file>
+        </provides>
+        <requires type="dynamic">
+            <file>8085_Documentation.bbl</file>
+        </requires>
+        <requires type="static">
+            <file>blx-dm.def</file>
+            <file>blx-compat.def</file>
+            <file>blx-bibtex.def</file>
+            <file>biblatex.def</file>
+            <file>blx-natbib.def</file>
+            <file>ieee.bbx</file>
+            <file>numeric-comp.bbx</file>
+            <file>numeric.bbx</file>
+            <file>standard.bbx</file>
+            <file>ieee.cbx</file>
+            <file>numeric-comp.cbx</file>
+            <file>biblatex.cfg</file>
+            <file>english.lbx</file>
+        </requires>
+    </internal>
+    <external package="biblatex" priority="5" active="0">
+        <generic>bibtex</generic>
+        <cmdline>
+            <binary>bibtex8</binary>
+            <option>--wolfgang</option>
+            <option>--min_crossrefs 2</option>
+            <infile>8085_Documentation</infile>
+        </cmdline>
+        <input>
+            <file>8085_Documentation.aux</file>
+        </input>
+        <output>
+            <file>8085_Documentation.bbl</file>
+        </output>
+        <provides type="dynamic">
+            <file>8085_Documentation.bbl</file>
+        </provides>
+        <requires type="dynamic">
+            <file>8085_Documentation.aux</file>
+            <file>8085_Documentation-blx.bib</file>
+        </requires>
+        <requires type="editable">
+            <file>reference.bib</file>
+        </requires>
+        <requires type="static">
+            <file>biblatex.bst</file>
+        </requires>
+    </external>
 </requests>

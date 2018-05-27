@@ -63,7 +63,7 @@ public class Disassembler {
                     s = s + "\t" + asm.engine.HexToMnemonic(asm.matrix.memory[i], asm.matrix.memory[i + 1], 0x00) + "\n";
                 } else if (bytes == 3) {
                     tempAddr = (asm.matrix.memory[i + 2] * 256 + asm.matrix.memory[i + 1]) & 0xFFFF;
-                    if (asm.matrix.memory[tempAddr] == 00 ) {
+                    if (asm.matrix.memory[tempAddr] == 00) {
                         s = s + "\t" + asm.engine.HexToMnemonic(asm.matrix.memory[i], asm.matrix.memory[i + 1], asm.matrix.memory[i + 2]) + "\n";
                     } else {
                         temp = asm.engine.HexToMnemonic(asm.matrix.memory[i], asm.matrix.memory[i + 1], asm.matrix.memory[i + 2]);
@@ -88,16 +88,16 @@ public class Disassembler {
         String temp1, temp2;
         for (int i = 0; i < asm.matrix.label.length; i++) {
             if (!asm.matrix.label[i].equalsIgnoreCase("")) {
-                temp = "\t"+asm.engine.HexToMnemonicWithLabel(asm.matrix.memory[i], asm.matrix.memory[i + 1], asm.matrix.memory[i + 2]) + "\n";
+                temp = "\t" + asm.engine.HexToMnemonicWithLabel(asm.matrix.memory[i], asm.matrix.memory[i + 1], asm.matrix.memory[i + 2]) + "\n";
                 tempAddr = i + asm.engine.getBytesFromMnemonics(asm.engine.S[asm.matrix.memory[i]]);
                 temp = temp + "\t" + asm.engine.HexToMnemonicWithLabel(asm.matrix.memory[tempAddr], asm.matrix.memory[tempAddr + 1], asm.matrix.memory[tempAddr + 2]) + "\n";
                 if (s.indexOf(temp) > 0) {
                     temp1 = s.substring(0, s.indexOf(temp));
                     temp2 = s.substring(s.indexOf(temp), s.length());
                     s = temp1 + asm.matrix.label[i].toUpperCase() + ":" + temp2;
+                } else {
+                    s = s + "\n# " + asm.matrix.label[i].toUpperCase() + " EQU " + asm.engine.Dec2Hex(i);
                 }
-                else 
-                    s = s+"\n# "+asm.matrix.label[i].toUpperCase()+" EQU " + asm.engine.Dec2Hex(i);
             }
         }
         asm.jTextAreaAssemblyLanguageEditor.setText(s);
@@ -153,7 +153,7 @@ public class Disassembler {
         Assembler asm = new Assembler();
         Disassembler dis = new Disassembler(asm);
         //System.out.println(dis.CRC8("1000100021FCFE7723773E0021FAFE77237721FE"));
-        
+
         //System.out.println(dis.saveDisassembler());
         dis.loadDisassembler();
     }

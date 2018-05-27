@@ -8,41 +8,41 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-
 public class trainer extends javax.swing.JFrame implements Runnable {
 
-    Assembler o=null;
-    char c4='0',c3='0',c2='0',c1='0',d2='0',d1='0';
-    boolean reg=false,mem=false,set=false,go=false;
+    Assembler o = null;
+    char c4 = '0', c3 = '0', c2 = '0', c1 = '0', d2 = '0', d1 = '0';
+    boolean reg = false, mem = false, set = false, go = false;
     ExecutorService exec = Executors.newCachedThreadPool();
 
-     public trainer() {
+    public trainer() {
         initComponents();
-        ((trainerCanvas)canvas44).reDraw('f');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('i');
-        ((trainerCanvas)canvas41).reDraw('e');
-        ((trainerCanvas)canvas22).reDraw('n');
-        ((trainerCanvas)canvas21).reDraw('d');
+        ((trainerCanvas) canvas44).reDraw('f');
+        ((trainerCanvas) canvas43).reDraw('r');
+        ((trainerCanvas) canvas42).reDraw('i');
+        ((trainerCanvas) canvas41).reDraw('e');
+        ((trainerCanvas) canvas22).reDraw('n');
+        ((trainerCanvas) canvas21).reDraw('d');
     }
 
-     public trainer(Assembler o)
-     {
-         this.o=o;
-         initComponents();
-        ((trainerCanvas)canvas44).reDraw('f');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('i');
-        ((trainerCanvas)canvas41).reDraw('e');
-        ((trainerCanvas)canvas22).reDraw('n');
-        ((trainerCanvas)canvas21).reDraw('d');
+    public trainer(Assembler o) {
+        this.o = o;
+        initComponents();
+        ((trainerCanvas) canvas44).reDraw('f');
+        ((trainerCanvas) canvas43).reDraw('r');
+        ((trainerCanvas) canvas42).reDraw('i');
+        ((trainerCanvas) canvas41).reDraw('e');
+        ((trainerCanvas) canvas22).reDraw('n');
+        ((trainerCanvas) canvas21).reDraw('d');
 
-     }
+    }
 
-     public void run()
-    {
-         while(!o.stop)blinking();
-     }
+    public void run() {
+        while (!o.stop) {
+            blinking();
+        }
+    }
+
     @SuppressWarnings("unchecked")
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -672,86 +672,92 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     private void button6LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6LActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('6');
-        c4=c3;c3=c2;c2=c1;c1='6';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('6');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '6';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('L');
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(0));
-            ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(1));
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('6');
-             d2=d1;d1='6';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('L');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(1));
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('6');
+            d2 = d1;
+            d1 = '6';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button6LActionPerformed
 
     private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('8');
-        c4=c3;c3=c2;c2=c1;c1='8';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('8');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '8';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            String s=o.engine.Dec2Hex(o.matrix.SP);
-            ((trainerCanvas)canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas)canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas)canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas)canvas41).reDraw(s.charAt(3));
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(0));
-            ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(1));
+        } else if (reg) {
+            String s = o.engine.Dec2Hex(o.matrix.SP);
+            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(1));
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('8');
-             d2=d1;d1='8';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('8');
+            d2 = d1;
+            d1 = '8';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button8ActionPerformed
@@ -760,647 +766,733 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         o.viewWorkSpace();
         o.disAssemble();
-        if(o.jButtonRun.isVisible())o.jButtonRun.doClick();
+        if (o.jButtonRun.isVisible()) {
+            o.jButtonRun.doClick();
+        }
         exec.execute(this);
     }//GEN-LAST:event_buttonExecActionPerformed
 
     private void button0AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button0AActionPerformed
 
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('0');
-        c4=c3;c3=c2;c2=c1;c1='0';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
-
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('a');
-                    ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(0));
-                    ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(1));
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('0');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '0';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
             }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('0');
-             d2=d1;d1='0';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('a');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(1));
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('0');
+            d2 = d1;
+            d1 = '0';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
+
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
 
     }//GEN-LAST:event_button0AActionPerformed
 
     private void button1BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1BActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('1');
-        c4=c3;c3=c2;c2=c1;c1='1';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('1');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '1';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('b');
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(0));
-            ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(1));
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('b');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(1));
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('1');
-             d2=d1;d1='1';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('1');
+            d2 = d1;
+            d1 = '1';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button1BActionPerformed
 
     private void button2CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2CActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('2');
-        c4=c3;c3=c2;c2=c1;c1='2';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('2');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '2';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('C');
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(0));
-            ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(1));
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('2');
-             d2=d1;d1='2';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('C');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(1));
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('2');
+            d2 = d1;
+            d1 = '2';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button2CActionPerformed
 
     private void button3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3DActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('3');
-        c4=c3;c3=c2;c2=c1;c1='3';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('3');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '3';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('D');
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(0));
-                    ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(1));
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('3');
-             d2=d1;d1='3';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('D');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(1));
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('3');
+            d2 = d1;
+            d1 = '3';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button3DActionPerformed
 
     private void button4EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4EActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('4');
-        c4=c3;c3=c2;c2=c1;c1='4';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('4');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '4';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('E');
-                ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(0));
-                ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(1));
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('E');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(1));
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('4');
-             d2=d1;d1='4';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('4');
+            d2 = d1;
+            d1 = '4';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button4EActionPerformed
 
     private void button5HActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5HActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('5');
-        c4=c3;c3=c2;c2=c1;c1='5';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('5');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '5';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            ((trainerCanvas)canvas41).reDraw('H');
-                    ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(0));
-                    ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(1));
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('5');
-             d2=d1;d1='5';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (reg) {
+            ((trainerCanvas) canvas41).reDraw('H');
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(1));
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('5');
+            d2 = d1;
+            d1 = '5';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button5HActionPerformed
 
     private void button7MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button7MActionPerformed
-        if(((!set)&&mem)||go){
+        if (((!set) && mem) || go) {
 
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('7');
-        c4=c3;c3=c2;c2=c1;c1='7';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('7');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '7';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            String s=o.engine.Dec2Hex(o.matrix.H*256+o.matrix.L);
-            ((trainerCanvas)canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas)canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas)canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas)canvas41).reDraw(s.charAt(3));
-                    ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H*256+o.matrix.L]).charAt(0));
-                    ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H*256+o.matrix.L]).charAt(1));
+        } else if (reg) {
+            String s = o.engine.Dec2Hex(o.matrix.H * 256 + o.matrix.L);
+            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(1));
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('7');
-             d2=d1;d1='7';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('7');
+            d2 = d1;
+            d1 = '7';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button7MActionPerformed
 
     private void button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button9ActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('9');
-        c4=c3;c3=c2;c2=c1;c1='9';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('9');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = '9';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
-            String s=o.engine.Dec2Hex(o.matrix.PC);
-            ((trainerCanvas)canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas)canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas)canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas)canvas41).reDraw(s.charAt(3));
-            ((trainerCanvas)canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(0));
-            ((trainerCanvas)canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(1));
+        } else if (reg) {
+            String s = o.engine.Dec2Hex(o.matrix.PC);
+            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(0));
+            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(1));
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('9');
-             d2=d1;d1='9';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('9');
+            d2 = d1;
+            d1 = '9';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button9ActionPerformed
 
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('A');
-        c4=c3;c3=c2;c2=c1;c1='A';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('A');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'A';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('A');
-             d2=d1;d1='A';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('A');
+            d2 = d1;
+            d1 = 'A';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonAActionPerformed
 
     private void buttonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('B');
-        c4=c3;c3=c2;c2=c1;c1='B';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('B');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'B';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('B');
-             d2=d1;d1='B';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('B');
+            d2 = d1;
+            d1 = 'B';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonBActionPerformed
 
     private void buttonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('C');
-        c4=c3;c3=c2;c2=c1;c1='C';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('C');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'C';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('C');
-             d2=d1;d1='C';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('C');
+            d2 = d1;
+            d1 = 'C';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
 
     }//GEN-LAST:event_buttonCActionPerformed
 
     private void buttonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('D');
-        c4=c3;c3=c2;c2=c1;c1='D';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('D');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'D';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('D');
-             d2=d1;d1='D';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('D');
+            d2 = d1;
+            d1 = 'D';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonDActionPerformed
 
     private void buttonEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('E');
-        c4=c3;c3=c2;c2=c1;c1='E';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('E');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'E';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('E');
-             d2=d1;d1='E';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('E');
+            d2 = d1;
+            d1 = 'E';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonEActionPerformed
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
-        if(((!set)&&mem)||go){
-        ((trainerCanvas)canvas44).reDraw(c3);
-        ((trainerCanvas)canvas43).reDraw(c2);
-        ((trainerCanvas)canvas42).reDraw(c1);
-        ((trainerCanvas)canvas41).reDraw('F');
-        c4=c3;c3=c2;c2=c1;c1='F';
-        if(go){
-                o.matrix.PC=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-                o.jTextFieldBeginFrom.setText(""+c4+c3+c2+c1);
-              }
+        if (((!set) && mem) || go) {
+            ((trainerCanvas) canvas44).reDraw(c3);
+            ((trainerCanvas) canvas43).reDraw(c2);
+            ((trainerCanvas) canvas42).reDraw(c1);
+            ((trainerCanvas) canvas41).reDraw('F');
+            c4 = c3;
+            c3 = c2;
+            c2 = c1;
+            c1 = 'F';
+            if (go) {
+                o.matrix.PC = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+                o.jTextFieldBeginFrom.setText("" + c4 + c3 + c2 + c1);
+            }
 
-        }
-        else if(reg){
+        } else if (reg) {
 
-        }
-        else if(set&&mem){
-            ((trainerCanvas)canvas22).reDraw(d1);
-            ((trainerCanvas)canvas21).reDraw('F');
-             d2=d1;d1='F';
-             int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-             o.matrix.memory[memNo]=o.engine.Hex2Dec(""+d2+d1);
-             o.set();
-             if((memNo-o.matrix.beginAddress)<999&&(memNo-o.matrix.beginAddress)>=0)o.jTableAssembler.setValueAt(""+d2+d1, memNo-o.matrix.beginAddress, 4);
+        } else if (set && mem) {
+            ((trainerCanvas) canvas22).reDraw(d1);
+            ((trainerCanvas) canvas21).reDraw('F');
+            d2 = d1;
+            d1 = 'F';
+            int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+            o.matrix.memory[memNo] = o.engine.Hex2Dec("" + d2 + d1);
+            o.set();
+            if ((memNo - o.matrix.beginAddress) < 999 && (memNo - o.matrix.beginAddress) >= 0) {
+                o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
+            }
 
-        }
-        else{
-        ((trainerCanvas)canvas44).reDraw('E');
-        ((trainerCanvas)canvas43).reDraw('r');
-        ((trainerCanvas)canvas42).reDraw('r');
-        ((trainerCanvas)canvas41).reDraw('o');
-        ((trainerCanvas)canvas22).reDraw('r');
-        ((trainerCanvas)canvas21).reDraw('*');
+        } else {
+            ((trainerCanvas) canvas44).reDraw('E');
+            ((trainerCanvas) canvas43).reDraw('r');
+            ((trainerCanvas) canvas42).reDraw('r');
+            ((trainerCanvas) canvas41).reDraw('o');
+            ((trainerCanvas) canvas22).reDraw('r');
+            ((trainerCanvas) canvas21).reDraw('*');
 
         }
 
     }//GEN-LAST:event_buttonFActionPerformed
 
     private void button0AKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button0AKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
-
-
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button0AKeyReleased
 
     private void buttonNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNextActionPerformed
-        int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-        if(memNo>=o.matrix.stopAddress){memNo=o.matrix.beginAddress-1;
-                String s=o.engine.Dec2Hex(memNo+1);
-                c4=s.charAt(0);c3=s.charAt(1);c2=s.charAt(2);c1=s.charAt(3);}
-        if(set){String s=o.engine.Dec2Hex(memNo+1);
-                c4=s.charAt(0);c3=s.charAt(1);c2=s.charAt(2);c1=s.charAt(3);
-                }
-        reg=false;set=true;
-        ((trainerCanvas)canvas41).reDraw(c1);
-        ((trainerCanvas)canvas42).reDraw(c2);
-        ((trainerCanvas)canvas43).reDraw(c3);
-        ((trainerCanvas)canvas44).reDraw(c4);
-        int n=o.matrix.memory[o.engine.Hex2Dec(""+c4+c3+c2+c1)];
-        d1=o.engine.Dec2Hex2digit(n).charAt(1);
-        d2=o.engine.Dec2Hex2digit(n).charAt(0);
-        ((trainerCanvas)canvas22).reDraw(d2);
-        ((trainerCanvas)canvas21).reDraw(d1);
-
+        int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+        if (memNo >= o.matrix.stopAddress) {
+            memNo = o.matrix.beginAddress - 1;
+            String s = o.engine.Dec2Hex(memNo + 1);
+            c4 = s.charAt(0);
+            c3 = s.charAt(1);
+            c2 = s.charAt(2);
+            c1 = s.charAt(3);
+        }
+        if (set) {
+            String s = o.engine.Dec2Hex(memNo + 1);
+            c4 = s.charAt(0);
+            c3 = s.charAt(1);
+            c2 = s.charAt(2);
+            c1 = s.charAt(3);
+        }
+        reg = false;
+        set = true;
+        ((trainerCanvas) canvas41).reDraw(c1);
+        ((trainerCanvas) canvas42).reDraw(c2);
+        ((trainerCanvas) canvas43).reDraw(c3);
+        ((trainerCanvas) canvas44).reDraw(c4);
+        int n = o.matrix.memory[o.engine.Hex2Dec("" + c4 + c3 + c2 + c1)];
+        d1 = o.engine.Dec2Hex2digit(n).charAt(1);
+        d2 = o.engine.Dec2Hex2digit(n).charAt(0);
+        ((trainerCanvas) canvas22).reDraw(d2);
+        ((trainerCanvas) canvas21).reDraw(d1);
 
     }//GEN-LAST:event_buttonNextActionPerformed
 
     private void buttonPrevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonPrevActionPerformed
-        int memNo=o.engine.Hex2Dec(""+c4+c3+c2+c1);
-        if(memNo<=o.matrix.beginAddress){memNo=o.matrix.stopAddress+1;
-                String s=o.engine.Dec2Hex(memNo+1);
-                c4=s.charAt(0);c3=s.charAt(1);c2=s.charAt(2);c1=s.charAt(3);
+        int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
+        if (memNo <= o.matrix.beginAddress) {
+            memNo = o.matrix.stopAddress + 1;
+            String s = o.engine.Dec2Hex(memNo + 1);
+            c4 = s.charAt(0);
+            c3 = s.charAt(1);
+            c2 = s.charAt(2);
+            c1 = s.charAt(3);
         }
-        if(set){String s=o.engine.Dec2Hex(memNo-1);
-                c4=s.charAt(0);c3=s.charAt(1);c2=s.charAt(2);c1=s.charAt(3);
-                }
-        reg=false;set=true;
-        ((trainerCanvas)canvas41).reDraw(c1);
-        ((trainerCanvas)canvas42).reDraw(c2);
-        ((trainerCanvas)canvas43).reDraw(c3);
-        ((trainerCanvas)canvas44).reDraw(c4);
-        int n=o.matrix.memory[o.engine.Hex2Dec(""+c4+c3+c2+c1)];
-        d1=o.engine.Dec2Hex2digit(n).charAt(1);
-        d2=o.engine.Dec2Hex2digit(n).charAt(0);
-        ((trainerCanvas)canvas22).reDraw(d2);
-        ((trainerCanvas)canvas21).reDraw(d1);
+        if (set) {
+            String s = o.engine.Dec2Hex(memNo - 1);
+            c4 = s.charAt(0);
+            c3 = s.charAt(1);
+            c2 = s.charAt(2);
+            c1 = s.charAt(3);
+        }
+        reg = false;
+        set = true;
+        ((trainerCanvas) canvas41).reDraw(c1);
+        ((trainerCanvas) canvas42).reDraw(c2);
+        ((trainerCanvas) canvas43).reDraw(c3);
+        ((trainerCanvas) canvas44).reDraw(c4);
+        int n = o.matrix.memory[o.engine.Hex2Dec("" + c4 + c3 + c2 + c1)];
+        d1 = o.engine.Dec2Hex2digit(n).charAt(1);
+        d2 = o.engine.Dec2Hex2digit(n).charAt(0);
+        ((trainerCanvas) canvas22).reDraw(d2);
+        ((trainerCanvas) canvas21).reDraw(d1);
 
     }//GEN-LAST:event_buttonPrevActionPerformed
 
     private void buttonResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonResetActionPerformed
-        mem=false;reg=false;set=false;go=false;
-        o.stop=true;
-        c1='0';c2='0';c3='0';c4='0';d1='0';d2='0';
-        ((trainerCanvas)canvas44).reDraw('-');
-        ((trainerCanvas)canvas43).reDraw('-');
-        ((trainerCanvas)canvas42).reDraw('-');
-        ((trainerCanvas)canvas41).reDraw('-');
-        ((trainerCanvas)canvas22).reDraw('-');
-        ((trainerCanvas)canvas21).reDraw('-');
+        mem = false;
+        reg = false;
+        set = false;
+        go = false;
+        o.stop = true;
+        c1 = '0';
+        c2 = '0';
+        c3 = '0';
+        c4 = '0';
+        d1 = '0';
+        d2 = '0';
+        ((trainerCanvas) canvas44).reDraw('-');
+        ((trainerCanvas) canvas43).reDraw('-');
+        ((trainerCanvas) canvas42).reDraw('-');
+        ((trainerCanvas) canvas41).reDraw('-');
+        ((trainerCanvas) canvas22).reDraw('-');
+        ((trainerCanvas) canvas21).reDraw('-');
 
     }//GEN-LAST:event_buttonResetActionPerformed
 
@@ -1409,617 +1501,1032 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_buttonHaltActionPerformed
 
     private void buttonMemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonMemActionPerformed
-        mem=true;reg=false;set=false;go=false;
-        ((trainerCanvas)canvas44).reDraw('*');
-        ((trainerCanvas)canvas43).reDraw('*');
-        ((trainerCanvas)canvas42).reDraw('*');
-        ((trainerCanvas)canvas41).reDraw('*');
-        ((trainerCanvas)canvas22).reDraw('*');
-        ((trainerCanvas)canvas21).reDraw('*');
+        mem = true;
+        reg = false;
+        set = false;
+        go = false;
+        ((trainerCanvas) canvas44).reDraw('*');
+        ((trainerCanvas) canvas43).reDraw('*');
+        ((trainerCanvas) canvas42).reDraw('*');
+        ((trainerCanvas) canvas41).reDraw('*');
+        ((trainerCanvas) canvas22).reDraw('*');
+        ((trainerCanvas) canvas21).reDraw('*');
 
     }//GEN-LAST:event_buttonMemActionPerformed
 
     private void buttonRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRegActionPerformed
-        mem=false;reg=true;set=false;go=false;
-        ((trainerCanvas)canvas44).reDraw('r');
-        ((trainerCanvas)canvas43).reDraw('e');
-        ((trainerCanvas)canvas42).reDraw('g');
-        ((trainerCanvas)canvas41).reDraw('*');
-        ((trainerCanvas)canvas22).reDraw('*');
-        ((trainerCanvas)canvas21).reDraw('*');
-
+        mem = false;
+        reg = true;
+        set = false;
+        go = false;
+        ((trainerCanvas) canvas44).reDraw('r');
+        ((trainerCanvas) canvas43).reDraw('e');
+        ((trainerCanvas) canvas42).reDraw('g');
+        ((trainerCanvas) canvas41).reDraw('*');
+        ((trainerCanvas) canvas22).reDraw('*');
+        ((trainerCanvas) canvas21).reDraw('*');
 
     }//GEN-LAST:event_buttonRegActionPerformed
 
     private void buttonGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoActionPerformed
-        go=true;
-        String s=o.engine.HexAutoCorrect4digit(o.jTextFieldBeginFrom.getText());
-        ((trainerCanvas)canvas44).reDraw(s.charAt(0));
-        ((trainerCanvas)canvas43).reDraw(s.charAt(1));
-        ((trainerCanvas)canvas42).reDraw(s.charAt(2));
-        ((trainerCanvas)canvas41).reDraw(s.charAt(3));
-        s=o.engine.Dec2Hex2digit(o.matrix.memory[o.engine.Hex2Dec(s)]);
-        ((trainerCanvas)canvas22).reDraw(s.charAt(0));
-        ((trainerCanvas)canvas21).reDraw(s.charAt(1));
+        go = true;
+        String s = o.engine.HexAutoCorrect4digit(o.jTextFieldBeginFrom.getText());
+        ((trainerCanvas) canvas44).reDraw(s.charAt(0));
+        ((trainerCanvas) canvas43).reDraw(s.charAt(1));
+        ((trainerCanvas) canvas42).reDraw(s.charAt(2));
+        ((trainerCanvas) canvas41).reDraw(s.charAt(3));
+        s = o.engine.Dec2Hex2digit(o.matrix.memory[o.engine.Hex2Dec(s)]);
+        ((trainerCanvas) canvas22).reDraw(s.charAt(0));
+        ((trainerCanvas) canvas21).reDraw(s.charAt(1));
 
     }//GEN-LAST:event_buttonGoActionPerformed
 
     private void button1BKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button1BKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button1BKeyReleased
 
     private void button2CKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button2CKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button2CKeyReleased
 
     private void button3DKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button3DKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button3DKeyReleased
 
     private void button7MKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button7MKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
-
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button7MKeyReleased
 
     private void button6LKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button6LKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button6LKeyReleased
 
     private void button5HKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button5HKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
-
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button5HKeyReleased
 
     private void button4EKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button4EKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
-
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button4EKeyReleased
 
     private void button8KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button8KeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button8KeyReleased
 
     private void button9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_button9KeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
-
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_button9KeyReleased
 
     private void buttonAKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonAKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonAKeyReleased
 
     private void buttonBKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonBKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonBKeyReleased
 
     private void buttonCKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonCKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonCKeyReleased
 
     private void buttonDKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonDKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonDKeyReleased
 
     private void buttonEKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonEKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonEKeyReleased
 
     private void buttonFKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonFKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonFKeyReleased
 
     private void buttonGoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonGoKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonGoKeyReleased
 
     private void buttonExecKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonExecKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonExecKeyReleased
 
     private void buttonRegKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonRegKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonRegKeyReleased
 
     private void buttonNextKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonNextKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonNextKeyReleased
 
     private void buttonPrevKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonPrevKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonPrevKeyReleased
 
     private void buttonMemKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonMemKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonMemKeyReleased
 
     private void buttonResetKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonResetKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonResetKeyReleased
 
     private void buttonHaltKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buttonHaltKeyReleased
-        if(evt.getKeyChar()=='0')button0AActionPerformed(null);
-        else if(evt.getKeyChar()=='1')button1BActionPerformed(null);
-        else if(evt.getKeyChar()=='2')button2CActionPerformed(null);
-        else if(evt.getKeyChar()=='3')button3DActionPerformed(null);
-        else if(evt.getKeyChar()=='4')button4EActionPerformed(null);
-        else if(evt.getKeyChar()=='5')button5HActionPerformed(null);
-        else if(evt.getKeyChar()=='6')button6LActionPerformed(null);
-        else if(evt.getKeyChar()=='7')button7MActionPerformed(null);
-        else if(evt.getKeyChar()=='8')button8ActionPerformed(null);
-        else if(evt.getKeyChar()=='9')button9ActionPerformed(null);
-        else if(evt.getKeyChar()=='A'||evt.getKeyChar()=='a')buttonAActionPerformed(null);
-        else if(evt.getKeyChar()=='B'||evt.getKeyChar()=='b')buttonBActionPerformed(null);
-        else if(evt.getKeyChar()=='C'||evt.getKeyChar()=='c')buttonCActionPerformed(null);
-        else if(evt.getKeyChar()=='D'||evt.getKeyChar()=='d')buttonDActionPerformed(null);
-        else if(evt.getKeyChar()=='E'||evt.getKeyChar()=='e')buttonEActionPerformed(null);
-        else if(evt.getKeyChar()=='F'||evt.getKeyChar()=='f')buttonFActionPerformed(null);
-        else if(evt.getKeyCode()==38||evt.getKeyCode()==10)buttonNextActionPerformed(null);
-        else if(evt.getKeyCode()==40)buttonPrevActionPerformed(null);
-        else if(evt.getKeyCode()==27)buttonResetActionPerformed(null);
-        
-        
+        if (evt.getKeyChar() == '0') {
+            button0AActionPerformed(null);
+        } else if (evt.getKeyChar() == '1') {
+            button1BActionPerformed(null);
+        } else if (evt.getKeyChar() == '2') {
+            button2CActionPerformed(null);
+        } else if (evt.getKeyChar() == '3') {
+            button3DActionPerformed(null);
+        } else if (evt.getKeyChar() == '4') {
+            button4EActionPerformed(null);
+        } else if (evt.getKeyChar() == '5') {
+            button5HActionPerformed(null);
+        } else if (evt.getKeyChar() == '6') {
+            button6LActionPerformed(null);
+        } else if (evt.getKeyChar() == '7') {
+            button7MActionPerformed(null);
+        } else if (evt.getKeyChar() == '8') {
+            button8ActionPerformed(null);
+        } else if (evt.getKeyChar() == '9') {
+            button9ActionPerformed(null);
+        } else if (evt.getKeyChar() == 'A' || evt.getKeyChar() == 'a') {
+            buttonAActionPerformed(null);
+        } else if (evt.getKeyChar() == 'B' || evt.getKeyChar() == 'b') {
+            buttonBActionPerformed(null);
+        } else if (evt.getKeyChar() == 'C' || evt.getKeyChar() == 'c') {
+            buttonCActionPerformed(null);
+        } else if (evt.getKeyChar() == 'D' || evt.getKeyChar() == 'd') {
+            buttonDActionPerformed(null);
+        } else if (evt.getKeyChar() == 'E' || evt.getKeyChar() == 'e') {
+            buttonEActionPerformed(null);
+        } else if (evt.getKeyChar() == 'F' || evt.getKeyChar() == 'f') {
+            buttonFActionPerformed(null);
+        } else if (evt.getKeyCode() == 38 || evt.getKeyCode() == 10) {
+            buttonNextActionPerformed(null);
+        } else if (evt.getKeyCode() == 40) {
+            buttonPrevActionPerformed(null);
+        } else if (evt.getKeyCode() == 27) {
+            buttonResetActionPerformed(null);
+        }
 
     }//GEN-LAST:event_buttonHaltKeyReleased
 
@@ -2027,8 +2534,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
     }//GEN-LAST:event_formWindowClosing
 
-    public void blinking()
-    {
+    public void blinking() {
         canvas7.setBackground(Color.red);
         canvas1.setBackground(Color.yellow);
         try {
@@ -2038,6 +2544,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         canvas1.setBackground(Color.black);
         canvas7.setBackground(Color.black);
     }
+
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -2083,113 +2590,434 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     // End of variables declaration//GEN-END:variables
 
 }
-class trainerCanvas extends Canvas
-{
 
-    int x=-30,y=-40,s=30;
+class trainerCanvas extends Canvas {
 
-        int a[][]=new int[1][7];
+    int x = -30, y = -40, s = 30;
+
+    int a[][] = new int[1][7];
 
     public trainerCanvas() {
-            
-            a[0]=decoder('5');
+
+        a[0] = decoder('5');
 
     }
+
     public trainerCanvas(char c) {
 
-            a[0]=decoder(c);
-
+        a[0] = decoder(c);
 
     }
 
-    public void reDraw(char c)
-    {
+    public void reDraw(char c) {
 
-
-           a[0]=decoder(c);
-            repaint();                    
+        a[0] = decoder(c);
+        repaint();
     }
 
-
-    public void paint(Graphics g1)
-    {
+    public void paint(Graphics g1) {
 
         Graphics2D g = (Graphics2D) g1;
-        g.setColor(new java.awt.Color(255,0,0));
+        g.setColor(new java.awt.Color(255, 0, 0));
         g.setStroke(new BasicStroke(5));
-        if(a[0][4]==1)g.drawLine(x+40,y+80,x+40,y+100);
-        if(a[0][2]==1)g.drawLine(x+60,y+80,x+60,y+100);
-        if(a[0][5]==1)g.drawLine(x+40,y+50,x+40,y+70);
-        if(a[0][1]==1)g.drawLine(x+60,y+50,x+60,y+70);
+        if (a[0][4] == 1) {
+            g.drawLine(x + 40, y + 80, x + 40, y + 100);
+        }
+        if (a[0][2] == 1) {
+            g.drawLine(x + 60, y + 80, x + 60, y + 100);
+        }
+        if (a[0][5] == 1) {
+            g.drawLine(x + 40, y + 50, x + 40, y + 70);
+        }
+        if (a[0][1] == 1) {
+            g.drawLine(x + 60, y + 50, x + 60, y + 70);
+        }
 
-        if(a[0][3]==1)g.drawLine(x+42,y+105,x+58,y+105);
-        if(a[0][6]==1)g.drawLine(x+42,y+75,x+58,y+75);
-        if(a[0][0]==1)g.drawLine(x+42,y+45,x+58,y+45);
+        if (a[0][3] == 1) {
+            g.drawLine(x + 42, y + 105, x + 58, y + 105);
+        }
+        if (a[0][6] == 1) {
+            g.drawLine(x + 42, y + 75, x + 58, y + 75);
+        }
+        if (a[0][0] == 1) {
+            g.drawLine(x + 42, y + 45, x + 58, y + 45);
+        }
 
+        g.setColor(new java.awt.Color(130, 0, 0));
 
-        g.setColor(new java.awt.Color(130,0,0));
+        if (a[0][4] == 0) {
+            g.drawLine(x + 40, y + 80, x + 40, y + 100);
+        }
+        if (a[0][2] == 0) {
+            g.drawLine(x + 60, y + 80, x + 60, y + 100);
+        }
+        if (a[0][5] == 0) {
+            g.drawLine(x + 40, y + 50, x + 40, y + 70);
+        }
+        if (a[0][1] == 0) {
+            g.drawLine(x + 60, y + 50, x + 60, y + 70);
+        }
 
-        if(a[0][4]==0)g.drawLine(x+40,y+80,x+40,y+100);
-        if(a[0][2]==0)g.drawLine(x+60,y+80,x+60,y+100);
-        if(a[0][5]==0)g.drawLine(x+40,y+50,x+40,y+70);
-        if(a[0][1]==0)g.drawLine(x+60,y+50,x+60,y+70);
-
-        if(a[0][3]==0)g.drawLine(x+42,y+105,x+58,y+105);
-        if(a[0][6]==0)g.drawLine(x+42,y+75,x+58,y+75);
-        if(a[0][0]==0)g.drawLine(x+42,y+45,x+58,y+45);
-
-
-
+        if (a[0][3] == 0) {
+            g.drawLine(x + 42, y + 105, x + 58, y + 105);
+        }
+        if (a[0][6] == 0) {
+            g.drawLine(x + 42, y + 75, x + 58, y + 75);
+        }
+        if (a[0][0] == 0) {
+            g.drawLine(x + 42, y + 45, x + 58, y + 45);
+        }
 
     }
 
-    public int[] decoder(char c)
-   {
-       int b[]=new int[7];
-       switch(c)
-       {
-           case '0':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=1;b[5]=1;b[6]=0;break;
-           case '1':b[0]=0;b[1]=1;b[2]=1;b[3]=0;b[4]=0;b[5]=0;b[6]=0;break;
-           case '2':b[0]=1;b[1]=1;b[2]=0;b[3]=1;b[4]=1;b[5]=0;b[6]=1;break;
-           case '3':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=0;b[5]=0;b[6]=1;break;
-           case '4':b[0]=0;b[1]=1;b[2]=1;b[3]=0;b[4]=0;b[5]=1;b[6]=1;break;
-           case '5':b[0]=1;b[1]=0;b[2]=1;b[3]=1;b[4]=0;b[5]=1;b[6]=1;break;
-           case '6':b[0]=1;b[1]=0;b[2]=1;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case '7':b[0]=1;b[1]=1;b[2]=1;b[3]=0;b[4]=0;b[5]=0;b[6]=0;break;
-           case '8':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case '9':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=0;b[5]=1;b[6]=1;break;
-           case 'a':b[0]=1;b[1]=1;b[2]=1;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'A':b[0]=1;b[1]=1;b[2]=1;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'b':b[0]=0;b[1]=0;b[2]=1;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'B':b[0]=0;b[1]=0;b[2]=1;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'c':b[0]=1;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=0;break;
-           case 'C':b[0]=1;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=0;break;
-           case 'd':b[0]=0;b[1]=1;b[2]=1;b[3]=1;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'D':b[0]=0;b[1]=1;b[2]=1;b[3]=1;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'e':b[0]=1;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'E':b[0]=1;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'f':b[0]=1;b[1]=0;b[2]=0;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'F':b[0]=1;b[1]=0;b[2]=0;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'g':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=0;b[5]=1;b[6]=1;break;
-           case 'G':b[0]=1;b[1]=1;b[2]=1;b[3]=1;b[4]=0;b[5]=1;b[6]=1;break;
-           case 'H':b[0]=0;b[1]=1;b[2]=1;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'n':b[0]=0;b[1]=0;b[2]=1;b[3]=0;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'N':b[0]=0;b[1]=0;b[2]=1;b[3]=0;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'i':b[0]=0;b[1]=1;b[2]=1;b[3]=0;b[4]=0;b[5]=0;b[6]=0;break;
-           case 'I':b[0]=0;b[1]=1;b[2]=1;b[3]=0;b[4]=0;b[5]=0;b[6]=0;break;
-           case 'l':b[0]=0;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=0;break;
-           case 'L':b[0]=0;b[1]=0;b[2]=0;b[3]=1;b[4]=1;b[5]=1;b[6]=0;break;
-           case 'r':b[0]=0;b[1]=0;b[2]=0;b[3]=0;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'R':b[0]=0;b[1]=0;b[2]=0;b[3]=0;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'o':b[0]=0;b[1]=0;b[2]=1;b[3]=1;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'O':b[0]=0;b[1]=0;b[2]=1;b[3]=1;b[4]=1;b[5]=0;b[6]=1;break;
-           case 'p':b[0]=1;b[1]=1;b[2]=0;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case 'P':b[0]=1;b[1]=1;b[2]=0;b[3]=0;b[4]=1;b[5]=1;b[6]=1;break;
-           case '-':b[0]=0;b[1]=0;b[2]=0;b[3]=0;b[4]=0;b[5]=0;b[6]=1;break;
+    public int[] decoder(char c) {
+        int b[] = new int[7];
+        switch (c) {
+            case '0':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 0;
+                break;
+            case '1':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 0;
+                break;
+            case '2':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case '3':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case '4':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case '5':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 0;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case '6':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case '7':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 0;
+                break;
+            case '8':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case '9':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 0;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'a':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'A':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'b':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'B':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'c':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 0;
+                break;
+            case 'C':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 0;
+                break;
+            case 'd':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'D':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'e':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'E':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'f':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'F':
+                b[0] = 1;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'g':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 0;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'G':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 0;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'H':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'n':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'N':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'i':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 0;
+                break;
+            case 'I':
+                b[0] = 0;
+                b[1] = 1;
+                b[2] = 1;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 0;
+                break;
+            case 'l':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 0;
+                break;
+            case 'L':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 0;
+                break;
+            case 'r':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'R':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'o':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'O':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 1;
+                b[3] = 1;
+                b[4] = 1;
+                b[5] = 0;
+                b[6] = 1;
+                break;
+            case 'p':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case 'P':
+                b[0] = 1;
+                b[1] = 1;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 1;
+                b[5] = 1;
+                b[6] = 1;
+                break;
+            case '-':
+                b[0] = 0;
+                b[1] = 0;
+                b[2] = 0;
+                b[3] = 0;
+                b[4] = 0;
+                b[5] = 0;
+                b[6] = 1;
+                break;
 
-       }
-       return b;
-   }
-
+        }
+        return b;
+    }
 
 }
