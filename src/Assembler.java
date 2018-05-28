@@ -165,25 +165,28 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jMenuItem20 = new javax.swing.JMenuItem();
         jTabbedPaneMemory = new javax.swing.JTabbedPane();
         jInternalFrame3 = new javax.swing.JInternalFrame();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        jTableSIM = new javax.swing.JTable();
-        jScrollPane17 = new javax.swing.JScrollPane();
-        jTableRIM = new javax.swing.JTable();
         jLabelErrorHang = new javax.swing.JLabel();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        jTableFlagregister = new javax.swing.JTable();
-        jSeparator1 = new javax.swing.JSeparator();
-        jScrollPane18 = new javax.swing.JScrollPane();
-        jTableInterrupt = new javax.swing.JTable();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        jTableNoConverter = new javax.swing.JTable();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
+        jTabbedPaneRegisters = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTableRegister = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableCounter = new javax.swing.JTable();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        jTableInterrupt = new javax.swing.JTable();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        jTableFlagregister = new javax.swing.JTable();
+        jTabbedPaneTools = new javax.swing.JTabbedPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        jTableRIM = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        jTableSIM = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        jTableNoConverter = new javax.swing.JTable();
         jTabbedPaneEditor = new javax.swing.JTabbedPane();
         jInternalFrame1 = new javax.swing.JInternalFrame();
         jButtonAssemble = new javax.swing.JButton();
@@ -338,241 +341,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrame3.setName("jInternalFrame3"); // NOI18N
         ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame3.getUI()).setNorthPane(null);
 
-        jScrollPane15.setName("jScrollPane15"); // NOI18N
-
-        jTableSIM.setBackground(new java.awt.Color(204, 204, 204));
-        jTableSIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTableSIM.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SOD", "SDE", "*", "R7.5", "MSE", "M7.5", "M6.5", "M5.5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableSIM.setName("jTableSIM"); // NOI18N
-        jTableSIM.setRowSelectionAllowed(false);
-        jTableSIM.getTableHeader().setReorderingAllowed(false);
-        jScrollPane15.setViewportView(jTableSIM);
-        if (jTableSIM.getColumnModel().getColumnCount() > 0) {
-            jTableSIM.getColumnModel().getColumn(0).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(1).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(2).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(3).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(4).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(5).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(6).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(7).setResizable(false);
-            jTableSIM.getColumnModel().getColumn(7).setHeaderValue("M5.5");
-        }
-
-        jScrollPane17.setName("jScrollPane17"); // NOI18N
-
-        jTableRIM.setBackground(new java.awt.Color(204, 204, 204));
-        jTableRIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTableRIM.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SID", "I7.5", "I6.5", "I5.5", "IE", "M7.5", "M6.5", "M5.5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableRIM.setName("jTableRIM"); // NOI18N
-        jTableRIM.setRowSelectionAllowed(false);
-        jTableRIM.getTableHeader().setReorderingAllowed(false);
-        jScrollPane17.setViewportView(jTableRIM);
-        if (jTableRIM.getColumnModel().getColumnCount() > 0) {
-            jTableRIM.getColumnModel().getColumn(0).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(1).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(2).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(3).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(4).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(5).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(6).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(7).setResizable(false);
-            jTableRIM.getColumnModel().getColumn(7).setHeaderValue("M5.5");
-        }
-
         jLabelErrorHang.setForeground(new java.awt.Color(255, 51, 51));
         jLabelErrorHang.setText("jLabel13");
         jLabelErrorHang.setName("jLabelErrorHang"); // NOI18N
 
-        jScrollPane13.setName("jScrollPane13"); // NOI18N
+        jTabbedPaneRegisters.setName("jTabbedPaneRegisters"); // NOI18N
 
-        jTableFlagregister.setBackground(new java.awt.Color(255, 153, 255));
-        jTableFlagregister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTableFlagregister.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Flag Resister", null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Resister", "Value", "S", "Z", "*", "AC", "*", "P", "*", "CY"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableFlagregister.setName("jTableFlagregister"); // NOI18N
-        jTableFlagregister.setRowSelectionAllowed(false);
-        jTableFlagregister.getTableHeader().setReorderingAllowed(false);
-        jScrollPane13.setViewportView(jTableFlagregister);
-        if (jTableFlagregister.getColumnModel().getColumnCount() > 0) {
-            jTableFlagregister.getColumnModel().getColumn(0).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(0).setPreferredWidth(825);
-            jTableFlagregister.getColumnModel().getColumn(1).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(1).setPreferredWidth(425);
-            jTableFlagregister.getColumnModel().getColumn(2).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(3).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(4).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(5).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(6).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(7).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(8).setResizable(false);
-            jTableFlagregister.getColumnModel().getColumn(9).setResizable(false);
-        }
-
-        jSeparator1.setName("jSeparator1"); // NOI18N
-
-        jScrollPane18.setName("jScrollPane18"); // NOI18N
-
-        jTableInterrupt.setBackground(new java.awt.Color(0, 206, 206));
-        jTableInterrupt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTableInterrupt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SOD", "SID", "INTR", "TRAP", "R7.5", "R6.5", "R5.5"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTableInterrupt.setName("jTableInterrupt"); // NOI18N
-        jTableInterrupt.setRowSelectionAllowed(false);
-        jTableInterrupt.getTableHeader().setReorderingAllowed(false);
-        jTableInterrupt.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableInterruptMouseClicked(evt);
-            }
-        });
-        jScrollPane18.setViewportView(jTableInterrupt);
-        if (jTableInterrupt.getColumnModel().getColumnCount() > 0) {
-            jTableInterrupt.getColumnModel().getColumn(0).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(1).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(2).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(3).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(4).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(5).setResizable(false);
-            jTableInterrupt.getColumnModel().getColumn(6).setResizable(false);
-        }
-
-        jScrollPane14.setName("jScrollPane14"); // NOI18N
-
-        jTableNoConverter.setBackground(new java.awt.Color(204, 204, 255));
-        jTableNoConverter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTableNoConverter.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"", null, null}
-            },
-            new String [] {
-                "Hexadecimal", "Decimal", "Binary"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-        });
-        jTableNoConverter.setToolTipText("simple enter the no. and press enter");
-        jTableNoConverter.setName("jTableNoConverter"); // NOI18N
-        jTableNoConverter.setRowSelectionAllowed(false);
-        jTableNoConverter.getTableHeader().setReorderingAllowed(false);
-        jTableNoConverter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                jTableNoConverterMousePressed(evt);
-            }
-        });
-        jTableNoConverter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jTableNoConverterKeyReleased(evt);
-            }
-        });
-        jScrollPane14.setViewportView(jTableNoConverter);
-        if (jTableNoConverter.getColumnModel().getColumnCount() > 0) {
-            jTableNoConverter.getColumnModel().getColumn(0).setResizable(false);
-            jTableNoConverter.getColumnModel().getColumn(0).setPreferredWidth(800);
-            jTableNoConverter.getColumnModel().getColumn(1).setResizable(false);
-            jTableNoConverter.getColumnModel().getColumn(1).setPreferredWidth(800);
-            jTableNoConverter.getColumnModel().getColumn(2).setResizable(false);
-            jTableNoConverter.getColumnModel().getColumn(2).setPreferredWidth(800);
-        }
-
-        jLabel8.setForeground(new java.awt.Color(51, 51, 255));
-        jLabel8.setText("No. Converter Tool : ");
-        jLabel8.setName("jLabel8"); // NOI18N
-
-        jLabel10.setText("For SIM instruction");
-        jLabel10.setName("jLabel10"); // NOI18N
-        jLabel10.setVerifyInputWhenFocusTarget(false);
+        jPanel1.setName("jPanel1"); // NOI18N
 
         jScrollPane12.setName("jScrollPane12"); // NOI18N
 
@@ -668,8 +443,300 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTableCounter.getColumnModel().getColumn(1).setResizable(false);
         }
 
+        jScrollPane18.setName("jScrollPane18"); // NOI18N
+
+        jTableInterrupt.setBackground(new java.awt.Color(0, 206, 206));
+        jTableInterrupt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableInterrupt.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "SOD", "SID", "INTR", "TRAP", "R7.5", "R6.5", "R5.5"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableInterrupt.setName("jTableInterrupt"); // NOI18N
+        jTableInterrupt.setRowSelectionAllowed(false);
+        jTableInterrupt.getTableHeader().setReorderingAllowed(false);
+        jTableInterrupt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableInterruptMouseClicked(evt);
+            }
+        });
+        jScrollPane18.setViewportView(jTableInterrupt);
+        if (jTableInterrupt.getColumnModel().getColumnCount() > 0) {
+            jTableInterrupt.getColumnModel().getColumn(0).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(1).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(2).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(3).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(4).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(5).setResizable(false);
+            jTableInterrupt.getColumnModel().getColumn(6).setResizable(false);
+        }
+
+        jScrollPane13.setName("jScrollPane13"); // NOI18N
+
+        jTableFlagregister.setBackground(new java.awt.Color(255, 153, 255));
+        jTableFlagregister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableFlagregister.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Flag Resister", null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Resister", "Value", "S", "Z", "*", "AC", "*", "P", "*", "CY"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableFlagregister.setName("jTableFlagregister"); // NOI18N
+        jTableFlagregister.setRowSelectionAllowed(false);
+        jTableFlagregister.getTableHeader().setReorderingAllowed(false);
+        jScrollPane13.setViewportView(jTableFlagregister);
+        if (jTableFlagregister.getColumnModel().getColumnCount() > 0) {
+            jTableFlagregister.getColumnModel().getColumn(0).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(0).setPreferredWidth(825);
+            jTableFlagregister.getColumnModel().getColumn(1).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(1).setPreferredWidth(425);
+            jTableFlagregister.getColumnModel().getColumn(2).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(3).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(4).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(5).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(6).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(7).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(8).setResizable(false);
+            jTableFlagregister.getColumnModel().getColumn(9).setResizable(false);
+        }
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 1, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneRegisters.addTab("Registers", jPanel1);
+
+        jTabbedPaneTools.setName("jTabbedPaneTools"); // NOI18N
+
+        jPanel2.setName("jPanel2"); // NOI18N
+
+        jLabel10.setText("For SIM instruction");
+        jLabel10.setName("jLabel10"); // NOI18N
+        jLabel10.setVerifyInputWhenFocusTarget(false);
+
+        jScrollPane17.setName("jScrollPane17"); // NOI18N
+
+        jTableRIM.setBackground(new java.awt.Color(204, 204, 204));
+        jTableRIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableRIM.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "SID", "I7.5", "I6.5", "I5.5", "IE", "M7.5", "M6.5", "M5.5"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableRIM.setName("jTableRIM"); // NOI18N
+        jTableRIM.setRowSelectionAllowed(false);
+        jTableRIM.getTableHeader().setReorderingAllowed(false);
+        jScrollPane17.setViewportView(jTableRIM);
+        if (jTableRIM.getColumnModel().getColumnCount() > 0) {
+            jTableRIM.getColumnModel().getColumn(0).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(1).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(2).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(3).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(4).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(5).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(6).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(7).setResizable(false);
+            jTableRIM.getColumnModel().getColumn(7).setHeaderValue("M5.5");
+        }
+
         jLabel12.setText("For RIM instruction");
         jLabel12.setName("jLabel12"); // NOI18N
+
+        jScrollPane15.setName("jScrollPane15"); // NOI18N
+
+        jTableSIM.setBackground(new java.awt.Color(204, 204, 204));
+        jTableSIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableSIM.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "SOD", "SDE", "*", "R7.5", "MSE", "M7.5", "M6.5", "M5.5"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTableSIM.setName("jTableSIM"); // NOI18N
+        jTableSIM.setRowSelectionAllowed(false);
+        jTableSIM.getTableHeader().setReorderingAllowed(false);
+        jScrollPane15.setViewportView(jTableSIM);
+        if (jTableSIM.getColumnModel().getColumnCount() > 0) {
+            jTableSIM.getColumnModel().getColumn(0).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(1).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(2).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(3).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(4).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(5).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(6).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(7).setResizable(false);
+            jTableSIM.getColumnModel().getColumn(7).setHeaderValue("M5.5");
+        }
+
+        jLabel8.setForeground(new java.awt.Color(51, 51, 255));
+        jLabel8.setText("No. Converter Tool : ");
+        jLabel8.setName("jLabel8"); // NOI18N
+
+        jScrollPane14.setName("jScrollPane14"); // NOI18N
+
+        jTableNoConverter.setBackground(new java.awt.Color(204, 204, 255));
+        jTableNoConverter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableNoConverter.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"", null, null}
+            },
+            new String [] {
+                "Hexadecimal", "Decimal", "Binary"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTableNoConverter.setToolTipText("simple enter the no. and press enter");
+        jTableNoConverter.setName("jTableNoConverter"); // NOI18N
+        jTableNoConverter.setRowSelectionAllowed(false);
+        jTableNoConverter.getTableHeader().setReorderingAllowed(false);
+        jTableNoConverter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableNoConverterMousePressed(evt);
+            }
+        });
+        jTableNoConverter.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableNoConverterKeyReleased(evt);
+            }
+        });
+        jScrollPane14.setViewportView(jTableNoConverter);
+        if (jTableNoConverter.getColumnModel().getColumnCount() > 0) {
+            jTableNoConverter.getColumnModel().getColumn(0).setResizable(false);
+            jTableNoConverter.getColumnModel().getColumn(0).setPreferredWidth(800);
+            jTableNoConverter.getColumnModel().getColumn(1).setResizable(false);
+            jTableNoConverter.getColumnModel().getColumn(1).setPreferredWidth(800);
+            jTableNoConverter.getColumnModel().getColumn(2).setResizable(false);
+            jTableNoConverter.getColumnModel().getColumn(2).setPreferredWidth(800);
+        }
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel8))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(jLabel10)
+                .addGap(2, 2, 2)
+                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel12)
+                .addGap(1, 1, 1)
+                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jTabbedPaneTools.addTab("Tools", jPanel2);
 
         javax.swing.GroupLayout jInternalFrame3Layout = new javax.swing.GroupLayout(jInternalFrame3.getContentPane());
         jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
@@ -677,60 +744,24 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame3Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE))
-                    .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                                .addComponent(jLabelErrorHang, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane18, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane15, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane17, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                .addComponent(jScrollPane14, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                            .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
-                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                        .addGap(0, 1, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(jLabelErrorHang)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jTabbedPaneRegisters)
+            .addComponent(jTabbedPaneTools)
         );
         jInternalFrame3Layout.setVerticalGroup(
             jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jTabbedPaneRegisters, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8)
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTabbedPaneTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
                 .addComponent(jLabelErrorHang)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        jTabbedPaneMemory.addTab("Registers", jInternalFrame3);
+        jTabbedPaneMemory.addTab("Registers & Tools", jInternalFrame3);
 
         jTabbedPaneEditor.setName("jTabbedPaneEditor"); // NOI18N
 
@@ -1017,7 +1048,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame5Layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 750, Short.MAX_VALUE)
+            .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jLabelComment)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1152,7 +1183,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel5)
                 .addComponent(jLabel4))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 856, Short.MAX_VALUE)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
             .addComponent(jRadioButtonShowAll)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1325,8 +1356,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         .addGroup(jInternalFrame4Layout.createSequentialGroup()
             .addContainerGap()
             .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 353, Short.MAX_VALUE)
-            .addComponent(jTabbedPaneInterface1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+            .addComponent(jTabbedPaneInterface1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(306, Short.MAX_VALUE))
     );
 
     jTabbedPaneMemory2.addTab("Devices", jInternalFrame4);
@@ -1867,9 +1899,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 882, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 370, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jTabbedPaneMemory1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -3716,6 +3748,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItemSave_Hexcode;
     private javax.swing.JMenuItem jMenuItemStop;
     private javax.swing.JMenu jMenuSettings;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8255;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemNormal;
@@ -3739,7 +3773,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
@@ -3757,6 +3790,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTabbedPane jTabbedPaneMemory;
     private javax.swing.JTabbedPane jTabbedPaneMemory1;
     private javax.swing.JTabbedPane jTabbedPaneMemory2;
+    private javax.swing.JTabbedPane jTabbedPaneRegisters;
+    private javax.swing.JTabbedPane jTabbedPaneTools;
     public javax.swing.JTable jTable8255;
     javax.swing.JTable jTableAssembler;
     private javax.swing.JTable jTableCounter;
