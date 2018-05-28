@@ -18,6 +18,12 @@ import javax.swing.text.DefaultHighlighter;
 
 public class Assembler extends javax.swing.JFrame implements Runnable {
 
+    private final int ADJUST_REGISTERS_AND_TOOLS_THRESHOLD = 840;
+    private final int ADJUST_DEVICES_THRESHOLD = 740;
+    
+    private final int ADJUST_HORIZONTAL_LEVEL1_THRESHOLD = 1200;
+    private final int ADJUST_HORIZONTAL_LEVEL2_THRESHOLD = 1600;
+
     AssemblerEngine engine;
     Matrix matrix;
     FileChooser fileChooser;
@@ -63,8 +69,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         sampleCode();
         jScrollPane16.setVisible(true);
         jMenu12.setVisible(false);
-        jTabbedPaneInterface.setVisible(true);
-        jTabbedPaneInterface.addTab("I/O Port Editor", jScrollPane4);
+        jTabbedPaneIOPortEditor.setVisible(true);
+        jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
         //jTableAssembler.setRowSelectionAllowed(true);
         //jTableAssembler.setRowSelectionInterval(0, 1);
 
@@ -163,11 +169,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private void initComponents() {
 
         jMenuItem20 = new javax.swing.JMenuItem();
-        jTabbedPaneMemory = new javax.swing.JTabbedPane();
-        jInternalFrame3 = new javax.swing.JInternalFrame();
+        jTabbedPaneRegistersAndTools = new javax.swing.JTabbedPane();
+        jInternalFrameRegistersAndToolsTab = new javax.swing.JInternalFrame();
         jLabelErrorHang = new javax.swing.JLabel();
         jTabbedPaneRegisters = new javax.swing.JTabbedPane();
-        jPanel1 = new javax.swing.JPanel();
+        jPanelRegistersTab = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         jTableRegister = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -177,7 +183,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jScrollPane13 = new javax.swing.JScrollPane();
         jTableFlagregister = new javax.swing.JTable();
         jTabbedPaneTools = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
+        jPanelToolsTab = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane17 = new javax.swing.JScrollPane();
         jTableRIM = new javax.swing.JTable();
@@ -215,8 +221,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jButtonRun = new javax.swing.JButton();
         jButtonForward = new javax.swing.JButton();
         jButtonStep = new javax.swing.JButton();
-        jTabbedPaneMemory1 = new javax.swing.JTabbedPane();
-        jInternalFrame2 = new javax.swing.JInternalFrame();
+        jTabbedPaneMemory = new javax.swing.JTabbedPane();
+        jInternalFrameMemoryTab = new javax.swing.JInternalFrame();
         jTextFieldMemBegin = new javax.swing.JTextField();
         jRadioButtonStoreMemoryLocation = new javax.swing.JRadioButton();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -226,12 +232,12 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTextFieldMemStop = new javax.swing.JTextField();
         jRadioButtonShowAll = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        jTabbedPaneMemory2 = new javax.swing.JTabbedPane();
-        jInternalFrame4 = new javax.swing.JInternalFrame();
-        jTabbedPaneInterface = new javax.swing.JTabbedPane();
+        jTabbedPaneDevices = new javax.swing.JTabbedPane();
+        jInternalFrameDevicesTab = new javax.swing.JInternalFrame();
+        jTabbedPaneIOPortEditor = new javax.swing.JTabbedPane();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTablePort = new javax.swing.JTable();
-        jTabbedPaneInterface1 = new javax.swing.JTabbedPane();
+        jTabbedPane8255 = new javax.swing.JTabbedPane();
         jPanel8255 = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
         jTable8255 = new javax.swing.JTable();
@@ -322,9 +328,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         setBounds(new java.awt.Rectangle(20, 0, 200, 0));
         setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         setMaximumSize(new java.awt.Dimension(0, 0));
-        setMinimumSize(new java.awt.Dimension(1366, 720));
-        setPreferredSize(new java.awt.Dimension(1900, 1040));
+        setMinimumSize(new java.awt.Dimension(800, 600));
+        setPreferredSize(new java.awt.Dimension(1280, 700));
         setSize(new java.awt.Dimension(0, 0));
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -334,12 +345,12 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        jTabbedPaneMemory.setName("jTabbedPaneMemory"); // NOI18N
+        jTabbedPaneRegistersAndTools.setName("jTabbedPaneRegistersAndTools"); // NOI18N
 
-        jInternalFrame3.setBorder(null);
-        jInternalFrame3.setTitle("Registers : ");
-        jInternalFrame3.setName("jInternalFrame3"); // NOI18N
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame3.getUI()).setNorthPane(null);
+        jInternalFrameRegistersAndToolsTab.setBorder(null);
+        jInternalFrameRegistersAndToolsTab.setTitle("Registers : ");
+        jInternalFrameRegistersAndToolsTab.setName("jInternalFrameRegistersAndToolsTab"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameRegistersAndToolsTab.getUI()).setNorthPane(null);
 
         jLabelErrorHang.setForeground(new java.awt.Color(255, 51, 51));
         jLabelErrorHang.setText("jLabel13");
@@ -347,7 +358,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jTabbedPaneRegisters.setName("jTabbedPaneRegisters"); // NOI18N
 
-        jPanel1.setName("jPanel1"); // NOI18N
+        jPanelRegistersTab.setName("jPanelRegistersTab"); // NOI18N
 
         jScrollPane12.setName("jScrollPane12"); // NOI18N
 
@@ -535,18 +546,18 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTableFlagregister.getColumnModel().getColumn(9).setResizable(false);
         }
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelRegistersTabLayout = new javax.swing.GroupLayout(jPanelRegistersTab);
+        jPanelRegistersTab.setLayout(jPanelRegistersTabLayout);
+        jPanelRegistersTabLayout.setHorizontalGroup(
+            jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
             .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
             .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelRegistersTabLayout.setVerticalGroup(
+            jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelRegistersTabLayout.createSequentialGroup()
                 .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -557,11 +568,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addGap(0, 1, Short.MAX_VALUE))
         );
 
-        jTabbedPaneRegisters.addTab("Registers", jPanel1);
+        jTabbedPaneRegisters.addTab("Registers", jPanelRegistersTab);
 
         jTabbedPaneTools.setName("jTabbedPaneTools"); // NOI18N
 
-        jPanel2.setName("jPanel2"); // NOI18N
+        jPanelToolsTab.setName("jPanelToolsTab"); // NOI18N
 
         jLabel10.setText("For SIM instruction");
         jLabel10.setName("jLabel10"); // NOI18N
@@ -704,23 +715,23 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTableNoConverter.getColumnModel().getColumn(2).setPreferredWidth(800);
         }
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jPanelToolsTabLayout = new javax.swing.GroupLayout(jPanelToolsTab);
+        jPanelToolsTab.setLayout(jPanelToolsTabLayout);
+        jPanelToolsTabLayout.setHorizontalGroup(
+            jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
             .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelToolsTabLayout.createSequentialGroup()
+                .addGroup(jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
                     .addComponent(jLabel12)
                     .addComponent(jLabel8))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        jPanelToolsTabLayout.setVerticalGroup(
+            jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelToolsTabLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jLabel10)
                 .addGap(2, 2, 2)
@@ -736,22 +747,22 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addContainerGap())
         );
 
-        jTabbedPaneTools.addTab("Tools", jPanel2);
+        jTabbedPaneTools.addTab("Tools", jPanelToolsTab);
 
-        javax.swing.GroupLayout jInternalFrame3Layout = new javax.swing.GroupLayout(jInternalFrame3.getContentPane());
-        jInternalFrame3.getContentPane().setLayout(jInternalFrame3Layout);
-        jInternalFrame3Layout.setHorizontalGroup(
-            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+        javax.swing.GroupLayout jInternalFrameRegistersAndToolsTabLayout = new javax.swing.GroupLayout(jInternalFrameRegistersAndToolsTab.getContentPane());
+        jInternalFrameRegistersAndToolsTab.getContentPane().setLayout(jInternalFrameRegistersAndToolsTabLayout);
+        jInternalFrameRegistersAndToolsTabLayout.setHorizontalGroup(
+            jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabelErrorHang)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jTabbedPaneRegisters)
             .addComponent(jTabbedPaneTools)
         );
-        jInternalFrame3Layout.setVerticalGroup(
-            jInternalFrame3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame3Layout.createSequentialGroup()
+        jInternalFrameRegistersAndToolsTabLayout.setVerticalGroup(
+            jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
                 .addGap(7, 7, 7)
                 .addComponent(jTabbedPaneRegisters, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -761,7 +772,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addContainerGap())
         );
 
-        jTabbedPaneMemory.addTab("Registers & Tools", jInternalFrame3);
+        jTabbedPaneRegistersAndTools.addTab("Registers & Tools", jInternalFrameRegistersAndToolsTab);
 
         jTabbedPaneEditor.setName("jTabbedPaneEditor"); // NOI18N
 
@@ -1060,13 +1071,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
 
-    jTabbedPaneMemory1.setName("jTabbedPaneMemory1"); // NOI18N
+    jTabbedPaneMemory.setName("jTabbedPaneMemory"); // NOI18N
 
-    jInternalFrame2.setBorder(null);
-    jInternalFrame2.setResizable(true);
-    jInternalFrame2.setTitle("Memory Editor");
-    jInternalFrame2.setName("jInternalFrame2"); // NOI18N
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame2.getUI()).setNorthPane(null);
+    jInternalFrameMemoryTab.setBorder(null);
+    jInternalFrameMemoryTab.setResizable(true);
+    jInternalFrameMemoryTab.setTitle("Memory Editor");
+    jInternalFrameMemoryTab.setName("jInternalFrameMemoryTab"); // NOI18N
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameMemoryTab.getUI()).setNorthPane(null);
 
     jTextFieldMemBegin.setEditable(false);
     jTextFieldMemBegin.setText("0000");
@@ -1157,11 +1168,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     jLabel4.setText("Memory Range:");
     jLabel4.setName("jLabel4"); // NOI18N
 
-    javax.swing.GroupLayout jInternalFrame2Layout = new javax.swing.GroupLayout(jInternalFrame2.getContentPane());
-    jInternalFrame2.getContentPane().setLayout(jInternalFrame2Layout);
-    jInternalFrame2Layout.setHorizontalGroup(
-        jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrame2Layout.createSequentialGroup()
+    javax.swing.GroupLayout jInternalFrameMemoryTabLayout = new javax.swing.GroupLayout(jInternalFrameMemoryTab.getContentPane());
+    jInternalFrameMemoryTab.getContentPane().setLayout(jInternalFrameMemoryTabLayout);
+    jInternalFrameMemoryTabLayout.setHorizontalGroup(
+        jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
             .addComponent(jLabel4)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1174,10 +1185,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         .addComponent(jRadioButtonStoreMemoryLocation)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
     );
-    jInternalFrame2Layout.setVerticalGroup(
-        jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrame2Layout.createSequentialGroup()
-            .addGroup(jInternalFrame2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+    jInternalFrameMemoryTabLayout.setVerticalGroup(
+        jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+            .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                 .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel5)
@@ -1193,16 +1204,16 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             .addContainerGap())
     );
 
-    jTabbedPaneMemory1.addTab("Memory", jInternalFrame2);
+    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
 
-    jTabbedPaneMemory2.setName("jTabbedPaneMemory2"); // NOI18N
+    jTabbedPaneDevices.setName("jTabbedPaneDevices"); // NOI18N
 
-    jInternalFrame4.setBorder(null);
-    jInternalFrame4.setTitle("Interfacing device");
-    jInternalFrame4.setName("jInternalFrame4"); // NOI18N
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame4.getUI()).setNorthPane(null);
+    jInternalFrameDevicesTab.setBorder(null);
+    jInternalFrameDevicesTab.setTitle("Interfacing device");
+    jInternalFrameDevicesTab.setName("jInternalFrameDevicesTab"); // NOI18N
+    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameDevicesTab.getUI()).setNorthPane(null);
 
-    jTabbedPaneInterface.setName("jTabbedPaneInterface"); // NOI18N
+    jTabbedPaneIOPortEditor.setName("jTabbedPaneIOPortEditor"); // NOI18N
 
     jScrollPane4.setName("jScrollPane4"); // NOI18N
 
@@ -1240,9 +1251,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     jScrollPane4.setViewportView(jTablePort);
     jTablePort.getColumnModel().getColumn(0).setPreferredWidth(310);
 
-    jTabbedPaneInterface.addTab("I/O Port Editor", jScrollPane4);
+    jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
 
-    jTabbedPaneInterface1.setName("jTabbedPaneInterface1"); // NOI18N
+    jTabbedPane8255.setName("jTabbedPane8255"); // NOI18N
 
     jPanel8255.setName("jPanel8255"); // NOI18N
 
@@ -1342,26 +1353,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
     );
 
-    jTabbedPaneInterface1.addTab("8255", jPanel8255);
+    jTabbedPane8255.addTab("8255", jPanel8255);
 
-    javax.swing.GroupLayout jInternalFrame4Layout = new javax.swing.GroupLayout(jInternalFrame4.getContentPane());
-    jInternalFrame4.getContentPane().setLayout(jInternalFrame4Layout);
-    jInternalFrame4Layout.setHorizontalGroup(
-        jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addComponent(jTabbedPaneInterface1, javax.swing.GroupLayout.Alignment.TRAILING)
+    javax.swing.GroupLayout jInternalFrameDevicesTabLayout = new javax.swing.GroupLayout(jInternalFrameDevicesTab.getContentPane());
+    jInternalFrameDevicesTab.getContentPane().setLayout(jInternalFrameDevicesTabLayout);
+    jInternalFrameDevicesTabLayout.setHorizontalGroup(
+        jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        .addComponent(jTabbedPane8255, javax.swing.GroupLayout.Alignment.TRAILING)
     );
-    jInternalFrame4Layout.setVerticalGroup(
-        jInternalFrame4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrame4Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jTabbedPaneInterface, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+    jInternalFrameDevicesTabLayout.setVerticalGroup(
+        jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        .addGroup(jInternalFrameDevicesTabLayout.createSequentialGroup()
+            .addGap(7, 7, 7)
+            .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneInterface1, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(306, Short.MAX_VALUE))
+            .addComponent(jTabbedPane8255, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addContainerGap(312, Short.MAX_VALUE))
     );
 
-    jTabbedPaneMemory2.addTab("Devices", jInternalFrame4);
+    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
 
     jMenuBar1.setName("jMenuBar1"); // NOI18N
 
@@ -1899,13 +1910,13 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
         .addGroup(layout.createSequentialGroup()
             .addContainerGap()
-            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 801, Short.MAX_VALUE)
+            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneRegistersAndTools, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory1, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory2, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addContainerGap())
     );
     layout.setVerticalGroup(
@@ -1913,9 +1924,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         .addGroup(layout.createSequentialGroup()
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jTabbedPaneMemory1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPaneMemory2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPaneMemory))
+                .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jTabbedPaneRegistersAndTools))
             .addContainerGap())
     );
 
@@ -2021,7 +2032,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
 
-       jTabbedPaneMemory.setSelectedComponent(jTabbedPaneMemory.getComponentAt(1));
+       jTabbedPaneRegistersAndTools.setSelectedComponent(jTabbedPaneRegistersAndTools.getComponentAt(1));
        jTextFieldMemBegin.setEditable(true);
        jTextFieldMemStop.setEditable(true);
    }//GEN-LAST:event_jMenuItem1ActionPerformed
@@ -2450,38 +2461,38 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 
-       if (jTabbedPaneInterface.isVisible()) {
-           jTabbedPaneInterface.setVisible(false);
+       if (jTabbedPaneIOPortEditor.isVisible()) {
+           jTabbedPaneIOPortEditor.setVisible(false);
        } else {
-           jTabbedPaneInterface.setVisible(true);
+           jTabbedPaneIOPortEditor.setVisible(true);
        }
 
    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
    private void jCheckBoxMenuItemIOPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemIOPortActionPerformed
 
-       jTabbedPaneInterface.remove(jScrollPane4);
+       jTabbedPaneIOPortEditor.remove(jScrollPane4);
        if (jCheckBoxMenuItemIOPort.isSelected()) {
-           jTabbedPaneInterface.setVisible(true);
-           jTabbedPaneInterface.addTab("I/O Port Editor", jScrollPane4);
+           jTabbedPaneIOPortEditor.setVisible(true);
+           jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
        } else {
-           if (jTabbedPaneInterface.getTabCount() == 0) {
-               jTabbedPaneInterface.setVisible(false);
+           if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
+               jTabbedPaneIOPortEditor.setVisible(false);
            }
        }
 
 }//GEN-LAST:event_jCheckBoxMenuItemIOPortActionPerformed
 
    private void jCheckBoxMenuItemPeriphralInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
-       jTabbedPaneInterface.remove(jPanel8255);
+       jTabbedPaneIOPortEditor.remove(jPanel8255);
        if (jCheckBoxMenuItemPeriphralInterface.isSelected()) {
-           jTabbedPaneInterface.setVisible(true);
-           jTabbedPaneInterface.addTab("8255", jPanel8255);
+           jTabbedPaneIOPortEditor.setVisible(true);
+           jTabbedPaneIOPortEditor.addTab("8255", jPanel8255);
            //jScrollPane8.setVisible(false);
 
        } else {
-           if (jTabbedPaneInterface.getTabCount() == 0) {
-               jTabbedPaneInterface.setVisible(false);
+           if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
+               jTabbedPaneIOPortEditor.setVisible(false);
            }
        }
 
@@ -2802,7 +2813,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         }
         disAssemble();
         errorCheck();
-        */
+         */
     }//GEN-LAST:event_jButtonDisassembleActionPerformed
 
     private void jTabbedPaneAssemblerEditorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPaneAssemblerEditorMouseClicked
@@ -3109,52 +3120,16 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 n = n - (n % 16) + 16;
             }
             jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[n][17],
-                new String[]{
-                    "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-                }) {
-
-                    Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-                    };
-                    boolean[] canEdit = new boolean[]{
-                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-                    };
-
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
-                    }
-
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit[columnIndex];
-                    }
-                });
-                jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
-                matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-                matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
-                setMemory();
-            } catch (Exception e) {
-                Popup.show("Memory address should be in the format XXXF");
-                jTextFieldMemStop.setText("CFFF");
-                setMemory();
-            }
-    }//GEN-LAST:event_jTextFieldMemStopActionPerformed
-
-    private void jRadioButtonUsedMemoryLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUsedMemoryLocationActionPerformed
-
-        int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
-        int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
-        jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object[upper - lower + 1][2],
-            new String[]{
-                "Memory Address", "Value"
-            }) {
+                    new Object[n][17],
+                    new String[]{
+                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                    }) {
 
                 Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
-                    true, true
+                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
                 };
 
                 public Class getColumnClass(int columnIndex) {
@@ -3165,17 +3140,53 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                     return canEdit[columnIndex];
                 }
             });
-            for (int i = 0, row = 0; i <= (upper - lower); i++) {
-                if (matrix.memory[i + lower] != 0) {
-                    jTableMemory.setValueAt("                    " + engine.Dec2Hex(i + lower), row, 0);
-                    jTableMemory.setValueAt("                          " + engine.Dec2Hex2digit(matrix.memory[i + lower]), row, 1);
-                    row++;
-                }
+            jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
+            matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+            matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+            setMemory();
+        } catch (Exception e) {
+            Popup.show("Memory address should be in the format XXXF");
+            jTextFieldMemStop.setText("CFFF");
+            setMemory();
+        }
+    }//GEN-LAST:event_jTextFieldMemStopActionPerformed
+
+    private void jRadioButtonUsedMemoryLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonUsedMemoryLocationActionPerformed
+
+        int lower = engine.Hex2Dec(jTextFieldMemBegin.getText());
+        int upper = engine.Hex2Dec(jTextFieldMemStop.getText());
+        jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[upper - lower + 1][2],
+                new String[]{
+                    "Memory Address", "Value"
+                }) {
+
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
-            jRadioButtonShowAll.setSelected(false);
-            jRadioButtonStoreMemoryLocation.setSelected(false);
-            jRadioButtonUsedMemoryLocation.setSelected(true);
-            tableState = 1;
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        for (int i = 0, row = 0; i <= (upper - lower); i++) {
+            if (matrix.memory[i + lower] != 0) {
+                jTableMemory.setValueAt("                    " + engine.Dec2Hex(i + lower), row, 0);
+                jTableMemory.setValueAt("                          " + engine.Dec2Hex2digit(matrix.memory[i + lower]), row, 1);
+                row++;
+            }
+        }
+        jRadioButtonShowAll.setSelected(false);
+        jRadioButtonStoreMemoryLocation.setSelected(false);
+        jRadioButtonUsedMemoryLocation.setSelected(true);
+        tableState = 1;
     }//GEN-LAST:event_jRadioButtonUsedMemoryLocationActionPerformed
 
     private void jTableMemoryKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableMemoryKeyReleased
@@ -3211,30 +3222,30 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private void jRadioButtonStoreMemoryLocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonStoreMemoryLocationActionPerformed
 
         jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-            new Object[100][2],
-            new String[]{
-                "Memory Address", "Value"
-            }) {
+                new Object[100][2],
+                new String[]{
+                    "Memory Address", "Value"
+                }) {
 
-                Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class
-                };
-                boolean[] canEdit = new boolean[]{
-                    true, true
-                };
+            Class[] types = new Class[]{
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                true, true
+            };
 
-                public Class getColumnClass(int columnIndex) {
-                    return types[columnIndex];
-                }
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
 
-                public boolean isCellEditable(int rowIndex, int columnIndex) {
-                    return canEdit[columnIndex];
-                }
-            });
-            jRadioButtonShowAll.setSelected(false);
-            jRadioButtonUsedMemoryLocation.setSelected(false);
-            jRadioButtonStoreMemoryLocation.setSelected(true);
-            tableState = 1;
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jRadioButtonShowAll.setSelected(false);
+        jRadioButtonUsedMemoryLocation.setSelected(false);
+        jRadioButtonStoreMemoryLocation.setSelected(true);
+        tableState = 1;
     }//GEN-LAST:event_jRadioButtonStoreMemoryLocationActionPerformed
 
     private void jTextFieldMemBeginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldMemBeginActionPerformed
@@ -3254,36 +3265,36 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 n = n - (n % 16) + 16;
             }
             jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-                new Object[n][17],
-                new String[]{
-                    "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-                }) {
+                    new Object[n][17],
+                    new String[]{
+                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                    }) {
 
-                    Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-                    };
-                    boolean[] canEdit = new boolean[]{
-                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-                    };
+                Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                };
+                boolean[] canEdit = new boolean[]{
+                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+                };
 
-                    public Class getColumnClass(int columnIndex) {
-                        return types[columnIndex];
-                    }
+                public Class getColumnClass(int columnIndex) {
+                    return types[columnIndex];
+                }
 
-                    public boolean isCellEditable(int rowIndex, int columnIndex) {
-                        return canEdit[columnIndex];
-                    }
-                });
-                jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
-                matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-                matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
-                setMemory();
+                public boolean isCellEditable(int rowIndex, int columnIndex) {
+                    return canEdit[columnIndex];
+                }
+            });
+            jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(330);
+            matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+            matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+            setMemory();
 
-            } catch (Exception e) {
-                Popup.show("Memory address should be in the format XXX0");
-                jTextFieldMemBegin.setText("C000");
-                setMemory();
-            }
+        } catch (Exception e) {
+            Popup.show("Memory address should be in the format XXX0");
+            jTextFieldMemBegin.setText("C000");
+            setMemory();
+        }
     }//GEN-LAST:event_jTextFieldMemBeginActionPerformed
 
     private void jButtonAnalizeCWActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAnalizeCWActionPerformed
@@ -3306,6 +3317,98 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         ppi8255.get();
     }//GEN-LAST:event_jTable8255KeyReleased
+
+    private void formComponentResized(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentResized
+        // Whenever the form is resized, dynamically adjust the layout
+        adjustRegistersAndToolsPanel();
+        adjustDevicesPanel();
+
+        adjustFrameHorizontally();
+    }//GEN-LAST:event_formComponentResized
+
+    private void adjustRegistersAndToolsPanel() {
+        try {
+            // vertical adjustment
+            if (this.getHeight() < ADJUST_REGISTERS_AND_TOOLS_THRESHOLD) {
+                // adjustment in tools and registers panel
+                jTabbedPaneTools.setVisible(false);
+                jTabbedPaneRegisters.addTab("Tools", jTabbedPaneTools.getComponentAt(0));
+                jTabbedPaneTools.remove(0);
+            } else {
+                // adjustment in tools and registers panel
+                jTabbedPaneTools.setVisible(true);
+                jTabbedPaneTools.addTab("Tools", jTabbedPaneRegisters.getComponentAt(1));
+                jTabbedPaneRegisters.remove(1);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void adjustDevicesPanel() {
+        try {
+            // vertical adjustment
+            if (this.getHeight() < ADJUST_DEVICES_THRESHOLD) {
+                // adjustment in tools and registers panel
+                jTabbedPane8255.setVisible(false);
+                jTabbedPaneIOPortEditor.addTab("8255", jTabbedPane8255.getComponentAt(0));
+                jTabbedPane8255.remove(0);
+            } else {
+                // adjustment in tools and registers panel
+                jTabbedPane8255.setVisible(true);
+                jTabbedPane8255.addTab("8255", jTabbedPaneIOPortEditor.getComponentAt(1));
+                jTabbedPaneIOPortEditor.remove(1);
+            }
+        } catch (Exception e) {
+        }
+    }
+
+    private void adjustFrameHorizontally() {
+        try {
+            // horizontal adjustment
+            if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL1_THRESHOLD) {
+                jTabbedPaneDevices.setVisible(false);
+                jTabbedPaneMemory.setVisible(false);
+                
+                if(jTabbedPaneRegistersAndTools.getTabCount() == 1){
+                    jTabbedPaneMemory.remove(jInternalFrameMemoryTab);
+                    jTabbedPaneRegistersAndTools.addTab("Memory", jInternalFrameMemoryTab);
+                    jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
+                    jTabbedPaneRegistersAndTools.addTab("Devices", jInternalFrameDevicesTab);
+                }
+            }else if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL2_THRESHOLD) {
+                jTabbedPaneDevices.setVisible(false);
+                jTabbedPaneMemory.setVisible(true);
+                
+                if(jTabbedPaneRegistersAndTools.getTabCount() == 3){
+                    jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
+                    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
+                    jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
+                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+                }
+                
+                if(jTabbedPaneMemory.getTabCount() == 1){
+                    jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
+                    jTabbedPaneMemory.addTab("Devices", jInternalFrameDevicesTab);
+                }
+            } else {
+                jTabbedPaneDevices.setVisible(true);
+                jTabbedPaneMemory.setVisible(true);
+                
+                if(jTabbedPaneRegistersAndTools.getTabCount() == 3){
+                    jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
+                    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
+                    jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
+                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+                }
+                
+                if(jTabbedPaneMemory.getTabCount() == 2){
+                    jTabbedPaneMemory.remove(jInternalFrameDevicesTab);
+                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+                }
+            }
+        } catch (Exception e) {
+        }
+    }
 
     public void loadLabel() {
         int begin = engine.Hex2Dec(jTextFieldMemBegin.getText());
@@ -3681,11 +3784,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemIOPort;
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItemPeriphralInterface;
     private javax.swing.JInternalFrame jInternalFrame1;
-    private javax.swing.JInternalFrame jInternalFrame2;
-    private javax.swing.JInternalFrame jInternalFrame3;
-    private javax.swing.JInternalFrame jInternalFrame4;
     private javax.swing.JInternalFrame jInternalFrame5;
     private javax.swing.JInternalFrame jInternalFrame6;
+    private javax.swing.JInternalFrame jInternalFrameDevicesTab;
+    private javax.swing.JInternalFrame jInternalFrameMemoryTab;
+    private javax.swing.JInternalFrame jInternalFrameRegistersAndToolsTab;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
@@ -3748,9 +3851,9 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuItem jMenuItemSave_Hexcode;
     private javax.swing.JMenuItem jMenuItemStop;
     private javax.swing.JMenu jMenuSettings;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel8255;
+    private javax.swing.JPanel jPanelRegistersTab;
+    private javax.swing.JPanel jPanelToolsTab;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemNormal;
     private javax.swing.JRadioButtonMenuItem jRadioButtonMenuItemStepByStep;
@@ -3782,15 +3885,15 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
+    private javax.swing.JTabbedPane jTabbedPane8255;
     private javax.swing.JTabbedPane jTabbedPaneAssemblerEditor;
+    private javax.swing.JTabbedPane jTabbedPaneDevices;
     private javax.swing.JTabbedPane jTabbedPaneEditor;
-    private javax.swing.JTabbedPane jTabbedPaneInterface;
-    private javax.swing.JTabbedPane jTabbedPaneInterface1;
+    private javax.swing.JTabbedPane jTabbedPaneIOPortEditor;
     private javax.swing.JTabbedPane jTabbedPaneLabelEditor;
     private javax.swing.JTabbedPane jTabbedPaneMemory;
-    private javax.swing.JTabbedPane jTabbedPaneMemory1;
-    private javax.swing.JTabbedPane jTabbedPaneMemory2;
     private javax.swing.JTabbedPane jTabbedPaneRegisters;
+    private javax.swing.JTabbedPane jTabbedPaneRegistersAndTools;
     private javax.swing.JTabbedPane jTabbedPaneTools;
     public javax.swing.JTable jTable8255;
     javax.swing.JTable jTableAssembler;
@@ -3811,6 +3914,5 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JTextField jTextFieldMemBegin;
     private javax.swing.JTextField jTextFieldMemStop;
     // End of variables declaration//GEN-END:variables
-
 
 }
