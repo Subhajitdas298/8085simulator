@@ -1,5 +1,1 @@
 true
-# ORG 3000
-	   MVI A,05
-	   ADD A
-	   HLT
