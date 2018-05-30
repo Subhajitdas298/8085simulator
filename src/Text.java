@@ -20,7 +20,7 @@ import javax.swing.text.StyledDocument;
  *
  * @author Jubin
  */
-public class text extends javax.swing.JFrame {
+public class Text extends javax.swing.JFrame {
 
     Hexcode h = new Hexcode();
     Preprocessor p = new Preprocessor();
@@ -29,7 +29,7 @@ public class text extends javax.swing.JFrame {
     /**
      * Creates new form text
      */
-    public text() {
+    public Text() {
         //initComponents();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
@@ -76,7 +76,7 @@ public class text extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextPane1.setFont(new java.awt.Font("Tahoma", 1, 11));
+        jTextPane1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTextPane1.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextPane1FocusLost(evt);
@@ -297,7 +297,7 @@ public class text extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
             public void run() {
-                new text().setVisible(true);
+                new Text().setVisible(true);
 
             }
         });

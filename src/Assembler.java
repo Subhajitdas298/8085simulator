@@ -74,6 +74,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         //jTableAssembler.setRowSelectionAllowed(true);
         //jTableAssembler.setRowSelectionInterval(0, 1);
 
+        Util.customizeFrame(this);
     }
 
     public void sampleCode() {
@@ -324,7 +325,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        setTitle("8085 Simulator");
+        setTitle("jSim8085");
         setBounds(new java.awt.Rectangle(20, 0, 200, 0));
         setFont(new java.awt.Font("Tahoma", 0, 10)); // NOI18N
         setMaximumSize(new java.awt.Dimension(0, 0));
@@ -2280,6 +2281,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        if (fileChooser.objectNo == 0) {
            fileChooser = new FileChooser("Load Mnemonics", this);
        }
+       Util.customizeFrame(fileChooser);
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
 
@@ -2287,6 +2289,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        if (fileChooser.objectNo == 0) {
            fileChooser = new FileChooser("Load Hexcode", this);
        }
+       Util.customizeFrame(fileChooser);
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemLoad_HexcodeActionPerformed
 
@@ -2300,6 +2303,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        if (fileChooser.objectNo == 0) {
            fileChooser = new FileChooser("Save Mnemonics", this);
        }
+       Util.customizeFrame(fileChooser);
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
 
@@ -2313,6 +2317,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        if (fileChooser.objectNo == 0) {
            fileChooser = new FileChooser("Save Hexcode", this);
        }
+       Util.customizeFrame(fileChooser);
        fileChooser.setVisible(true);
    }//GEN-LAST:event_jMenuItemSave_HexcodeActionPerformed
 

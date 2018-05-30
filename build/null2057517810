@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Ant-Version: Apache Ant 1.9.7
+Created-By: 1.8.0_171-b11 (Oracle Corporation)
+Codebase: D:\Dropbox\Programming\Java\8085simulator\dist
+Application-Library-Allowable-Codebase: D:\Dropbox\Programming\Java\80
+ 85simulator\dist
+Caller-Allowable-Codebase: D:\Dropbox\Programming\Java\8085simulator\d
+ ist
+Permissions: sandbox
+Application-Name: JSim8085
+
