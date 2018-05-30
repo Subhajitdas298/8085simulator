@@ -362,7 +362,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jScrollPane12.setName("jScrollPane12"); // NOI18N
 
-        jTableRegister.setBackground(new java.awt.Color(204, 204, 255));
+        jTableRegister.setBackground(new java.awt.Color(242, 253, 228));
         jTableRegister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableRegister.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -456,7 +456,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jScrollPane18.setName("jScrollPane18"); // NOI18N
 
-        jTableInterrupt.setBackground(new java.awt.Color(0, 206, 206));
+        jTableInterrupt.setBackground(new java.awt.Color(153, 255, 255));
         jTableInterrupt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableInterrupt.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -502,7 +502,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jScrollPane13.setName("jScrollPane13"); // NOI18N
 
-        jTableFlagregister.setBackground(new java.awt.Color(255, 153, 255));
+        jTableFlagregister.setBackground(new java.awt.Color(255, 204, 204));
         jTableFlagregister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableFlagregister.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -889,7 +889,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         jScrollPane16.setName("jScrollPane16"); // NOI18N
 
-        jTableAssembler.setBackground(new java.awt.Color(176, 194, 158));
+        jTableAssembler.setBackground(new java.awt.Color(195, 223, 238));
         jTableAssembler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableAssembler.setModel(new javax.swing.table.DefaultTableModel(
             new Object [1000][8] ,
@@ -916,6 +916,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     );
     jTableAssembler.setName("jTableAssembler"); // NOI18N
     jTableAssembler.setRowSelectionAllowed(true);
+    jTableAssembler.setSelectionBackground(new java.awt.Color(204, 255, 255));
     jTableAssembler.getTableHeader().setReorderingAllowed(false);
     jTableAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
         public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1217,7 +1218,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     jScrollPaneIOPorts.setName("jScrollPaneIOPorts"); // NOI18N
 
-    jTablePort.setBackground(new java.awt.Color(204, 255, 204));
+    jTablePort.setBackground(new java.awt.Color(204, 255, 236));
     jTablePort.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
     jTablePort.setModel(new javax.swing.table.DefaultTableModel(
         new Object [16][17],
