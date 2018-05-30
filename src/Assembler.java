@@ -20,7 +20,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     private final int ADJUST_REGISTERS_AND_TOOLS_THRESHOLD = 840;
     private final int ADJUST_DEVICES_THRESHOLD = 740;
-    
+
     private final int ADJUST_HORIZONTAL_LEVEL1_THRESHOLD = 1200;
     private final int ADJUST_HORIZONTAL_LEVEL2_THRESHOLD = 1600;
 
@@ -70,7 +70,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jScrollPane16.setVisible(true);
         jMenu12.setVisible(false);
         jTabbedPaneIOPortEditor.setVisible(true);
-        jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
+        jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
         //jTableAssembler.setRowSelectionAllowed(true);
         //jTableAssembler.setRowSelectionInterval(0, 1);
 
@@ -235,7 +235,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTabbedPaneDevices = new javax.swing.JTabbedPane();
         jInternalFrameDevicesTab = new javax.swing.JInternalFrame();
         jTabbedPaneIOPortEditor = new javax.swing.JTabbedPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
+        jScrollPaneIOPorts = new javax.swing.JScrollPane();
         jTablePort = new javax.swing.JTable();
         jTabbedPane8255 = new javax.swing.JTabbedPane();
         jPanel8255 = new javax.swing.JPanel();
@@ -1215,7 +1215,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     jTabbedPaneIOPortEditor.setName("jTabbedPaneIOPortEditor"); // NOI18N
 
-    jScrollPane4.setName("jScrollPane4"); // NOI18N
+    jScrollPaneIOPorts.setName("jScrollPaneIOPorts"); // NOI18N
 
     jTablePort.setBackground(new java.awt.Color(204, 255, 204));
     jTablePort.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1248,10 +1248,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTablePortKeyReleased(evt);
         }
     });
-    jScrollPane4.setViewportView(jTablePort);
+    jScrollPaneIOPorts.setViewportView(jTablePort);
     jTablePort.getColumnModel().getColumn(0).setPreferredWidth(310);
 
-    jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
+    jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
 
     jTabbedPane8255.setName("jTabbedPane8255"); // NOI18N
 
@@ -2471,10 +2471,10 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
    private void jCheckBoxMenuItemIOPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemIOPortActionPerformed
 
-       jTabbedPaneIOPortEditor.remove(jScrollPane4);
+       jTabbedPaneIOPortEditor.remove(jScrollPaneIOPorts);
        if (jCheckBoxMenuItemIOPort.isSelected()) {
            jTabbedPaneIOPortEditor.setVisible(true);
-           jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPane4);
+           jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
        } else {
            if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
                jTabbedPaneIOPortEditor.setVisible(false);
@@ -3327,86 +3327,87 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_formComponentResized
 
     private void adjustRegistersAndToolsPanel() {
-        try {
-            // vertical adjustment
-            if (this.getHeight() < ADJUST_REGISTERS_AND_TOOLS_THRESHOLD) {
-                // adjustment in tools and registers panel
-                jTabbedPaneTools.setVisible(false);
-                jTabbedPaneRegisters.addTab("Tools", jTabbedPaneTools.getComponentAt(0));
-                jTabbedPaneTools.remove(0);
-            } else {
-                // adjustment in tools and registers panel
-                jTabbedPaneTools.setVisible(true);
-                jTabbedPaneTools.addTab("Tools", jTabbedPaneRegisters.getComponentAt(1));
-                jTabbedPaneRegisters.remove(1);
+        // vertical adjustment
+        if (this.getHeight() < ADJUST_REGISTERS_AND_TOOLS_THRESHOLD) {
+            // adjustment in tools and registers panel
+            jTabbedPaneTools.setVisible(false);
+
+            if (jTabbedPaneRegisters.getTabCount() == 1) {
+                jTabbedPaneTools.remove(jPanelToolsTab);
+                jTabbedPaneRegisters.addTab("Tools", jPanelToolsTab);
             }
-        } catch (Exception e) {
+        } else {
+            // adjustment in tools and registers panel
+            jTabbedPaneTools.setVisible(true);
+
+            if (jTabbedPaneRegisters.getTabCount() == 2) {
+                jTabbedPaneRegisters.remove(jPanelToolsTab);
+                jTabbedPaneTools.addTab("Tools", jPanelToolsTab);
+            }
         }
     }
 
     private void adjustDevicesPanel() {
-        try {
-            // vertical adjustment
-            if (this.getHeight() < ADJUST_DEVICES_THRESHOLD) {
-                // adjustment in tools and registers panel
-                jTabbedPane8255.setVisible(false);
-                jTabbedPaneIOPortEditor.addTab("8255", jTabbedPane8255.getComponentAt(0));
-                jTabbedPane8255.remove(0);
-            } else {
-                // adjustment in tools and registers panel
-                jTabbedPane8255.setVisible(true);
-                jTabbedPane8255.addTab("8255", jTabbedPaneIOPortEditor.getComponentAt(1));
-                jTabbedPaneIOPortEditor.remove(1);
+        // vertical adjustment
+        if (this.getHeight() < ADJUST_DEVICES_THRESHOLD) {
+            jTabbedPane8255.setVisible(false);
+
+            if (jTabbedPaneIOPortEditor.getTabCount() == 1) {
+                jTabbedPane8255.remove(jPanel8255);
+                jTabbedPaneIOPortEditor.addTab("8255", jPanel8255);
             }
-        } catch (Exception e) {
+        } else {
+            jTabbedPane8255.setVisible(true);
+
+            if (jTabbedPaneIOPortEditor.getTabCount() == 2) {
+                jTabbedPaneIOPortEditor.remove(jPanel8255);
+                jTabbedPane8255.addTab("8255", jPanel8255);
+            }
         }
     }
 
     private void adjustFrameHorizontally() {
-        try {
-            // horizontal adjustment
-            if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL1_THRESHOLD) {
-                jTabbedPaneDevices.setVisible(false);
-                jTabbedPaneMemory.setVisible(false);
-                
-                if(jTabbedPaneRegistersAndTools.getTabCount() == 1){
-                    jTabbedPaneMemory.remove(jInternalFrameMemoryTab);
-                    jTabbedPaneRegistersAndTools.addTab("Memory", jInternalFrameMemoryTab);
-                    jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
-                    jTabbedPaneRegistersAndTools.addTab("Devices", jInternalFrameDevicesTab);
-                }
-            }else if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL2_THRESHOLD) {
-                jTabbedPaneDevices.setVisible(false);
-                jTabbedPaneMemory.setVisible(true);
-                
-                if(jTabbedPaneRegistersAndTools.getTabCount() == 3){
-                    jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
-                    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
-                    jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
-                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
-                }
-                
-                if(jTabbedPaneMemory.getTabCount() == 1){
-                    jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
-                    jTabbedPaneMemory.addTab("Devices", jInternalFrameDevicesTab);
-                }
-            } else {
-                jTabbedPaneDevices.setVisible(true);
-                jTabbedPaneMemory.setVisible(true);
-                
-                if(jTabbedPaneRegistersAndTools.getTabCount() == 3){
-                    jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
-                    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
-                    jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
-                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
-                }
-                
-                if(jTabbedPaneMemory.getTabCount() == 2){
-                    jTabbedPaneMemory.remove(jInternalFrameDevicesTab);
-                    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
-                }
+        // horizontal adjustment
+        if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL1_THRESHOLD) {
+            jTabbedPaneDevices.setVisible(false);
+            jTabbedPaneMemory.setVisible(false);
+
+            if (jTabbedPaneRegistersAndTools.getTabCount() == 1) {
+                jTabbedPaneMemory.remove(jInternalFrameMemoryTab);
+                jTabbedPaneRegistersAndTools.addTab("Memory", jInternalFrameMemoryTab);
+                jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
+                jTabbedPaneRegistersAndTools.addTab("Devices", jInternalFrameDevicesTab);
             }
-        } catch (Exception e) {
+        } else if (this.getWidth() < ADJUST_HORIZONTAL_LEVEL2_THRESHOLD) {
+            jTabbedPaneDevices.setVisible(false);
+            jTabbedPaneMemory.setVisible(true);
+
+            if (jTabbedPaneRegistersAndTools.getTabCount() == 3) {
+                jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
+                jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
+                jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
+                jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+            }
+
+            if (jTabbedPaneMemory.getTabCount() == 1) {
+                jTabbedPaneDevices.remove(jInternalFrameDevicesTab);
+                jTabbedPaneMemory.addTab("Devices", jInternalFrameDevicesTab);
+            }
+        } else {
+            jTabbedPaneDevices.setVisible(true);
+            jTabbedPaneMemory.setVisible(true);
+
+            if (jTabbedPaneRegistersAndTools.getTabCount() == 3) {
+                jTabbedPaneRegistersAndTools.remove(jInternalFrameMemoryTab);
+                jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
+                jTabbedPaneRegistersAndTools.remove(jInternalFrameDevicesTab);
+                jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+            }
+
+            if (jTabbedPaneMemory.getTabCount() == 2) {
+                jTabbedPaneMemory.remove(jInternalFrameDevicesTab);
+                jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+            }
         }
     }
 
@@ -3870,12 +3871,12 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JScrollPane jScrollPane18;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JScrollPane jScrollPaneIOPorts;
     private javax.swing.JSeparator jSeparator10;
     private javax.swing.JSeparator jSeparator11;
     private javax.swing.JSeparator jSeparator2;
