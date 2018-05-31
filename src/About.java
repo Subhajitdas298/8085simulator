@@ -25,6 +25,7 @@ public class About extends JFrame {
 
     public About() {
         initComponents();
+        Util.customizeFrame(this);
     }
 
     private void initComponents() {
@@ -61,7 +62,7 @@ public class About extends JFrame {
         versionLabel.setFont(versionLabel.getFont().deriveFont(versionLabel.getFont().getStyle() | 0x1));
         versionLabel.setText("Product Version :");
 
-        appVersionLabel.setText("2.1");
+        appVersionLabel.setText("2.2");
 
         vendorLabel.setFont(vendorLabel.getFont().deriveFont(vendorLabel.getFont().getStyle() | 0x1));
         vendorLabel.setText("Created by : ");
@@ -75,7 +76,7 @@ public class About extends JFrame {
         currentAuthorLabel.setText("Subhajit Das");
         currentAuthorContactLabel.setFont(vendorContactLabel.getFont().deriveFont(vendorContactLabel.getFont().getStyle() | 0x1));
         currentAuthorContactLabel.setText("Contact : ");
-        currentAuthorContactValueLabel.setText("<html> <a href=\"\">https://github.com/Subhajitdas298/8085simulator/</a></html>");
+        currentAuthorContactValueLabel.setText("<html> <a href=\"\">https://github.com/Subhajitdas298/jSim8085/</a></html>");
 
         this.jButton1.setMnemonic('c');
         this.jButton1.setText("Close");
@@ -113,7 +114,7 @@ public class About extends JFrame {
             @Override
             public void mouseClicked(MouseEvent e) {
                 try {
-                    Desktop.getDesktop().browse(new URI("https://github.com/Subhajitdas298/8085simulator/"));
+                    Desktop.getDesktop().browse(new URI("https://github.com/Subhajitdas298/jSim8085/"));
                 } catch (Exception ex) {
                     //It looks like there's a problem
                 }
