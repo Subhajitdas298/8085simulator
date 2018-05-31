@@ -2045,20 +2045,20 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
        String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
 
-        switch (select) {
-            case 0:
-                jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
-                jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
-                break;
-            case 1:
-                jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
-                jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
-                break;
-            default:
-                jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
-                jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
-                break;
-        }
+       switch (select) {
+           case 0:
+               jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
+               jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
+               break;
+           case 1:
+               jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
+               jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
+               break;
+           default:
+               jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
+               jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
+               break;
+       }
    }//GEN-LAST:event_jTableNoConverterKeyReleased
 
    private void jMenuItemClearMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearMemoryActionPerformed
@@ -3765,7 +3765,12 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Assembler a = new Assembler();
+                
+                // force window fullscreen and force show
+                a.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 a.setVisible(true);
+                a.setAlwaysOnTop(true);
+                a.setAlwaysOnTop(false);
                 //Registration r = new Registration(a);
                 //r.setVisible(!r.registered);
                 //a.setEnabled(r.registered);
