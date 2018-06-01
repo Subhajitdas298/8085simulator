@@ -19,6 +19,7 @@ public class SteperMotor extends javax.swing.JFrame {
     public SteperMotor() {
         initComponents();
         c = (CanvasDraw) canvas1;
+        Util.customizeFrame(this);
     }
 
     @SuppressWarnings("unchecked")

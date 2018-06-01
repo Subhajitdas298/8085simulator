@@ -233,6 +233,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTextFieldMemStop = new javax.swing.JTextField();
         jRadioButtonShowAll = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jTabbedPaneDevices = new javax.swing.JTabbedPane();
         jInternalFrameDevicesTab = new javax.swing.JInternalFrame();
         jTabbedPaneIOPortEditor = new javax.swing.JTabbedPane();
@@ -275,7 +276,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jSeparator9 = new javax.swing.JSeparator();
         jMenuItemAutocorrect = new javax.swing.JMenuItem();
         jMenuSettings = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jRadioButtonMenuItemStepByStep = new javax.swing.JRadioButtonMenuItem();
         jRadioButtonMenuItemNormal = new javax.swing.JRadioButtonMenuItem();
@@ -1170,22 +1170,37 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     jLabel4.setText("Memory Range:");
     jLabel4.setName("jLabel4"); // NOI18N
 
+    jLabel1.setDisplayedMnemonic('E');
+    jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+    jLabel1.setText("Edit");
+    jLabel1.setName("jLabel1"); // NOI18N
+    jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        public void mouseClicked(java.awt.event.MouseEvent evt) {
+            jLabel1MouseClicked(evt);
+        }
+    });
+
     javax.swing.GroupLayout jInternalFrameMemoryTabLayout = new javax.swing.GroupLayout(jInternalFrameMemoryTab.getContentPane());
     jInternalFrameMemoryTab.getContentPane().setLayout(jInternalFrameMemoryTabLayout);
     jInternalFrameMemoryTabLayout.setHorizontalGroup(
         jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
-            .addComponent(jLabel4)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabel5)
-            .addGap(10, 10, 10)
-            .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        .addComponent(jRadioButtonShowAll)
-        .addComponent(jRadioButtonUsedMemoryLocation)
-        .addComponent(jRadioButtonStoreMemoryLocation)
         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+            .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+                    .addComponent(jLabel4)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel5)
+                    .addGap(10, 10, 10)
+                    .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel1))
+                .addComponent(jRadioButtonShowAll)
+                .addComponent(jRadioButtonUsedMemoryLocation)
+                .addComponent(jRadioButtonStoreMemoryLocation))
+            .addGap(0, 103, Short.MAX_VALUE))
     );
     jInternalFrameMemoryTabLayout.setVerticalGroup(
         jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1194,7 +1209,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addComponent(jLabel5)
-                .addComponent(jLabel4))
+                .addComponent(jLabel4)
+                .addComponent(jLabel1))
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1597,16 +1613,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
     jMenuSettings.setText("Settings");
     jMenuSettings.setName("jMenuSettings"); // NOI18N
-
-    jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_M, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem1.setText("Set Memory Range");
-    jMenuItem1.setName("jMenuItem1"); // NOI18N
-    jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem1ActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItem1);
 
     jMenu4.setText("Simulation Speed");
     jMenu4.setName("jMenu4"); // NOI18N
@@ -2031,13 +2037,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
        closeButtonFileSave();
    }//GEN-LAST:event_jMenuItemExitActionPerformed
-
-   private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-
-       jTabbedPaneRegistersAndTools.setSelectedComponent(jTabbedPaneRegistersAndTools.getComponentAt(1));
-       jTextFieldMemBegin.setEditable(true);
-       jTextFieldMemStop.setEditable(true);
-   }//GEN-LAST:event_jMenuItem1ActionPerformed
 
    private void jTableNoConverterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNoConverterKeyReleased
        int select = jTableNoConverter.getSelectedColumn();
@@ -3310,10 +3309,8 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         s = "Control Word Analysis : \n";
         if ((ppi8255.CRin & 128) == 128) {
             s = s + "Bit No. 7:  It is set to 1, therefore Port A, B & C are defined as I/O Port.";
-
         } else {
             s = s + "Bit No. 7:  It is set to 0, therefore Port C are to be set or reset.";
-
         }
 
         jTextArea8255.setText(s);
@@ -3331,6 +3328,11 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
         adjustFrameHorizontally();
     }//GEN-LAST:event_formComponentResized
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        jTextFieldMemBegin.setEditable(true);
+        jTextFieldMemStop.setEditable(true);
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     private void adjustRegistersAndToolsPanel() {
         // vertical adjustment
@@ -3765,7 +3767,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 Assembler a = new Assembler();
-                
+
                 // force window fullscreen and force show
                 a.setExtendedState(JFrame.MAXIMIZED_BOTH);
                 a.setVisible(true);
@@ -3801,6 +3803,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JInternalFrame jInternalFrameDevicesTab;
     private javax.swing.JInternalFrame jInternalFrameMemoryTab;
     private javax.swing.JInternalFrame jInternalFrameRegistersAndToolsTab;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel4;
@@ -3824,7 +3827,6 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenu jMenuFile;
     private javax.swing.JMenu jMenuHelp;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem12;

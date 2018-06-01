@@ -22,7 +22,7 @@ public class FileChooser extends javax.swing.JFrame {
             initComponents();
         }
         jFileChooser1.setApproveButtonText("Open");
-
+        Util.customizeFrame(this);
     }
 
     public FileChooser(String s, Assembler o) {

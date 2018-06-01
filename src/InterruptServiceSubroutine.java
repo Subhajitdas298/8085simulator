@@ -6,6 +6,7 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
 
     public InterruptServiceSubroutine() {
         initComponents();
+        Util.customizeFrame(this);
     }
 
     String Rst0, Rst1, Rst2, Rst3, Rst4, Rst5, Rst55, Rst6, Rst65, Rst7, Rst75, Trap;
@@ -16,6 +17,7 @@ public class InterruptServiceSubroutine extends javax.swing.JFrame {
         initComponents();
         initialize();
         setJtextField();
+        Util.customizeFrame(this);
     }
 
     public void initialize() {

@@ -8,7 +8,6 @@ public class PPI8255 implements Runnable {
     Assembler o;
 
     public PPI8255() {
-
     }
 
     public PPI8255(Assembler assembler) {

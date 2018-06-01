@@ -8,7 +8,7 @@ public class TimingDiagram extends javax.swing.JFrame {
     public TimingDiagram() {
         initComponents();
         ((TimingPaint) jPanel1).memoryCycleDecoder(new Assembler(), "C000");
-
+        Util.customizeFrame(this);
     }
 
     private Assembler o;
@@ -17,7 +17,7 @@ public class TimingDiagram extends javax.swing.JFrame {
         this.o = o;
         initComponents();
         ((TimingPaint) jPanel1).memoryCycleDecoder(o, address);
-
+        Util.customizeFrame(this);
     }
 
     @SuppressWarnings("unchecked")
