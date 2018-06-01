@@ -1,39 +1,38 @@
 
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.net.URL;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
 
-public class trainer extends javax.swing.JFrame implements Runnable {
+public class Trainer extends javax.swing.JFrame implements Runnable {
 
     Assembler o = null;
     char c4 = '0', c3 = '0', c2 = '0', c1 = '0', d2 = '0', d1 = '0';
     boolean reg = false, mem = false, set = false, go = false;
     ExecutorService exec = Executors.newCachedThreadPool();
 
-    public trainer() {
+    public Trainer() {
         initComponents();
-        ((trainerCanvas) canvas44).reDraw('f');
-        ((trainerCanvas) canvas43).reDraw('r');
-        ((trainerCanvas) canvas42).reDraw('i');
-        ((trainerCanvas) canvas41).reDraw('e');
-        ((trainerCanvas) canvas22).reDraw('n');
-        ((trainerCanvas) canvas21).reDraw('d');
+        ((TrainerCanvas) canvas44).reDraw('f');
+        ((TrainerCanvas) canvas43).reDraw('r');
+        ((TrainerCanvas) canvas42).reDraw('i');
+        ((TrainerCanvas) canvas41).reDraw('e');
+        ((TrainerCanvas) canvas22).reDraw('n');
+        ((TrainerCanvas) canvas21).reDraw('d');
+
+        Util.customizeFrame(this);
     }
 
-    public trainer(Assembler o) {
+    public Trainer(Assembler o) {
         this.o = o;
         initComponents();
-        ((trainerCanvas) canvas44).reDraw('f');
-        ((trainerCanvas) canvas43).reDraw('r');
-        ((trainerCanvas) canvas42).reDraw('i');
-        ((trainerCanvas) canvas41).reDraw('e');
-        ((trainerCanvas) canvas22).reDraw('n');
-        ((trainerCanvas) canvas21).reDraw('d');
+        ((TrainerCanvas) canvas44).reDraw('f');
+        ((TrainerCanvas) canvas43).reDraw('r');
+        ((TrainerCanvas) canvas42).reDraw('i');
+        ((TrainerCanvas) canvas41).reDraw('e');
+        ((TrainerCanvas) canvas22).reDraw('n');
+        ((TrainerCanvas) canvas21).reDraw('d');
+
+        Util.customizeFrame(this);
 
     }
 
@@ -70,13 +69,13 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         buttonHalt = new java.awt.Button();
         buttonGo = new java.awt.Button();
         buttonPrev = new java.awt.Button();
-        canvas43 = new trainerCanvas(c2);
-        canvas42 = new trainerCanvas(c3);
-        canvas44 = new trainerCanvas('6');
+        canvas43 = new TrainerCanvas(c2);
+        canvas42 = new TrainerCanvas(c3);
+        canvas44 = new TrainerCanvas('6');
         buttonReset = new java.awt.Button();
-        canvas41 = new trainerCanvas(c4);
-        canvas22 = new trainerCanvas(d1);
-        canvas21 = new trainerCanvas(d2);
+        canvas41 = new TrainerCanvas(c4);
+        canvas22 = new TrainerCanvas(d1);
+        canvas21 = new TrainerCanvas(d2);
         buttonNext = new java.awt.Button();
         canvas7 = new java.awt.Canvas();
         canvas1 = new java.awt.Canvas();
@@ -94,7 +93,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button1B.setBackground(new java.awt.Color(0, 0, 0));
-        button1B.setFont(new java.awt.Font("Dialog", 1, 12));
+        button1B.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button1B.setForeground(new java.awt.Color(255, 255, 255));
         button1B.setLabel("1 B");
         button1B.setName("button1B"); // NOI18N
@@ -110,7 +109,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button2C.setBackground(new java.awt.Color(0, 0, 0));
-        button2C.setFont(new java.awt.Font("Dialog", 1, 12));
+        button2C.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button2C.setForeground(new java.awt.Color(255, 255, 255));
         button2C.setLabel("2 C");
         button2C.setName("button2C"); // NOI18N
@@ -127,7 +126,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         button8.setActionCommand("8 SP");
         button8.setBackground(new java.awt.Color(0, 0, 0));
-        button8.setFont(new java.awt.Font("Dialog", 1, 12));
+        button8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button8.setForeground(new java.awt.Color(255, 255, 255));
         button8.setLabel("8 SP");
         button8.setName("button8"); // NOI18N
@@ -143,7 +142,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button0A.setBackground(new java.awt.Color(0, 0, 0));
-        button0A.setFont(new java.awt.Font("Dialog", 1, 12));
+        button0A.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button0A.setForeground(new java.awt.Color(255, 255, 255));
         button0A.setLabel("0  A");
         button0A.setName("button0A"); // NOI18N
@@ -159,7 +158,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button5H.setBackground(new java.awt.Color(0, 0, 0));
-        button5H.setFont(new java.awt.Font("Dialog", 1, 12));
+        button5H.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button5H.setForeground(new java.awt.Color(255, 255, 255));
         button5H.setLabel("5 H");
         button5H.setName("button5H"); // NOI18N
@@ -175,7 +174,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button6L.setBackground(new java.awt.Color(0, 0, 0));
-        button6L.setFont(new java.awt.Font("Dialog", 1, 12));
+        button6L.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button6L.setForeground(new java.awt.Color(255, 255, 255));
         button6L.setLabel("6 L");
         button6L.setName("button6L"); // NOI18N
@@ -191,7 +190,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button7M.setBackground(new java.awt.Color(0, 0, 0));
-        button7M.setFont(new java.awt.Font("Dialog", 1, 12));
+        button7M.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button7M.setForeground(new java.awt.Color(255, 255, 255));
         button7M.setLabel("7 M");
         button7M.setName("button7M"); // NOI18N
@@ -207,7 +206,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button3D.setBackground(new java.awt.Color(0, 0, 0));
-        button3D.setFont(new java.awt.Font("Dialog", 1, 12));
+        button3D.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button3D.setForeground(new java.awt.Color(255, 255, 255));
         button3D.setLabel("3 D");
         button3D.setName("button3D"); // NOI18N
@@ -223,7 +222,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonC.setBackground(new java.awt.Color(0, 0, 0));
-        buttonC.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonC.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonC.setForeground(new java.awt.Color(255, 255, 255));
         buttonC.setLabel("C");
         buttonC.setName("buttonC"); // NOI18N
@@ -239,7 +238,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button9.setBackground(new java.awt.Color(0, 0, 0));
-        button9.setFont(new java.awt.Font("Dialog", 1, 12));
+        button9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button9.setForeground(new java.awt.Color(255, 255, 255));
         button9.setLabel("9 PC");
         button9.setName("button9"); // NOI18N
@@ -255,7 +254,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonA.setBackground(new java.awt.Color(0, 0, 0));
-        buttonA.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonA.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonA.setForeground(new java.awt.Color(255, 255, 255));
         buttonA.setLabel("A");
         buttonA.setName("buttonA"); // NOI18N
@@ -271,7 +270,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonB.setBackground(new java.awt.Color(0, 0, 0));
-        buttonB.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonB.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonB.setForeground(new java.awt.Color(255, 255, 255));
         buttonB.setLabel("B");
         buttonB.setName("buttonB"); // NOI18N
@@ -287,7 +286,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonD.setBackground(new java.awt.Color(0, 0, 0));
-        buttonD.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonD.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonD.setForeground(new java.awt.Color(255, 255, 255));
         buttonD.setLabel("D");
         buttonD.setName("buttonD"); // NOI18N
@@ -303,7 +302,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonE.setBackground(new java.awt.Color(0, 0, 0));
-        buttonE.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonE.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonE.setForeground(new java.awt.Color(255, 255, 255));
         buttonE.setLabel("E");
         buttonE.setName("buttonE"); // NOI18N
@@ -319,7 +318,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonReg.setBackground(new java.awt.Color(102, 102, 255));
-        buttonReg.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonReg.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonReg.setForeground(new java.awt.Color(255, 255, 255));
         buttonReg.setLabel("REG");
         buttonReg.setName("buttonReg"); // NOI18N
@@ -335,7 +334,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         button4E.setBackground(new java.awt.Color(0, 0, 0));
-        button4E.setFont(new java.awt.Font("Dialog", 1, 12));
+        button4E.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         button4E.setForeground(new java.awt.Color(255, 255, 255));
         button4E.setLabel("4 E");
         button4E.setName("button4E"); // NOI18N
@@ -351,7 +350,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonF.setBackground(new java.awt.Color(0, 0, 0));
-        buttonF.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonF.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonF.setForeground(new java.awt.Color(255, 255, 255));
         buttonF.setLabel("F");
         buttonF.setName("buttonF"); // NOI18N
@@ -367,7 +366,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonExec.setBackground(new java.awt.Color(102, 102, 255));
-        buttonExec.setFont(new java.awt.Font("Arial Narrow", 1, 12));
+        buttonExec.setFont(new java.awt.Font("Arial Narrow", 1, 12)); // NOI18N
         buttonExec.setForeground(new java.awt.Color(255, 255, 255));
         buttonExec.setLabel("EXEC");
         buttonExec.setName("buttonExec"); // NOI18N
@@ -383,7 +382,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonMem.setBackground(new java.awt.Color(102, 102, 255));
-        buttonMem.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonMem.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonMem.setForeground(new java.awt.Color(255, 255, 255));
         buttonMem.setLabel("SET / MEM");
         buttonMem.setName("buttonMem"); // NOI18N
@@ -400,7 +399,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         buttonHalt.setActionCommand("SET");
         buttonHalt.setBackground(new java.awt.Color(102, 102, 255));
-        buttonHalt.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonHalt.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonHalt.setForeground(new java.awt.Color(255, 255, 255));
         buttonHalt.setLabel("Halt ");
         buttonHalt.setName("buttonHalt"); // NOI18N
@@ -416,7 +415,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         });
 
         buttonGo.setBackground(new java.awt.Color(102, 102, 255));
-        buttonGo.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonGo.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonGo.setForeground(new java.awt.Color(255, 255, 255));
         buttonGo.setLabel("GO");
         buttonGo.setName("buttonGo"); // NOI18N
@@ -433,7 +432,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         buttonPrev.setActionCommand("PREV");
         buttonPrev.setBackground(new java.awt.Color(102, 102, 255));
-        buttonPrev.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonPrev.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonPrev.setForeground(new java.awt.Color(255, 255, 255));
         buttonPrev.setLabel("DCR");
         buttonPrev.setName("buttonPrev"); // NOI18N
@@ -458,7 +457,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         canvas44.setName("canvas44"); // NOI18N
 
         buttonReset.setBackground(new java.awt.Color(102, 102, 255));
-        buttonReset.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonReset.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonReset.setForeground(new java.awt.Color(255, 255, 255));
         buttonReset.setLabel("RESET");
         buttonReset.setName("buttonReset"); // NOI18N
@@ -484,7 +483,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         buttonNext.setActionCommand("NEXT / INR");
         buttonNext.setBackground(new java.awt.Color(102, 102, 255));
-        buttonNext.setFont(new java.awt.Font("Dialog", 1, 12));
+        buttonNext.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         buttonNext.setForeground(new java.awt.Color(255, 255, 255));
         buttonNext.setLabel("INR");
         buttonNext.setName("buttonNext"); // NOI18N
@@ -522,14 +521,20 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             .addGroup(layout.createSequentialGroup()
                 .addGap(360, 360, 360)
                 .addComponent(buttonReset, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonHalt, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonC, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonD, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonE, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonF, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(360, 360, 360)
                 .addComponent(buttonPrev, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(buttonMem, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(430, 430, 430)
@@ -541,8 +546,11 @@ public class trainer extends javax.swing.JFrame implements Runnable {
                 .addComponent(buttonGo, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70)
                 .addComponent(button0A, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(button1B, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(button2C, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
                 .addComponent(button3D, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(430, 430, 430)
@@ -669,15 +677,15 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void button6LActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button6LActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('6');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('6');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -688,12 +696,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('L');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('L');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.L).charAt(1));
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('6');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('6');
             d2 = d1;
             d1 = '6';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -704,12 +712,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button6LActionPerformed
@@ -717,10 +725,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button8ActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('8');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('8');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -732,16 +740,16 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         } else if (reg) {
             String s = o.engine.Dec2Hex(o.matrix.SP);
-            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(1));
+            ((TrainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((TrainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((TrainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((TrainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.SP]).charAt(1));
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('8');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('8');
             d2 = d1;
             d1 = '8';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -752,12 +760,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button8ActionPerformed
@@ -776,10 +784,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('0');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('0');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -790,12 +798,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('a');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('a');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.A).charAt(1));
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('0');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('0');
             d2 = d1;
             d1 = '0';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -806,12 +814,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
 
@@ -820,10 +828,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button1BActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button1BActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('1');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('1');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -834,13 +842,13 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('b');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('b');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.B).charAt(1));
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('1');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('1');
             d2 = d1;
             d1 = '1';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -850,12 +858,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
                 o.jTableAssembler.setValueAt("" + d2 + d1, memNo - o.matrix.beginAddress, 4);
             }
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button1BActionPerformed
@@ -863,10 +871,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button2CActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button2CActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('2');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('2');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -877,12 +885,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('C');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('C');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.C).charAt(1));
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('2');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('2');
             d2 = d1;
             d1 = '2';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -893,12 +901,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button2CActionPerformed
@@ -906,10 +914,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button3DActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('3');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('3');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -920,12 +928,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('D');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('D');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.D).charAt(1));
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('3');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('3');
             d2 = d1;
             d1 = '3';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -936,12 +944,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button3DActionPerformed
@@ -949,10 +957,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button4EActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button4EActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('4');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('4');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -963,13 +971,13 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('E');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('E');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.E).charAt(1));
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('4');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('4');
             d2 = d1;
             d1 = '4';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -980,12 +988,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button4EActionPerformed
@@ -993,10 +1001,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button5HActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button5HActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('5');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('5');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1007,12 +1015,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else if (reg) {
-            ((trainerCanvas) canvas41).reDraw('H');
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(1));
+            ((TrainerCanvas) canvas41).reDraw('H');
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.H).charAt(1));
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('5');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('5');
             d2 = d1;
             d1 = '5';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1023,12 +1031,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button5HActionPerformed
@@ -1036,10 +1044,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     private void button7MActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button7MActionPerformed
         if (((!set) && mem) || go) {
 
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('7');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('7');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1051,16 +1059,16 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         } else if (reg) {
             String s = o.engine.Dec2Hex(o.matrix.H * 256 + o.matrix.L);
-            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(1));
+            ((TrainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((TrainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((TrainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((TrainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.H * 256 + o.matrix.L]).charAt(1));
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('7');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('7');
             d2 = d1;
             d1 = '7';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1071,22 +1079,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button7MActionPerformed
 
     private void button9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button9ActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('9');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('9');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1098,16 +1106,16 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
         } else if (reg) {
             String s = o.engine.Dec2Hex(o.matrix.PC);
-            ((trainerCanvas) canvas44).reDraw(s.charAt(0));
-            ((trainerCanvas) canvas43).reDraw(s.charAt(1));
-            ((trainerCanvas) canvas42).reDraw(s.charAt(2));
-            ((trainerCanvas) canvas41).reDraw(s.charAt(3));
-            ((trainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(0));
-            ((trainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(1));
+            ((TrainerCanvas) canvas44).reDraw(s.charAt(0));
+            ((TrainerCanvas) canvas43).reDraw(s.charAt(1));
+            ((TrainerCanvas) canvas42).reDraw(s.charAt(2));
+            ((TrainerCanvas) canvas41).reDraw(s.charAt(3));
+            ((TrainerCanvas) canvas22).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(0));
+            ((TrainerCanvas) canvas21).reDraw(o.engine.Dec2Hex2digit(o.matrix.memory[o.matrix.PC]).charAt(1));
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('9');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('9');
             d2 = d1;
             d1 = '9';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1118,22 +1126,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_button9ActionPerformed
 
     private void buttonAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('A');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('A');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1146,8 +1154,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('A');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('A');
             d2 = d1;
             d1 = 'A';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1158,22 +1166,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonAActionPerformed
 
     private void buttonBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('B');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('B');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1186,8 +1194,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('B');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('B');
             d2 = d1;
             d1 = 'B';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1198,22 +1206,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonBActionPerformed
 
     private void buttonCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('C');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('C');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1226,8 +1234,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('C');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('C');
             d2 = d1;
             d1 = 'C';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1238,12 +1246,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
 
@@ -1251,10 +1259,10 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
     private void buttonDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('D');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('D');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1267,8 +1275,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('D');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('D');
             d2 = d1;
             d1 = 'D';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1279,22 +1287,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonDActionPerformed
 
     private void buttonEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('E');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('E');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1307,8 +1315,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('E');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('E');
             d2 = d1;
             d1 = 'E';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1319,22 +1327,22 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
     }//GEN-LAST:event_buttonEActionPerformed
 
     private void buttonFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFActionPerformed
         if (((!set) && mem) || go) {
-            ((trainerCanvas) canvas44).reDraw(c3);
-            ((trainerCanvas) canvas43).reDraw(c2);
-            ((trainerCanvas) canvas42).reDraw(c1);
-            ((trainerCanvas) canvas41).reDraw('F');
+            ((TrainerCanvas) canvas44).reDraw(c3);
+            ((TrainerCanvas) canvas43).reDraw(c2);
+            ((TrainerCanvas) canvas42).reDraw(c1);
+            ((TrainerCanvas) canvas41).reDraw('F');
             c4 = c3;
             c3 = c2;
             c2 = c1;
@@ -1347,8 +1355,8 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         } else if (reg) {
 
         } else if (set && mem) {
-            ((trainerCanvas) canvas22).reDraw(d1);
-            ((trainerCanvas) canvas21).reDraw('F');
+            ((TrainerCanvas) canvas22).reDraw(d1);
+            ((TrainerCanvas) canvas21).reDraw('F');
             d2 = d1;
             d1 = 'F';
             int memNo = o.engine.Hex2Dec("" + c4 + c3 + c2 + c1);
@@ -1359,12 +1367,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
             }
 
         } else {
-            ((trainerCanvas) canvas44).reDraw('E');
-            ((trainerCanvas) canvas43).reDraw('r');
-            ((trainerCanvas) canvas42).reDraw('r');
-            ((trainerCanvas) canvas41).reDraw('o');
-            ((trainerCanvas) canvas22).reDraw('r');
-            ((trainerCanvas) canvas21).reDraw('*');
+            ((TrainerCanvas) canvas44).reDraw('E');
+            ((TrainerCanvas) canvas43).reDraw('r');
+            ((TrainerCanvas) canvas42).reDraw('r');
+            ((TrainerCanvas) canvas41).reDraw('o');
+            ((TrainerCanvas) canvas22).reDraw('r');
+            ((TrainerCanvas) canvas21).reDraw('*');
 
         }
 
@@ -1432,15 +1440,15 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         }
         reg = false;
         set = true;
-        ((trainerCanvas) canvas41).reDraw(c1);
-        ((trainerCanvas) canvas42).reDraw(c2);
-        ((trainerCanvas) canvas43).reDraw(c3);
-        ((trainerCanvas) canvas44).reDraw(c4);
+        ((TrainerCanvas) canvas41).reDraw(c1);
+        ((TrainerCanvas) canvas42).reDraw(c2);
+        ((TrainerCanvas) canvas43).reDraw(c3);
+        ((TrainerCanvas) canvas44).reDraw(c4);
         int n = o.matrix.memory[o.engine.Hex2Dec("" + c4 + c3 + c2 + c1)];
         d1 = o.engine.Dec2Hex2digit(n).charAt(1);
         d2 = o.engine.Dec2Hex2digit(n).charAt(0);
-        ((trainerCanvas) canvas22).reDraw(d2);
-        ((trainerCanvas) canvas21).reDraw(d1);
+        ((TrainerCanvas) canvas22).reDraw(d2);
+        ((TrainerCanvas) canvas21).reDraw(d1);
 
     }//GEN-LAST:event_buttonNextActionPerformed
 
@@ -1463,15 +1471,15 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         }
         reg = false;
         set = true;
-        ((trainerCanvas) canvas41).reDraw(c1);
-        ((trainerCanvas) canvas42).reDraw(c2);
-        ((trainerCanvas) canvas43).reDraw(c3);
-        ((trainerCanvas) canvas44).reDraw(c4);
+        ((TrainerCanvas) canvas41).reDraw(c1);
+        ((TrainerCanvas) canvas42).reDraw(c2);
+        ((TrainerCanvas) canvas43).reDraw(c3);
+        ((TrainerCanvas) canvas44).reDraw(c4);
         int n = o.matrix.memory[o.engine.Hex2Dec("" + c4 + c3 + c2 + c1)];
         d1 = o.engine.Dec2Hex2digit(n).charAt(1);
         d2 = o.engine.Dec2Hex2digit(n).charAt(0);
-        ((trainerCanvas) canvas22).reDraw(d2);
-        ((trainerCanvas) canvas21).reDraw(d1);
+        ((TrainerCanvas) canvas22).reDraw(d2);
+        ((TrainerCanvas) canvas21).reDraw(d1);
 
     }//GEN-LAST:event_buttonPrevActionPerformed
 
@@ -1487,12 +1495,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         c4 = '0';
         d1 = '0';
         d2 = '0';
-        ((trainerCanvas) canvas44).reDraw('-');
-        ((trainerCanvas) canvas43).reDraw('-');
-        ((trainerCanvas) canvas42).reDraw('-');
-        ((trainerCanvas) canvas41).reDraw('-');
-        ((trainerCanvas) canvas22).reDraw('-');
-        ((trainerCanvas) canvas21).reDraw('-');
+        ((TrainerCanvas) canvas44).reDraw('-');
+        ((TrainerCanvas) canvas43).reDraw('-');
+        ((TrainerCanvas) canvas42).reDraw('-');
+        ((TrainerCanvas) canvas41).reDraw('-');
+        ((TrainerCanvas) canvas22).reDraw('-');
+        ((TrainerCanvas) canvas21).reDraw('-');
 
     }//GEN-LAST:event_buttonResetActionPerformed
 
@@ -1505,12 +1513,12 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         reg = false;
         set = false;
         go = false;
-        ((trainerCanvas) canvas44).reDraw('*');
-        ((trainerCanvas) canvas43).reDraw('*');
-        ((trainerCanvas) canvas42).reDraw('*');
-        ((trainerCanvas) canvas41).reDraw('*');
-        ((trainerCanvas) canvas22).reDraw('*');
-        ((trainerCanvas) canvas21).reDraw('*');
+        ((TrainerCanvas) canvas44).reDraw('*');
+        ((TrainerCanvas) canvas43).reDraw('*');
+        ((TrainerCanvas) canvas42).reDraw('*');
+        ((TrainerCanvas) canvas41).reDraw('*');
+        ((TrainerCanvas) canvas22).reDraw('*');
+        ((TrainerCanvas) canvas21).reDraw('*');
 
     }//GEN-LAST:event_buttonMemActionPerformed
 
@@ -1519,25 +1527,25 @@ public class trainer extends javax.swing.JFrame implements Runnable {
         reg = true;
         set = false;
         go = false;
-        ((trainerCanvas) canvas44).reDraw('r');
-        ((trainerCanvas) canvas43).reDraw('e');
-        ((trainerCanvas) canvas42).reDraw('g');
-        ((trainerCanvas) canvas41).reDraw('*');
-        ((trainerCanvas) canvas22).reDraw('*');
-        ((trainerCanvas) canvas21).reDraw('*');
+        ((TrainerCanvas) canvas44).reDraw('r');
+        ((TrainerCanvas) canvas43).reDraw('e');
+        ((TrainerCanvas) canvas42).reDraw('g');
+        ((TrainerCanvas) canvas41).reDraw('*');
+        ((TrainerCanvas) canvas22).reDraw('*');
+        ((TrainerCanvas) canvas21).reDraw('*');
 
     }//GEN-LAST:event_buttonRegActionPerformed
 
     private void buttonGoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGoActionPerformed
         go = true;
         String s = o.engine.HexAutoCorrect4digit(o.jTextFieldBeginFrom.getText());
-        ((trainerCanvas) canvas44).reDraw(s.charAt(0));
-        ((trainerCanvas) canvas43).reDraw(s.charAt(1));
-        ((trainerCanvas) canvas42).reDraw(s.charAt(2));
-        ((trainerCanvas) canvas41).reDraw(s.charAt(3));
+        ((TrainerCanvas) canvas44).reDraw(s.charAt(0));
+        ((TrainerCanvas) canvas43).reDraw(s.charAt(1));
+        ((TrainerCanvas) canvas42).reDraw(s.charAt(2));
+        ((TrainerCanvas) canvas41).reDraw(s.charAt(3));
         s = o.engine.Dec2Hex2digit(o.matrix.memory[o.engine.Hex2Dec(s)]);
-        ((trainerCanvas) canvas22).reDraw(s.charAt(0));
-        ((trainerCanvas) canvas21).reDraw(s.charAt(1));
+        ((TrainerCanvas) canvas22).reDraw(s.charAt(0));
+        ((TrainerCanvas) canvas21).reDraw(s.charAt(1));
 
     }//GEN-LAST:event_buttonGoActionPerformed
 
@@ -2548,7 +2556,7 @@ public class trainer extends javax.swing.JFrame implements Runnable {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new trainer().setVisible(true);
+                new Trainer().setVisible(true);
             }
         });
     }
@@ -2591,19 +2599,19 @@ public class trainer extends javax.swing.JFrame implements Runnable {
 
 }
 
-class trainerCanvas extends Canvas {
+class TrainerCanvas extends Canvas {
 
     int x = -30, y = -40, s = 30;
 
     int a[][] = new int[1][7];
 
-    public trainerCanvas() {
+    public TrainerCanvas() {
 
         a[0] = decoder('5');
 
     }
 
-    public trainerCanvas(char c) {
+    public TrainerCanvas(char c) {
 
         a[0] = decoder(c);
 

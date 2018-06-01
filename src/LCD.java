@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-class lcd extends javax.swing.JFrame {
+class LCD extends javax.swing.JFrame {
 
     public int x = -30, y = -30, s = 60, gap = 60;
     public int a[][] = new int[4][7];
@@ -17,7 +17,7 @@ class lcd extends javax.swing.JFrame {
     public int i = 0;
     char colour = 'f';
 
-    public lcd() {
+    public LCD() {
         initComponents();
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 7; j++) {
@@ -28,13 +28,13 @@ class lcd extends javax.swing.JFrame {
     }
 
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
     private void initComponents() {
 
-        canvas1 = new lcdCanvas(this);
-        canvas2 = new lcdCanvas(this);
-        canvas3 = new lcdCanvas(this);
-        canvas4 = new lcdCanvas(this);
+        canvas1 = new LCDCanvas(this);
+        canvas2 = new LCDCanvas(this);
+        canvas3 = new LCDCanvas(this);
+        canvas4 = new LCDCanvas(this);
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -184,10 +184,10 @@ class lcd extends javax.swing.JFrame {
         );
 
         pack();
-    }// </editor-fold>//GEN-END:initComponents
+    }// </editor-fold>                        
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        lcdCanvas c = (lcdCanvas) canvas1;
+        LCDCanvas c = (LCDCanvas) canvas1;
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
@@ -438,7 +438,7 @@ class lcd extends javax.swing.JFrame {
 
     public static void main(String args[]) {
 
-        lcd o = new lcd();
+        LCD o = new LCD();
         o.a[0] = o.decoder('9');
         o.setVisible(true);
 
@@ -465,27 +465,27 @@ class lcd extends javax.swing.JFrame {
 
 }
 
-class lcdCanvas extends Canvas {
+class LCDCanvas extends Canvas {
 
     int x = -30, y = -40, s = 30;
 
     int a[][] = new int[1][7];
 
-    lcd o;
+    LCD o;
 
-    public lcdCanvas() {
+    public LCDCanvas() {
 
         a[0] = decoder('5');
 
     }
 
-    public lcdCanvas(char c) {
+    public LCDCanvas(char c) {
 
         a[0] = decoder(c);
 
     }
 
-    public lcdCanvas(lcd o) {
+    public LCDCanvas(LCD o) {
 
         this.o = o;
         a[0] = decoder('5');

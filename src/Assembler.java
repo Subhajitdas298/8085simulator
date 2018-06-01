@@ -2372,7 +2372,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
    }//GEN-LAST:event_jMenuItemRunAllAtATimeActionPerformed
 
    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       setStopMnemonic s = new setStopMnemonic(this);
+       SetStopMnemonic s = new SetStopMnemonic(this);
        s.setVisible(true);
        s.jButton1.setText("Set");
        s.s = "Set";
@@ -2406,19 +2406,21 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
        speed[1] = 1;
        speed[2] = 0;
        speed[3] = 0;
-       setStopMnemonic stopMnemonic = new setStopMnemonic(this);
+       SetStopMnemonic stopMnemonic = new SetStopMnemonic(this);
        stopMnemonic.setTitle("Delay by");
        stopMnemonic.jButton1.setText("Seconds");
        stopMnemonic.setVisible(true);
        stopMnemonic.jTextField1.setText(String.valueOf(speed[0]));
        stopMnemonic.s = "Seconds";
    }//GEN-LAST:event_jRadioButtonMenuItemStepByStepActionPerformed
-    trainer trainerObj;
+
+    Trainer trainerObj;
+
    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
 
        jTableAssembler.setVisible(true);
        if (trainerObj == null) {
-           trainerObj = new trainer(this);
+           trainerObj = new Trainer(this);
        }
        trainerObj.setVisible(true);
    }//GEN-LAST:event_jMenuItem26ActionPerformed
@@ -2453,7 +2455,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
 
    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-       lcd lcd = new lcd();
+       LCD lcd = new LCD();
        lcd.setVisible(true);
 
    }//GEN-LAST:event_jMenuItem7ActionPerformed
