@@ -1067,8 +1067,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
             .addComponent(jLabelError)
             .addGap(18, 18, 18)
-            .addComponent(jInternalFrame6, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
+            .addComponent(jInternalFrame6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
     );
 
     jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
