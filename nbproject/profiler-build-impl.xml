@@ -18,7 +18,8 @@ is divided into following sections:
     INITIALIZATION SECTION
     ======================
     -->
-    <target name="profile-init" depends="-profile-pre-init, init, -profile-post-init, -profile-init-macrodef-profile, -profile-init-check"/>
+    <target name="profile-init"
+            depends="-profile-pre-init, init, -profile-post-init, -profile-init-macrodef-profile, -profile-init-check"/>
     <target name="-profile-pre-init">
         <!-- Empty placeholder for easier customization. -->
         <!-- You can override this target in the ../build.xml file. -->
@@ -58,16 +59,20 @@ is divided into following sections:
             </sequential>
         </macrodef>
     </target>
-    <target name="-profile-init-check" depends="-profile-pre-init, init, -profile-post-init, -profile-init-macrodef-profile">
+    <target name="-profile-init-check"
+            depends="-profile-pre-init, init, -profile-post-init, -profile-init-macrodef-profile">
         <fail unless="profiler.info.jvm">Must set JVM to use for profiling in profiler.info.jvm</fail>
-        <fail unless="profiler.info.jvmargs.agent">Must set profiler agent JVM arguments in profiler.info.jvmargs.agent</fail>
+        <fail unless="profiler.info.jvmargs.agent">Must set profiler agent JVM arguments in
+            profiler.info.jvmargs.agent
+        </fail>
     </target>
     <!--
     =================
     PROFILING SECTION
     =================
     -->
-    <target name="profile" if="netbeans.home" depends="profile-init,compile" description="Profile a project in the IDE.">
+    <target name="profile" if="netbeans.home" depends="profile-init,compile"
+            description="Profile a project in the IDE.">
         <nbprofiledirect>
             <classpath>
                 <path path="${run.classpath}"/>
@@ -75,7 +80,8 @@ is divided into following sections:
         </nbprofiledirect>
         <profile/>
     </target>
-    <target name="profile-single" if="netbeans.home" depends="profile-init,compile-single" description="Profile a selected class in the IDE.">
+    <target name="profile-single" if="netbeans.home" depends="profile-init,compile-single"
+            description="Profile a selected class in the IDE.">
         <fail unless="profile.class">Must select one file in the IDE or set profile.class</fail>
         <nbprofiledirect>
             <classpath>
@@ -112,7 +118,8 @@ is divided into following sections:
                 <path path="${run.test.classpath}"/>
             </classpath>
         </nbprofiledirect>
-        <junit showoutput="true" fork="true" dir="${profiler.info.dir}" jvm="${profiler.info.jvm}" failureproperty="tests.failed" errorproperty="tests.failed">
+        <junit showoutput="true" fork="true" dir="${profiler.info.dir}" jvm="${profiler.info.jvm}"
+               failureproperty="tests.failed" errorproperty="tests.failed">
             <env key="${profiler.info.pathvar}" path="${profiler.info.agentpath}:${profiler.current.path}"/>
             <jvmarg value="${profiler.info.jvmargs.agent}"/>
             <jvmarg line="${profiler.info.jvmargs}"/>

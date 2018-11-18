@@ -4,7 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 /**
- *
  * @author subha
  */
 public class SplashScreen extends JFrame {
@@ -24,7 +23,7 @@ public class SplashScreen extends JFrame {
     public SplashScreen(int d) {
         this();
         duration = d;
-        
+
         showSplashAndExit();
     }
 
@@ -67,12 +66,12 @@ public class SplashScreen extends JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 594, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -88,7 +87,7 @@ public class SplashScreen extends JFrame {
                     UIManager.getSystemLookAndFeelClassName());
         } catch (Exception e) {
         }
-        
+
         new SplashScreen(2000);
         Assembler.main(args);
     }

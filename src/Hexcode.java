@@ -1070,7 +1070,7 @@ public class Hexcode {
         initHexcode();
         int i = 0;
         int hex = 0;
-        for (i = 0; i < 255 && !s.equalsIgnoreCase(S[i]); i++);
+        for (i = 0; i < 255 && !s.equalsIgnoreCase(S[i]); i++) ;
         hex = ((i / 16) * 10) + i % 16;
         return String.valueOf(hex);
 

@@ -52,7 +52,9 @@
     <entry key="2_profiler.settings.instrumentation.root.methods.size">0</entry>
     <entry key="2_profiler.settings.instrument.empty.methods">false</entry>
     <entry key="2_profiler.settings.instrumentation.filter.selectedprofiler.simple.filter.type">0</entry>
-    <entry key="1_profiler.settings.instrumentation.filter.selectedprofiler.simple.filter.value">{$project.classes.only}</entry>
+    <entry key="1_profiler.settings.instrumentation.filter.selectedprofiler.simple.filter.value">
+        {$project.classes.only}
+    </entry>
     <entry key="1_profiler.settings.sampling.interval">10</entry>
     <entry key="2_profiler.settings.cpu.profiling.type">0</entry>
     <entry key="0_profiler.settings.run.gc.on.get.results.in.memory.profiling">true</entry>
@@ -84,7 +86,9 @@
     <entry key="0_profiler.settings.cpu.quick.filterprofiler.simple.filter.value"/>
     <entry key="0_profiler.settings.cpu.profiling.type">0</entry>
     <entry key="0_profiler.settings.instrument.spawned.threads">false</entry>
-    <entry key="1_profiler.settings.instrumentation.filter.selectedprofiler.simple.filter.name">Profile only project classes</entry>
+    <entry key="1_profiler.settings.instrumentation.filter.selectedprofiler.simple.filter.name">Profile only project
+        classes
+    </entry>
     <entry key="2_profiler.settings.instrumentation.marker.methods.size">0</entry>
     <entry key="0_profiler.settings.obj.alloc.stack.sampling.depth">0</entry>
     <entry key="2_profiler.settings.cpu.quick.filterprofiler.filter.type">profiler.simple.filter</entry>

@@ -109,7 +109,7 @@ public class About extends JFrame {
             }
 
         });
-        
+
         currentAuthorContactValueLabel.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -133,7 +133,7 @@ public class About extends JFrame {
             }
 
         });
-        
+
         this.jLabel1.setIcon(new ImageIcon(super.getClass().getResource("/create.dat")));
 
         GroupLayout layout = new GroupLayout(getContentPane());

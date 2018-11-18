@@ -341,6 +341,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
+
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -351,7 +352,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrameRegistersAndToolsTab.setBorder(null);
         jInternalFrameRegistersAndToolsTab.setTitle("Registers : ");
         jInternalFrameRegistersAndToolsTab.setName("jInternalFrameRegistersAndToolsTab"); // NOI18N
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameRegistersAndToolsTab.getUI()).setNorthPane(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrameRegistersAndToolsTab.getUI()).setNorthPane(null);
 
         jLabelErrorHang.setForeground(new java.awt.Color(255, 51, 51));
         jLabelErrorHang.setText("jLabel13");
@@ -366,33 +367,33 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableRegister.setBackground(new java.awt.Color(242, 253, 228));
         jTableRegister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableRegister.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Accumulator", "", null, null, null, null, null, null, null, null},
-                {"Register B", "", null, null, null, null, null, null, null, null},
-                {"Register C", null, null, null, null, null, null, null, null, null},
-                {"Register D", null, null, null, null, null, null, null, null, null},
-                {"Register E", null, null, null, null, null, null, null, null, null},
-                {"Register H", null, null, null, null, null, null, null, null, null},
-                {"Register L", null, null, null, null, null, null, null, null, null},
-                {"Memory(M)", null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "  Register", "Value", "7", "6", "5", "4", "3", "2", "1", "0"
-            }
+                new Object[][]{
+                        {"Accumulator", "", null, null, null, null, null, null, null, null},
+                        {"Register B", "", null, null, null, null, null, null, null, null},
+                        {"Register C", null, null, null, null, null, null, null, null, null},
+                        {"Register D", null, null, null, null, null, null, null, null, null},
+                        {"Register E", null, null, null, null, null, null, null, null, null},
+                        {"Register H", null, null, null, null, null, null, null, null, null},
+                        {"Register L", null, null, null, null, null, null, null, null, null},
+                        {"Memory(M)", null, null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "  Register", "Value", "7", "6", "5", "4", "3", "2", "1", "0"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableRegister.setName("jTableRegister"); // NOI18N
@@ -419,31 +420,31 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableCounter.setBackground(new java.awt.Color(255, 255, 204));
         jTableCounter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableCounter.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Stack Pointer(SP)", null},
-                {"Memory Pointer (HL)", null},
-                {"Program Status Word(PSW)", null},
-                {"Program Counter(PC)", null},
-                {"Clock Cycle Counter", null},
-                {"Instruction Counter", null}
-            },
-            new String [] {
-                "Type", "Value"
-            }
+                new Object[][]{
+                        {"Stack Pointer(SP)", null},
+                        {"Memory Pointer (HL)", null},
+                        {"Program Status Word(PSW)", null},
+                        {"Program Counter(PC)", null},
+                        {"Clock Cycle Counter", null},
+                        {"Instruction Counter", null}
+                },
+                new String[]{
+                        "Type", "Value"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableCounter.setName("jTableCounter"); // NOI18N
@@ -460,26 +461,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableInterrupt.setBackground(new java.awt.Color(153, 255, 255));
         jTableInterrupt.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableInterrupt.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SOD", "SID", "INTR", "TRAP", "R7.5", "R6.5", "R5.5"
-            }
+                new Object[][]{
+                        {null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "SOD", "SID", "INTR", "TRAP", "R7.5", "R6.5", "R5.5"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableInterrupt.setName("jTableInterrupt"); // NOI18N
@@ -506,26 +507,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableFlagregister.setBackground(new java.awt.Color(255, 204, 204));
         jTableFlagregister.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableFlagregister.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Flag Resister", null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Resister", "Value", "S", "Z", "*", "AC", "*", "P", "*", "CY"
-            }
+                new Object[][]{
+                        {"Flag Resister", null, null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "Resister", "Value", "S", "Z", "*", "AC", "*", "P", "*", "CY"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableFlagregister.setName("jTableFlagregister"); // NOI18N
@@ -550,23 +551,23 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         javax.swing.GroupLayout jPanelRegistersTabLayout = new javax.swing.GroupLayout(jPanelRegistersTab);
         jPanelRegistersTab.setLayout(jPanelRegistersTabLayout);
         jPanelRegistersTabLayout.setHorizontalGroup(
-            jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-            .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanelRegistersTabLayout.setVerticalGroup(
-            jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelRegistersTabLayout.createSequentialGroup()
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                jPanelRegistersTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelRegistersTabLayout.createSequentialGroup()
+                                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane13, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane18, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         jTabbedPaneRegisters.addTab("Registers", jPanelRegistersTab);
@@ -584,26 +585,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableRIM.setBackground(new java.awt.Color(204, 204, 204));
         jTableRIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableRIM.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SID", "I7.5", "I6.5", "I5.5", "IE", "M7.5", "M6.5", "M5.5"
-            }
+                new Object[][]{
+                        {null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "SID", "I7.5", "I6.5", "I5.5", "IE", "M7.5", "M6.5", "M5.5"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableRIM.setName("jTableRIM"); // NOI18N
@@ -630,26 +631,26 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableSIM.setBackground(new java.awt.Color(204, 204, 204));
         jTableSIM.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableSIM.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "SOD", "SDE", "*", "R7.5", "MSE", "M7.5", "M6.5", "M5.5"
-            }
+                new Object[][]{
+                        {null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "SOD", "SDE", "*", "R7.5", "MSE", "M7.5", "M6.5", "M5.5"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTableSIM.setName("jTableSIM"); // NOI18N
@@ -677,19 +678,19 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableNoConverter.setBackground(new java.awt.Color(204, 204, 255));
         jTableNoConverter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableNoConverter.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"", null, null}
-            },
-            new String [] {
-                "Hexadecimal", "Decimal", "Binary"
-            }
+                new Object[][]{
+                        {"", null, null}
+                },
+                new String[]{
+                        "Hexadecimal", "Decimal", "Binary"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
         });
         jTableNoConverter.setToolTipText("simple enter the no. and press enter");
@@ -719,33 +720,33 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         javax.swing.GroupLayout jPanelToolsTabLayout = new javax.swing.GroupLayout(jPanelToolsTab);
         jPanelToolsTab.setLayout(jPanelToolsTabLayout);
         jPanelToolsTabLayout.setHorizontalGroup(
-            jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
-            .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(jPanelToolsTabLayout.createSequentialGroup()
-                .addGroup(jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel10)
-                    .addComponent(jLabel12)
-                    .addComponent(jLabel8))
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane17, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                        .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(jPanelToolsTabLayout.createSequentialGroup()
+                                .addGroup(jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jLabel12)
+                                        .addComponent(jLabel8))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                        .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanelToolsTabLayout.setVerticalGroup(
-            jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelToolsTabLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel10)
-                .addGap(2, 2, 2)
-                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel12)
-                .addGap(1, 1, 1)
-                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                jPanelToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanelToolsTabLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel10)
+                                .addGap(2, 2, 2)
+                                .addComponent(jScrollPane17, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel12)
+                                .addGap(1, 1, 1)
+                                .addComponent(jScrollPane15, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane14, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
         );
 
         jTabbedPaneTools.addTab("Tools", jPanelToolsTab);
@@ -753,24 +754,24 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         javax.swing.GroupLayout jInternalFrameRegistersAndToolsTabLayout = new javax.swing.GroupLayout(jInternalFrameRegistersAndToolsTab.getContentPane());
         jInternalFrameRegistersAndToolsTab.getContentPane().setLayout(jInternalFrameRegistersAndToolsTabLayout);
         jInternalFrameRegistersAndToolsTabLayout.setHorizontalGroup(
-            jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabelErrorHang)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(jTabbedPaneRegisters)
-            .addComponent(jTabbedPaneTools)
+                jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jLabelErrorHang)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jTabbedPaneRegisters)
+                        .addComponent(jTabbedPaneTools)
         );
         jInternalFrameRegistersAndToolsTabLayout.setVerticalGroup(
-            jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jTabbedPaneRegisters, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTabbedPaneTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
-                .addComponent(jLabelErrorHang)
-                .addContainerGap())
+                jInternalFrameRegistersAndToolsTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrameRegistersAndToolsTabLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jTabbedPaneRegisters, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPaneTools, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 185, Short.MAX_VALUE)
+                                .addComponent(jLabelErrorHang)
+                                .addContainerGap())
         );
 
         jTabbedPaneRegistersAndTools.addTab("Registers & Tools", jInternalFrameRegistersAndToolsTab);
@@ -780,7 +781,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrame1.setBorder(null);
         jInternalFrame1.setTitle("8085 Assembly Language Editor");
         jInternalFrame1.setName("jInternalFrame1"); // NOI18N
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame1.getUI()).setNorthPane(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrame1.getUI()).setNorthPane(null);
 
         jButtonAssemble.setText("Assemble");
         jButtonAssemble.setName("jButtonAssemble"); // NOI18N
@@ -843,35 +844,35 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jButtonAutocorrect)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButtonDisassemble)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButtonAssemble))
-                    .addComponent(jTabbedPaneAssemblerEditor))
-                .addContainerGap())
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                                                .addComponent(jButtonAutocorrect)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addComponent(jButtonDisassemble)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(jButtonAssemble))
+                                        .addComponent(jTabbedPaneAssemblerEditor))
+                                .addContainerGap())
         );
         jInternalFrame1Layout.setVerticalGroup(
-            jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(14, 14, 14))
-                    .addComponent(jTabbedPaneAssemblerEditor))
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButtonAssemble)
-                    .addComponent(jButtonDisassemble)
-                    .addComponent(jButtonAutocorrect))
-                .addGap(2, 2, 2))
+                jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                                .addComponent(jTabbedPaneLabelEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(14, 14, 14))
+                                        .addComponent(jTabbedPaneAssemblerEditor))
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jButtonAssemble)
+                                        .addComponent(jButtonDisassemble)
+                                        .addComponent(jButtonAutocorrect))
+                                .addGap(2, 2, 2))
         );
 
         jTabbedPaneEditor.addTab("Editor", jInternalFrame1);
@@ -880,7 +881,7 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jInternalFrame5.setResizable(true);
         jInternalFrame5.setTitle("Assembler");
         jInternalFrame5.setName("jInternalFrame5"); // NOI18N
-        ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame5.getUI()).setNorthPane(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrame5.getUI()).setNorthPane(null);
 
         jLabelComment.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabelComment.setForeground(new java.awt.Color(0, 153, 153));
@@ -893,1051 +894,1052 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableAssembler.setBackground(new java.awt.Color(195, 223, 238));
         jTableAssembler.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jTableAssembler.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [1000][8] ,
-            new String [] {
-                "*", "Address", "Label", "Mnemonics", "Hexcode", "Bytes", "M-Cycles", "T-States"
+                                         new Object[1000][8],
+                                         new String[]{
+                                                 "*", "Address", "Label", "Mnemonics", "Hexcode", "Bytes", "M-Cycles", "T-States"
+                                         }
+                                 ) {
+                                     Class[] types = new Class[]{
+                                             java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                                     };
+                                     boolean[] canEdit = new boolean[]{
+                                             false, false, false, false, false, false, false, false
+                                     };
+
+                                     public Class getColumnClass(int columnIndex) {
+                                         return types[columnIndex];
+                                     }
+
+                                     public boolean isCellEditable(int rowIndex, int columnIndex) {
+                                         return canEdit[columnIndex];
+                                     }
+                                 }
+
+        );
+        jTableAssembler.setName("jTableAssembler"); // NOI18N
+        jTableAssembler.setRowSelectionAllowed(true);
+        jTableAssembler.setSelectionBackground(new java.awt.Color(204, 255, 255));
+        jTableAssembler.getTableHeader().setReorderingAllowed(false);
+        jTableAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableAssemblerMouseClicked(evt);
             }
+        });
+        jTableAssembler.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableAssemblerKeyReleased(evt);
+            }
+        });
+        jScrollPane16.setViewportView(jTableAssembler);
+        jTableAssembler.getColumnModel().getColumn(0).setPreferredWidth(10);
+        jTableAssembler.getColumnModel().getColumn(3).setPreferredWidth(125);
+
+        jLabelError.setForeground(new java.awt.Color(255, 51, 51));
+        jLabelError.setText("Error : ");
+        jLabelError.setName("jLabelError"); // NOI18N
+
+        jInternalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulate"));
+        jInternalFrame6.setTitle("Simulate");
+        jInternalFrame6.setName("jInternalFrame6"); // NOI18N
+        jInternalFrame6.setVisible(true);
+        jInternalFrame6.getContentPane().setLayout(null);
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrame6.getUI()).setNorthPane(null);
+
+        jButtonContinue.setMnemonic('t');
+        jButtonContinue.setText("Continue");
+        jButtonContinue.setFocusable(false);
+        jButtonContinue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonContinue.setName("jButtonContinue"); // NOI18N
+        jButtonContinue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonContinue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonContinueActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonContinue);
+        jButtonContinue.setBounds(160, 0, 250, 30);
+
+        jProgressBar1.setForeground(new java.awt.Color(102, 0, 255));
+        jProgressBar1.setName("jProgressBar1"); // NOI18N
+        jInternalFrame6.getContentPane().add(jProgressBar1);
+        jProgressBar1.setBounds(160, 0, 250, 30);
+
+        jTextFieldBeginFrom.setText("C000");
+        jTextFieldBeginFrom.setName("jTextFieldBeginFrom"); // NOI18N
+        jTextFieldBeginFrom.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldBeginFromActionPerformed(evt);
+            }
+        });
+        jTextFieldBeginFrom.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextFieldBeginFromKeyReleased(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jTextFieldBeginFrom);
+        jTextFieldBeginFrom.setBounds(100, 0, 48, 30);
+
+        jLabel6.setText("Start From  →");
+        jLabel6.setName("jLabel6"); // NOI18N
+        jInternalFrame6.getContentPane().add(jLabel6);
+        jLabel6.setBounds(0, 0, 100, 20);
+
+        jButtonStop.setMnemonic('s');
+        jButtonStop.setText("Stop");
+        jButtonStop.setFocusable(false);
+        jButtonStop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonStop.setName("jButtonStop"); // NOI18N
+        jButtonStop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButtonStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStopActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonStop);
+        jButtonStop.setBounds(150, 30, 140, 70);
+
+        jButtonBackward.setMnemonic('b');
+        jButtonBackward.setText("Backward");
+        jButtonBackward.setName("jButtonBackward"); // NOI18N
+        jButtonBackward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBackwardActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonBackward);
+        jButtonBackward.setBounds(0, 30, 150, 70);
+
+        jButtonRun.setMnemonic('r');
+        jButtonRun.setText("Run all At a Time");
+        jButtonRun.setName("jButtonRun"); // NOI18N
+        jButtonRun.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonRunActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonRun);
+        jButtonRun.setBounds(0, 30, 230, 70);
+
+        jButtonForward.setMnemonic('w');
+        jButtonForward.setText("Forward");
+        jButtonForward.setName("jButtonForward"); // NOI18N
+        jButtonForward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonForwardActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonForward);
+        jButtonForward.setBounds(290, 30, 150, 70);
+
+        jButtonStep.setMnemonic('t');
+        jButtonStep.setText("Step By Step");
+        jButtonStep.setName("jButtonStep"); // NOI18N
+        jButtonStep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonStepActionPerformed(evt);
+            }
+        });
+        jInternalFrame6.getContentPane().add(jButtonStep);
+        jButtonStep.setBounds(230, 30, 210, 70);
+
+        javax.swing.GroupLayout jInternalFrame5Layout = new javax.swing.GroupLayout(jInternalFrame5.getContentPane());
+        jInternalFrame5.getContentPane().setLayout(jInternalFrame5Layout);
+        jInternalFrame5Layout.setHorizontalGroup(
+                jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame5Layout.createSequentialGroup()
+                                .addGap(20, 20, 20)
+                                .addGroup(jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jInternalFrame5Layout.createSequentialGroup()
+                                                .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addContainerGap())
+                                        .addGroup(jInternalFrame5Layout.createSequentialGroup()
+                                                .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                .addGap(269, 269, 269))))
+                        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jInternalFrame6, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jInternalFrame5Layout.setVerticalGroup(
+                jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame5Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabelComment)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabelError)
+                                .addGap(18, 18, 18)
+                                .addComponent(jInternalFrame6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
+
+        jTabbedPaneMemory.setName("jTabbedPaneMemory"); // NOI18N
+
+        jInternalFrameMemoryTab.setBorder(null);
+        jInternalFrameMemoryTab.setResizable(true);
+        jInternalFrameMemoryTab.setTitle("Memory Editor");
+        jInternalFrameMemoryTab.setName("jInternalFrameMemoryTab"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrameMemoryTab.getUI()).setNorthPane(null);
+
+        jTextFieldMemBegin.setEditable(false);
+        jTextFieldMemBegin.setText("0000");
+        jTextFieldMemBegin.setName("jTextFieldMemBegin"); // NOI18N
+        jTextFieldMemBegin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldMemBeginActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonStoreMemoryLocation.setText("Store directly to specified memory location ");
+        jRadioButtonStoreMemoryLocation.setName("jRadioButtonStoreMemoryLocation"); // NOI18N
+        jRadioButtonStoreMemoryLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonStoreMemoryLocationActionPerformed(evt);
+            }
+        });
+
+        jScrollPane3.setName("jScrollPane3"); // NOI18N
+
+        jTableMemory.setBackground(new java.awt.Color(255, 204, 204));
+        jTableMemory.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[256][17],
+                new String[]{
+                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
-            boolean[] canEdit = new boolean [] {
-                false, false, false,false,false, false, false, false
+            boolean[] canEdit = new boolean[]{
+                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
             };
 
             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
+                return types[columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
-        }
-
-    );
-    jTableAssembler.setName("jTableAssembler"); // NOI18N
-    jTableAssembler.setRowSelectionAllowed(true);
-    jTableAssembler.setSelectionBackground(new java.awt.Color(204, 255, 255));
-    jTableAssembler.getTableHeader().setReorderingAllowed(false);
-    jTableAssembler.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jTableAssemblerMouseClicked(evt);
-        }
-    });
-    jTableAssembler.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTableAssemblerKeyReleased(evt);
-        }
-    });
-    jScrollPane16.setViewportView(jTableAssembler);
-    jTableAssembler.getColumnModel().getColumn(0).setPreferredWidth(10);
-    jTableAssembler.getColumnModel().getColumn(3).setPreferredWidth(125);
-
-    jLabelError.setForeground(new java.awt.Color(255, 51, 51));
-    jLabelError.setText("Error : ");
-    jLabelError.setName("jLabelError"); // NOI18N
-
-    jInternalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder("Simulate"));
-    jInternalFrame6.setTitle("Simulate");
-    jInternalFrame6.setName("jInternalFrame6"); // NOI18N
-    jInternalFrame6.setVisible(true);
-    jInternalFrame6.getContentPane().setLayout(null);
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrame6.getUI()).setNorthPane(null);
-
-    jButtonContinue.setMnemonic('t');
-    jButtonContinue.setText("Continue");
-    jButtonContinue.setFocusable(false);
-    jButtonContinue.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButtonContinue.setName("jButtonContinue"); // NOI18N
-    jButtonContinue.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButtonContinue.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonContinueActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonContinue);
-    jButtonContinue.setBounds(160, 0, 250, 30);
-
-    jProgressBar1.setForeground(new java.awt.Color(102, 0, 255));
-    jProgressBar1.setName("jProgressBar1"); // NOI18N
-    jInternalFrame6.getContentPane().add(jProgressBar1);
-    jProgressBar1.setBounds(160, 0, 250, 30);
-
-    jTextFieldBeginFrom.setText("C000");
-    jTextFieldBeginFrom.setName("jTextFieldBeginFrom"); // NOI18N
-    jTextFieldBeginFrom.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextFieldBeginFromActionPerformed(evt);
-        }
-    });
-    jTextFieldBeginFrom.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTextFieldBeginFromKeyReleased(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jTextFieldBeginFrom);
-    jTextFieldBeginFrom.setBounds(100, 0, 48, 30);
-
-    jLabel6.setText("Start From  →");
-    jLabel6.setName("jLabel6"); // NOI18N
-    jInternalFrame6.getContentPane().add(jLabel6);
-    jLabel6.setBounds(0, 0, 100, 20);
-
-    jButtonStop.setMnemonic('s');
-    jButtonStop.setText("Stop");
-    jButtonStop.setFocusable(false);
-    jButtonStop.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButtonStop.setName("jButtonStop"); // NOI18N
-    jButtonStop.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-    jButtonStop.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonStopActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonStop);
-    jButtonStop.setBounds(150, 30, 140, 70);
-
-    jButtonBackward.setMnemonic('b');
-    jButtonBackward.setText("Backward");
-    jButtonBackward.setName("jButtonBackward"); // NOI18N
-    jButtonBackward.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonBackwardActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonBackward);
-    jButtonBackward.setBounds(0, 30, 150, 70);
-
-    jButtonRun.setMnemonic('r');
-    jButtonRun.setText("Run all At a Time");
-    jButtonRun.setName("jButtonRun"); // NOI18N
-    jButtonRun.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonRunActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonRun);
-    jButtonRun.setBounds(0, 30, 230, 70);
-
-    jButtonForward.setMnemonic('w');
-    jButtonForward.setText("Forward");
-    jButtonForward.setName("jButtonForward"); // NOI18N
-    jButtonForward.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonForwardActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonForward);
-    jButtonForward.setBounds(290, 30, 150, 70);
-
-    jButtonStep.setMnemonic('t');
-    jButtonStep.setText("Step By Step");
-    jButtonStep.setName("jButtonStep"); // NOI18N
-    jButtonStep.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonStepActionPerformed(evt);
-        }
-    });
-    jInternalFrame6.getContentPane().add(jButtonStep);
-    jButtonStep.setBounds(230, 30, 210, 70);
-
-    javax.swing.GroupLayout jInternalFrame5Layout = new javax.swing.GroupLayout(jInternalFrame5.getContentPane());
-    jInternalFrame5.getContentPane().setLayout(jInternalFrame5Layout);
-    jInternalFrame5Layout.setHorizontalGroup(
-        jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrame5Layout.createSequentialGroup()
-            .addGap(20, 20, 20)
-            .addGroup(jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelComment, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addContainerGap())
-                .addGroup(jInternalFrame5Layout.createSequentialGroup()
-                    .addComponent(jLabelError, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGap(269, 269, 269))))
-        .addComponent(jScrollPane16, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addComponent(jInternalFrame6, javax.swing.GroupLayout.Alignment.TRAILING)
-    );
-    jInternalFrame5Layout.setVerticalGroup(
-        jInternalFrame5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame5Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane16, javax.swing.GroupLayout.DEFAULT_SIZE, 710, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jLabelComment)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jLabelError)
-            .addGap(18, 18, 18)
-            .addComponent(jInternalFrame6, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-    );
-
-    jTabbedPaneEditor.addTab("Assembler", jInternalFrame5);
-
-    jTabbedPaneMemory.setName("jTabbedPaneMemory"); // NOI18N
-
-    jInternalFrameMemoryTab.setBorder(null);
-    jInternalFrameMemoryTab.setResizable(true);
-    jInternalFrameMemoryTab.setTitle("Memory Editor");
-    jInternalFrameMemoryTab.setName("jInternalFrameMemoryTab"); // NOI18N
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameMemoryTab.getUI()).setNorthPane(null);
-
-    jTextFieldMemBegin.setEditable(false);
-    jTextFieldMemBegin.setText("0000");
-    jTextFieldMemBegin.setName("jTextFieldMemBegin"); // NOI18N
-    jTextFieldMemBegin.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextFieldMemBeginActionPerformed(evt);
-        }
-    });
-
-    jRadioButtonStoreMemoryLocation.setText("Store directly to specified memory location ");
-    jRadioButtonStoreMemoryLocation.setName("jRadioButtonStoreMemoryLocation"); // NOI18N
-    jRadioButtonStoreMemoryLocation.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonStoreMemoryLocationActionPerformed(evt);
-        }
-    });
-
-    jScrollPane3.setName("jScrollPane3"); // NOI18N
-
-    jTableMemory.setBackground(new java.awt.Color(255, 204, 204));
-    jTableMemory.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-    jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [256][17],
-        new String [] {
-            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-        }
-    ) {
-        Class[] types = new Class [] {
-            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-        };
-        boolean[] canEdit = new boolean [] {
-            false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-        };
-        public Class getColumnClass(int columnIndex) {
-            return types [columnIndex];
-        }
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    jTableMemory.setName("jTableMemory"); // NOI18N
-    jTableMemory.setRowSelectionAllowed(false);
-    jTableMemory.getTableHeader().setReorderingAllowed(false);
-    jTableMemory.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mousePressed(java.awt.event.MouseEvent evt) {
-            jTableMemoryMousePressed(evt);
-        }
-    });
-    jTableMemory.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTableMemoryKeyReleased(evt);
-        }
-    });
-    jScrollPane3.setViewportView(jTableMemory);
-    jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(250);
-
-    jRadioButtonUsedMemoryLocation.setText("Show only loaded memory location");
-    jRadioButtonUsedMemoryLocation.setName("jRadioButtonUsedMemoryLocation"); // NOI18N
-    jRadioButtonUsedMemoryLocation.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonUsedMemoryLocationActionPerformed(evt);
-        }
-    });
-
-    jLabel5.setText("----");
-    jLabel5.setName("jLabel5"); // NOI18N
-
-    jTextFieldMemStop.setEditable(false);
-    jTextFieldMemStop.setText("FFFF");
-    jTextFieldMemStop.setName("jTextFieldMemStop"); // NOI18N
-    jTextFieldMemStop.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jTextFieldMemStopActionPerformed(evt);
-        }
-    });
-
-    jRadioButtonShowAll.setSelected(true);
-    jRadioButtonShowAll.setText("Show entire memory content");
-    jRadioButtonShowAll.setName("jRadioButtonShowAll"); // NOI18N
-    jRadioButtonShowAll.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonShowAllActionPerformed(evt);
-        }
-    });
-
-    jLabel4.setText("Memory Range:");
-    jLabel4.setName("jLabel4"); // NOI18N
-
-    jLabel1.setDisplayedMnemonic('E');
-    jLabel1.setForeground(new java.awt.Color(0, 0, 102));
-    jLabel1.setText("Edit");
-    jLabel1.setName("jLabel1"); // NOI18N
-    jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
-        public void mouseClicked(java.awt.event.MouseEvent evt) {
-            jLabel1MouseClicked(evt);
-        }
-    });
-
-    javax.swing.GroupLayout jInternalFrameMemoryTabLayout = new javax.swing.GroupLayout(jInternalFrameMemoryTab.getContentPane());
-    jInternalFrameMemoryTab.getContentPane().setLayout(jInternalFrameMemoryTabLayout);
-    jInternalFrameMemoryTabLayout.setHorizontalGroup(
-        jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
-            .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
-                    .addComponent(jLabel4)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel5)
-                    .addGap(10, 10, 10)
-                    .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabel1))
-                .addComponent(jRadioButtonShowAll)
-                .addComponent(jRadioButtonUsedMemoryLocation)
-                .addComponent(jRadioButtonStoreMemoryLocation))
-            .addGap(0, 103, Short.MAX_VALUE))
-    );
-    jInternalFrameMemoryTabLayout.setVerticalGroup(
-        jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
-            .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addComponent(jLabel5)
-                .addComponent(jLabel4)
-                .addComponent(jLabel1))
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-            .addComponent(jRadioButtonShowAll)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jRadioButtonUsedMemoryLocation)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jRadioButtonStoreMemoryLocation)
-            .addContainerGap())
-    );
-
-    jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
-
-    jTabbedPaneDevices.setName("jTabbedPaneDevices"); // NOI18N
-
-    jInternalFrameDevicesTab.setBorder(null);
-    jInternalFrameDevicesTab.setTitle("Interfacing device");
-    jInternalFrameDevicesTab.setName("jInternalFrameDevicesTab"); // NOI18N
-    ((javax.swing.plaf.basic.BasicInternalFrameUI)jInternalFrameDevicesTab.getUI()).setNorthPane(null);
-
-    jTabbedPaneIOPortEditor.setName("jTabbedPaneIOPortEditor"); // NOI18N
-
-    jScrollPaneIOPorts.setName("jScrollPaneIOPorts"); // NOI18N
-
-    jTablePort.setBackground(new java.awt.Color(204, 255, 236));
-    jTablePort.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-    jTablePort.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [16][17],
-        new String [] {
-            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
-        }
-    ) {
-        Class[] types = new Class [] {
-            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-        };
-        boolean[] canEdit = new boolean [] {
-            false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
-        };
-
-        public Class getColumnClass(int columnIndex) {
-            return types [columnIndex];
-        }
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    jTablePort.setName("jTablePort"); // NOI18N
-    jTablePort.setRowSelectionAllowed(false);
-    jTablePort.getTableHeader().setReorderingAllowed(false);
-    jTablePort.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTablePortKeyReleased(evt);
-        }
-    });
-    jScrollPaneIOPorts.setViewportView(jTablePort);
-    jTablePort.getColumnModel().getColumn(0).setPreferredWidth(310);
-
-    jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
-
-    jTabbedPane8255.setName("jTabbedPane8255"); // NOI18N
-
-    jPanel8255.setName("jPanel8255"); // NOI18N
-
-    jScrollPane7.setName("jScrollPane7"); // NOI18N
-
-    jTable8255.setBackground(new java.awt.Color(255, 204, 255));
-    jTable8255.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
-    jTable8255.setModel(new javax.swing.table.DefaultTableModel(
-        new Object [][] {
-            {"Port A", "00", null, null, null, null, null, null, null, null, null},
-            {"Port B", "01", null, null, null, null, null, null, null, null, null},
-            {"Port C", "02", null, null, null, null, null, null, null, null, null},
-            {"Control Register", "03", null, null, null, null, null, null, null, null, null}
-        },
-        new String [] {
-            "", "Address", "Value", "7", "6", "5", "4", "3", "2", "1", "0"
-        }
-    ) {
-        Class[] types = new Class [] {
-            java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
-        };
-        boolean[] canEdit = new boolean [] {
-            false, true, true, true, true, true, true, true, true, true, true
-        };
-
-        public Class getColumnClass(int columnIndex) {
-            return types [columnIndex];
-        }
-
-        public boolean isCellEditable(int rowIndex, int columnIndex) {
-            return canEdit [columnIndex];
-        }
-    });
-    jTable8255.setName("jTable8255"); // NOI18N
-    jTable8255.addKeyListener(new java.awt.event.KeyAdapter() {
-        public void keyReleased(java.awt.event.KeyEvent evt) {
-            jTable8255KeyReleased(evt);
-        }
-    });
-    jScrollPane7.setViewportView(jTable8255);
-    if (jTable8255.getColumnModel().getColumnCount() > 0) {
-        jTable8255.getColumnModel().getColumn(3).setResizable(false);
-        jTable8255.getColumnModel().getColumn(4).setResizable(false);
-        jTable8255.getColumnModel().getColumn(5).setResizable(false);
-        jTable8255.getColumnModel().getColumn(6).setResizable(false);
-        jTable8255.getColumnModel().getColumn(7).setResizable(false);
-        jTable8255.getColumnModel().getColumn(8).setResizable(false);
-        jTable8255.getColumnModel().getColumn(9).setResizable(false);
-        jTable8255.getColumnModel().getColumn(10).setResizable(false);
-    }
-    jTable8255.getColumnModel().getColumn(0).setPreferredWidth(2000);
-    jTable8255.getColumnModel().getColumn(1).setPreferredWidth(1000);
-    jTable8255.getColumnModel().getColumn(2).setPreferredWidth(500);
-
-    jScrollPane8.setName("jScrollPane8"); // NOI18N
-
-    jTextArea8255.setEditable(false);
-    jTextArea8255.setBackground(new java.awt.Color(240, 240, 240));
-    jTextArea8255.setColumns(20);
-    jTextArea8255.setLineWrap(true);
-    jTextArea8255.setRows(5);
-    jTextArea8255.setName("jTextArea8255"); // NOI18N
-    jScrollPane8.setViewportView(jTextArea8255);
-
-    jButtonAnalizeCW.setText("Analyse Control Word");
-    jButtonAnalizeCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-    jButtonAnalizeCW.setName("jButtonAnalizeCW"); // NOI18N
-    jButtonAnalizeCW.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jButtonAnalizeCWActionPerformed(evt);
-        }
-    });
-
-    javax.swing.GroupLayout jPanel8255Layout = new javax.swing.GroupLayout(jPanel8255);
-    jPanel8255.setLayout(jPanel8255Layout);
-    jPanel8255Layout.setHorizontalGroup(
-        jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addGroup(jPanel8255Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
-            .addContainerGap())
-        .addGroup(jPanel8255Layout.createSequentialGroup()
-            .addGap(80, 80, 80)
-            .addComponent(jButtonAnalizeCW)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-    jPanel8255Layout.setVerticalGroup(
-        jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jPanel8255Layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jButtonAnalizeCW)
-            .addGap(14, 14, 14)
-            .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-    );
-
-    jTabbedPane8255.addTab("8255", jPanel8255);
-
-    javax.swing.GroupLayout jInternalFrameDevicesTabLayout = new javax.swing.GroupLayout(jInternalFrameDevicesTab.getContentPane());
-    jInternalFrameDevicesTab.getContentPane().setLayout(jInternalFrameDevicesTabLayout);
-    jInternalFrameDevicesTabLayout.setHorizontalGroup(
-        jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-        .addComponent(jTabbedPane8255, javax.swing.GroupLayout.Alignment.TRAILING)
-    );
-    jInternalFrameDevicesTabLayout.setVerticalGroup(
-        jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(jInternalFrameDevicesTabLayout.createSequentialGroup()
-            .addGap(7, 7, 7)
-            .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPane8255, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap(312, Short.MAX_VALUE))
-    );
-
-    jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
-
-    jMenuBar1.setName("jMenuBar1"); // NOI18N
-
-    jMenuFile.setMnemonic('f');
-    jMenuFile.setText("File");
-    jMenuFile.setName("jMenuFile"); // NOI18N
-
-    jMenuItemLoad_Assembly_Language_code.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItemLoad_Assembly_Language_code.setText("Load Assembly Language code");
-    jMenuItemLoad_Assembly_Language_code.setName("jMenuItemLoad_Assembly_Language_code"); // NOI18N
-    jMenuItemLoad_Assembly_Language_code.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemLoad_Assembly_Language_codeActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemLoad_Assembly_Language_code);
-
-    jMenuItemLoad_Hexcode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemLoad_Hexcode.setText("Load Hexcode/Disassembler");
-    jMenuItemLoad_Hexcode.setName("jMenuItemLoad_Hexcode"); // NOI18N
-    jMenuItemLoad_Hexcode.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemLoad_HexcodeActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemLoad_Hexcode);
-
-    jSeparator7.setName("jSeparator7"); // NOI18N
-    jMenuFile.add(jSeparator7);
-
-    jMenuItemSave_Assembly_Language_code.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItemSave_Assembly_Language_code.setText("Save Assembly Language code");
-    jMenuItemSave_Assembly_Language_code.setName("jMenuItemSave_Assembly_Language_code"); // NOI18N
-    jMenuItemSave_Assembly_Language_code.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemSave_Assembly_Language_codeActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemSave_Assembly_Language_code);
-
-    jMenuItemSave_Hexcode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemSave_Hexcode.setText("Save Hexcode");
-    jMenuItemSave_Hexcode.setName("jMenuItemSave_Hexcode"); // NOI18N
-    jMenuItemSave_Hexcode.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemSave_HexcodeActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemSave_Hexcode);
-
-    jSeparator8.setName("jSeparator8"); // NOI18N
-    jMenuFile.add(jSeparator8);
-
-    jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem18.setText("Print Editor Content");
-    jMenuItem18.setName("jMenuItem18"); // NOI18N
-    jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem18ActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItem18);
-
-    jMenuItem19.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItem19.setText("Print Workspace Content");
-    jMenuItem19.setName("jMenuItem19"); // NOI18N
-    jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem19ActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItem19);
-
-    jSeparator11.setName("jSeparator11"); // NOI18N
-    jMenuFile.add(jSeparator11);
-
-    jMenuItemRecover.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItemRecover.setText("Recover last session");
-    jMenuItemRecover.setName("jMenuItemRecover"); // NOI18N
-    jMenuItemRecover.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemRecoverActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemRecover);
-
-    jSeparator10.setName("jSeparator10"); // NOI18N
-    jMenuFile.add(jSeparator10);
-
-    jMenuItemExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemExit.setText("Exit");
-    jMenuItemExit.setName("jMenuItemExit"); // NOI18N
-    jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemExitActionPerformed(evt);
-        }
-    });
-    jMenuFile.add(jMenuItemExit);
-
-    jMenuBar1.add(jMenuFile);
-
-    jMenu10.setText("Edit");
-    jMenu10.setName("jMenu10"); // NOI18N
-
-    jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem14.setText("Undo");
-    jMenuItem14.setName("jMenuItem14"); // NOI18N
-    jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem14ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem14);
-
-    jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem15.setText("Redo");
-    jMenuItem15.setName("jMenuItem15"); // NOI18N
-    jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem15ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem15);
-
-    jSeparator2.setName("jSeparator2"); // NOI18N
-    jMenu10.add(jSeparator2);
-
-    jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem11.setText("Cut");
-    jMenuItem11.setName("jMenuItem11"); // NOI18N
-    jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem11ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem11);
-
-    jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem12.setText("Copy");
-    jMenuItem12.setName("jMenuItem12"); // NOI18N
-    jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem12ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem12);
-
-    jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem13.setText("Paste");
-    jMenuItem13.setName("jMenuItem13"); // NOI18N
-    jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem13ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem13);
-
-    jSeparator4.setName("jSeparator4"); // NOI18N
-    jMenu10.add(jSeparator4);
-
-    jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem16.setText("Find");
-    jMenuItem16.setName("jMenuItem16"); // NOI18N
-    jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem16ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem16);
-
-    jMenuItem17.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem17.setText("Replace");
-    jMenuItem17.setName("jMenuItem17"); // NOI18N
-    jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem17ActionPerformed(evt);
-        }
-    });
-    jMenu10.add(jMenuItem17);
-
-    jMenuBar1.add(jMenu10);
-
-    jMenu1.setText("Tools");
-    jMenu1.setName("jMenu1"); // NOI18N
-
-    jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
-    jMenuItem4.setText("Assemble");
-    jMenuItem4.setName("jMenuItem4"); // NOI18N
-    jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem4ActionPerformed(evt);
-        }
-    });
-    jMenu1.add(jMenuItem4);
-
-    jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
-    jMenuItem5.setText("Disassemble");
-    jMenuItem5.setName("jMenuItem5"); // NOI18N
-    jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem5ActionPerformed(evt);
-        }
-    });
-    jMenu1.add(jMenuItem5);
-
-    jSeparator9.setName("jSeparator9"); // NOI18N
-    jMenu1.add(jSeparator9);
-
-    jMenuItemAutocorrect.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
-    jMenuItemAutocorrect.setText("Autocorrect");
-    jMenuItemAutocorrect.setName("jMenuItemAutocorrect"); // NOI18N
-    jMenuItemAutocorrect.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemAutocorrectActionPerformed(evt);
-        }
-    });
-    jMenu1.add(jMenuItemAutocorrect);
-
-    jMenuBar1.add(jMenu1);
-
-    jMenuSettings.setText("Settings");
-    jMenuSettings.setName("jMenuSettings"); // NOI18N
-
-    jMenu4.setText("Simulation Speed");
-    jMenu4.setName("jMenu4"); // NOI18N
-
-    jRadioButtonMenuItemStepByStep.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jRadioButtonMenuItemStepByStep.setSelected(true);
-    jRadioButtonMenuItemStepByStep.setText("Step by Step ");
-    jRadioButtonMenuItemStepByStep.setName("jRadioButtonMenuItemStepByStep"); // NOI18N
-    jRadioButtonMenuItemStepByStep.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonMenuItemStepByStepActionPerformed(evt);
-        }
-    });
-    jMenu4.add(jRadioButtonMenuItemStepByStep);
-
-    jRadioButtonMenuItemNormal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jRadioButtonMenuItemNormal.setSelected(true);
-    jRadioButtonMenuItemNormal.setText("Normal");
-    jRadioButtonMenuItemNormal.setName("jRadioButtonMenuItemNormal"); // NOI18N
-    jRadioButtonMenuItemNormal.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonMenuItemNormalActionPerformed(evt);
-        }
-    });
-    jMenu4.add(jRadioButtonMenuItemNormal);
-
-    jRadioButtonMenuItemUltimate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jRadioButtonMenuItemUltimate.setSelected(true);
-    jRadioButtonMenuItemUltimate.setText("Ultimate");
-    jRadioButtonMenuItemUltimate.setName("jRadioButtonMenuItemUltimate"); // NOI18N
-    jRadioButtonMenuItemUltimate.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jRadioButtonMenuItemUltimateActionPerformed(evt);
-        }
-    });
-    jMenu4.add(jRadioButtonMenuItemUltimate);
-
-    jMenuSettings.add(jMenu4);
-
-    jMenuItemClearMemory.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItemClearMemory.setText("Clear Memory ");
-    jMenuItemClearMemory.setName("jMenuItemClearMemory"); // NOI18N
-    jMenuItemClearMemory.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemClearMemoryActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItemClearMemory);
-
-    jSeparator5.setName("jSeparator5"); // NOI18N
-    jMenuSettings.add(jSeparator5);
-
-    jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem9.setText("Show/Hide Interface Editor");
-    jMenuItem9.setName("jMenuItem9"); // NOI18N
-    jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem9ActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItem9);
-
-    jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem3.setText("Show/Hide  Editor");
-    jMenuItem3.setName("jMenuItem3"); // NOI18N
-    jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem3ActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItem3);
-
-    jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem2.setText("Show/Hide Workspace");
-    jMenuItem2.setName("jMenuItem2"); // NOI18N
-    jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem2ActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItem2);
-
-    jSeparator6.setName("jSeparator6"); // NOI18N
-    jMenuSettings.add(jSeparator6);
-
-    jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItem6.setText("Stop simulation at mnemonic");
-    jMenuItem6.setName("jMenuItem6"); // NOI18N
-    jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem6ActionPerformed(evt);
-        }
-    });
-    jMenuSettings.add(jMenuItem6);
-
-    jMenuBar1.add(jMenuSettings);
-
-    jMenu2.setText("Simulation");
-    jMenu2.setName("jMenu2"); // NOI18N
-
-    jMenuItemRunAllAtATime.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemRunAllAtATime.setText("Run all at time");
-    jMenuItemRunAllAtATime.setName("jMenuItemRunAllAtATime"); // NOI18N
-    jMenuItemRunAllAtATime.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemRunAllAtATimeActionPerformed(evt);
-        }
-    });
-    jMenu2.add(jMenuItemRunAllAtATime);
-
-    jMenu3.setText("Run step by step ");
-    jMenu3.setName("jMenu3"); // NOI18N
-
-    jMenuItemForward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_RIGHT, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemForward.setText("Forward");
-    jMenuItemForward.setName("jMenuItemForward"); // NOI18N
-    jMenuItemForward.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemForwardActionPerformed(evt);
-        }
-    });
-    jMenu3.add(jMenuItemForward);
-
-    jMenuItemBackward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_LEFT, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemBackward.setText("Backward");
-    jMenuItemBackward.setName("jMenuItemBackward"); // NOI18N
-    jMenuItemBackward.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemBackwardActionPerformed(evt);
-        }
-    });
-    jMenu3.add(jMenuItemBackward);
-
-    jMenu2.add(jMenu3);
-
-    jMenuItemStop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DOWN, java.awt.event.InputEvent.ALT_MASK));
-    jMenuItemStop.setText("Stop");
-    jMenuItemStop.setName("jMenuItemStop"); // NOI18N
-    jMenuItemStop.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemStopActionPerformed(evt);
-        }
-    });
-    jMenu2.add(jMenuItemStop);
-
-    jMenuBar1.add(jMenu2);
-
-    jMenu11.setText("Subroutine");
-    jMenu11.setName("jMenu11"); // NOI18N
-
-    jMenuItemInterruptServiceSubroutine.setText("Interrupt Service Subroutine");
-    jMenuItemInterruptServiceSubroutine.setName("jMenuItemInterruptServiceSubroutine"); // NOI18N
-    jMenuItemInterruptServiceSubroutine.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemInterruptServiceSubroutineActionPerformed(evt);
-        }
-    });
-    jMenu11.add(jMenuItemInterruptServiceSubroutine);
-
-    jMenuItemDelaySubroutine.setText("Insert Delay Subroutine");
-    jMenuItemDelaySubroutine.setName("jMenuItemDelaySubroutine"); // NOI18N
-    jMenuItemDelaySubroutine.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemDelaySubroutineActionPerformed(evt);
-        }
-    });
-    jMenu11.add(jMenuItemDelaySubroutine);
-
-    jMenuBar1.add(jMenu11);
-
-    jMenu6.setText("View");
-    jMenu6.setName("jMenu6"); // NOI18N
-
-    jMenuItem26.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
-    jMenuItem26.setText("8085 microprocessor trainer kit");
-    jMenuItem26.setName("jMenuItem26"); // NOI18N
-    jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem26ActionPerformed(evt);
-        }
-    });
-    jMenu6.add(jMenuItem26);
-
-    jMenuItem21.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-    jMenuItem21.setText("Code Wizard");
-    jMenuItem21.setName("jMenuItem20"); // NOI18N
-    jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem20ActionPerformed(evt);
-        }
-    });
-    jMenu6.add(jMenuItem21);
-
-    jMenuBar1.add(jMenu6);
-
-    jMenu12.setText("Connect");
-    jMenu12.setName("jMenu12"); // NOI18N
-
-    jMenu7.setText("Connnect Interfacing device");
-    jMenu7.setName("jMenu7"); // NOI18N
-
-    jCheckBoxMenuItemIOPort.setText("I/O Port");
-    jCheckBoxMenuItemIOPort.setName("jCheckBoxMenuItemIOPort"); // NOI18N
-    jCheckBoxMenuItemIOPort.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jCheckBoxMenuItemIOPortActionPerformed(evt);
-        }
-    });
-    jMenu7.add(jCheckBoxMenuItemIOPort);
-
-    jCheckBoxMenuItemPeriphralInterface.setText("Programmable Peripheral Interface");
-    jCheckBoxMenuItemPeriphralInterface.setName("jCheckBoxMenuItemPeriphralInterface"); // NOI18N
-    jCheckBoxMenuItemPeriphralInterface.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jCheckBoxMenuItemPeriphralInterfaceActionPerformed(evt);
-        }
-    });
-    jMenu7.add(jCheckBoxMenuItemPeriphralInterface);
-
-    jCheckBoxMenuItem3.setText("DMA Controller");
-    jCheckBoxMenuItem3.setName("jCheckBoxMenuItem3"); // NOI18N
-    jMenu7.add(jCheckBoxMenuItem3);
-
-    jCheckBoxMenuItem4.setText("Interrupt Controller");
-    jCheckBoxMenuItem4.setName("jCheckBoxMenuItem4"); // NOI18N
-    jMenu7.add(jCheckBoxMenuItem4);
-
-    jCheckBoxMenuItem5.setText("Communication Interface");
-    jCheckBoxMenuItem5.setName("jCheckBoxMenuItem5"); // NOI18N
-    jMenu7.add(jCheckBoxMenuItem5);
-
-    jMenu12.add(jMenu7);
-
-    jMenu8.setText("Connect Peripheral Device");
-    jMenu8.setName("jMenu8"); // NOI18N
-
-    jMenuItem7.setText("7 Segment Display");
-    jMenuItem7.setName("jMenuItem7"); // NOI18N
-    jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem7ActionPerformed(evt);
-        }
-    });
-    jMenu8.add(jMenuItem7);
-
-    jMenuItem8.setText("Stepper Motor");
-    jMenuItem8.setName("jMenuItem8"); // NOI18N
-    jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem8ActionPerformed(evt);
-        }
-    });
-    jMenu8.add(jMenuItem8);
-
-    jMenu12.add(jMenu8);
-
-    jMenuBar1.add(jMenu12);
-
-    jMenu5.setText("Load Sample Program");
-    jMenu5.setName("jMenu5"); // NOI18N
-    jMenuBar1.add(jMenu5);
-
-    jMenuHelp.setText("Help");
-    jMenuHelp.setName("jMenuHelp"); // NOI18N
-
-    jMenuItemHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
-    jMenuItemHelp.setText("Mnemonic Help");
-    jMenuItemHelp.setName("jMenuItemHelp"); // NOI18N
-    jMenuItemHelp.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemHelpActionPerformed(evt);
-        }
-    });
-    jMenuHelp.add(jMenuItemHelp);
-
-    jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
-    jMenuItem10.setText("Documentation");
-    jMenuItem10.setName("jMenuItem10"); // NOI18N
-    jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItem10ActionPerformed(evt);
-        }
-    });
-    jMenuHelp.add(jMenuItem10);
-
-    jMenuItemAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
-    jMenuItemAbout.setText("About");
-    jMenuItemAbout.setName("jMenuItemAbout"); // NOI18N
-    jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
-        public void actionPerformed(java.awt.event.ActionEvent evt) {
-            jMenuItemAboutActionPerformed(evt);
-        }
-    });
-    jMenuHelp.add(jMenuItemAbout);
-
-    jMenuBar1.add(jMenuHelp);
-
-    setJMenuBar(jMenuBar1);
-
-    javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-    getContentPane().setLayout(layout);
-    layout.setHorizontalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addContainerGap()
-            .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneRegistersAndTools, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-            .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-            .addContainerGap())
-    );
-    layout.setVerticalGroup(
-        layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-        .addGroup(layout.createSequentialGroup()
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.Alignment.TRAILING)
-                .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addComponent(jTabbedPaneRegistersAndTools))
-            .addContainerGap())
-    );
-
-    pack();
+        });
+        jTableMemory.setName("jTableMemory"); // NOI18N
+        jTableMemory.setRowSelectionAllowed(false);
+        jTableMemory.getTableHeader().setReorderingAllowed(false);
+        jTableMemory.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jTableMemoryMousePressed(evt);
+            }
+        });
+        jTableMemory.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTableMemoryKeyReleased(evt);
+            }
+        });
+        jScrollPane3.setViewportView(jTableMemory);
+        jTableMemory.getColumnModel().getColumn(0).setPreferredWidth(250);
+
+        jRadioButtonUsedMemoryLocation.setText("Show only loaded memory location");
+        jRadioButtonUsedMemoryLocation.setName("jRadioButtonUsedMemoryLocation"); // NOI18N
+        jRadioButtonUsedMemoryLocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonUsedMemoryLocationActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setText("----");
+        jLabel5.setName("jLabel5"); // NOI18N
+
+        jTextFieldMemStop.setEditable(false);
+        jTextFieldMemStop.setText("FFFF");
+        jTextFieldMemStop.setName("jTextFieldMemStop"); // NOI18N
+        jTextFieldMemStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldMemStopActionPerformed(evt);
+            }
+        });
+
+        jRadioButtonShowAll.setSelected(true);
+        jRadioButtonShowAll.setText("Show entire memory content");
+        jRadioButtonShowAll.setName("jRadioButtonShowAll"); // NOI18N
+        jRadioButtonShowAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonShowAllActionPerformed(evt);
+            }
+        });
+
+        jLabel4.setText("Memory Range:");
+        jLabel4.setName("jLabel4"); // NOI18N
+
+        jLabel1.setDisplayedMnemonic('E');
+        jLabel1.setForeground(new java.awt.Color(0, 0, 102));
+        jLabel1.setText("Edit");
+        jLabel1.setName("jLabel1"); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jInternalFrameMemoryTabLayout = new javax.swing.GroupLayout(jInternalFrameMemoryTab.getContentPane());
+        jInternalFrameMemoryTab.getContentPane().setLayout(jInternalFrameMemoryTabLayout);
+        jInternalFrameMemoryTabLayout.setHorizontalGroup(
+                jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+                                .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel5)
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel1))
+                                        .addComponent(jRadioButtonShowAll)
+                                        .addComponent(jRadioButtonUsedMemoryLocation)
+                                        .addComponent(jRadioButtonStoreMemoryLocation))
+                                .addGap(0, 103, Short.MAX_VALUE))
+        );
+        jInternalFrameMemoryTabLayout.setVerticalGroup(
+                jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrameMemoryTabLayout.createSequentialGroup()
+                                .addGroup(jInternalFrameMemoryTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jTextFieldMemBegin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jTextFieldMemStop, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel1))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jRadioButtonShowAll)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonUsedMemoryLocation)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jRadioButtonStoreMemoryLocation)
+                                .addContainerGap())
+        );
+
+        jTabbedPaneMemory.addTab("Memory", jInternalFrameMemoryTab);
+
+        jTabbedPaneDevices.setName("jTabbedPaneDevices"); // NOI18N
+
+        jInternalFrameDevicesTab.setBorder(null);
+        jInternalFrameDevicesTab.setTitle("Interfacing device");
+        jInternalFrameDevicesTab.setName("jInternalFrameDevicesTab"); // NOI18N
+        ((javax.swing.plaf.basic.BasicInternalFrameUI) jInternalFrameDevicesTab.getUI()).setNorthPane(null);
+
+        jTabbedPaneIOPortEditor.setName("jTabbedPaneIOPortEditor"); // NOI18N
+
+        jScrollPaneIOPorts.setName("jScrollPaneIOPorts"); // NOI18N
+
+        jTablePort.setBackground(new java.awt.Color(204, 255, 236));
+        jTablePort.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTablePort.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[16][17],
+                new String[]{
+                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                }
+        ) {
+            Class[] types = new Class[]{
+                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean[]{
+                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jTablePort.setName("jTablePort"); // NOI18N
+        jTablePort.setRowSelectionAllowed(false);
+        jTablePort.getTableHeader().setReorderingAllowed(false);
+        jTablePort.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTablePortKeyReleased(evt);
+            }
+        });
+        jScrollPaneIOPorts.setViewportView(jTablePort);
+        jTablePort.getColumnModel().getColumn(0).setPreferredWidth(310);
+
+        jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
+
+        jTabbedPane8255.setName("jTabbedPane8255"); // NOI18N
+
+        jPanel8255.setName("jPanel8255"); // NOI18N
+
+        jScrollPane7.setName("jScrollPane7"); // NOI18N
+
+        jTable8255.setBackground(new java.awt.Color(255, 204, 255));
+        jTable8255.setFont(new java.awt.Font("Tahoma", 1, 10)); // NOI18N
+        jTable8255.setModel(new javax.swing.table.DefaultTableModel(
+                new Object[][]{
+                        {"Port A", "00", null, null, null, null, null, null, null, null, null},
+                        {"Port B", "01", null, null, null, null, null, null, null, null, null},
+                        {"Port C", "02", null, null, null, null, null, null, null, null, null},
+                        {"Control Register", "03", null, null, null, null, null, null, null, null, null}
+                },
+                new String[]{
+                        "", "Address", "Value", "7", "6", "5", "4", "3", "2", "1", "0"
+                }
+        ) {
+            Class[] types = new Class[]{
+                    java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean[]{
+                    false, true, true, true, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit[columnIndex];
+            }
+        });
+        jTable8255.setName("jTable8255"); // NOI18N
+        jTable8255.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTable8255KeyReleased(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTable8255);
+        if (jTable8255.getColumnModel().getColumnCount() > 0) {
+            jTable8255.getColumnModel().getColumn(3).setResizable(false);
+            jTable8255.getColumnModel().getColumn(4).setResizable(false);
+            jTable8255.getColumnModel().getColumn(5).setResizable(false);
+            jTable8255.getColumnModel().getColumn(6).setResizable(false);
+            jTable8255.getColumnModel().getColumn(7).setResizable(false);
+            jTable8255.getColumnModel().getColumn(8).setResizable(false);
+            jTable8255.getColumnModel().getColumn(9).setResizable(false);
+            jTable8255.getColumnModel().getColumn(10).setResizable(false);
+        }
+        jTable8255.getColumnModel().getColumn(0).setPreferredWidth(2000);
+        jTable8255.getColumnModel().getColumn(1).setPreferredWidth(1000);
+        jTable8255.getColumnModel().getColumn(2).setPreferredWidth(500);
+
+        jScrollPane8.setName("jScrollPane8"); // NOI18N
+
+        jTextArea8255.setEditable(false);
+        jTextArea8255.setBackground(new java.awt.Color(240, 240, 240));
+        jTextArea8255.setColumns(20);
+        jTextArea8255.setLineWrap(true);
+        jTextArea8255.setRows(5);
+        jTextArea8255.setName("jTextArea8255"); // NOI18N
+        jScrollPane8.setViewportView(jTextArea8255);
+
+        jButtonAnalizeCW.setText("Analyse Control Word");
+        jButtonAnalizeCW.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButtonAnalizeCW.setName("jButtonAnalizeCW"); // NOI18N
+        jButtonAnalizeCW.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonAnalizeCWActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel8255Layout = new javax.swing.GroupLayout(jPanel8255);
+        jPanel8255.setLayout(jPanel8255Layout);
+        jPanel8255Layout.setHorizontalGroup(
+                jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addGroup(jPanel8255Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                                .addContainerGap())
+                        .addGroup(jPanel8255Layout.createSequentialGroup()
+                                .addGap(80, 80, 80)
+                                .addComponent(jButtonAnalizeCW)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8255Layout.setVerticalGroup(
+                jPanel8255Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel8255Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButtonAnalizeCW)
+                                .addGap(14, 14, 14)
+                                .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        jTabbedPane8255.addTab("8255", jPanel8255);
+
+        javax.swing.GroupLayout jInternalFrameDevicesTabLayout = new javax.swing.GroupLayout(jInternalFrameDevicesTab.getContentPane());
+        jInternalFrameDevicesTab.getContentPane().setLayout(jInternalFrameDevicesTabLayout);
+        jInternalFrameDevicesTabLayout.setHorizontalGroup(
+                jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addComponent(jTabbedPane8255, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jInternalFrameDevicesTabLayout.setVerticalGroup(
+                jInternalFrameDevicesTabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrameDevicesTabLayout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(jTabbedPaneIOPortEditor, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPane8255, javax.swing.GroupLayout.PREFERRED_SIZE, 293, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(312, Short.MAX_VALUE))
+        );
+
+        jTabbedPaneDevices.addTab("Devices", jInternalFrameDevicesTab);
+
+        jMenuBar1.setName("jMenuBar1"); // NOI18N
+
+        jMenuFile.setMnemonic('f');
+        jMenuFile.setText("File");
+        jMenuFile.setName("jMenuFile"); // NOI18N
+
+        jMenuItemLoad_Assembly_Language_code.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemLoad_Assembly_Language_code.setText("Load Assembly Language code");
+        jMenuItemLoad_Assembly_Language_code.setName("jMenuItemLoad_Assembly_Language_code"); // NOI18N
+        jMenuItemLoad_Assembly_Language_code.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLoad_Assembly_Language_codeActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemLoad_Assembly_Language_code);
+
+        jMenuItemLoad_Hexcode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemLoad_Hexcode.setText("Load Hexcode/Disassembler");
+        jMenuItemLoad_Hexcode.setName("jMenuItemLoad_Hexcode"); // NOI18N
+        jMenuItemLoad_Hexcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemLoad_HexcodeActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemLoad_Hexcode);
+
+        jSeparator7.setName("jSeparator7"); // NOI18N
+        jMenuFile.add(jSeparator7);
+
+        jMenuItemSave_Assembly_Language_code.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemSave_Assembly_Language_code.setText("Save Assembly Language code");
+        jMenuItemSave_Assembly_Language_code.setName("jMenuItemSave_Assembly_Language_code"); // NOI18N
+        jMenuItemSave_Assembly_Language_code.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSave_Assembly_Language_codeActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemSave_Assembly_Language_code);
+
+        jMenuItemSave_Hexcode.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemSave_Hexcode.setText("Save Hexcode");
+        jMenuItemSave_Hexcode.setName("jMenuItemSave_Hexcode"); // NOI18N
+        jMenuItemSave_Hexcode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemSave_HexcodeActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemSave_Hexcode);
+
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jMenuFile.add(jSeparator8);
+
+        jMenuItem18.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem18.setText("Print Editor Content");
+        jMenuItem18.setName("jMenuItem18"); // NOI18N
+        jMenuItem18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem18ActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItem18);
+
+        jMenuItem19.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_P, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItem19.setText("Print Workspace Content");
+        jMenuItem19.setName("jMenuItem19"); // NOI18N
+        jMenuItem19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem19ActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItem19);
+
+        jSeparator11.setName("jSeparator11"); // NOI18N
+        jMenuFile.add(jSeparator11);
+
+        jMenuItemRecover.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemRecover.setText("Recover last session");
+        jMenuItemRecover.setName("jMenuItemRecover"); // NOI18N
+        jMenuItemRecover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRecoverActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemRecover);
+
+        jSeparator10.setName("jSeparator10"); // NOI18N
+        jMenuFile.add(jSeparator10);
+
+        jMenuItemExit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemExit.setText("Exit");
+        jMenuItemExit.setName("jMenuItemExit"); // NOI18N
+        jMenuItemExit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemExitActionPerformed(evt);
+            }
+        });
+        jMenuFile.add(jMenuItemExit);
+
+        jMenuBar1.add(jMenuFile);
+
+        jMenu10.setText("Edit");
+        jMenu10.setName("jMenu10"); // NOI18N
+
+        jMenuItem14.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Z, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem14.setText("Undo");
+        jMenuItem14.setName("jMenuItem14"); // NOI18N
+        jMenuItem14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem14ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem14);
+
+        jMenuItem15.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Y, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem15.setText("Redo");
+        jMenuItem15.setName("jMenuItem15"); // NOI18N
+        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem15ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem15);
+
+        jSeparator2.setName("jSeparator2"); // NOI18N
+        jMenu10.add(jSeparator2);
+
+        jMenuItem11.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_X, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem11.setText("Cut");
+        jMenuItem11.setName("jMenuItem11"); // NOI18N
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem11);
+
+        jMenuItem12.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem12.setText("Copy");
+        jMenuItem12.setName("jMenuItem12"); // NOI18N
+        jMenuItem12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem12ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem12);
+
+        jMenuItem13.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_V, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem13.setText("Paste");
+        jMenuItem13.setName("jMenuItem13"); // NOI18N
+        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem13ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem13);
+
+        jSeparator4.setName("jSeparator4"); // NOI18N
+        jMenu10.add(jSeparator4);
+
+        jMenuItem16.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem16.setText("Find");
+        jMenuItem16.setName("jMenuItem16"); // NOI18N
+        jMenuItem16.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem16ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem16);
+
+        jMenuItem17.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem17.setText("Replace");
+        jMenuItem17.setName("jMenuItem17"); // NOI18N
+        jMenuItem17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem17ActionPerformed(evt);
+            }
+        });
+        jMenu10.add(jMenuItem17);
+
+        jMenuBar1.add(jMenu10);
+
+        jMenu1.setText("Tools");
+        jMenu1.setName("jMenu1"); // NOI18N
+
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F7, 0));
+        jMenuItem4.setText("Assemble");
+        jMenuItem4.setName("jMenuItem4"); // NOI18N
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        jMenuItem5.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F8, 0));
+        jMenuItem5.setText("Disassemble");
+        jMenuItem5.setName("jMenuItem5"); // NOI18N
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem5);
+
+        jSeparator9.setName("jSeparator9"); // NOI18N
+        jMenu1.add(jSeparator9);
+
+        jMenuItemAutocorrect.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F12, 0));
+        jMenuItemAutocorrect.setText("Autocorrect");
+        jMenuItemAutocorrect.setName("jMenuItemAutocorrect"); // NOI18N
+        jMenuItemAutocorrect.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAutocorrectActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItemAutocorrect);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenuSettings.setText("Settings");
+        jMenuSettings.setName("jMenuSettings"); // NOI18N
+
+        jMenu4.setText("Simulation Speed");
+        jMenu4.setName("jMenu4"); // NOI18N
+
+        jRadioButtonMenuItemStepByStep.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_1, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jRadioButtonMenuItemStepByStep.setSelected(true);
+        jRadioButtonMenuItemStepByStep.setText("Step by Step ");
+        jRadioButtonMenuItemStepByStep.setName("jRadioButtonMenuItemStepByStep"); // NOI18N
+        jRadioButtonMenuItemStepByStep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItemStepByStepActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jRadioButtonMenuItemStepByStep);
+
+        jRadioButtonMenuItemNormal.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_2, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jRadioButtonMenuItemNormal.setSelected(true);
+        jRadioButtonMenuItemNormal.setText("Normal");
+        jRadioButtonMenuItemNormal.setName("jRadioButtonMenuItemNormal"); // NOI18N
+        jRadioButtonMenuItemNormal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItemNormalActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jRadioButtonMenuItemNormal);
+
+        jRadioButtonMenuItemUltimate.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_3, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jRadioButtonMenuItemUltimate.setSelected(true);
+        jRadioButtonMenuItemUltimate.setText("Ultimate");
+        jRadioButtonMenuItemUltimate.setName("jRadioButtonMenuItemUltimate"); // NOI18N
+        jRadioButtonMenuItemUltimate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButtonMenuItemUltimateActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jRadioButtonMenuItemUltimate);
+
+        jMenuSettings.add(jMenu4);
+
+        jMenuItemClearMemory.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DELETE, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemClearMemory.setText("Clear Memory ");
+        jMenuItemClearMemory.setName("jMenuItemClearMemory"); // NOI18N
+        jMenuItemClearMemory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemClearMemoryActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItemClearMemory);
+
+        jSeparator5.setName("jSeparator5"); // NOI18N
+        jMenuSettings.add(jSeparator5);
+
+        jMenuItem9.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem9.setText("Show/Hide Interface Editor");
+        jMenuItem9.setName("jMenuItem9"); // NOI18N
+        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem9ActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItem9);
+
+        jMenuItem3.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_E, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem3.setText("Show/Hide  Editor");
+        jMenuItem3.setName("jMenuItem3"); // NOI18N
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItem3);
+
+        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_W, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem2.setText("Show/Hide Workspace");
+        jMenuItem2.setName("jMenuItem2"); // NOI18N
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItem2);
+
+        jSeparator6.setName("jSeparator6"); // NOI18N
+        jMenuSettings.add(jSeparator6);
+
+        jMenuItem6.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_T, java.awt.event.InputEvent.SHIFT_MASK | java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem6.setText("Stop simulation at mnemonic");
+        jMenuItem6.setName("jMenuItem6"); // NOI18N
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenuSettings.add(jMenuItem6);
+
+        jMenuBar1.add(jMenuSettings);
+
+        jMenu2.setText("Simulation");
+        jMenu2.setName("jMenu2"); // NOI18N
+
+        jMenuItemRunAllAtATime.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_UP, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemRunAllAtATime.setText("Run all at time");
+        jMenuItemRunAllAtATime.setName("jMenuItemRunAllAtATime"); // NOI18N
+        jMenuItemRunAllAtATime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemRunAllAtATimeActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemRunAllAtATime);
+
+        jMenu3.setText("Run step by step ");
+        jMenu3.setName("jMenu3"); // NOI18N
+
+        jMenuItemForward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_RIGHT, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemForward.setText("Forward");
+        jMenuItemForward.setName("jMenuItemForward"); // NOI18N
+        jMenuItemForward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemForwardActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemForward);
+
+        jMenuItemBackward.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_LEFT, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemBackward.setText("Backward");
+        jMenuItemBackward.setName("jMenuItemBackward"); // NOI18N
+        jMenuItemBackward.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemBackwardActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItemBackward);
+
+        jMenu2.add(jMenu3);
+
+        jMenuItemStop.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_DOWN, java.awt.event.InputEvent.ALT_MASK));
+        jMenuItemStop.setText("Stop");
+        jMenuItemStop.setName("jMenuItemStop"); // NOI18N
+        jMenuItemStop.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemStopActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItemStop);
+
+        jMenuBar1.add(jMenu2);
+
+        jMenu11.setText("Subroutine");
+        jMenu11.setName("jMenu11"); // NOI18N
+
+        jMenuItemInterruptServiceSubroutine.setText("Interrupt Service Subroutine");
+        jMenuItemInterruptServiceSubroutine.setName("jMenuItemInterruptServiceSubroutine"); // NOI18N
+        jMenuItemInterruptServiceSubroutine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemInterruptServiceSubroutineActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItemInterruptServiceSubroutine);
+
+        jMenuItemDelaySubroutine.setText("Insert Delay Subroutine");
+        jMenuItemDelaySubroutine.setName("jMenuItemDelaySubroutine"); // NOI18N
+        jMenuItemDelaySubroutine.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemDelaySubroutineActionPerformed(evt);
+            }
+        });
+        jMenu11.add(jMenuItemDelaySubroutine);
+
+        jMenuBar1.add(jMenu11);
+
+        jMenu6.setText("View");
+        jMenu6.setName("jMenu6"); // NOI18N
+
+        jMenuItem26.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F9, 0));
+        jMenuItem26.setText("8085 microprocessor trainer kit");
+        jMenuItem26.setName("jMenuItem26"); // NOI18N
+        jMenuItem26.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem26ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem26);
+
+        jMenuItem21.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jMenuItem21.setText("Code Wizard");
+        jMenuItem21.setName("jMenuItem20"); // NOI18N
+        jMenuItem21.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem20ActionPerformed(evt);
+            }
+        });
+        jMenu6.add(jMenuItem21);
+
+        jMenuBar1.add(jMenu6);
+
+        jMenu12.setText("Connect");
+        jMenu12.setName("jMenu12"); // NOI18N
+
+        jMenu7.setText("Connnect Interfacing device");
+        jMenu7.setName("jMenu7"); // NOI18N
+
+        jCheckBoxMenuItemIOPort.setText("I/O Port");
+        jCheckBoxMenuItemIOPort.setName("jCheckBoxMenuItemIOPort"); // NOI18N
+        jCheckBoxMenuItemIOPort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItemIOPortActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jCheckBoxMenuItemIOPort);
+
+        jCheckBoxMenuItemPeriphralInterface.setText("Programmable Peripheral Interface");
+        jCheckBoxMenuItemPeriphralInterface.setName("jCheckBoxMenuItemPeriphralInterface"); // NOI18N
+        jCheckBoxMenuItemPeriphralInterface.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBoxMenuItemPeriphralInterfaceActionPerformed(evt);
+            }
+        });
+        jMenu7.add(jCheckBoxMenuItemPeriphralInterface);
+
+        jCheckBoxMenuItem3.setText("DMA Controller");
+        jCheckBoxMenuItem3.setName("jCheckBoxMenuItem3"); // NOI18N
+        jMenu7.add(jCheckBoxMenuItem3);
+
+        jCheckBoxMenuItem4.setText("Interrupt Controller");
+        jCheckBoxMenuItem4.setName("jCheckBoxMenuItem4"); // NOI18N
+        jMenu7.add(jCheckBoxMenuItem4);
+
+        jCheckBoxMenuItem5.setText("Communication Interface");
+        jCheckBoxMenuItem5.setName("jCheckBoxMenuItem5"); // NOI18N
+        jMenu7.add(jCheckBoxMenuItem5);
+
+        jMenu12.add(jMenu7);
+
+        jMenu8.setText("Connect Peripheral Device");
+        jMenu8.setName("jMenu8"); // NOI18N
+
+        jMenuItem7.setText("7 Segment Display");
+        jMenuItem7.setName("jMenuItem7"); // NOI18N
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem7);
+
+        jMenuItem8.setText("Stepper Motor");
+        jMenuItem8.setName("jMenuItem8"); // NOI18N
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu8.add(jMenuItem8);
+
+        jMenu12.add(jMenu8);
+
+        jMenuBar1.add(jMenu12);
+
+        jMenu5.setText("Load Sample Program");
+        jMenu5.setName("jMenu5"); // NOI18N
+        jMenuBar1.add(jMenu5);
+
+        jMenuHelp.setText("Help");
+        jMenuHelp.setName("jMenuHelp"); // NOI18N
+
+        jMenuItemHelp.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_H, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItemHelp.setText("Mnemonic Help");
+        jMenuItemHelp.setName("jMenuItemHelp"); // NOI18N
+        jMenuItemHelp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemHelpActionPerformed(evt);
+            }
+        });
+        jMenuHelp.add(jMenuItemHelp);
+
+        jMenuItem10.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
+        jMenuItem10.setText("Documentation");
+        jMenuItem10.setName("jMenuItem10"); // NOI18N
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem10ActionPerformed(evt);
+            }
+        });
+        jMenuHelp.add(jMenuItem10);
+
+        jMenuItemAbout.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, 0));
+        jMenuItemAbout.setText("About");
+        jMenuItemAbout.setName("jMenuItemAbout"); // NOI18N
+        jMenuItemAbout.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemAboutActionPerformed(evt);
+            }
+        });
+        jMenuHelp.add(jMenuItemAbout);
+
+        jMenuBar1.add(jMenuHelp);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.DEFAULT_SIZE, 706, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPaneRegistersAndTools, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTabbedPaneEditor, javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(jTabbedPaneMemory, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jTabbedPaneDevices, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                        .addComponent(jTabbedPaneRegistersAndTools))
+                                .addContainerGap())
+        );
+
+        pack();
     }// </editor-fold>//GEN-END:initComponents
 
     @Override
@@ -2028,47 +2030,47 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         set();
     }
 
-   private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
+    private void jMenuItemAboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAboutActionPerformed
 
-       new About().setVisible(true);
-   }//GEN-LAST:event_jMenuItemAboutActionPerformed
+        new About().setVisible(true);
+    }//GEN-LAST:event_jMenuItemAboutActionPerformed
 
-   private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
-       closeButtonFileSave();
-   }//GEN-LAST:event_jMenuItemExitActionPerformed
+    private void jMenuItemExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemExitActionPerformed
+        closeButtonFileSave();
+    }//GEN-LAST:event_jMenuItemExitActionPerformed
 
-   private void jTableNoConverterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNoConverterKeyReleased
-       int select = jTableNoConverter.getSelectedColumn();
-       String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
-       int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
-       String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
+    private void jTableNoConverterKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTableNoConverterKeyReleased
+        int select = jTableNoConverter.getSelectedColumn();
+        String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
+        int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
+        String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
 
-       switch (select) {
-           case 0:
-               jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
-               jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
-               break;
-           case 1:
-               jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
-               jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
-               break;
-           default:
-               jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
-               jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
-               break;
-       }
-   }//GEN-LAST:event_jTableNoConverterKeyReleased
+        switch (select) {
+            case 0:
+                jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
+                jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
+                break;
+            case 1:
+                jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
+                jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
+                break;
+            default:
+                jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
+                jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
+                break;
+        }
+    }//GEN-LAST:event_jTableNoConverterKeyReleased
 
-   private void jMenuItemClearMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearMemoryActionPerformed
+    private void jMenuItemClearMemoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemClearMemoryActionPerformed
 
-       matrix = new Matrix(this);
-       engine.m = matrix;
-       matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
-       matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
-       matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
+        matrix = new Matrix(this);
+        engine.m = matrix;
+        matrix.PC = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldBeginFrom.getText()));
+        matrix.beginAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemBegin.getText()));
+        matrix.stopAddress = engine.Hex2Dec(engine.HexAutoCorrect4digit(jTextFieldMemStop.getText()));
 
-       set();
-   }//GEN-LAST:event_jMenuItemClearMemoryActionPerformed
+        set();
+    }//GEN-LAST:event_jMenuItemClearMemoryActionPerformed
 
     public void Assemble() {
         String[] commentTemp = new String[1000];
@@ -2223,22 +2225,22 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         }
     }
 
-   private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-       if (jScrollPane16.isVisible()) {
-           jScrollPane16.setVisible(false);
-       } else {
-           jScrollPane16.setVisible(true);
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        if (jScrollPane16.isVisible()) {
+            jScrollPane16.setVisible(false);
+        } else {
+            jScrollPane16.setVisible(true);
 
-       }
-       if (jTabbedPaneLabelEditor.isVisible()) {
-           jTabbedPaneLabelEditor.setVisible(false);
-           jTabbedPaneLabelEditor.setVisible(true);
-       } else {
-           jTabbedPaneLabelEditor.setVisible(true);
-           jTabbedPaneLabelEditor.setVisible(false);
-       }
+        }
+        if (jTabbedPaneLabelEditor.isVisible()) {
+            jTabbedPaneLabelEditor.setVisible(false);
+            jTabbedPaneLabelEditor.setVisible(true);
+        } else {
+            jTabbedPaneLabelEditor.setVisible(true);
+            jTabbedPaneLabelEditor.setVisible(false);
+        }
 
-   }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     public void viewWorkSpace() {
         if (!jScrollPane16.isVisible()) {
@@ -2246,88 +2248,88 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         }
     }
 
-   private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-       if (jTabbedPaneAssemblerEditor.isVisible()) {
-           jTabbedPaneAssemblerEditor.setVisible(false);
-           jTabbedPaneLabelEditor.setVisible(false);
-           jButtonAssemble.setVisible(false);
-           jButtonDisassemble.setVisible(false);
-       } else {
-           jTabbedPaneAssemblerEditor.setVisible(true);
-           if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
-               jTabbedPaneLabelEditor.setVisible(false);
-               jButtonAssemble.setVisible(true);
-               jButtonDisassemble.setVisible(false);
-           } else {
-               jTabbedPaneLabelEditor.setVisible(false);
-               jButtonAssemble.setVisible(false);
-               jButtonDisassemble.setVisible(true);
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        if (jTabbedPaneAssemblerEditor.isVisible()) {
+            jTabbedPaneAssemblerEditor.setVisible(false);
+            jTabbedPaneLabelEditor.setVisible(false);
+            jButtonAssemble.setVisible(false);
+            jButtonDisassemble.setVisible(false);
+        } else {
+            jTabbedPaneAssemblerEditor.setVisible(true);
+            if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 0) {
+                jTabbedPaneLabelEditor.setVisible(false);
+                jButtonAssemble.setVisible(true);
+                jButtonDisassemble.setVisible(false);
+            } else {
+                jTabbedPaneLabelEditor.setVisible(false);
+                jButtonAssemble.setVisible(false);
+                jButtonDisassemble.setVisible(true);
 
-           }
-       }
-   }//GEN-LAST:event_jMenuItem3ActionPerformed
+            }
+        }
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
-   private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       jButtonAssembleActionPerformed(evt);
-   }//GEN-LAST:event_jMenuItem4ActionPerformed
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        jButtonAssembleActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
 
-   private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-       jButtonDisassembleActionPerformed(evt);
-   }//GEN-LAST:event_jMenuItem5ActionPerformed
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        jButtonDisassembleActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
 
-   private void jMenuItemLoad_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
-       if (fileChooser.objectNo == 0) {
-           fileChooser = new FileChooser("Load Mnemonics", this);
-       }
-       Util.customizeFrame(fileChooser);
-       fileChooser.setVisible(true);
-   }//GEN-LAST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
+    private void jMenuItemLoad_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
+        if (fileChooser.objectNo == 0) {
+            fileChooser = new FileChooser("Load Mnemonics", this);
+        }
+        Util.customizeFrame(fileChooser);
+        fileChooser.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLoad_Assembly_Language_codeActionPerformed
 
-   private void jMenuItemLoad_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_HexcodeActionPerformed
-       if (fileChooser.objectNo == 0) {
-           fileChooser = new FileChooser("Load Hexcode", this);
-       }
-       Util.customizeFrame(fileChooser);
-       fileChooser.setVisible(true);
-   }//GEN-LAST:event_jMenuItemLoad_HexcodeActionPerformed
+    private void jMenuItemLoad_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemLoad_HexcodeActionPerformed
+        if (fileChooser.objectNo == 0) {
+            fileChooser = new FileChooser("Load Hexcode", this);
+        }
+        Util.customizeFrame(fileChooser);
+        fileChooser.setVisible(true);
+    }//GEN-LAST:event_jMenuItemLoad_HexcodeActionPerformed
 
-   private void jMenuItemSave_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
-       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
-           jButtonDisassembleActionPerformed(evt);
-       } else {
-           jButtonAssembleActionPerformed(evt);
-       }
+    private void jMenuItemSave_Assembly_Language_codeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
+        if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+            jButtonDisassembleActionPerformed(evt);
+        } else {
+            jButtonAssembleActionPerformed(evt);
+        }
 
-       if (fileChooser.objectNo == 0) {
-           fileChooser = new FileChooser("Save Mnemonics", this);
-       }
-       Util.customizeFrame(fileChooser);
-       fileChooser.setVisible(true);
-   }//GEN-LAST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
+        if (fileChooser.objectNo == 0) {
+            fileChooser = new FileChooser("Save Mnemonics", this);
+        }
+        Util.customizeFrame(fileChooser);
+        fileChooser.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSave_Assembly_Language_codeActionPerformed
 
-   private void jMenuItemSave_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_HexcodeActionPerformed
-       if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
-           jButtonDisassembleActionPerformed(evt);
-       } else {
-           jButtonAssembleActionPerformed(evt);
-       }
+    private void jMenuItemSave_HexcodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemSave_HexcodeActionPerformed
+        if (jTabbedPaneAssemblerEditor.getSelectedIndex() == 1) {
+            jButtonDisassembleActionPerformed(evt);
+        } else {
+            jButtonAssembleActionPerformed(evt);
+        }
 
-       if (fileChooser.objectNo == 0) {
-           fileChooser = new FileChooser("Save Hexcode", this);
-       }
-       Util.customizeFrame(fileChooser);
-       fileChooser.setVisible(true);
-   }//GEN-LAST:event_jMenuItemSave_HexcodeActionPerformed
+        if (fileChooser.objectNo == 0) {
+            fileChooser = new FileChooser("Save Hexcode", this);
+        }
+        Util.customizeFrame(fileChooser);
+        fileChooser.setVisible(true);
+    }//GEN-LAST:event_jMenuItemSave_HexcodeActionPerformed
 
-   private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-       jButtonStop.setText("Stop");
-       jButtonStop.doClick();
-       setEnabled(false);
-       saveSettings();
-       closeButtonFileSave();
-       properShutdown = true;
-       textEditor.jTextPane1FocusLost(null);
-   }//GEN-LAST:event_formWindowClosing
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        jButtonStop.setText("Stop");
+        jButtonStop.doClick();
+        setEnabled(false);
+        saveSettings();
+        closeButtonFileSave();
+        properShutdown = true;
+        textEditor.jTextPane1FocusLost(null);
+    }//GEN-LAST:event_formWindowClosing
 
     public boolean deleteDir(File dir) {
         if (dir.isDirectory()) {
@@ -2343,341 +2345,343 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         return dir.delete();
     }
 
-   private void jMenuItemForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemForwardActionPerformed
-       if (jButtonStep.isVisible()) {
-           jButtonStepActionPerformed(evt);
-       }
-       jButtonForward.doClick();
-   }//GEN-LAST:event_jMenuItemForwardActionPerformed
+    private void jMenuItemForwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemForwardActionPerformed
+        if (jButtonStep.isVisible()) {
+            jButtonStepActionPerformed(evt);
+        }
+        jButtonForward.doClick();
+    }//GEN-LAST:event_jMenuItemForwardActionPerformed
 
-   private void jMenuItemBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBackwardActionPerformed
-       if (jButtonStep.isVisible()) {
-           jButtonStepActionPerformed(evt);
-       }
-       jButtonBackward.doClick();
-   }//GEN-LAST:event_jMenuItemBackwardActionPerformed
+    private void jMenuItemBackwardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemBackwardActionPerformed
+        if (jButtonStep.isVisible()) {
+            jButtonStepActionPerformed(evt);
+        }
+        jButtonBackward.doClick();
+    }//GEN-LAST:event_jMenuItemBackwardActionPerformed
 
-   private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
-       Help help = new Help();
-       help.setVisible(true);
-   }//GEN-LAST:event_jMenuItemHelpActionPerformed
+    private void jMenuItemHelpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemHelpActionPerformed
+        Help help = new Help();
+        help.setVisible(true);
+    }//GEN-LAST:event_jMenuItemHelpActionPerformed
 
-   private void jMenuItemStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopActionPerformed
-       jButtonStopActionPerformed(evt);
-   }//GEN-LAST:event_jMenuItemStopActionPerformed
+    private void jMenuItemStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemStopActionPerformed
+        jButtonStopActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItemStopActionPerformed
 
-   private void jMenuItemRunAllAtATimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRunAllAtATimeActionPerformed
-       jButtonRunActionPerformed(evt);
-   }//GEN-LAST:event_jMenuItemRunAllAtATimeActionPerformed
+    private void jMenuItemRunAllAtATimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRunAllAtATimeActionPerformed
+        jButtonRunActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItemRunAllAtATimeActionPerformed
 
-   private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       SetStopMnemonic s = new SetStopMnemonic(this);
-       s.setVisible(true);
-       s.jButton1.setText("Set");
-       s.s = "Set";
-   }//GEN-LAST:event_jMenuItem6ActionPerformed
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        SetStopMnemonic s = new SetStopMnemonic(this);
+        s.setVisible(true);
+        s.jButton1.setText("Set");
+        s.s = "Set";
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
-   private void jRadioButtonMenuItemNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemNormalActionPerformed
+    private void jRadioButtonMenuItemNormalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemNormalActionPerformed
 
-       jRadioButtonMenuItemNormal.setSelected(true);
-       jRadioButtonMenuItemStepByStep.setSelected(false);
-       jRadioButtonMenuItemUltimate.setSelected(false);
-       speed[0] = 0;
-       speed[1] = 0;
-       speed[2] = 1;
-       speed[3] = 0;
-   }//GEN-LAST:event_jRadioButtonMenuItemNormalActionPerformed
+        jRadioButtonMenuItemNormal.setSelected(true);
+        jRadioButtonMenuItemStepByStep.setSelected(false);
+        jRadioButtonMenuItemUltimate.setSelected(false);
+        speed[0] = 0;
+        speed[1] = 0;
+        speed[2] = 1;
+        speed[3] = 0;
+    }//GEN-LAST:event_jRadioButtonMenuItemNormalActionPerformed
 
-   private void jRadioButtonMenuItemUltimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemUltimateActionPerformed
-       jRadioButtonMenuItemNormal.setSelected(false);
-       jRadioButtonMenuItemStepByStep.setSelected(false);
-       jRadioButtonMenuItemUltimate.setSelected(true);
-       speed[0] = 0;
-       speed[1] = 0;
-       speed[2] = 0;
-       speed[3] = 1;
-   }//GEN-LAST:event_jRadioButtonMenuItemUltimateActionPerformed
+    private void jRadioButtonMenuItemUltimateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemUltimateActionPerformed
+        jRadioButtonMenuItemNormal.setSelected(false);
+        jRadioButtonMenuItemStepByStep.setSelected(false);
+        jRadioButtonMenuItemUltimate.setSelected(true);
+        speed[0] = 0;
+        speed[1] = 0;
+        speed[2] = 0;
+        speed[3] = 1;
+    }//GEN-LAST:event_jRadioButtonMenuItemUltimateActionPerformed
 
-   private void jRadioButtonMenuItemStepByStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemStepByStepActionPerformed
-       jRadioButtonMenuItemNormal.setSelected(false);
-       jRadioButtonMenuItemStepByStep.setSelected(true);
-       jRadioButtonMenuItemUltimate.setSelected(false);
-       speed[1] = 1;
-       speed[2] = 0;
-       speed[3] = 0;
-       SetStopMnemonic stopMnemonic = new SetStopMnemonic(this);
-       stopMnemonic.setTitle("Delay by");
-       stopMnemonic.jButton1.setText("Seconds");
-       stopMnemonic.setVisible(true);
-       stopMnemonic.jTextField1.setText(String.valueOf(speed[0]));
-       stopMnemonic.s = "Seconds";
-   }//GEN-LAST:event_jRadioButtonMenuItemStepByStepActionPerformed
+    private void jRadioButtonMenuItemStepByStepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButtonMenuItemStepByStepActionPerformed
+        jRadioButtonMenuItemNormal.setSelected(false);
+        jRadioButtonMenuItemStepByStep.setSelected(true);
+        jRadioButtonMenuItemUltimate.setSelected(false);
+        speed[1] = 1;
+        speed[2] = 0;
+        speed[3] = 0;
+        SetStopMnemonic stopMnemonic = new SetStopMnemonic(this);
+        stopMnemonic.setTitle("Delay by");
+        stopMnemonic.jButton1.setText("Seconds");
+        stopMnemonic.setVisible(true);
+        stopMnemonic.jTextField1.setText(String.valueOf(speed[0]));
+        stopMnemonic.s = "Seconds";
+    }//GEN-LAST:event_jRadioButtonMenuItemStepByStepActionPerformed
 
     Trainer trainerObj;
 
-   private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
+    private void jMenuItem26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem26ActionPerformed
 
-       jTableAssembler.setVisible(true);
-       if (trainerObj == null) {
-           trainerObj = new Trainer(this);
-       }
-       trainerObj.setVisible(true);
-   }//GEN-LAST:event_jMenuItem26ActionPerformed
+        jTableAssembler.setVisible(true);
+        if (trainerObj == null) {
+            trainerObj = new Trainer(this);
+        }
+        trainerObj.setVisible(true);
+    }//GEN-LAST:event_jMenuItem26ActionPerformed
 
-   private void jTableNoConverterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNoConverterMousePressed
-       int select = jTableNoConverter.getSelectedColumn();
-       String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
-       int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
-       String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
+    private void jTableNoConverterMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableNoConverterMousePressed
+        int select = jTableNoConverter.getSelectedColumn();
+        String hex = jTableNoConverter.getValueAt(0, 0).toString().toUpperCase();
+        int dec = Integer.parseInt(jTableNoConverter.getValueAt(0, 1).toString().toUpperCase());
+        String binary = jTableNoConverter.getValueAt(0, 2).toString().toUpperCase();
 
-       if (select == 0) {
-           jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
-           jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
+        if (select == 0) {
+            jTableNoConverter.setValueAt(engine.Hex2Dec(hex), 0, 1);
+            jTableNoConverter.setValueAt(engine.Hex2Bin(hex), 0, 2);
 
-       } else if (select == 1) {
+        } else if (select == 1) {
 
-           jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
-           jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
+            jTableNoConverter.setValueAt(engine.Dec2Hex(dec), 0, 0);
+            jTableNoConverter.setValueAt(engine.Dec2Bin(dec), 0, 2);
 
-       } else {
-           jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
-           jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
+        } else {
+            jTableNoConverter.setValueAt(engine.Bin2Dec(binary), 0, 1);
+            jTableNoConverter.setValueAt(engine.Bin2Hex(binary), 0, 0);
 
-       }
+        }
 
-}//GEN-LAST:event_jTableNoConverterMousePressed
+    }//GEN-LAST:event_jTableNoConverterMousePressed
 
-   private void jMenuItemAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutocorrectActionPerformed
+    private void jMenuItemAutocorrectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemAutocorrectActionPerformed
 
-       jButtonAutocorrectActionPerformed(evt);
-   }//GEN-LAST:event_jMenuItemAutocorrectActionPerformed
+        jButtonAutocorrectActionPerformed(evt);
+    }//GEN-LAST:event_jMenuItemAutocorrectActionPerformed
 
-   private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
 
-       LCD lcd = new LCD();
-       lcd.setVisible(true);
+        LCD lcd = new LCD();
+        lcd.setVisible(true);
 
-   }//GEN-LAST:event_jMenuItem7ActionPerformed
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
-   private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
 
-       SteperMotor motor = new SteperMotor();
-       motor.setVisible(true);
-   }//GEN-LAST:event_jMenuItem8ActionPerformed
+        SteperMotor motor = new SteperMotor();
+        motor.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
-   private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
 
-       if (jTabbedPaneIOPortEditor.isVisible()) {
-           jTabbedPaneIOPortEditor.setVisible(false);
-       } else {
-           jTabbedPaneIOPortEditor.setVisible(true);
-       }
+        if (jTabbedPaneIOPortEditor.isVisible()) {
+            jTabbedPaneIOPortEditor.setVisible(false);
+        } else {
+            jTabbedPaneIOPortEditor.setVisible(true);
+        }
 
-   }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }//GEN-LAST:event_jMenuItem9ActionPerformed
 
-   private void jCheckBoxMenuItemIOPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemIOPortActionPerformed
+    private void jCheckBoxMenuItemIOPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemIOPortActionPerformed
 
-       jTabbedPaneIOPortEditor.remove(jScrollPaneIOPorts);
-       if (jCheckBoxMenuItemIOPort.isSelected()) {
-           jTabbedPaneIOPortEditor.setVisible(true);
-           jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
-       } else {
-           if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
-               jTabbedPaneIOPortEditor.setVisible(false);
-           }
-       }
+        jTabbedPaneIOPortEditor.remove(jScrollPaneIOPorts);
+        if (jCheckBoxMenuItemIOPort.isSelected()) {
+            jTabbedPaneIOPortEditor.setVisible(true);
+            jTabbedPaneIOPortEditor.addTab("I/O Port Editor", jScrollPaneIOPorts);
+        } else {
+            if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
+                jTabbedPaneIOPortEditor.setVisible(false);
+            }
+        }
 
-}//GEN-LAST:event_jCheckBoxMenuItemIOPortActionPerformed
+    }//GEN-LAST:event_jCheckBoxMenuItemIOPortActionPerformed
 
-   private void jCheckBoxMenuItemPeriphralInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
-       jTabbedPaneIOPortEditor.remove(jPanel8255);
-       if (jCheckBoxMenuItemPeriphralInterface.isSelected()) {
-           jTabbedPaneIOPortEditor.setVisible(true);
-           jTabbedPaneIOPortEditor.addTab("8255", jPanel8255);
-           //jScrollPane8.setVisible(false);
+    private void jCheckBoxMenuItemPeriphralInterfaceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
+        jTabbedPaneIOPortEditor.remove(jPanel8255);
+        if (jCheckBoxMenuItemPeriphralInterface.isSelected()) {
+            jTabbedPaneIOPortEditor.setVisible(true);
+            jTabbedPaneIOPortEditor.addTab("8255", jPanel8255);
+            //jScrollPane8.setVisible(false);
 
-       } else {
-           if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
-               jTabbedPaneIOPortEditor.setVisible(false);
-           }
-       }
+        } else {
+            if (jTabbedPaneIOPortEditor.getTabCount() == 0) {
+                jTabbedPaneIOPortEditor.setVisible(false);
+            }
+        }
 
-   }//GEN-LAST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
+    }//GEN-LAST:event_jCheckBoxMenuItemPeriphralInterfaceActionPerformed
 
-   private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
 
-       jTextAreaAssemblyLanguageEditor.copy();
-   }//GEN-LAST:event_jMenuItem12ActionPerformed
+        jTextAreaAssemblyLanguageEditor.copy();
+    }//GEN-LAST:event_jMenuItem12ActionPerformed
 
-   private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
 
-       jTextAreaAssemblyLanguageEditor.cut();
-   }//GEN-LAST:event_jMenuItem11ActionPerformed
+        jTextAreaAssemblyLanguageEditor.cut();
+    }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-   private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
+    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
 
-       jTextAreaAssemblyLanguageEditor.paste();
+        jTextAreaAssemblyLanguageEditor.paste();
 
-   }//GEN-LAST:event_jMenuItem13ActionPerformed
+    }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     String undo[] = new String[100];
     int undoIndex = 0;
 
-   private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
+    private void jMenuItem14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem14ActionPerformed
 
-       textEditor.undo();
-       textEditor.colorEditor();
-   }//GEN-LAST:event_jMenuItem14ActionPerformed
+        textEditor.undo();
+        textEditor.colorEditor();
+    }//GEN-LAST:event_jMenuItem14ActionPerformed
 
-   private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
 
-       textEditor.redo();
-       textEditor.colorEditor();
+        textEditor.redo();
+        textEditor.colorEditor();
 
-   }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }//GEN-LAST:event_jMenuItem15ActionPerformed
+
     public int find = 0;
-   private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
 
-       find = 0;
-       Find find = new Find(this);
-       find.find();
-       find.setVisible(true);
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
 
-   }//GEN-LAST:event_jMenuItem16ActionPerformed
+        find = 0;
+        Find find = new Find(this);
+        find.find();
+        find.setVisible(true);
 
-   private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    }//GEN-LAST:event_jMenuItem16ActionPerformed
 
-       find = 0;
-       Find find = new Find(this);
-       find.replace();
-       find.setVisible(true);
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
 
-   }//GEN-LAST:event_jMenuItem17ActionPerformed
+        find = 0;
+        Find find = new Find(this);
+        find.replace();
+        find.setVisible(true);
 
-   private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    }//GEN-LAST:event_jMenuItem17ActionPerformed
 
-       PrinterJob printJob = PrinterJob.getPrinterJob();
-       MessageFormat header = new MessageFormat("");
-       MessageFormat footer = new MessageFormat("By Jubin`s 8085 simulator");
-       printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
-       if (printJob.printDialog()) {
-           try {
-               printJob.print();
-           } catch (PrinterException pe) {
-               System.out.println("Error printing: " + pe);
-           }
-       }
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
 
-   }//GEN-LAST:event_jMenuItem18ActionPerformed
+        PrinterJob printJob = PrinterJob.getPrinterJob();
+        MessageFormat header = new MessageFormat("");
+        MessageFormat footer = new MessageFormat("By Jubin`s 8085 simulator");
+        printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
+        if (printJob.printDialog()) {
+            try {
+                printJob.print();
+            } catch (PrinterException pe) {
+                System.out.println("Error printing: " + pe);
+            }
+        }
 
-   private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+    }//GEN-LAST:event_jMenuItem18ActionPerformed
 
-       PrinterJob printJob = PrinterJob.getPrinterJob();
-       MessageFormat header = new MessageFormat("");
-       MessageFormat footer = new MessageFormat("By Jubin's 8085 simulator");
-       String temp = jTextAreaAssemblyLanguageEditor.getText();
-       String s = "";
-       s = s + jTableAssembler.getColumnName(1) + "\t  " + jTableAssembler.getColumnName(2) + "\t" + jTableAssembler.getColumnName(3) + "\t" + jTableAssembler.getColumnName(4) + "\t" + jTableAssembler.getColumnName(5) + "\t" + jTableAssembler.getColumnName(6) + "\t" + jTableAssembler.getColumnName(7) + "\n\n";
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
 
-       for (int i = 0; jTableAssembler.getValueAt(i, 1) != null && i < 1000; i++) {
-           s = s + (jTableAssembler.getValueAt(i, 1) == null ? " " : jTableAssembler.getValueAt(i, 1)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 2) == null ? " " : jTableAssembler.getValueAt(i, 2)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 3) == null ? " " : jTableAssembler.getValueAt(i, 3)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 4) == null ? " " : jTableAssembler.getValueAt(i, 4)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 5) == null ? " " : jTableAssembler.getValueAt(i, 5)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 6) == null ? " " : jTableAssembler.getValueAt(i, 6)) + "\t";
-           s = s + (jTableAssembler.getValueAt(i, 7) == null ? " " : jTableAssembler.getValueAt(i, 7)) + "\n";
-       }
-       jTextAreaAssemblyLanguageEditor.setText(s);
-       printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
-       if (printJob.printDialog()) {
-           try {
-               printJob.print();
-           } catch (PrinterException pe) {
-               System.out.println("Error printing: " + pe);
-           }
-       }
-       jTextAreaAssemblyLanguageEditor.setText(temp);
+        PrinterJob printJob = PrinterJob.getPrinterJob();
+        MessageFormat header = new MessageFormat("");
+        MessageFormat footer = new MessageFormat("By Jubin's 8085 simulator");
+        String temp = jTextAreaAssemblyLanguageEditor.getText();
+        String s = "";
+        s = s + jTableAssembler.getColumnName(1) + "\t  " + jTableAssembler.getColumnName(2) + "\t" + jTableAssembler.getColumnName(3) + "\t" + jTableAssembler.getColumnName(4) + "\t" + jTableAssembler.getColumnName(5) + "\t" + jTableAssembler.getColumnName(6) + "\t" + jTableAssembler.getColumnName(7) + "\n\n";
 
-   }//GEN-LAST:event_jMenuItem19ActionPerformed
+        for (int i = 0; jTableAssembler.getValueAt(i, 1) != null && i < 1000; i++) {
+            s = s + (jTableAssembler.getValueAt(i, 1) == null ? " " : jTableAssembler.getValueAt(i, 1)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 2) == null ? " " : jTableAssembler.getValueAt(i, 2)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 3) == null ? " " : jTableAssembler.getValueAt(i, 3)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 4) == null ? " " : jTableAssembler.getValueAt(i, 4)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 5) == null ? " " : jTableAssembler.getValueAt(i, 5)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 6) == null ? " " : jTableAssembler.getValueAt(i, 6)) + "\t";
+            s = s + (jTableAssembler.getValueAt(i, 7) == null ? " " : jTableAssembler.getValueAt(i, 7)) + "\n";
+        }
+        jTextAreaAssemblyLanguageEditor.setText(s);
+        printJob.setPrintable(jTextAreaAssemblyLanguageEditor.getPrintable(header, footer));
+        if (printJob.printDialog()) {
+            try {
+                printJob.print();
+            } catch (PrinterException pe) {
+                System.out.println("Error printing: " + pe);
+            }
+        }
+        jTextAreaAssemblyLanguageEditor.setText(temp);
 
-   private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    }//GEN-LAST:event_jMenuItem19ActionPerformed
 
-       try {
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
 
-           String filepath = System.getProperty("user.dir") + fileSeparator + "backup.dat";
-           String line = "", s = "";
-           BufferedReader in = new BufferedReader(new FileReader(filepath));
-           properShutdown = Boolean.valueOf(in.readLine());
-           while ((line = in.readLine()) != null) {
-               s = s + line + "\n";
-           }
-           in.close();
-           recover = s;
-           if (!properShutdown) {
-               new Recovery(this, s).setVisible(true);
-           }
-       } catch (Exception e) {
-       }
-       properShutdown = false;
-   }//GEN-LAST:event_formWindowOpened
+        try {
 
-   private void jMenuItemRecoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRecoverActionPerformed
-       properShutdown = false;
-       try {
+            String filepath = System.getProperty("user.dir") + fileSeparator + "backup.dat";
+            String line = "", s = "";
+            BufferedReader in = new BufferedReader(new FileReader(filepath));
+            properShutdown = Boolean.valueOf(in.readLine());
+            while ((line = in.readLine()) != null) {
+                s = s + line + "\n";
+            }
+            in.close();
+            recover = s;
+            if (!properShutdown) {
+                new Recovery(this, s).setVisible(true);
+            }
+        } catch (Exception e) {
+        }
+        properShutdown = false;
+    }//GEN-LAST:event_formWindowOpened
 
-           undoIndex++;
-           if (undoIndex < undo.length) {
-               undo[undoIndex] = jTextAreaAssemblyLanguageEditor.getText();
-           }
-           jTextAreaAssemblyLanguageEditor.setText(recover);
-           textEditor.colorEditor();
-       } catch (Exception e) {
-       }
-   }//GEN-LAST:event_jMenuItemRecoverActionPerformed
+    private void jMenuItemRecoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemRecoverActionPerformed
+        properShutdown = false;
+        try {
 
-   private void jMenuItemInterruptServiceSubroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInterruptServiceSubroutineActionPerformed
+            undoIndex++;
+            if (undoIndex < undo.length) {
+                undo[undoIndex] = jTextAreaAssemblyLanguageEditor.getText();
+            }
+            jTextAreaAssemblyLanguageEditor.setText(recover);
+            textEditor.colorEditor();
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_jMenuItemRecoverActionPerformed
 
-       new InterruptServiceSubroutine(this).setVisible(true);
-   }//GEN-LAST:event_jMenuItemInterruptServiceSubroutineActionPerformed
+    private void jMenuItemInterruptServiceSubroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemInterruptServiceSubroutineActionPerformed
 
-   private void jMenuItemDelaySubroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDelaySubroutineActionPerformed
+        new InterruptServiceSubroutine(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItemInterruptServiceSubroutineActionPerformed
 
-       new DelaySubroutine(this).setVisible(true);
+    private void jMenuItemDelaySubroutineActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemDelaySubroutineActionPerformed
 
-   }//GEN-LAST:event_jMenuItemDelaySubroutineActionPerformed
+        new DelaySubroutine(this).setVisible(true);
 
-   private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+    }//GEN-LAST:event_jMenuItemDelaySubroutineActionPerformed
 
-       new CodeWizard(this).setVisible(true);
-}//GEN-LAST:event_jMenuItem20ActionPerformed
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
 
-   private void jTableInterruptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInterruptMouseClicked
-       int sel = jTableInterrupt.getSelectedColumn();
-       switch (sel) {
-           case 1:
-               matrix.SID = (matrix.SID & 0x01) ^ 1;
-               break;
-           case 2:
-               matrix.INTR = (matrix.INTR & 0x01) ^ 1;
-               break;
-           case 3:
-               matrix.TRAP = (matrix.TRAP & 0x01) ^ 1;
-               break;
-           case 4:
-               matrix.R75 = (matrix.R75 & 0x01) ^ 1;
-               break;
-           case 5:
-               matrix.R65 = (matrix.R65 & 0x01) ^ 1;
-               break;
-           case 6:
-               matrix.R55 = (matrix.R55 & 0x01) ^ 1;
-               break;
-           default:
-               break;
-       }
-       setResister();
-   }//GEN-LAST:event_jTableInterruptMouseClicked
+        new CodeWizard(this).setVisible(true);
+    }//GEN-LAST:event_jMenuItem20ActionPerformed
+
+    private void jTableInterruptMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableInterruptMouseClicked
+        int sel = jTableInterrupt.getSelectedColumn();
+        switch (sel) {
+            case 1:
+                matrix.SID = (matrix.SID & 0x01) ^ 1;
+                break;
+            case 2:
+                matrix.INTR = (matrix.INTR & 0x01) ^ 1;
+                break;
+            case 3:
+                matrix.TRAP = (matrix.TRAP & 0x01) ^ 1;
+                break;
+            case 4:
+                matrix.R75 = (matrix.R75 & 0x01) ^ 1;
+                break;
+            case 5:
+                matrix.R65 = (matrix.R65 & 0x01) ^ 1;
+                break;
+            case 6:
+                matrix.R55 = (matrix.R55 & 0x01) ^ 1;
+                break;
+            default:
+                break;
+        }
+        setResister();
+    }//GEN-LAST:event_jTableInterruptMouseClicked
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         try {
@@ -3128,14 +3132,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                     new Object[n][17],
                     new String[]{
-                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
                     }) {
 
                 Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
-                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
                 };
 
                 public Class getColumnClass(int columnIndex) {
@@ -3164,14 +3168,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[upper - lower + 1][2],
                 new String[]{
-                    "Memory Address", "Value"
+                        "Memory Address", "Value"
                 }) {
 
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class
+                    java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                true, true
+                    true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -3230,14 +3234,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
         jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                 new Object[100][2],
                 new String[]{
-                    "Memory Address", "Value"
+                        "Memory Address", "Value"
                 }) {
 
             Class[] types = new Class[]{
-                java.lang.String.class, java.lang.String.class
+                    java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean[]{
-                true, true
+                    true, true
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -3273,14 +3277,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
             jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                     new Object[n][17],
                     new String[]{
-                        "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
                     }) {
 
                 Class[] types = new Class[]{
-                    java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
                 };
                 boolean[] canEdit = new boolean[]{
-                    false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
                 };
 
                 public Class getColumnClass(int columnIndex) {
@@ -3503,14 +3507,14 @@ public class Assembler extends javax.swing.JFrame implements Runnable {
                 jTableMemory.setModel(new javax.swing.table.DefaultTableModel(
                         new Object[n][17],
                         new String[]{
-                            "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
+                                "        ", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"
                         }) {
 
                     Class[] types = new Class[]{
-                        java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                            java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
                     };
                     boolean[] canEdit = new boolean[]{
-                        false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
+                            false, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true, true
                     };
 
                     public Class getColumnClass(int columnIndex) {

@@ -71,8 +71,8 @@
 
     -->
     <tstamp>
-        <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss" />
+        <format property="TODAY" pattern="yyyy-MM-dd HH:mm:ss"/>
     </tstamp>
-    
-    
+
+
 </project>

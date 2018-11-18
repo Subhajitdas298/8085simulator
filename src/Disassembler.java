@@ -3,7 +3,6 @@ import java.awt.Color;
 import javax.swing.text.DefaultHighlighter;
 
 /**
- *
  * @author Jubin
  */
 public class Disassembler {

@@ -1091,7 +1091,7 @@ public class AssemblerEngine {
         initHexcode();
         int i = 0;
         int hex = 0;
-        for (i = 0; i < 256 && !s.equalsIgnoreCase(S[i]); i++);
+        for (i = 0; i < 256 && !s.equalsIgnoreCase(S[i]); i++) ;
         if (i == 256) {
             i = 0;
         }
@@ -1390,11 +1390,7 @@ public class AssemblerEngine {
     }
 
     /**
-     *
      * @param s function
-     * @return s[0] original repaired function,
-     * @return s[1] lower byte,
-     * @return s[2] upper byte,
      * @return s[3] index
      */
     public String[] MnemonicToHexcode(String s) {

@@ -14,7 +14,6 @@ import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
 /**
- *
  * @author Jubin
  */
 public class TextEditor {
@@ -88,6 +87,7 @@ public class TextEditor {
         } catch (Exception e) {
         }
     }
+
     String[] undo = new String[0xFFF];
     int[] caretPos = new int[0xFFF];
     int undoIndex = -1;
@@ -259,6 +259,7 @@ public class TextEditor {
             }
         });
     }
+
     public javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTextField jTextField1;
     public javax.swing.JTextPane jTextPane1;
